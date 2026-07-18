@@ -1,0 +1,21 @@
+// Inline sprite icons (see assets/icons/sprite.svg), colored via currentColor
+// so hover/active states can recolor them with plain CSS.
+
+.icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  fill: none;
+  color: inherit;
+}
+
+.icon--16 {
+  width: 16px;
+  height: 16px;
+}
+
+.icon--18 {
+  width: 18px;
+  height: 18px;
+}

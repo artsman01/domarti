@@ -1,0 +1,75 @@
+// Bootstrap's .btn-primary already picks up $primary/$btn-font-weight/
+// $btn-border-radius from _variables.scss. The hover tone in Figma is a
+// specific lighter shade rather than Bootstrap's auto-darkened hover, so
+// it's pinned here instead of relying on color-mix.
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--color-brand-hover);
+  border-color: var(--color-brand-hover);
+}
+
+// "Каталог" style button: outline by default, no direct Bootstrap
+// btn-outline-* equivalent since the hover/active fills differ from the
+// outline color itself.
+.btn-stroke {
+  height: 32px;
+  padding: 0 1rem 0 0.75rem;
+  gap: 6px;
+  border: 1px solid var(--bs-border-color);
+  background: transparent;
+  color: var(--bs-body-color);
+}
+
+.btn-stroke:hover {
+  background: var(--color-secondary-bg);
+}
+
+.btn-stroke:active {
+  background: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: var(--color-text-button);
+}
+
+// Icon-only round buttons (menu toggle, call, search, cart...). No direct
+// Bootstrap equivalent, so this is a small custom component on top.
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50rem;
+  flex-shrink: 0;
+  background: var(--color-secondary-bg);
+  color: var(--bs-body-color);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.icon-btn:hover {
+  background: var(--color-tertiary-bg);
+}
+
+.icon-btn:active {
+  background: var(--bs-primary);
+  color: var(--color-text-button);
+}
+
+.icon-btn--ghost {
+  background: transparent;
+}
+
+.icon-btn--ghost:hover {
+  background: var(--color-secondary-bg);
+}
+
+// Cart is transparent by default; "has items" state is a dot badge, not a
+// background/color change, so it doesn't get the brand :active fill.
+.icon-btn--cart {
+  background: transparent;
+}
+
+.icon-btn--cart:hover {
+  background: var(--color-secondary-bg);
+}
+
+.icon-btn--cart:active {
+  background: var(--color-secondary-bg);
+  color: var(--bs-body-color);
+}

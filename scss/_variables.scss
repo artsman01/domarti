@@ -1,0 +1,36 @@
+// Bootstrap variable overrides — keep this file above the bootstrap import.
+// Values are sourced from the Domarti Figma design system (Foundation page).
+
+$primary: #be9460;
+$secondary: #f5f5f5;
+
+$body-color: #1f1e1e;
+$body-bg: #ffffff;
+$border-color: #e0e0e0;
+
+$font-family-sans-serif: "Montserrat", sans-serif;
+$font-size-base: 0.8125rem; // 13px — body/medium
+$line-height-base: 1.4;
+
+$link-color: $body-color;
+$link-hover-color: $primary;
+$link-decoration: none;
+$link-hover-decoration: none;
+
+$btn-font-weight: 500;
+$btn-border-radius: 50rem;
+$btn-border-radius-sm: 50rem;
+$btn-border-radius-lg: 50rem;
+$btn-disabled-opacity: 0.5;
+
+$enable-negative-margins: true;
+
+// Container max-width matches the fixed 1280px content column at every
+// breakpoint from lg up (design has no fluid grid, just one fixed column).
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 1280px,
+  xl: 1280px,
+  xxl: 1280px,
+);

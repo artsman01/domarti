@@ -1,0 +1,24 @@
+// Nav / footer-line link. Hover diverges: icon -> brand, label -> hint, so
+// the two can't share a single `color` — the label needs its own override.
+.menu-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8125rem;
+  line-height: 1.125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--bs-body-color);
+}
+
+.menu-item:hover {
+  color: var(--bs-primary);
+}
+
+.menu-item:hover .menu-item__label {
+  color: var(--color-hint);
+}
+
+.menu-item--dropdown {
+  gap: 4px;
+}

@@ -1,0 +1,80 @@
+// Layout/spacing that Bootstrap's utility classes don't cover: the
+// per-line background colors, logo sizing, phone typography, and the two
+// gaps (12px, 28px) that fall outside the default spacer scale.
+
+.header__logo img {
+  height: 36px;
+  width: auto;
+}
+
+.header__top-line {
+  background: var(--color-success-pale);
+}
+
+.header__top-links a:hover {
+  color: var(--color-hint);
+}
+
+.header__middle-line {
+  height: 84px;
+}
+
+.header__middle-container {
+  gap: 32px;
+}
+
+.header__tablet-actions {
+  gap: 12px;
+}
+
+.header__phone-number {
+  font-size: 1.0625rem; // 17px
+  line-height: 1.5rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.header__email {
+  font-size: 0.8125rem;
+  color: var(--color-hint);
+  white-space: nowrap;
+}
+
+.header__bottom-line {
+  background: var(--color-brand-pale);
+  height: 48px;
+}
+
+.header__kitchens {
+  gap: 28px;
+}
+
+.header__separator {
+  width: 1px;
+  height: 24px;
+  background: var(--bs-border-color);
+}
+
+.header__search {
+  color: var(--color-hint);
+  cursor: pointer;
+}
+
+.header__search:hover {
+  color: var(--bs-body-color);
+}
+
+// Same cutoff as Bootstrap's own d-lg-* utilities (991.98px), so the
+// border lines up with the desktop-nav/tablet-actions swap in the markup.
+@media (max-width: 991.98px) {
+  .header {
+    border-bottom: 1px solid var(--bs-border-color);
+  }
+}
+
+// Same cutoff as Bootstrap's own d-sm-* utilities (575.98px).
+@media (max-width: 575.98px) {
+  .header__logo img {
+    height: 32px;
+  }
+}
