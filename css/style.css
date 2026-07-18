@@ -12633,14 +12633,14 @@ button {
   background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
   transform: skewX(-20deg);
   pointer-events: none;
-  animation: btn-shine 3s ease-in-out infinite;
+  animation: btn-shine 5s ease-in-out infinite;
 }
 
 @keyframes btn-shine {
   0% {
     left: -75%;
   }
-  20% {
+  12% {
     left: 125%;
   }
   100% {
@@ -12783,9 +12783,13 @@ button {
   transition: color 0.15s ease;
 }
 
-.header__phone-number:hover,
-.header__email:hover {
+.header__phone-number:hover {
   color: var(--bs-primary);
+  opacity: 1;
+}
+
+.header__email:hover {
+  color: var(--bs-body-color);
   opacity: 1;
 }
 

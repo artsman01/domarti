@@ -30,14 +30,14 @@
   );
   transform: skewX(-20deg);
   pointer-events: none;
-  animation: btn-shine 3s ease-in-out infinite;
+  animation: btn-shine 5s ease-in-out infinite;
 }
 
 @keyframes btn-shine {
   0% {
     left: -75%;
   }
-  20% {
+  12% {
     left: 125%;
   }
   100% {

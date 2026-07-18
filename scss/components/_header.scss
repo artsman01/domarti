@@ -45,9 +45,13 @@
   transition: color 0.15s ease;
 }
 
-.header__phone-number:hover,
-.header__email:hover {
+.header__phone-number:hover {
   color: var(--bs-primary);
+  opacity: 1;
+}
+
+.header__email:hover {
+  color: var(--bs-body-color);
   opacity: 1;
 }
 
