@@ -1,12 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Domarti</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+  <header class="header">
+    <div class="header__top-line">
+      <div class="header__top-container">
+        <div class="header__top-group">
+          <span>Кухни и мебель под заказ в Самаре</span>
+          <span>•</span>
+          <span>Работаем с 2006 года</span>
+        </div>
+        <div class="header__top-group header__top-group--right">
+          <span>Акции</span>
+          <span>Кредит</span>
+          <span>Дизайнерам</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header__middle-line">
+      <div class="header__middle-container">
+        <button class="icon-btn icon-btn--menu" type="button" aria-label="Меню">
+          <img src="assets/icons/hamburger.svg" alt="">
+        </button>
+
+        <a href="/" class="header__logo">
+          <img src="assets/logo.svg" alt="Domarti">
+        </a>
+
+        <div class="header__tablet-actions">
+          <button class="icon-btn" type="button" aria-label="Позвонить">
+            <img src="assets/icons/call.svg" alt="">
+          </button>
+          <button class="btn btn--brand" type="button">Бесплатный замер</button>
+          <button class="icon-btn" type="button" aria-label="Корзина">
+            <img src="assets/icons/cart.svg" alt="">
+          </button>
+          <button class="icon-btn" type="button" aria-label="Поиск">
+            <img src="assets/icons/search.svg" alt="">
+          </button>
+        </div>
+
+        <nav class="header__nav">
+          <button class="btn btn--stroke" type="button">
+            <img src="assets/icons/hamburger.svg" alt="">
+            <span>Каталог</span>
+          </button>
+          <a class="menu-item" href="#">Наши работы</a>
+          <a class="menu-item menu-item--dropdown" href="#">
+            О компании
+            <img src="assets/icons/angle-down.svg" alt="">
+          </a>
+          <a class="menu-item" href="#">Контакты</a>
+        </nav>
+
+        <div class="header__contacts">
+          <div class="header__phone">
+            <a class="header__phone-number" href="tel:+79270112793">+7 (927) 011-27-93</a>
+            <a class="header__email" href="mailto:info@samara.kitchen">info@samara.kitchen</a>
+          </div>
+          <div class="header__socials">
+            <a href="#" aria-label="WhatsApp"><img src="assets/icons/whatsapp.svg" alt=""></a>
+            <a href="#" aria-label="MAX"><img src="assets/icons/max.svg" alt=""></a>
+            <a href="#" aria-label="Telegram"><img src="assets/icons/telegram.svg" alt=""></a>
+          </div>
+          <div class="header__actions">
+            <button class="btn btn--brand" type="button">Бесплатный замер</button>
+            <button class="icon-btn" type="button" aria-label="Корзина">
+              <img src="assets/icons/cart.svg" alt="">
+            </button>
+          </div>
+        </div>
+
+        <button class="icon-btn icon-btn--cart-mobile" type="button" aria-label="Корзина">
+          <img src="assets/icons/cart.svg" alt="">
+        </button>
+      </div>
+    </div>
+
+    <div class="header__bottom-line">
+      <div class="header__bottom-container">
+        <div class="header__kitchens">
+          <a class="menu-item" href="#">
+            <img src="assets/icons/kitchen-p.svg" alt="">
+            П-образные
+          </a>
+          <a class="menu-item" href="#">
+            <img src="assets/icons/kitchen-simple.svg" alt="">
+            Прямые
+          </a>
+          <a class="menu-item" href="#">
+            <img src="assets/icons/kitchen-angle.svg" alt="">
+            Угловые
+          </a>
+          <a class="menu-item" href="#">
+            <img src="assets/icons/kitchen-isle.svg" alt="">
+            С островом
+          </a>
+        </div>
+
+        <span class="header__separator"></span>
+
+        <div class="header__styles">
+          <a class="menu-item" href="#">Классика</a>
+          <a class="menu-item" href="#">Современные</a>
+          <a class="menu-item" href="#">Модерн</a>
+          <a class="menu-item" href="#">Лофт</a>
+        </div>
+
+        <span class="header__separator"></span>
+
+        <a class="menu-item" href="#">Калькулятор</a>
+
+        <div class="header__search">
+          <span>Поиск</span>
+          <img src="assets/icons/search.svg" alt="">
+        </div>
+      </div>
+    </div>
+  </header>
 
   <script src="js/main.js"></script>
 </body>

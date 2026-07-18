@@ -1,0 +1,20 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Sprite">
+<g id="max" clip-path="url(#clip0_25_67)">
+<rect id="Rectangle 6" width="24" height="24" rx="12" fill="url(#paint0_linear_25_67)"/>
+<g id="Group 430">
+<path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M12.3241 19.2372C10.9168 19.2372 10.2628 19.0318 9.126 18.21C8.40694 19.1345 6.12995 19.857 6.03064 18.6209C6.03064 17.693 5.8252 16.9089 5.59236 16.0529C5.31502 14.9982 5 13.8238 5 12.122C5 8.05768 8.33504 5 12.2864 5C16.2412 5 19.34 8.20834 19.34 12.1597C19.3532 16.0499 16.2143 19.2165 12.3241 19.2372ZM12.3823 8.51307C10.458 8.41379 8.95821 9.74575 8.62608 11.8344C8.35215 13.5636 8.83837 15.6694 9.25268 15.7789C9.45127 15.8269 9.95119 15.4228 10.2628 15.1112C10.778 15.4672 11.378 15.6809 12.0022 15.731C13.9961 15.8269 15.6998 14.3089 15.8337 12.3172C15.9117 10.3213 14.3765 8.63073 12.3823 8.51651V8.51307Z" fill="white"/>
+</g>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_25_67" x1="2.82833" y1="18.2529" x2="24" y2="12" gradientUnits="userSpaceOnUse">
+<stop stop-color="#44CCFF"/>
+<stop offset="0.662" stop-color="#5533EE"/>
+<stop offset="1" stop-color="#9933DD"/>
+</linearGradient>
+<clipPath id="clip0_25_67">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>
