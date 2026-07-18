@@ -12776,7 +12776,10 @@ button {
 
 @media (min-width: 992px) and (max-width: 1279.98px) {
   .header__middle-container {
-    gap: 16px;
+    gap: 24px;
+  }
+  .header__brand {
+    gap: 24px;
   }
 }
 .header__tablet-actions {

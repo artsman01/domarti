@@ -36,11 +36,15 @@
 }
 
 // Same range as the hybrid tier in index.html (Bootstrap's lg-only band,
-// 992-1279.98px): the burger sits right next to the logo there, like on
-// tablet, instead of the 32px desktop gap.
+// 992-1279.98px): tighter than the 32px desktop gap, but wider than the
+// tablet's 12px burger-logo pairing — both relationships are 24px here.
 @media (min-width: 992px) and (max-width: 1279.98px) {
   .header__middle-container {
-    gap: 16px;
+    gap: 24px;
+  }
+
+  .header__brand {
+    gap: 24px;
   }
 }
 
