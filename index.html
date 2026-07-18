@@ -20,9 +20,9 @@
           <span>Работаем с 2006 года</span>
         </div>
         <div class="header__top-group header__top-group--right">
-          <span>Акции</span>
-          <span>Кредит</span>
-          <span>Дизайнерам</span>
+          <a href="#">Акции</a>
+          <a href="#">Кредит</a>
+          <a href="#">Дизайнерам</a>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
     <div class="header__middle-line">
       <div class="header__middle-container">
         <button class="icon-btn icon-btn--menu" type="button" aria-label="Меню">
-          <img src="assets/icons/hamburger.svg" alt="">
+          <svg class="icon"><use href="assets/icons/sprite.svg#hamburger"></use></svg>
         </button>
 
         <a href="/" class="header__logo">
@@ -39,28 +39,28 @@
 
         <div class="header__tablet-actions">
           <button class="icon-btn" type="button" aria-label="Позвонить">
-            <img src="assets/icons/call.svg" alt="">
+            <svg class="icon"><use href="assets/icons/sprite.svg#call"></use></svg>
           </button>
           <button class="btn btn--brand" type="button">Бесплатный замер</button>
-          <button class="icon-btn" type="button" aria-label="Корзина">
-            <img src="assets/icons/cart.svg" alt="">
+          <button class="icon-btn icon-btn--cart" type="button" aria-label="Корзина">
+            <svg class="icon"><use href="assets/icons/sprite.svg#cart"></use></svg>
           </button>
           <button class="icon-btn" type="button" aria-label="Поиск">
-            <img src="assets/icons/search.svg" alt="">
+            <svg class="icon"><use href="assets/icons/sprite.svg#search"></use></svg>
           </button>
         </div>
 
         <nav class="header__nav">
           <button class="btn btn--stroke" type="button">
-            <img src="assets/icons/hamburger.svg" alt="">
+            <svg class="icon"><use href="assets/icons/sprite.svg#hamburger"></use></svg>
             <span>Каталог</span>
           </button>
-          <a class="menu-item" href="#">Наши работы</a>
+          <a class="menu-item" href="#"><span class="menu-item__label">Наши работы</span></a>
           <a class="menu-item menu-item--dropdown" href="#">
-            О компании
-            <img src="assets/icons/angle-down.svg" alt="">
+            <span class="menu-item__label">О компании</span>
+            <svg class="icon icon--16"><use href="assets/icons/sprite.svg#angle-down"></use></svg>
           </a>
-          <a class="menu-item" href="#">Контакты</a>
+          <a class="menu-item" href="#"><span class="menu-item__label">Контакты</span></a>
         </nav>
 
         <div class="header__contacts">
@@ -69,20 +69,20 @@
             <a class="header__email" href="mailto:info@samara.kitchen">info@samara.kitchen</a>
           </div>
           <div class="header__socials">
-            <a href="#" aria-label="WhatsApp"><img src="assets/icons/whatsapp.svg" alt=""></a>
-            <a href="#" aria-label="MAX"><img src="assets/icons/max.svg" alt=""></a>
-            <a href="#" aria-label="Telegram"><img src="assets/icons/telegram.svg" alt=""></a>
+            <a href="#" aria-label="WhatsApp"><svg class="icon"><use href="assets/icons/sprite.svg#whatsapp"></use></svg></a>
+            <a href="#" aria-label="MAX"><svg class="icon"><use href="assets/icons/sprite.svg#max"></use></svg></a>
+            <a href="#" aria-label="Telegram"><svg class="icon"><use href="assets/icons/sprite.svg#telegram"></use></svg></a>
           </div>
           <div class="header__actions">
             <button class="btn btn--brand" type="button">Бесплатный замер</button>
-            <button class="icon-btn" type="button" aria-label="Корзина">
-              <img src="assets/icons/cart.svg" alt="">
+            <button class="icon-btn icon-btn--cart" type="button" aria-label="Корзина">
+              <svg class="icon"><use href="assets/icons/sprite.svg#cart"></use></svg>
             </button>
           </div>
         </div>
 
-        <button class="icon-btn icon-btn--cart-mobile" type="button" aria-label="Корзина">
-          <img src="assets/icons/cart.svg" alt="">
+        <button class="icon-btn icon-btn--cart icon-btn--cart-mobile" type="button" aria-label="Корзина">
+          <svg class="icon"><use href="assets/icons/sprite.svg#cart"></use></svg>
         </button>
       </div>
     </div>
@@ -91,40 +91,40 @@
       <div class="header__bottom-container">
         <div class="header__kitchens">
           <a class="menu-item" href="#">
-            <img src="assets/icons/kitchen-p.svg" alt="">
-            П-образные
+            <svg class="icon icon--18"><use href="assets/icons/sprite.svg#kitchen-p"></use></svg>
+            <span class="menu-item__label">П-образные</span>
           </a>
           <a class="menu-item" href="#">
-            <img src="assets/icons/kitchen-simple.svg" alt="">
-            Прямые
+            <svg class="icon icon--18"><use href="assets/icons/sprite.svg#kitchen-simple"></use></svg>
+            <span class="menu-item__label">Прямые</span>
           </a>
           <a class="menu-item" href="#">
-            <img src="assets/icons/kitchen-angle.svg" alt="">
-            Угловые
+            <svg class="icon icon--18"><use href="assets/icons/sprite.svg#kitchen-angle"></use></svg>
+            <span class="menu-item__label">Угловые</span>
           </a>
           <a class="menu-item" href="#">
-            <img src="assets/icons/kitchen-isle.svg" alt="">
-            С островом
+            <svg class="icon icon--18"><use href="assets/icons/sprite.svg#kitchen-isle"></use></svg>
+            <span class="menu-item__label">С островом</span>
           </a>
         </div>
 
         <span class="header__separator"></span>
 
         <div class="header__styles">
-          <a class="menu-item" href="#">Классика</a>
-          <a class="menu-item" href="#">Современные</a>
-          <a class="menu-item" href="#">Модерн</a>
-          <a class="menu-item" href="#">Лофт</a>
+          <a class="menu-item" href="#"><span class="menu-item__label">Классика</span></a>
+          <a class="menu-item" href="#"><span class="menu-item__label">Современные</span></a>
+          <a class="menu-item" href="#"><span class="menu-item__label">Модерн</span></a>
+          <a class="menu-item" href="#"><span class="menu-item__label">Лофт</span></a>
         </div>
 
         <span class="header__separator"></span>
 
-        <a class="menu-item" href="#">Калькулятор</a>
+        <a class="menu-item" href="#"><span class="menu-item__label">Калькулятор</span></a>
 
-        <div class="header__search">
+        <a class="header__search" href="#">
           <span>Поиск</span>
-          <img src="assets/icons/search.svg" alt="">
-        </div>
+          <svg class="icon"><use href="assets/icons/sprite.svg#search"></use></svg>
+        </a>
       </div>
     </div>
   </header>

@@ -2,11 +2,13 @@
   --color-text: #1f1e1e;
   --color-hint: #726e6e;
   --color-brand: #be9460;
+  --color-brand-hover: #caa77d;
   --color-brand-pale: #faf7f0;
   --color-success-pale: #d3d6c2;
   --color-separator: #e0e0e0;
   --color-bg: #ffffff;
   --color-secondary-bg: #f5f5f5;
+  --color-tertiary-bg: #ebebeb;
   --color-text-button: #ffffff;
 
   --font: "Montserrat", sans-serif;
@@ -51,6 +53,27 @@ img {
   max-width: 100%;
 }
 
+/* icons (inline sprite, colored via currentColor) */
+
+.icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  fill: none;
+  color: inherit;
+}
+
+.icon--16 {
+  width: 16px;
+  height: 16px;
+}
+
+.icon--18 {
+  width: 18px;
+  height: 18px;
+}
+
 /* buttons */
 
 .btn {
@@ -59,10 +82,11 @@ img {
   justify-content: center;
   gap: 6px;
   border-radius: 888px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: var(--text-medium);
   line-height: var(--lh-medium);
   white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 .btn--brand {
@@ -72,16 +96,34 @@ img {
   color: var(--color-text-button);
 }
 
+.btn--brand:hover {
+  background: var(--color-brand-hover);
+}
+
+.btn--brand:disabled {
+  background: var(--color-brand);
+  opacity: 0.5;
+  cursor: default;
+}
+
 .btn--stroke {
   height: 32px;
   padding: 0 16px 0 12px;
   border: 1px solid var(--color-separator);
+  color: var(--color-text);
 }
 
-.btn--stroke img {
-  width: 24px;
-  height: 24px;
+.btn--stroke:hover {
+  background: var(--color-secondary-bg);
 }
+
+.btn--stroke:active {
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: var(--color-text-button);
+}
+
+/* icon-only buttons */
 
 .icon-btn {
   display: flex;
@@ -91,17 +133,47 @@ img {
   height: 36px;
   border-radius: 888px;
   flex-shrink: 0;
+  background: var(--color-secondary-bg);
+  color: var(--color-text);
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.icon-btn img {
-  width: 24px;
-  height: 24px;
+.icon-btn:hover {
+  background: var(--color-tertiary-bg);
+}
+
+.icon-btn:active {
+  background: var(--color-brand);
+  color: var(--color-text-button);
+}
+
+.icon-btn--ghost {
+  background: transparent;
+}
+
+.icon-btn--ghost:hover {
+  background: var(--color-secondary-bg);
+}
+
+/* cart button: transparent by default, no active/pressed color change (dot badge signals items instead) */
+.icon-btn--cart {
+  background: transparent;
+}
+
+.icon-btn--cart:hover {
+  background: var(--color-secondary-bg);
+}
+
+.icon-btn--cart:active {
+  background: var(--color-secondary-bg);
+  color: var(--color-text);
 }
 
 .icon-btn--menu {
-  background: var(--color-secondary-bg);
   display: none;
 }
+
+/* menu item: icon + label; hover diverges (icon -> brand, label -> hint) so they're colored independently */
 
 .menu-item {
   display: inline-flex;
@@ -111,15 +183,19 @@ img {
   line-height: var(--lh-medium);
   font-weight: 500;
   white-space: nowrap;
+  color: var(--color-text);
+}
+
+.menu-item:hover {
+  color: var(--color-brand);
+}
+
+.menu-item:hover .menu-item__label {
+  color: var(--color-hint);
 }
 
 .menu-item--dropdown {
   gap: 4px;
-}
-
-.menu-item--dropdown img {
-  width: 16px;
-  height: 16px;
 }
 
 /* header layout */
@@ -157,6 +233,10 @@ img {
 
 .header__top-group--right {
   gap: 24px;
+}
+
+.header__top-group--right a:hover {
+  color: var(--color-hint);
 }
 
 .header__middle-line {
@@ -225,9 +305,8 @@ img {
   gap: 8px;
 }
 
-.header__socials img {
-  width: 24px;
-  height: 24px;
+.header__socials a {
+  color: var(--color-text);
 }
 
 .header__actions {
@@ -238,7 +317,6 @@ img {
 
 .icon-btn--cart-mobile {
   display: none;
-  background: transparent;
 }
 
 .header__bottom-line {
@@ -267,11 +345,6 @@ img {
   gap: 28px;
 }
 
-.header__kitchens .menu-item img {
-  width: 18px;
-  height: 18px;
-}
-
 .header__styles {
   display: flex;
   align-items: center;
@@ -295,9 +368,8 @@ img {
   cursor: pointer;
 }
 
-.header__search img {
-  width: 24px;
-  height: 24px;
+.header__search:hover {
+  color: var(--color-text);
 }
 
 /* Tablet: <=1024px */
