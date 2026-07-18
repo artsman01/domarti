@@ -11,10 +11,10 @@
   color: var(--color-text-button);
 }
 
-// Diagonal shine sweep on hover (couldn't load the referenced codepen to
-// match it exactly — codepen.io returns 403 to fetch tools — so this is
-// the standard skewed-gradient-band version of the effect; swap the
-// gradient/timing below if it should look different).
+// Diagonal shine sweep that runs on its own every few seconds (not a hover
+// effect — hover keeps its separate background-color change below). The
+// sweep itself takes ~0.6s and then the pseudo-element sits parked
+// off-screen for the rest of the cycle, reading as a periodic "flash".
 .btn.btn-primary::after {
   content: "";
   position: absolute;
@@ -29,12 +29,20 @@
     rgba(255, 255, 255, 0) 100%
   );
   transform: skewX(-20deg);
-  transition: left 0.6s ease;
   pointer-events: none;
+  animation: btn-shine 3s ease-in-out infinite;
 }
 
-.btn.btn-primary:hover::after {
-  left: 125%;
+@keyframes btn-shine {
+  0% {
+    left: -75%;
+  }
+  20% {
+    left: 125%;
+  }
+  100% {
+    left: 125%;
+  }
 }
 
 // The hover tone in Figma is a specific lighter shade rather than

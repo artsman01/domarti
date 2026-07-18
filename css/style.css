@@ -12632,14 +12632,21 @@ button {
   height: 100%;
   background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
   transform: skewX(-20deg);
-  transition: left 0.6s ease;
   pointer-events: none;
+  animation: btn-shine 3s ease-in-out infinite;
 }
 
-.btn.btn-primary:hover::after {
-  left: 125%;
+@keyframes btn-shine {
+  0% {
+    left: -75%;
+  }
+  20% {
+    left: 125%;
+  }
+  100% {
+    left: 125%;
+  }
 }
-
 .btn.btn-primary:hover,
 .btn.btn-primary:focus {
   background-color: var(--color-brand-hover);
@@ -12733,10 +12740,6 @@ button {
   color: var(--bs-primary);
 }
 
-.menu-item:hover .menu-item__label {
-  color: var(--color-hint);
-}
-
 .menu-item--dropdown {
   gap: 4px;
 }
@@ -12766,18 +12769,24 @@ button {
   gap: 32px;
 }
 
+@media (min-width: 992px) and (max-width: 1279.98px) {
+  .header__middle-container {
+    gap: 16px;
+  }
+}
 .header__tablet-actions {
   gap: 12px;
 }
 
 .header__phone-number,
 .header__email {
-  transition: opacity 0.15s ease;
+  transition: color 0.15s ease;
 }
 
 .header__phone-number:hover,
 .header__email:hover {
-  opacity: 0.7;
+  color: var(--bs-primary);
+  opacity: 1;
 }
 
 .header__phone-number {
@@ -12818,14 +12827,13 @@ button {
 }
 
 .header__search {
-  margin-left: auto;
-  color: var(--color-hint);
+  color: var(--bs-body-color);
   cursor: pointer;
   transition: color 0.15s ease;
 }
 
 .header__search:hover {
-  color: var(--bs-body-color);
+  color: var(--bs-primary);
 }
 
 @media (max-width: 1279.98px) {
