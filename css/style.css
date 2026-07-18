@@ -12749,6 +12749,10 @@ button {
   width: auto;
 }
 
+.header__brand {
+  gap: 12px;
+}
+
 .header__top-line {
   background: var(--color-success-pale);
 }
@@ -12778,6 +12782,11 @@ button {
   gap: 12px;
 }
 
+@media (min-width: 1280px) {
+  .btn.btn-stroke {
+    margin-right: -8px;
+  }
+}
 .header__phone-number,
 .header__email {
   transition: color 0.15s ease;

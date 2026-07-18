@@ -7,6 +7,13 @@
   width: auto;
 }
 
+// Burger + logo are their own group with a fixed 12px gap between just
+// the two of them, regardless of the (tier-dependent) gap the middle
+// line uses between this group and whatever comes next.
+.header__brand {
+  gap: 12px;
+}
+
 .header__top-line {
   background: var(--color-success-pale);
 }
@@ -38,6 +45,17 @@
 
 .header__tablet-actions {
   gap: 12px;
+}
+
+// The "Каталог" button lives outside header__nav now (so it can stay
+// visible a tier earlier than the rest of the nav, see index.html), but
+// it should still sit exactly 24px from the first nav item once both are
+// visible together (>=1280px) — not the 32px the middle line otherwise
+// uses between its top-level groups.
+@media (min-width: 1280px) {
+  .btn.btn-stroke {
+    margin-right: -8px;
+  }
 }
 
 .header__phone-number,
