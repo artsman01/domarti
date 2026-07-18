@@ -78,6 +78,12 @@
   opacity: 1;
 }
 
+// 2px doesn't exist on the Bootstrap gap scale (gap-1 is 4px), so this
+// overrides the gap-1 utility on the element in index.html.
+.header__phone {
+  gap: 2px;
+}
+
 .header__phone-number {
   font-size: 1.0625rem; // 17px
   line-height: 1.5rem;

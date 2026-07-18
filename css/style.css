@@ -12806,6 +12806,10 @@ button {
   opacity: 1;
 }
 
+.header__phone {
+  gap: 2px;
+}
+
 .header__phone-number {
   font-size: 1.0625rem;
   line-height: 1.5rem;
