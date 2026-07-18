@@ -12816,10 +12816,16 @@ button {
 }
 
 .header__bottom-line {
+  display: none;
   background: var(--color-brand-pale);
   height: 48px;
 }
 
+@media (min-width: 1140px) {
+  .header__bottom-line {
+    display: flex;
+  }
+}
 .header__kitchens {
   gap: 28px;
 }
@@ -12840,7 +12846,7 @@ button {
   color: var(--bs-primary);
 }
 
-@media (max-width: 1279.98px) {
+@media (max-width: 1139.98px) {
   .header {
     border-bottom: 1px solid var(--bs-border-color);
   }

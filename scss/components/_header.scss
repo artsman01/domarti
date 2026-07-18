@@ -77,9 +77,20 @@
   opacity: 0.7;
 }
 
+// Its content (kitchens+separators+styles+calculator+search) measures
+// ~1121px natural width, not a round Bootstrap tier — so this uses a
+// dedicated breakpoint tuned to that instead of d-lg-flex, which showed
+// it ~130px before it actually had room and let it overflow the edges.
 .header__bottom-line {
+  display: none;
   background: var(--color-brand-pale);
   height: 48px;
+}
+
+@media (min-width: 1140px) {
+  .header__bottom-line {
+    display: flex;
+  }
 }
 
 .header__kitchens {
@@ -105,11 +116,10 @@
   color: var(--bs-primary);
 }
 
-// Same cutoff as Bootstrap's own d-xl-* utilities (1279.98px, see the xl
-// override in _variables.scss): the nav collapses into the burger a tier
-// earlier than the tablet layout does (see index.html), so the border
-// needs to follow it a tier earlier too.
-@media (max-width: 1279.98px) {
+// The border is a stand-in for the bottom line's own bottom edge, so it
+// only needs to show up when the bottom line itself is hidden (<1140px,
+// see .header__bottom-line above) — not tied to the nav/xl breakpoint.
+@media (max-width: 1139.98px) {
   .header {
     border-bottom: 1px solid var(--bs-border-color);
   }
