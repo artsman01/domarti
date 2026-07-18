@@ -12766,6 +12766,7 @@ button {
 }
 
 .header__middle-line {
+  position: relative;
   height: 84px;
 }
 
@@ -12869,5 +12870,10 @@ button {
   }
   .header__middle-container {
     gap: 12px;
+  }
+  .header__logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }

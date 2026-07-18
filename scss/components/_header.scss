@@ -27,6 +27,7 @@
 }
 
 .header__middle-line {
+  position: relative;
   height: 84px;
 }
 
@@ -157,5 +158,14 @@
   // phones (< ~360px) without overflowing past the edge padding.
   .header__middle-container {
     gap: 12px;
+  }
+
+  // Center the logo on the line itself instead of the burger+logo group,
+  // so it stays centered regardless of the burger/cart button widths —
+  // pulled out of the normal flex flow rather than paired with the burger.
+  .header__logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
