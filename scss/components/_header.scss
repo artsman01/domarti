@@ -92,10 +92,11 @@
   color: var(--bs-body-color);
 }
 
-// Same cutoff as Bootstrap's own d-xl-* utilities (1199.98px): the nav
-// collapses into the burger a tier earlier than the tablet layout does
-// (see index.html), so the border needs to follow it a tier earlier too.
-@media (max-width: 1199.98px) {
+// Same cutoff as Bootstrap's own d-xl-* utilities (1279.98px, see the xl
+// override in _variables.scss): the nav collapses into the burger a tier
+// earlier than the tablet layout does (see index.html), so the border
+// needs to follow it a tier earlier too.
+@media (max-width: 1279.98px) {
   .header {
     border-bottom: 1px solid var(--bs-border-color);
   }
@@ -109,5 +110,11 @@
 
   .header__middle-line {
     height: 64px;
+  }
+
+  // The 32px desktop gap plus the full-width logo doesn't fit on narrow
+  // phones (< ~360px) without overflowing past the edge padding.
+  .header__middle-container {
+    gap: 12px;
   }
 }

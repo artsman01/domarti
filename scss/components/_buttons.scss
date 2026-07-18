@@ -5,8 +5,36 @@
 // state below is written as `.btn.btn-x:state` to reliably outrank it.
 
 .btn.btn-primary {
+  position: relative;
+  overflow: hidden;
   height: 36px;
   color: var(--color-text-button);
+}
+
+// Diagonal shine sweep on hover (couldn't load the referenced codepen to
+// match it exactly — codepen.io returns 403 to fetch tools — so this is
+// the standard skewed-gradient-band version of the effect; swap the
+// gradient/timing below if it should look different).
+.btn.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.btn.btn-primary:hover::after {
+  left: 125%;
 }
 
 // The hover tone in Figma is a specific lighter shade rather than

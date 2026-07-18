@@ -25,6 +25,25 @@ $btn-disabled-opacity: 0.5;
 
 $enable-negative-margins: true;
 
+// The full desktop header (logo + nav + contacts, all at once) needs
+// ~1238px of content width — more than stock Bootstrap's xl=1200px gives
+// it. Bumping xl to line up with the 1280px container means d-xl-* keeps
+// meaning "the tier where the full-width layout actually fits" instead of
+// a value that looks close but leaves a ~80px dead zone that overflows.
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1280px,
+  xxl: 1400px,
+);
+
+// The Figma frames use a single 16px edge inset (already applied via px-3
+// on each line's outer wrapper) — Bootstrap's own container gutter would
+// stack a second, redundant 12px on top of that, so it's zeroed here.
+$container-padding-x: 0;
+
 // Container max-width matches the fixed 1280px content column at every
 // breakpoint from lg up (design has no fluid grid, just one fixed column).
 $container-max-widths: (
