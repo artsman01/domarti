@@ -1,18 +1,33 @@
-// Bootstrap's .btn-primary already picks up $primary/$btn-font-weight/
-// $btn-border-radius from _variables.scss. The hover tone in Figma is a
-// specific lighter shade rather than Bootstrap's auto-darkened hover, so
-// it's pinned here instead of relying on color-mix.
-.btn-primary:hover,
-.btn-primary:focus {
+// Bootstrap's `.btn:first-child:active, .btn.active, .btn.show` rule (used
+// for the pressed/checked look) has higher specificity than a plain
+// `.btn-primary:hover`/`.btn-stroke:active` selector, and both of these
+// buttons happen to be the first child of their wrapper — so every custom
+// state below is written as `.btn.btn-x:state` to reliably outrank it.
+
+.btn.btn-primary {
+  height: 36px;
+  color: var(--color-text-button);
+}
+
+// The hover tone in Figma is a specific lighter shade rather than
+// Bootstrap's auto-darkened hover, so it's pinned here instead of relying
+// on color-mix.
+.btn.btn-primary:hover,
+.btn.btn-primary:focus {
   background-color: var(--color-brand-hover);
   border-color: var(--color-brand-hover);
+  color: var(--color-text-button);
+}
+
+.btn.btn-primary:disabled {
+  color: var(--color-text-button);
 }
 
 // "Каталог" style button: outline by default, no direct Bootstrap
 // btn-outline-* equivalent since the hover/active fills differ from the
 // outline color itself.
-.btn-stroke {
-  height: 32px;
+.btn.btn-stroke {
+  height: 36px;
   padding: 0 1rem 0 0.75rem;
   gap: 6px;
   border: 1px solid var(--bs-border-color);
@@ -20,18 +35,21 @@
   color: var(--bs-body-color);
 }
 
-.btn-stroke:hover {
+.btn.btn-stroke:hover {
   background: var(--color-secondary-bg);
+  border-color: var(--bs-border-color);
+  color: var(--bs-body-color);
 }
 
-.btn-stroke:active {
+.btn.btn-stroke:active {
   background: var(--bs-primary);
   border-color: var(--bs-primary);
   color: var(--color-text-button);
 }
 
 // Icon-only round buttons (menu toggle, call, search, cart...). No direct
-// Bootstrap equivalent, so this is a small custom component on top.
+// Bootstrap equivalent, and these skip the .btn class entirely, so plain
+// selectors are fine here — no specificity collision to work around.
 .icon-btn {
   width: 36px;
   height: 36px;

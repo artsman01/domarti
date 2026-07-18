@@ -12616,14 +12616,24 @@ button {
   height: 18px;
 }
 
-.btn-primary:hover,
-.btn-primary:focus {
-  background-color: var(--color-brand-hover);
-  border-color: var(--color-brand-hover);
+.btn.btn-primary {
+  height: 36px;
+  color: var(--color-text-button);
 }
 
-.btn-stroke {
-  height: 32px;
+.btn.btn-primary:hover,
+.btn.btn-primary:focus {
+  background-color: var(--color-brand-hover);
+  border-color: var(--color-brand-hover);
+  color: var(--color-text-button);
+}
+
+.btn.btn-primary:disabled {
+  color: var(--color-text-button);
+}
+
+.btn.btn-stroke {
+  height: 36px;
   padding: 0 1rem 0 0.75rem;
   gap: 6px;
   border: 1px solid var(--bs-border-color);
@@ -12631,11 +12641,13 @@ button {
   color: var(--bs-body-color);
 }
 
-.btn-stroke:hover {
+.btn.btn-stroke:hover {
   background: var(--color-secondary-bg);
+  border-color: var(--bs-border-color);
+  color: var(--bs-body-color);
 }
 
-.btn-stroke:active {
+.btn.btn-stroke:active {
   background: var(--bs-primary);
   border-color: var(--bs-primary);
   color: var(--color-text-button);
@@ -12690,6 +12702,12 @@ button {
   font-weight: 500;
   white-space: nowrap;
   color: var(--bs-body-color);
+  transition: color 0.15s ease;
+}
+
+.menu-item .icon,
+.menu-item__label {
+  transition: color 0.15s ease;
 }
 
 .menu-item:hover {
@@ -12713,6 +12731,10 @@ button {
   background: var(--color-success-pale);
 }
 
+.header__top-links a {
+  transition: color 0.15s ease;
+}
+
 .header__top-links a:hover {
   color: var(--color-hint);
 }
@@ -12729,6 +12751,16 @@ button {
   gap: 12px;
 }
 
+.header__phone-number,
+.header__email {
+  transition: opacity 0.15s ease;
+}
+
+.header__phone-number:hover,
+.header__email:hover {
+  opacity: 0.7;
+}
+
 .header__phone-number {
   font-size: 1.0625rem;
   line-height: 1.5rem;
@@ -12740,6 +12772,15 @@ button {
   font-size: 0.8125rem;
   color: var(--color-hint);
   white-space: nowrap;
+}
+
+.header__socials a {
+  display: flex;
+  transition: opacity 0.15s ease;
+}
+
+.header__socials a:hover {
+  opacity: 0.7;
 }
 
 .header__bottom-line {
@@ -12758,15 +12799,17 @@ button {
 }
 
 .header__search {
+  margin-left: auto;
   color: var(--color-hint);
   cursor: pointer;
+  transition: color 0.15s ease;
 }
 
 .header__search:hover {
   color: var(--bs-body-color);
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1199.98px) {
   .header {
     border-bottom: 1px solid var(--bs-border-color);
   }
@@ -12774,5 +12817,8 @@ button {
 @media (max-width: 575.98px) {
   .header__logo img {
     height: 32px;
+  }
+  .header__middle-line {
+    height: 64px;
   }
 }

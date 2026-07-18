@@ -11,6 +11,10 @@
   background: var(--color-success-pale);
 }
 
+.header__top-links a {
+  transition: color 0.15s ease;
+}
+
 .header__top-links a:hover {
   color: var(--color-hint);
 }
@@ -27,6 +31,16 @@
   gap: 12px;
 }
 
+.header__phone-number,
+.header__email {
+  transition: opacity 0.15s ease;
+}
+
+.header__phone-number:hover,
+.header__email:hover {
+  opacity: 0.7;
+}
+
 .header__phone-number {
   font-size: 1.0625rem; // 17px
   line-height: 1.5rem;
@@ -38,6 +52,15 @@
   font-size: 0.8125rem;
   color: var(--color-hint);
   white-space: nowrap;
+}
+
+.header__socials a {
+  display: flex;
+  transition: opacity 0.15s ease;
+}
+
+.header__socials a:hover {
+  opacity: 0.7;
 }
 
 .header__bottom-line {
@@ -55,18 +78,24 @@
   background: var(--bs-border-color);
 }
 
+// Pinned to the far right of the bottom line regardless of the container's
+// gap utility — everything to its left (kitchens/styles/calculator) flows
+// with the regular 24px gap, only search gets pushed off to the edge.
 .header__search {
+  margin-left: auto;
   color: var(--color-hint);
   cursor: pointer;
+  transition: color 0.15s ease;
 }
 
 .header__search:hover {
   color: var(--bs-body-color);
 }
 
-// Same cutoff as Bootstrap's own d-lg-* utilities (991.98px), so the
-// border lines up with the desktop-nav/tablet-actions swap in the markup.
-@media (max-width: 991.98px) {
+// Same cutoff as Bootstrap's own d-xl-* utilities (1199.98px): the nav
+// collapses into the burger a tier earlier than the tablet layout does
+// (see index.html), so the border needs to follow it a tier earlier too.
+@media (max-width: 1199.98px) {
   .header {
     border-bottom: 1px solid var(--bs-border-color);
   }
@@ -76,5 +105,9 @@
 @media (max-width: 575.98px) {
   .header__logo img {
     height: 32px;
+  }
+
+  .header__middle-line {
+    height: 64px;
   }
 }

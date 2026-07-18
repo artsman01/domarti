@@ -9,6 +9,12 @@
   font-weight: 500;
   white-space: nowrap;
   color: var(--bs-body-color);
+  transition: color 0.15s ease;
+}
+
+.menu-item .icon,
+.menu-item__label {
+  transition: color 0.15s ease;
 }
 
 .menu-item:hover {
