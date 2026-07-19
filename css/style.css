@@ -12931,6 +12931,7 @@ button {
 .input-field input {
   flex: 1 1 0%;
   min-width: 0;
+  height: 100%;
   border: none;
   background: none;
   outline: none;
@@ -12985,7 +12986,7 @@ button {
 .checkbox-field {
   position: relative;
   display: inline-flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   cursor: pointer;
 }
@@ -13142,7 +13143,7 @@ button {
   margin: 0;
   max-width: 100%;
   color: var(--color-text-button);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.9375rem;
   line-height: 1.375rem;
   text-align: center;
@@ -13195,7 +13196,8 @@ button {
 }
 
 .btn.hero-cta__submit {
-  width: 100%;
+  flex: 1 1 0%;
+  min-width: 0;
   height: 48px;
   border-radius: 10px;
 }
@@ -13260,5 +13262,13 @@ button {
   }
   .hero-cta__row {
     flex-direction: column;
+  }
+  .hero-cta__row > * {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  .hero-cta__row > .btn.hero-cta__submit {
+    flex: 0 0 auto;
+    width: 100%;
   }
 }
