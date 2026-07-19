@@ -11,6 +11,8 @@
   padding: 0 16px;
 }
 
+// A CSS background-image instead of an <img> — browsers don't offer a
+// "save image" context-menu entry for it, unlike a real <img>.
 .hero__bg {
   position: absolute;
   inset: 0;
@@ -18,10 +20,13 @@
   overflow: hidden;
 }
 
-.hero__bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.hero__bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/hero/hero.jpg");
+  background-size: cover;
+  background-position: center;
   opacity: 0.72;
 }
 
@@ -163,8 +168,11 @@
   justify-content: center;
 }
 
+// flex: 0 1 auto (not 1 1 0%) — it should size to its own content and let
+// the parent's justify-content:center center the [checkbox + text] pair
+// as a group, not stretch full-width and make centering a no-op.
 .hero-cta__consent-text {
-  flex: 1 1 0%;
+  flex: 0 1 auto;
   min-width: 0;
   margin: 0;
   color: var(--color-hint);
