@@ -7,63 +7,71 @@
       if (TEMPLATE[i] === "_") digitPositions.push(i);
     }
 
-    function extractDigits(raw) {
-      var digits = raw.replace(/\D/g, "");
-      if (digits.charAt(0) === "7" || digits.charAt(0) === "8") {
-        digits = digits.slice(1);
-      }
-      return digits.slice(0, digitPositions.length).split("");
-    }
+    // Local-number digits only (no country code) — kept as our own state
+    // instead of re-parsed from input.value, so the fixed "+7" prefix can
+    // never be mistaken for a digit the user actually typed.
+    var digits = [];
 
-    function render(digitsArr) {
+    function render() {
       var chars = TEMPLATE.split("");
       for (var i = 0; i < digitPositions.length; i++) {
-        chars[digitPositions[i]] = digitsArr[i] !== undefined ? digitsArr[i] : "_";
+        chars[digitPositions[i]] = digits[i] !== undefined ? digits[i] : "_";
       }
-      return chars.join("");
+      input.value = chars.join("");
     }
 
-    function cursorForCount(count) {
-      return count >= digitPositions.length ? TEMPLATE.length : digitPositions[count];
+    function cursorPos() {
+      return digits.length >= digitPositions.length
+        ? TEMPLATE.length
+        : digitPositions[digits.length];
     }
 
-    function setDigits(digitsArr) {
-      input.value = render(digitsArr);
+    function placeCursor() {
+      var pos = cursorPos();
+      input.setSelectionRange(pos, pos);
+    }
+
+    function insertText(text) {
+      var typed = text.replace(/\D/g, "");
+      for (var i = 0; i < typed.length; i++) {
+        if (digits.length === 0 && (typed[i] === "7" || typed[i] === "8")) {
+          continue; // country code is implicit — a leading 7/8 is redundant
+        }
+        if (digits.length < digitPositions.length) {
+          digits.push(typed[i]);
+        }
+      }
     }
 
     input.addEventListener("focus", function () {
-      if (!input.value) setDigits([]);
-      var pos = cursorForCount(extractDigits(input.value).length);
-      requestAnimationFrame(function () {
-        input.setSelectionRange(pos, pos);
-      });
+      render();
+      requestAnimationFrame(placeCursor);
     });
 
-    input.addEventListener("input", function () {
-      var digits = extractDigits(input.value);
-      setDigits(digits);
-      var pos = cursorForCount(digits.length);
-      input.setSelectionRange(pos, pos);
-    });
-
-    input.addEventListener("keydown", function (e) {
-      if (e.key === "Backspace") {
+    input.addEventListener("beforeinput", function (e) {
+      if (
+        e.inputType === "insertText" ||
+        e.inputType === "insertFromPaste" ||
+        e.inputType === "insertCompositionText"
+      ) {
         e.preventDefault();
-        var digits = extractDigits(input.value);
+        insertText(e.data || "");
+        render();
+        placeCursor();
+      } else if (e.inputType && e.inputType.indexOf("delete") === 0) {
+        e.preventDefault();
         digits.pop();
-        setDigits(digits);
-        var pos = cursorForCount(digits.length);
-        input.setSelectionRange(pos, pos);
+        render();
+        placeCursor();
       }
     });
 
     input.addEventListener("click", function () {
-      var pos = cursorForCount(extractDigits(input.value).length);
-      if (input.selectionStart > pos) input.setSelectionRange(pos, pos);
+      placeCursor();
     });
 
     input.addEventListener("blur", function () {
-      if (extractDigits(input.value).length === 0) input.value = "";
+      if (digits.length === 0) input.value = "";
     });
   }
 
