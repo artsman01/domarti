@@ -5,6 +5,7 @@
   "scripts": {
     "build:css": "sass --load-path=node_modules scss/main.scss css/style.css --no-source-map",
     "watch:css": "sass --load-path=node_modules scss/main.scss css/style.css --no-source-map --watch",
+    "start": "npx serve -l 5500 .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
