@@ -1,0 +1,229 @@
+// HeroSection. Typography scale and the feature-icon layout both change
+// per breakpoint per Figma (tablet reuses desktop's type scale, only
+// mobile has its own smaller one — confirmed via the bound variables,
+// since the raw exported classes were identical across all three frames).
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background: var(--color-dark);
+  overflow: hidden;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.72;
+}
+
+.hero__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  padding: 64px 0;
+}
+
+.hero__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+.hero__title {
+  max-width: 948px;
+  margin: 0;
+  color: var(--color-text-button);
+  font-weight: 700;
+  font-size: 3rem; // 48px
+  line-height: 3.5rem; // 56px
+}
+
+.hero__subtitle {
+  max-width: 548px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-weight: 600;
+  font-size: 1.0625rem; // 17px
+  line-height: 1.625rem; // 26px
+}
+
+.hero__features {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  max-width: 948px;
+  justify-content: center;
+}
+
+.hero__feature {
+  display: flex;
+  flex: 1 1 0%;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero__feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-success);
+  color: var(--color-text-button);
+}
+
+.hero__feature-label {
+  margin: 0;
+  max-width: 100%;
+  color: var(--color-text-button);
+  font-weight: 600;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.375rem; // 22px
+  text-align: center;
+}
+
+.hero-cta {
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+  border-radius: 16px;
+  background: var(--bs-body-bg);
+}
+
+.hero-cta__head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+
+.hero-cta__title {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 1.625rem; // 26px
+  line-height: 2rem; // 32px
+}
+
+.hero-cta__text {
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
+
+.hero-cta__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hero-cta__row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.btn.hero-cta__submit {
+  width: 100%;
+  height: 48px;
+  border-radius: 10px;
+}
+
+.hero-cta__consent {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  justify-content: center;
+}
+
+.hero-cta__consent-text {
+  flex: 1 1 0%;
+  min-width: 0;
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 400;
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+}
+
+.hero-cta__consent-text a {
+  color: var(--bs-body-color);
+}
+
+.hero-cta__consent-text a:hover {
+  color: var(--bs-primary);
+}
+
+// Tablet (matches the header's own tablet range): feature icons wrap into
+// a 2x2 grid instead of one row of 4. The CTA form stays a single row.
+@media (max-width: 991.98px) {
+  .hero__features {
+    flex-wrap: wrap;
+    row-gap: 24px;
+  }
+
+  .hero__feature {
+    flex: 1 1 40%;
+    min-width: 220px;
+  }
+}
+
+// Mobile: smaller type scale (per the bound variables — mobile has its
+// own mode, tablet just reuses desktop's) and the CTA form fields stack.
+@media (max-width: 575.98px) {
+  .hero__title {
+    font-size: 1.75rem; // 28px
+    line-height: 2.25rem; // 36px
+  }
+
+  .hero__subtitle {
+    font-size: 1rem; // 16px
+    line-height: 1.5rem; // 24px
+  }
+
+  .hero__feature {
+    min-width: 140px;
+  }
+
+  .hero__feature-label {
+    font-size: 0.875rem; // 14px
+    line-height: 1.375rem; // 22px
+  }
+
+  .hero-cta {
+    padding: 24px;
+  }
+
+  .hero-cta__title {
+    font-size: 1.25rem; // 20px
+    line-height: 1.625rem; // 26px
+  }
+
+  .hero-cta__row {
+    flex-direction: column;
+  }
+}

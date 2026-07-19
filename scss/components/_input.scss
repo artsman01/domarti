@@ -1,0 +1,100 @@
+// InputComponent / SelectComponent. States map onto real interaction
+// pseudo-classes instead of the Default/Hover/Active/Filled/Disabled/
+// Critical variants Figma names them — :has() drives the "Filled" look
+// (has a value, not focused) since that's not a native pseudo-class.
+.input-field {
+  display: flex;
+  flex: 1 1 0%;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 12px 0 16px;
+  border-radius: 10px;
+  background: var(--color-secondary-bg);
+  border: 1px solid transparent;
+  cursor: text;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.input-field:hover {
+  background: var(--bs-body-bg);
+  border-color: var(--bs-border-color);
+}
+
+.input-field:has(input:not(:placeholder-shown)):not(:focus-within) {
+  background: var(--bs-body-bg);
+  border-color: var(--bs-border-color);
+}
+
+.input-field:focus-within {
+  background: var(--bs-body-bg);
+  border-color: var(--bs-primary);
+}
+
+.input-field:has(input:disabled) {
+  background: var(--color-tertiary-bg);
+  border-color: transparent;
+  cursor: not-allowed;
+}
+
+.input-field.is-invalid {
+  background: var(--bs-body-bg);
+  border-color: var(--color-critical);
+}
+
+.input-field input {
+  flex: 1 1 0%;
+  min-width: 0;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.8125rem;
+  color: var(--bs-body-color);
+}
+
+.input-field input::placeholder {
+  color: var(--color-hint);
+}
+
+.input-field input:disabled {
+  color: var(--color-hint);
+  -webkit-text-fill-color: var(--color-hint);
+}
+
+.input-field .icon {
+  color: var(--bs-body-color);
+}
+
+.input-field:focus-within .icon {
+  color: var(--bs-primary);
+}
+
+.input-field:has(input:disabled) .icon {
+  color: var(--bs-border-color);
+}
+
+// Select isn't a native control here (no calendar picker wired up yet),
+// so it only gets the button-native focus/hover states.
+.input-field--select {
+  cursor: pointer;
+  color: var(--color-hint);
+}
+
+.input-field--select span {
+  flex: 1 1 0%;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  font-size: 0.8125rem;
+}
+
+.input-field--select:focus-visible {
+  background: var(--bs-body-bg);
+  border-color: var(--bs-primary);
+  outline: none;
+}
