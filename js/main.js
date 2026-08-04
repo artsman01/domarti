@@ -297,18 +297,19 @@
       if (panel._accordionDeactivate) panel._accordionDeactivate();
       if (dotsEl) dotsEl.innerHTML = "";
       var swiperEl = panel.querySelector(".catalog-swiper");
-      // Mobile bleeds the swiper past its container with 16px of padding
-      // on the element itself (see the SCSS) — Swiper needs to know about
-      // that inset via slidesOffsetBefore/After, or its snap-position math
-      // assumes the full bled width is available and each slide lands
-      // slightly differently than the last. Tablet has no bleed/padding,
-      // so it stays at 0, and the 12px gap only applies at that width too.
+      // Mobile bleeds the swiper past its container with 16px of CSS
+      // padding on the element itself (see the SCSS). That's already
+      // enough for Swiper to work with on its own — the wrapper sits
+      // inside the padding box, so the first slide naturally lands at
+      // the padded inset with no further configuration. Explicitly
+      // telling Swiper about that same inset via slidesOffsetBefore/After
+      // double-counted it (16px padding + 16px offset = 32px), which is
+      // why the first card wasn't flush at the intended 16px.
       var isMobileWidth = window.matchMedia("(max-width: 575.98px)").matches;
       panel._swiper = new Swiper(swiperEl, {
         slidesPerView: "auto",
         spaceBetween: isMobileWidth ? 12 : 16,
-        slidesOffsetBefore: isMobileWidth ? 16 : 0,
-        slidesOffsetAfter: isMobileWidth ? 16 : 0,
+        speed: 450,
         wrapperClass: "catalog-cards",
         slideClass: "catalog-card",
         navigation: {

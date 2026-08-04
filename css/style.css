@@ -13652,7 +13652,7 @@ button {
 .catalog__panel--accordion .catalog-card.is-active .catalog-card__title {
   opacity: 1;
   pointer-events: auto;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.15s ease 0.15s;
 }
 
 .catalog__panel--accordion .catalog-card__separator {
@@ -13662,21 +13662,29 @@ button {
 
 .catalog__panel--accordion .catalog-card.is-active .catalog-card__separator {
   opacity: 1;
-  transition: opacity 0.2s ease 0.1s;
+  transition: opacity 0.15s ease 0.3s;
 }
 
-.catalog__panel--accordion .catalog-card__desc,
 .catalog__panel--accordion .catalog-card__actions {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.15s ease;
 }
 
-.catalog__panel--accordion .catalog-card.is-active .catalog-card__desc,
 .catalog__panel--accordion .catalog-card.is-active .catalog-card__actions {
   opacity: 1;
   pointer-events: auto;
-  transition: opacity 0.2s ease 0.5s;
+  transition: opacity 0.15s ease 0.4s;
+}
+
+.catalog__panel--accordion .catalog-card__desc {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.catalog__panel--accordion .catalog-card.is-active .catalog-card__desc {
+  opacity: 1;
+  transition: opacity 0.15s ease 0.5s;
 }
 
 @media (max-width: 575.98px) {
@@ -13696,6 +13704,7 @@ button {
   }
   .catalog__tabs {
     width: calc(100% + 32px);
+    max-width: calc(100% + 32px);
     margin-left: -16px;
     margin-right: -16px;
     padding-left: 16px;
@@ -13708,5 +13717,11 @@ button {
   }
   .catalog-swiper {
     padding: 0 16px;
+  }
+  .catalog-nav--prev {
+    left: 32px;
+  }
+  .catalog-nav--next {
+    right: 32px;
   }
 }

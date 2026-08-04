@@ -403,13 +403,18 @@
   pointer-events: auto;
 }
 
-// Staggered so the reveal reads as one organic motion instead of
-// separate pieces popping at random times: title first, the separator
-// right behind it (both safe to animate mid-resize — short, fixed-size
-// content that doesn't reflow), then description + buttons together
-// only once the *entire* 0.5s flex-grow has finished — by then the
-// card's final width is stable, so the paragraph doesn't rewrap and the
-// button labels don't wrap to 2 lines and snap back to 1 as they widen.
+// Staggered in four clearly separate beats so the reveal reads as one
+// organic motion instead of everything popping in a jumble: title,
+// then the line once the title's done, then the buttons, then the
+// description right at the end. Title isn't at delay:0 — at the very
+// start of the grow the card is barely wider than its collapsed state,
+// so a title fading in immediately would render wrapped onto 2 lines
+// and then snap to 1 as the card widens (the vertically-centered content
+// box reflowing mid-fade is exactly what read as the title "shifting
+// down" instead of just appearing in place). Waiting until 0.15s in
+// means the card has already covered most of its ease-curve growth.
+// Buttons land slightly ahead of the description, once the width is
+// stable enough for neither to rewrap.
 .catalog__panel--accordion .catalog-card__title {
   opacity: 0;
   pointer-events: none;
@@ -419,7 +424,7 @@
 .catalog__panel--accordion .catalog-card.is-active .catalog-card__title {
   opacity: 1;
   pointer-events: auto;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.15s ease 0.15s;
 }
 
 .catalog__panel--accordion .catalog-card__separator {
@@ -429,21 +434,29 @@
 
 .catalog__panel--accordion .catalog-card.is-active .catalog-card__separator {
   opacity: 1;
-  transition: opacity 0.2s ease 0.1s;
+  transition: opacity 0.15s ease 0.3s;
 }
 
-.catalog__panel--accordion .catalog-card__desc,
 .catalog__panel--accordion .catalog-card__actions {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.15s ease;
 }
 
-.catalog__panel--accordion .catalog-card.is-active .catalog-card__desc,
 .catalog__panel--accordion .catalog-card.is-active .catalog-card__actions {
   opacity: 1;
   pointer-events: auto;
-  transition: opacity 0.2s ease 0.5s;
+  transition: opacity 0.15s ease 0.4s;
+}
+
+.catalog__panel--accordion .catalog-card__desc {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.catalog__panel--accordion .catalog-card.is-active .catalog-card__desc {
+  opacity: 1;
+  transition: opacity 0.15s ease 0.5s;
 }
 
 @media (max-width: 575.98px) {
@@ -479,6 +492,7 @@
   // overflow the first time this was tried.
   .catalog__tabs {
     width: calc(100% + 32px);
+    max-width: calc(100% + 32px); // the base rule's max-width:100% was capping the bleed above right back down
     margin-left: -16px;
     margin-right: -16px;
     padding-left: 16px;
@@ -493,5 +507,17 @@
 
   .catalog-swiper {
     padding: 0 16px;
+  }
+
+  // Arrows sit further in from the edge than the 16px cards/tabs use —
+  // 32px, per design — measured against the now-bled .catalog__slider
+  // (which spans the true viewport width), so this is 32px from the
+  // actual screen edge.
+  .catalog-nav--prev {
+    left: 32px;
+  }
+
+  .catalog-nav--next {
+    right: 32px;
   }
 }
