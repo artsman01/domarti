@@ -119,6 +119,13 @@
 .catalog-cards {
   display: flex;
   gap: 16px;
+  transition: opacity 0.2s ease;
+}
+
+// Toggled by JS for a beat while the arrows/dots swap which cards are
+// laid out, so paging crossfades instead of cutting instantly.
+.catalog-cards.is-paging {
+  opacity: 0;
 }
 
 // Nav arrows: floating outside the row on desktop (per Figma), inset over
@@ -318,10 +325,12 @@
 }
 
 // Sequenced so the expand/collapse reads as one motion instead of the
-// card resizing and its content fading at the same time: the outgoing
-// state (collapsed label appearing, or expanded content disappearing)
-// happens immediately, while the incoming one waits out most of the
-// 0.5s flex-grow before fading in, landing roughly as the resize settles.
+// card resizing and its content fading/reflowing at the same time: the
+// outgoing state (collapsed label appearing, or expanded content
+// disappearing) happens immediately, while the incoming one waits out
+// the *entire* 0.5s flex-grow before fading in — starting the fade any
+// earlier means the text is still reflowing under the changing card
+// width while it appears, which is the "ugly" resize the delay is for.
 .catalog__panel--accordion .catalog-card__collapsed-title {
   display: flex;
   position: absolute;
@@ -329,7 +338,7 @@
   align-items: center;
   justify-content: center;
   opacity: 1;
-  transition: opacity 0.25s ease 0.25s;
+  transition: opacity 0.2s ease 0.5s;
 }
 
 .catalog__panel--accordion .catalog-card.is-active .catalog-card__collapsed-title {
@@ -355,7 +364,7 @@
 .catalog__panel--accordion .catalog-card.is-active .catalog-card__body {
   opacity: 1;
   pointer-events: auto;
-  transition: opacity 0.25s ease 0.25s;
+  transition: opacity 0.2s ease 0.5s;
 }
 
 @media (max-width: 1279.98px) {
@@ -379,7 +388,7 @@
   }
 
   .catalog-cards {
-    gap: 8px;
+    gap: 12px;
   }
 
   .catalog-card__title {
@@ -388,10 +397,48 @@
   }
 
   .catalog-nav--prev {
-    left: 0;
+    left: 16px;
   }
 
   .catalog-nav--next {
-    right: 0;
+    right: 16px;
+  }
+
+  // Full-bleed: the swiper clips at the true viewport edge instead of the
+  // page's own 16px padding, so the peeking card runs off-screen instead
+  // of getting cut short a few pixels early. Padding on the swiper itself
+  // keeps the first card's left edge visually aligned with the rest of
+  // the page.
+  .catalog__slider {
+    width: auto;
+    margin: 0 -16px;
+  }
+
+  .catalog-swiper {
+    padding: 0 16px;
+  }
+
+  // Full-content cards (slider mode is the only mode below 1280px):
+  // title/line/description anchor near the top instead of centering in
+  // the leftover space, and actions stack two rows instead of a row.
+  .catalog-card__content {
+    justify-content: flex-start;
+  }
+
+  .catalog-card__body {
+    padding-top: 32px;
+  }
+
+  .catalog-card__actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  // flex:1 1 0% divides space along the row's main axis — once that
+  // flips to vertical (column, above) the 0% basis fights the buttons'
+  // own 48px height instead of just stacking them, so it needs resetting.
+  .catalog-card__actions .btn {
+    flex: 0 0 auto;
+    width: 100%;
   }
 }

@@ -13236,6 +13236,14 @@ button {
   color: var(--bs-primary);
 }
 
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .hero-cta__row {
+    flex-wrap: wrap;
+  }
+  .hero-cta__row > .btn.hero-cta__submit {
+    flex: 1 1 100%;
+  }
+}
 @media (max-width: 991.98px) {
   .hero__features {
     flex-wrap: wrap;
@@ -13399,6 +13407,11 @@ button {
 .catalog-cards {
   display: flex;
   gap: 16px;
+  transition: opacity 0.2s ease;
+}
+
+.catalog-cards.is-paging {
+  opacity: 0;
 }
 
 .catalog-nav {
@@ -13586,7 +13599,7 @@ button {
   align-items: center;
   justify-content: center;
   opacity: 1;
-  transition: opacity 0.25s ease 0.25s;
+  transition: opacity 0.2s ease 0.5s;
 }
 
 .catalog__panel--accordion .catalog-card.is-active .catalog-card__collapsed-title {
@@ -13612,7 +13625,7 @@ button {
 .catalog__panel--accordion .catalog-card.is-active .catalog-card__body {
   opacity: 1;
   pointer-events: auto;
-  transition: opacity 0.25s ease 0.25s;
+  transition: opacity 0.2s ease 0.5s;
 }
 
 @media (max-width: 1279.98px) {
@@ -13632,16 +13645,37 @@ button {
     font-size: 0.875rem;
   }
   .catalog-cards {
-    gap: 8px;
+    gap: 12px;
   }
   .catalog-card__title {
     font-size: 1.375rem;
     line-height: 1.75rem;
   }
   .catalog-nav--prev {
-    left: 0;
+    left: 16px;
   }
   .catalog-nav--next {
-    right: 0;
+    right: 16px;
+  }
+  .catalog__slider {
+    width: auto;
+    margin: 0 -16px;
+  }
+  .catalog-swiper {
+    padding: 0 16px;
+  }
+  .catalog-card__content {
+    justify-content: flex-start;
+  }
+  .catalog-card__body {
+    padding-top: 32px;
+  }
+  .catalog-card__actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .catalog-card__actions .btn {
+    flex: 0 0 auto;
+    width: 100%;
   }
 }

@@ -157,9 +157,19 @@
       updateDotsActive();
     }
 
+    // Crossfades the swap instead of cutting instantly: fade the row out,
+    // swap which cards are laid out while it's invisible, fade back in.
+    var pagingTimer;
     function goTo(start) {
-      windowStart = Math.min(Math.max(start, 0), maxWindowStart());
-      renderWindow();
+      var next = Math.min(Math.max(start, 0), maxWindowStart());
+      if (next === windowStart) return;
+      windowStart = next;
+      clearTimeout(pagingTimer);
+      cardsRow.classList.add("is-paging");
+      pagingTimer = setTimeout(function () {
+        renderWindow();
+        cardsRow.classList.remove("is-paging");
+      }, 200);
     }
 
     if (prevBtn) prevBtn.addEventListener("click", function () {
@@ -171,7 +181,8 @@
 
     panel._accordionActivate = function () {
       renderDots();
-      goTo(0);
+      windowStart = 0;
+      renderWindow();
     };
 
     panel._accordionDeactivate = function () {

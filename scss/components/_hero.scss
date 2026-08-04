@@ -190,6 +190,20 @@
   color: var(--bs-primary);
 }
 
+// Tablet (768-991px, e.g. 768/820 viewports): the 3 inputs stay in one
+// row, but the submit button wraps onto its own full-width row below
+// them — a middle ground between desktop's single row and mobile's full
+// vertical stack (see the <576px block further down).
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .hero-cta__row {
+    flex-wrap: wrap;
+  }
+
+  .hero-cta__row > .btn.hero-cta__submit {
+    flex: 1 1 100%;
+  }
+}
+
 // Tablet (matches the header's own tablet range): feature icons wrap into
 // a 2x2 grid instead of one row of 4. The CTA form stays a single row.
 @media (max-width: 991.98px) {
