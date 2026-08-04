@@ -146,12 +146,22 @@
       });
     }
 
+    // Nothing to page through with 4 cards or fewer — hide the arrows and
+    // dots instead of leaving them sitting there doing nothing.
+    function updateNavVisibility() {
+      var hasPages = maxWindowStart() > 0;
+      if (prevBtn) prevBtn.style.display = hasPages ? "" : "none";
+      if (nextBtn) nextBtn.style.display = hasPages ? "" : "none";
+      if (dotsEl) dotsEl.style.display = hasPages ? "" : "none";
+    }
+
     function renderWindow() {
       cards.forEach(function (c, i) {
         var visible = i >= windowStart && i < windowStart + VISIBLE_COUNT;
         c.style.display = visible ? "" : "none";
       });
       setActive(null);
+      updateNavVisibility();
       updateDotsActive();
     }
 
@@ -199,10 +209,20 @@
         windowStart = target;
         cardsRow.style.transition = "none";
         cardsRow.style.transform = "";
+        // Drop the fixed pixel width back to the normal flex:1 1 0% while
+        // transition is still "none" on each card, so the swap is
+        // instant. Restoring `transition` in the *same* tick as `flex`
+        // would let the class's `transition: flex-grow` catch that
+        // change and briefly animate away any subpixel rounding
+        // difference between the frozen width and the real flex layout —
+        // which is what read as a flash/"reload" after every slide.
         cards.forEach(function (c, i) {
           var visible = i >= windowStart && i < windowStart + VISIBLE_COUNT;
           c.style.display = visible ? "" : "none";
           c.style.flex = "";
+        });
+        void cardsRow.offsetHeight; // commit the flex reset before re-enabling transitions
+        cards.forEach(function (c) {
           c.style.transition = "";
         });
         cardsRow.style.pointerEvents = "";
@@ -277,9 +297,18 @@
       if (panel._accordionDeactivate) panel._accordionDeactivate();
       if (dotsEl) dotsEl.innerHTML = "";
       var swiperEl = panel.querySelector(".catalog-swiper");
+      // Mobile bleeds the swiper past its container with 16px of padding
+      // on the element itself (see the SCSS) — Swiper needs to know about
+      // that inset via slidesOffsetBefore/After, or its snap-position math
+      // assumes the full bled width is available and each slide lands
+      // slightly differently than the last. Tablet has no bleed/padding,
+      // so it stays at 0, and the 12px gap only applies at that width too.
+      var isMobileWidth = window.matchMedia("(max-width: 575.98px)").matches;
       panel._swiper = new Swiper(swiperEl, {
         slidesPerView: "auto",
-        spaceBetween: 16,
+        spaceBetween: isMobileWidth ? 12 : 16,
+        slidesOffsetBefore: isMobileWidth ? 16 : 0,
+        slidesOffsetAfter: isMobileWidth ? 16 : 0,
         wrapperClass: "catalog-cards",
         slideClass: "catalog-card",
         navigation: {

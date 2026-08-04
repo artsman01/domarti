@@ -120,9 +120,12 @@
   width: 100%;
 }
 
+// No gap here on purpose: in slider mode Swiper spaces slides itself via
+// spaceBetween (an inline margin per slide) — a CSS gap on top of that
+// would just add to it (12px gap + 12px Swiper margin = 24px, not 12).
+// Accordion mode doesn't use Swiper at all, so it sets its own gap below.
 .catalog-cards {
   display: flex;
-  gap: 16px;
   transition: opacity 0.2s ease;
 }
 
@@ -132,11 +135,20 @@
   opacity: 0;
 }
 
-// Nav arrows: floating outside the row on desktop (per Figma), inset over
-// the row's edge on tablet/mobile where there's no extra page margin.
+// Nav arrows: centered on the fixed 410px card row specifically (not
+// top:50% of .catalog__slider, which also includes the dots below — that
+// made the arrows sit visibly off-center and jump between tabs whenever
+// the dot count/presence differed). Horizontally, the left/right formula
+// keeps them floating just outside the 1280px container like Figma shows
+// on wide viewports, but as the viewport narrows and that outside margin
+// shrinks below 16px, it slides the arrow onto the card row instead —
+// so there's always >=16px between the arrow and the true screen edge,
+// with no breakpoint jump. (100vw - 1280px)/2 is how far the container's
+// own edge sits from the viewport edge once centered; clamped to 0 below
+// 1280px, where the arrow is already at the 16px resting position.
 .catalog-nav {
   position: absolute;
-  top: 50%;
+  top: 205px;
   transform: translateY(-50%);
   z-index: 2;
   display: flex;
@@ -156,7 +168,7 @@
 }
 
 .catalog-nav--prev {
-  left: -64px;
+  left: max(-64px, 16px - max(0px, (100vw - 1280px) / 2));
   background: var(--bs-body-bg);
   border: 1px solid var(--bs-border-color);
   color: var(--bs-body-color);
@@ -167,7 +179,7 @@
 }
 
 .catalog-nav--next {
-  right: -64px;
+  right: max(-64px, 16px - max(0px, (100vw - 1280px) / 2));
   background: var(--bs-primary);
   color: var(--color-text-button);
 }
@@ -301,9 +313,35 @@
 }
 
 // Slider mode (mobile/tablet always, or desktop w/ >4 cards): fixed-width
-// peeking cards, Swiper handles the horizontal scroll.
+// peeking cards, Swiper handles the horizontal scroll. Cards show their
+// full content all the time (no hover/collapse), so the content anchors
+// near the top instead of centering in the leftover space, and actions
+// stack two rows — mode-scoped rather than a mobile-only breakpoint,
+// since it should look the same at any width slider mode is active,
+// tablet included.
 .catalog__panel--slider .catalog-card {
   width: 308px;
+}
+
+.catalog__panel--slider .catalog-card__content {
+  justify-content: flex-start;
+}
+
+.catalog__panel--slider .catalog-card__body {
+  padding-top: 32px;
+}
+
+.catalog__panel--slider .catalog-card__actions {
+  flex-direction: column;
+  gap: 8px;
+}
+
+// flex:1 1 0% divides space along the row's main axis — once that flips
+// to vertical (column, above) the 0% basis fights the buttons' own 48px
+// height instead of just stacking them, so it needs resetting.
+.catalog__panel--slider .catalog-card__actions .btn {
+  flex: 0 0 auto;
+  width: 100%;
 }
 
 // Accordion mode (desktop, <=4 cards): expand/collapse, no Swiper
@@ -317,6 +355,7 @@
 // 205px-collapsed proportions on a 1280px row.
 .catalog__panel--accordion .catalog-cards {
   width: 100%;
+  gap: 16px;
 }
 
 .catalog__panel--accordion .catalog-card {
@@ -364,45 +403,47 @@
   pointer-events: auto;
 }
 
-// Title/separator/actions are short, fixed-size content — safe to fade
-// in right away, alongside the 0.5s flex-grow. The description is a full
-// paragraph that visibly reflows while the card is still resizing, so
-// its fade is delayed until the *entire* grow finishes (delay matches
-// the grow duration exactly) — appearing only once the width is stable.
-.catalog__panel--accordion .catalog-card__title,
-.catalog__panel--accordion .catalog-card__separator,
+// Staggered so the reveal reads as one organic motion instead of
+// separate pieces popping at random times: title first, the separator
+// right behind it (both safe to animate mid-resize — short, fixed-size
+// content that doesn't reflow), then description + buttons together
+// only once the *entire* 0.5s flex-grow has finished — by then the
+// card's final width is stable, so the paragraph doesn't rewrap and the
+// button labels don't wrap to 2 lines and snap back to 1 as they widen.
+.catalog__panel--accordion .catalog-card__title {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.catalog__panel--accordion .catalog-card.is-active .catalog-card__title {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.2s ease;
+}
+
+.catalog__panel--accordion .catalog-card__separator {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.catalog__panel--accordion .catalog-card.is-active .catalog-card__separator {
+  opacity: 1;
+  transition: opacity 0.2s ease 0.1s;
+}
+
+.catalog__panel--accordion .catalog-card__desc,
 .catalog__panel--accordion .catalog-card__actions {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.15s ease;
 }
 
-.catalog__panel--accordion .catalog-card.is-active .catalog-card__title,
-.catalog__panel--accordion .catalog-card.is-active .catalog-card__separator,
+.catalog__panel--accordion .catalog-card.is-active .catalog-card__desc,
 .catalog__panel--accordion .catalog-card.is-active .catalog-card__actions {
   opacity: 1;
   pointer-events: auto;
-  transition: opacity 0.3s ease;
-}
-
-.catalog__panel--accordion .catalog-card__desc {
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-
-.catalog__panel--accordion .catalog-card.is-active .catalog-card__desc {
-  opacity: 1;
   transition: opacity 0.2s ease 0.5s;
-}
-
-@media (max-width: 1279.98px) {
-  .catalog-nav--prev {
-    left: 16px;
-  }
-
-  .catalog-nav--next {
-    right: 16px;
-  }
 }
 
 @media (max-width: 575.98px) {
@@ -415,21 +456,9 @@
     font-size: 0.875rem; // 14px
   }
 
-  .catalog-cards {
-    gap: 12px;
-  }
-
   .catalog-card__title {
     font-size: 1.375rem; // 22px
     line-height: 1.75rem; // 28px
-  }
-
-  .catalog-nav--prev {
-    left: 16px;
-  }
-
-  .catalog-nav--next {
-    right: 16px;
   }
 
   // subtitle-tabs is 24px on desktop/tablet (base rule above); mobile
@@ -438,27 +467,31 @@
     margin-top: 0;
   }
 
-  // Full-content cards (slider mode is the only mode below 1280px):
-  // title/line/description anchor near the top instead of centering in
-  // the leftover space, and actions stack two rows instead of a row.
-  .catalog-card__content {
-    justify-content: flex-start;
+  // Full-bleed: both the tab row and the card row extend to the true
+  // viewport edge instead of stopping at the page's own 16px padding, so
+  // the last tab/peeking card can scroll all the way off-screen. Padding
+  // inside each keeps the *content* visually inset to line up with the
+  // rest of the page; the container itself (.catalog__inner) doesn't
+  // change width, only these two children bleed past it. Using
+  // calc(100% + 32px) instead of width:auto matters here — auto sizing
+  // under this row's align-items:center parent shrinks to content
+  // instead of filling, which both broke the bleed and caused real page
+  // overflow the first time this was tried.
+  .catalog__tabs {
+    width: calc(100% + 32px);
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  .catalog-card__body {
-    padding-top: 32px;
+  .catalog__slider {
+    width: calc(100% + 32px);
+    margin-left: -16px;
+    margin-right: -16px;
   }
 
-  .catalog-card__actions {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  // flex:1 1 0% divides space along the row's main axis — once that
-  // flips to vertical (column, above) the 0% basis fights the buttons'
-  // own 48px height instead of just stacking them, so it needs resetting.
-  .catalog-card__actions .btn {
-    flex: 0 0 auto;
-    width: 100%;
+  .catalog-swiper {
+    padding: 0 16px;
   }
 }
