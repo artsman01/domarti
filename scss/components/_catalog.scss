@@ -61,6 +61,10 @@
   max-width: 100%;
   overflow-x: auto;
   scrollbar-width: none;
+  // .catalog__intro's own gap (16px) already covers title-subtitle;
+  // this adds the extra 8px so subtitle-tabs lands on 24px specifically,
+  // without giving title-subtitle the same bump.
+  margin-top: 8px;
   -ms-overflow-style: none;
 }
 
@@ -324,13 +328,10 @@
   flex-grow: 3;
 }
 
-// Sequenced so the expand/collapse reads as one motion instead of the
-// card resizing and its content fading/reflowing at the same time: the
-// outgoing state (collapsed label appearing, or expanded content
-// disappearing) happens immediately, while the incoming one waits out
-// the *entire* 0.5s flex-grow before fading in — starting the fade any
-// earlier means the text is still reflowing under the changing card
-// width while it appears, which is the "ugly" resize the delay is for.
+// Collapsed vertical label: hides fast the moment a card becomes active
+// (no reason to linger), and comes back quickly once it stops being
+// active too — a long delay here just reads as sluggish since there's no
+// reflow risk in a single word of rotated text.
 .catalog__panel--accordion .catalog-card__collapsed-title {
   display: flex;
   position: absolute;
@@ -338,7 +339,7 @@
   align-items: center;
   justify-content: center;
   opacity: 1;
-  transition: opacity 0.2s ease 0.5s;
+  transition: opacity 0.2s ease 0.1s;
 }
 
 .catalog__panel--accordion .catalog-card.is-active .catalog-card__collapsed-title {
@@ -356,14 +357,41 @@
 }
 
 .catalog__panel--accordion .catalog-card__body {
+  pointer-events: none;
+}
+
+.catalog__panel--accordion .catalog-card.is-active .catalog-card__body {
+  pointer-events: auto;
+}
+
+// Title/separator/actions are short, fixed-size content — safe to fade
+// in right away, alongside the 0.5s flex-grow. The description is a full
+// paragraph that visibly reflows while the card is still resizing, so
+// its fade is delayed until the *entire* grow finishes (delay matches
+// the grow duration exactly) — appearing only once the width is stable.
+.catalog__panel--accordion .catalog-card__title,
+.catalog__panel--accordion .catalog-card__separator,
+.catalog__panel--accordion .catalog-card__actions {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.15s ease;
 }
 
-.catalog__panel--accordion .catalog-card.is-active .catalog-card__body {
+.catalog__panel--accordion .catalog-card.is-active .catalog-card__title,
+.catalog__panel--accordion .catalog-card.is-active .catalog-card__separator,
+.catalog__panel--accordion .catalog-card.is-active .catalog-card__actions {
   opacity: 1;
   pointer-events: auto;
+  transition: opacity 0.3s ease;
+}
+
+.catalog__panel--accordion .catalog-card__desc {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.catalog__panel--accordion .catalog-card.is-active .catalog-card__desc {
+  opacity: 1;
   transition: opacity 0.2s ease 0.5s;
 }
 
@@ -404,18 +432,10 @@
     right: 16px;
   }
 
-  // Full-bleed: the swiper clips at the true viewport edge instead of the
-  // page's own 16px padding, so the peeking card runs off-screen instead
-  // of getting cut short a few pixels early. Padding on the swiper itself
-  // keeps the first card's left edge visually aligned with the rest of
-  // the page.
-  .catalog__slider {
-    width: auto;
-    margin: 0 -16px;
-  }
-
-  .catalog-swiper {
-    padding: 0 16px;
+  // subtitle-tabs is 24px on desktop/tablet (base rule above); mobile
+  // stays at .catalog__intro's own 16px gap, no extra bump.
+  .catalog__tabs {
+    margin-top: 0;
   }
 
   // Full-content cards (slider mode is the only mode below 1280px):

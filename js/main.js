@@ -152,31 +152,74 @@
         c.style.display = visible ? "" : "none";
       });
       setActive(null);
-      if (prevBtn) prevBtn.classList.toggle("swiper-button-disabled", windowStart <= 0);
-      if (nextBtn) nextBtn.classList.toggle("swiper-button-disabled", windowStart >= maxWindowStart());
       updateDotsActive();
     }
 
-    // Crossfades the swap instead of cutting instantly: fade the row out,
-    // swap which cards are laid out while it's invisible, fade back in.
-    var pagingTimer;
+    // A real slide, like Swiper's own: freeze every card between the old
+    // and new window at a fixed pixel width (flex:1 1 0% can't be
+    // transitioned smoothly — see the flex-grow comment above), position
+    // the row so the current cards are exactly where they already are,
+    // then transform it by one slot per step. Once the transition ends,
+    // drop back to the normal flexible layout for whichever 4 are now
+    // the window, so hover still works between slides.
+    var SLIDE_MS = 450;
+    var animating = false;
+
     function goTo(start) {
-      var next = Math.min(Math.max(start, 0), maxWindowStart());
-      if (next === windowStart) return;
-      windowStart = next;
-      clearTimeout(pagingTimer);
-      cardsRow.classList.add("is-paging");
-      pagingTimer = setTimeout(function () {
-        renderWindow();
-        cardsRow.classList.remove("is-paging");
-      }, 200);
+      var target = Math.min(Math.max(start, 0), maxWindowStart());
+      if (target === windowStart || animating) return;
+
+      var dir = target > windowStart ? 1 : -1;
+      var delta = Math.abs(target - windowStart);
+      animating = true;
+      setActive(null);
+      cardsRow.style.pointerEvents = "none";
+
+      var slotWidth = cards[windowStart].getBoundingClientRect().width;
+      var gap = parseFloat(getComputedStyle(cardsRow).columnGap) || 16;
+      var step = (slotWidth + gap) * delta;
+
+      var rangeStart = Math.min(windowStart, target);
+      var rangeEnd = Math.max(windowStart, target) + VISIBLE_COUNT - 1;
+      for (var i = rangeStart; i <= rangeEnd; i++) {
+        cards[i].style.display = "";
+        cards[i].style.transition = "none";
+        cards[i].style.flex = "0 0 " + slotWidth + "px";
+      }
+
+      cardsRow.style.transition = "none";
+      cardsRow.style.transform = dir > 0 ? "translateX(0)" : "translateX(-" + step + "px)";
+      void cardsRow.offsetHeight; // force the start position to apply before animating
+      cardsRow.style.transition = "transform " + SLIDE_MS + "ms ease";
+      requestAnimationFrame(function () {
+        cardsRow.style.transform = dir > 0 ? "translateX(-" + step + "px)" : "translateX(0)";
+      });
+
+      setTimeout(function () {
+        windowStart = target;
+        cardsRow.style.transition = "none";
+        cardsRow.style.transform = "";
+        cards.forEach(function (c, i) {
+          var visible = i >= windowStart && i < windowStart + VISIBLE_COUNT;
+          c.style.display = visible ? "" : "none";
+          c.style.flex = "";
+          c.style.transition = "";
+        });
+        cardsRow.style.pointerEvents = "";
+        animating = false;
+        updateDotsActive();
+      }, SLIDE_MS + 30);
     }
 
+    // No dead ends: past the last page wraps to the first and vice versa,
+    // so the arrows stay clickable instead of disabling at the edges.
     if (prevBtn) prevBtn.addEventListener("click", function () {
-      if (panel.dataset.catalogMode === "accordion") goTo(windowStart - 1);
+      if (panel.dataset.catalogMode !== "accordion") return;
+      goTo(windowStart <= 0 ? maxWindowStart() : windowStart - 1);
     });
     if (nextBtn) nextBtn.addEventListener("click", function () {
-      if (panel.dataset.catalogMode === "accordion") goTo(windowStart + 1);
+      if (panel.dataset.catalogMode !== "accordion") return;
+      goTo(windowStart >= maxWindowStart() ? 0 : windowStart + 1);
     });
 
     panel._accordionActivate = function () {
