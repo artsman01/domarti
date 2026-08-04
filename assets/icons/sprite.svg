@@ -38,6 +38,24 @@
 </g>
 </g>
 </symbol>
+<symbol id="angle-left" viewBox="0 0 16 16">
+<g id="Sprite">
+<g id="angle-left">
+<g id="Group 1">
+<path id="Vector" d="M9.76726 11L7.16475 8.39775C7.11252 8.34552 7.07109 8.28351 7.04282 8.21526C7.01455 8.14702 7 8.07387 7 8C7 7.92613 7.01455 7.85298 7.04282 7.78474C7.07109 7.71649 7.11252 7.65448 7.16475 7.60225L9.76751 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</g>
+</symbol>
+<symbol id="angle-right" viewBox="0 0 16 16">
+<g id="Sprite">
+<g id="angle-right">
+<g id="Group 2">
+<path id="Vector" d="M7.00031 11L9.60281 8.39775C9.65504 8.34552 9.69648 8.28351 9.72474 8.21526C9.75301 8.14702 9.76756 8.07387 9.76756 8C9.76756 7.92613 9.75301 7.85298 9.72474 7.78474C9.69648 7.71649 9.65504 7.65448 9.60281 7.60225L7.00006 5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</g>
+</symbol>
 <symbol id="call" viewBox="0 0 24 24">
 <g id="Sprite">
 <g id="call">

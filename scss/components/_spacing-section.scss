@@ -1,0 +1,5 @@
+// SpacingSection: a plain spacer between full-width sections, used
+// instead of margin so section components stay self-contained.
+.section-spacer {
+  height: var(--space-md);
+}

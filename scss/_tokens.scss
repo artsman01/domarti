@@ -16,6 +16,16 @@
 
   --text-small: 0.6875rem; // 11px
   --lh-small: 1rem; // 16px
+
+  // Standard vertical rhythm unit — gaps between blocks within a section,
+  // and between sections (via .section-spacer). 16px on mobile.
+  --space-md: 32px;
+}
+
+@media (max-width: 575.98px) {
+  :root {
+    --space-md: 16px;
+  }
 }
 
 // Bootstrap's reboot doesn't fully unstyle plain (non-.btn) buttons, which

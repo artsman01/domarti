@@ -21,7 +21,8 @@
   "homepage": "https://github.com/artsman01/domarti#readme",
   "description": "",
   "dependencies": {
-    "bootstrap": "^5.3.8"
+    "bootstrap": "^5.3.8",
+    "swiper": "^14.0.7"
   },
   "devDependencies": {
     "sass": "^1.101.0"
