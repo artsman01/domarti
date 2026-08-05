@@ -334,9 +334,28 @@
   function initCatalog(catalog) {
     var tabs = Array.prototype.slice.call(catalog.querySelectorAll(".catalog__tab"));
     var panels = Array.prototype.slice.call(catalog.querySelectorAll("[data-catalog-panel]"));
+    var tabsRow = catalog.querySelector(".catalog__tabs");
 
     panels.forEach(setupAccordion);
     panels.forEach(refreshPanel);
+
+    // Plain vertical mouse-wheel scroll does nothing on a horizontal-only
+    // overflow container in standard browsers (needs Shift+wheel or a
+    // trackpad) — redirect deltaY into scrollLeft so a normal mouse wheel
+    // over the tabs actually pages through them.
+    if (tabsRow) {
+      tabsRow.addEventListener(
+        "wheel",
+        function (e) {
+          if (tabsRow.scrollWidth <= tabsRow.clientWidth) return;
+          var delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+          if (delta === 0) return;
+          e.preventDefault();
+          tabsRow.scrollLeft += delta;
+        },
+        { passive: false }
+      );
+    }
 
     tabs.forEach(function (tab) {
       tab.addEventListener("click", function () {

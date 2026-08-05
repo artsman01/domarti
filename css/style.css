@@ -12989,12 +12989,6 @@ button {
   outline: none;
 }
 
-@media (max-width: 991.98px) {
-  .input-field input,
-  .input-field--select span {
-    font-size: 1rem;
-  }
-}
 .checkbox-field {
   position: relative;
   display: inline-flex;
@@ -13251,9 +13245,6 @@ button {
   }
 }
 @media (max-width: 991.98px) {
-  .btn.hero-cta__submit {
-    font-size: 1rem;
-  }
   .hero__features {
     flex-wrap: wrap;
     row-gap: 24px;
