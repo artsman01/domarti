@@ -364,6 +364,11 @@
       // for free, and touch's synthetic compatibility mousedown/click
       // pair was getting caught by this same logic, breaking tab taps
       // on real phones.
+      // A trackpad/mouse click almost always has a pixel or two of jitter
+      // between button-down and button-up — too low a threshold here
+      // flags an ordinary click as a drag and swallows it, so tabs stop
+      // responding to clicks entirely.
+      var DRAG_THRESHOLD = 10;
       var dragActive = false;
       var dragMoved = false;
       var dragStartX = 0;
@@ -383,8 +388,11 @@
       window.addEventListener("pointermove", function (e) {
         if (!dragActive) return;
         var delta = e.clientX - dragStartX;
-        if (Math.abs(delta) > 3) dragMoved = true;
-        tabsRow.scrollLeft = dragStartScrollLeft - delta;
+        if (Math.abs(delta) > DRAG_THRESHOLD) dragMoved = true;
+        // Only actually scroll once past the threshold — otherwise the
+        // few px of click jitter itself nudges scrollLeft before we've
+        // even decided this is a drag.
+        if (dragMoved) tabsRow.scrollLeft = dragStartScrollLeft - delta;
       });
 
       window.addEventListener("pointerup", function () {
