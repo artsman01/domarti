@@ -358,13 +358,19 @@
 
       // Click-and-drag with the mouse, the same way the kitchen-card
       // slider can be dragged — plain overflow-x:auto only responds to
-      // touch/trackpad swipes, not a held-down mouse button.
+      // touch/trackpad swipes, not a held-down mouse button. Uses Pointer
+      // Events (not mouse events) specifically so it can bail out on
+      // pointerType !== "mouse": touch already gets native scroll + tap
+      // for free, and touch's synthetic compatibility mousedown/click
+      // pair was getting caught by this same logic, breaking tab taps
+      // on real phones.
       var dragActive = false;
       var dragMoved = false;
       var dragStartX = 0;
       var dragStartScrollLeft = 0;
 
-      tabsRow.addEventListener("mousedown", function (e) {
+      tabsRow.addEventListener("pointerdown", function (e) {
+        if (e.pointerType !== "mouse") return;
         if (tabsRow.scrollWidth <= tabsRow.clientWidth) return;
         dragActive = true;
         dragMoved = false;
@@ -374,14 +380,14 @@
         e.preventDefault(); // avoid native text/label drag ghosting
       });
 
-      window.addEventListener("mousemove", function (e) {
+      window.addEventListener("pointermove", function (e) {
         if (!dragActive) return;
         var delta = e.clientX - dragStartX;
         if (Math.abs(delta) > 3) dragMoved = true;
         tabsRow.scrollLeft = dragStartScrollLeft - delta;
       });
 
-      window.addEventListener("mouseup", function () {
+      window.addEventListener("pointerup", function () {
         if (!dragActive) return;
         dragActive = false;
         tabsRow.classList.remove("is-dragging");
