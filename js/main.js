@@ -79,13 +79,17 @@
 })();
 
 (function () {
-  // Desktop (>=1280px) gets the accordion layout (hover expands one card,
-  // flex-grow handles the rest, arrows/dots page a 4-card window across
-  // however many cards there are); everything else (mobile/tablet) gets a
-  // Swiper slider. Custom slideClass/wrapperClass point Swiper at our own
-  // BEM classes instead of forcing swiper-wrapper/swiper-slide into the
-  // markup.
-  var DESKTOP_QUERY = "(min-width: 1280px)";
+  // >=992px (tablet and below stays touch/Swiper) gets the accordion
+  // layout: hover expands one card, arrows/dots page a 4-card window
+  // across however many cards there are. Below 1280px specifically the
+  // card doesn't actually grow on hover (that's a pure CSS media-gated
+  // rule — see the flex-grow comment in the SCSS) so it reads as a
+  // "small desktop/laptop" variant of the same accordion rather than a
+  // separate mode; JS doesn't need to know about that distinction.
+  // <992px (mobile/tablet) gets a Swiper slider instead. Custom
+  // slideClass/wrapperClass point Swiper at our own BEM classes instead
+  // of forcing swiper-wrapper/swiper-slide into the markup.
+  var DESKTOP_QUERY = "(min-width: 992px)";
   var VISIBLE_COUNT = 4;
 
   function isDesktop() {

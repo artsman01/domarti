@@ -249,6 +249,12 @@
   height: 100%;
   object-fit: cover;
   opacity: 0.84;
+  transform: scale(1);
+  transition: transform 0.5s ease;
+}
+
+.catalog__panel--accordion .catalog-card.is-active .catalog-card__bg img {
+  transform: scale(1.05);
 }
 
 .catalog-card__collapsed-title {
@@ -361,15 +367,13 @@
   width: 100%;
 }
 
-// Accordion mode (desktop, <=4 cards): expand/collapse, no Swiper
-// involved at all. Every card keeps a constant flex-basis (0%) and only
-// flex-grow changes — animating flex-basis alongside flex-grow is what
-// caused the old jumpy/desynced transitions (a size jump on top of the
-// grow animation, worse the faster the pointer moved between cards).
-// With basis fixed, `transition: flex-grow` alone is a single smooth
-// interpolation. Equal (1:1:1:1) by default; the hovered/picked card
-// jumps to 3 so the ratio math still lands close to the original
-// 205px-collapsed proportions on a 1280px row.
+// Accordion mode (>=992px): hover reveals a card's full content, arrows
+// page a 4-card window. Every card keeps a constant flex-basis (0%) and
+// only flex-grow changes — animating flex-basis alongside flex-grow is
+// what caused the old jumpy/desynced transitions (a size jump on top of
+// the grow animation, worse the faster the pointer moved between
+// cards). With basis fixed, `transition: flex-grow` alone is a single
+// smooth interpolation. Equal (1:1:1:1) by default.
 .catalog__panel--accordion .catalog-cards {
   width: 100%;
   gap: 16px;
@@ -380,8 +384,47 @@
   transition: flex-grow 0.5s ease;
 }
 
-.catalog__panel--accordion .catalog-card.is-active {
-  flex-grow: 3;
+// The actual width-grow-on-hover only happens at full desktop width
+// (>=1280px, matching Figma). From 992-1279.98px ("small desktop/
+// laptop") the card stays fixed-width and hover just swaps collapsed
+// vertical label for full content in place — see the content-layout
+// override for this same range further down, which reuses the
+// slider-mode narrow-card treatment (top-aligned text, stacked buttons)
+// since these cards are noticeably narrower than a true desktop card.
+@media (min-width: 1280px) {
+  .catalog__panel--accordion .catalog-card.is-active {
+    flex-grow: 3;
+  }
+}
+
+@media (max-width: 1279.98px) {
+  .catalog__panel--accordion .catalog-card__content {
+    justify-content: flex-start;
+  }
+
+  .catalog__panel--accordion .catalog-card__body {
+    padding-top: 32px;
+  }
+
+  .catalog__panel--accordion .catalog-card__actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .catalog__panel--accordion .catalog-card__actions .btn {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  // Title also skips the h4 bump here: with no width change to justify
+  // it, a bigger title than the collapsed state already shows just
+  // looks like a jump. (The no-stagger override for this same range
+  // lives further down, after the staggered rules it needs to beat —
+  // same selector specificity, so source order decides the winner.)
+  .catalog__panel--accordion .catalog-card__title {
+    font-size: 1.375rem; // 22px — matches the collapsed label, no h4 jump
+    line-height: 1.75rem;
+  }
 }
 
 // Collapsed vertical label: hides fast the moment a card becomes active
@@ -476,6 +519,22 @@
   transition: opacity 0.15s ease 0.5s;
 }
 
+// 992-1279.98px doesn't stagger: the reveal above is timed to sync with
+// the card physically growing wider, which only happens at full desktop
+// width (see the flex-grow media query near the top of accordion mode).
+// With no resize to sync against, everything fading in at once reads as
+// intentional instead of an arbitrary delay. Same selectors, same
+// specificity as the staggered rules above — this only wins because it
+// comes later in the file, so keep it after them.
+@media (max-width: 1279.98px) {
+  .catalog__panel--accordion .catalog-card.is-active .catalog-card__title,
+  .catalog__panel--accordion .catalog-card.is-active .catalog-card__separator,
+  .catalog__panel--accordion .catalog-card.is-active .catalog-card__actions,
+  .catalog__panel--accordion .catalog-card.is-active .catalog-card__desc {
+    transition: opacity 0.25s ease;
+  }
+}
+
 @media (max-width: 575.98px) {
   .catalog__title {
     font-size: 1.5rem; // 24px
@@ -495,6 +554,17 @@
   // stays at .catalog__intro's own 16px gap, no extra bump.
   .catalog__tabs {
     margin-top: 0;
+  }
+
+  // tabs-to-cards and dots-to-cards are both 24px on mobile specifically
+  // (.catalog__inner's own gap and --space-md both land on 16px here, so
+  // each needs its own +8px bump rather than changing the shared token).
+  .catalog__panel {
+    margin-top: 8px;
+  }
+
+  .catalog-dots {
+    margin-top: 24px;
   }
 
   // Full-bleed: both the tab row and the card row extend to the true

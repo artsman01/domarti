@@ -12989,6 +12989,12 @@ button {
   outline: none;
 }
 
+@media (max-width: 991.98px) {
+  .input-field input,
+  .input-field--select span {
+    font-size: 1rem;
+  }
+}
 .checkbox-field {
   position: relative;
   display: inline-flex;
@@ -13245,6 +13251,9 @@ button {
   }
 }
 @media (max-width: 991.98px) {
+  .btn.hero-cta__submit {
+    font-size: 1rem;
+  }
   .hero__features {
     flex-wrap: wrap;
     row-gap: 24px;
@@ -13501,6 +13510,12 @@ button {
   height: 100%;
   object-fit: cover;
   opacity: 0.84;
+  transform: scale(1);
+  transition: transform 0.5s ease;
+}
+
+.catalog__panel--accordion .catalog-card.is-active .catalog-card__bg img {
+  transform: scale(1.05);
 }
 
 .catalog-card__collapsed-title {
@@ -13610,10 +13625,31 @@ button {
   transition: flex-grow 0.5s ease;
 }
 
-.catalog__panel--accordion .catalog-card.is-active {
-  flex-grow: 3;
+@media (min-width: 1280px) {
+  .catalog__panel--accordion .catalog-card.is-active {
+    flex-grow: 3;
+  }
 }
-
+@media (max-width: 1279.98px) {
+  .catalog__panel--accordion .catalog-card__content {
+    justify-content: flex-start;
+  }
+  .catalog__panel--accordion .catalog-card__body {
+    padding-top: 32px;
+  }
+  .catalog__panel--accordion .catalog-card__actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .catalog__panel--accordion .catalog-card__actions .btn {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  .catalog__panel--accordion .catalog-card__title {
+    font-size: 1.375rem;
+    line-height: 1.75rem;
+  }
+}
 .catalog__panel--accordion .catalog-card__collapsed-title {
   display: flex;
   position: absolute;
@@ -13690,6 +13726,14 @@ button {
   transition: opacity 0.15s ease 0.5s;
 }
 
+@media (max-width: 1279.98px) {
+  .catalog__panel--accordion .catalog-card.is-active .catalog-card__title,
+  .catalog__panel--accordion .catalog-card.is-active .catalog-card__separator,
+  .catalog__panel--accordion .catalog-card.is-active .catalog-card__actions,
+  .catalog__panel--accordion .catalog-card.is-active .catalog-card__desc {
+    transition: opacity 0.25s ease;
+  }
+}
 @media (max-width: 575.98px) {
   .catalog__title {
     font-size: 1.5rem;
@@ -13704,6 +13748,12 @@ button {
   }
   .catalog__tabs {
     margin-top: 0;
+  }
+  .catalog__panel {
+    margin-top: 8px;
+  }
+  .catalog-dots {
+    margin-top: 24px;
   }
   .catalog__tabs {
     width: calc(100% + 32px);

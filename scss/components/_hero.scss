@@ -209,6 +209,13 @@
 // Tablet (matches the header's own tablet range): feature icons wrap into
 // a 2x2 grid instead of one row of 4. The CTA form stays a single row.
 @media (max-width: 991.98px) {
+  // The inputs bump to 16px at this width to stop iOS zooming in on
+  // focus (see _input.scss) — the submit button needs to match or the
+  // row reads as two different type sizes glued together.
+  .btn.hero-cta__submit {
+    font-size: 1rem; // 16px
+  }
+
   .hero__features {
     flex-wrap: wrap;
     row-gap: 24px;

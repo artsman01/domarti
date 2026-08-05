@@ -99,3 +99,14 @@
   border-color: var(--bs-primary);
   outline: none;
 }
+
+// iOS Safari (and most mobile browsers) zoom the page in on focus for
+// any text input under 16px — this is the fix, not disabling viewport
+// zoom, which would take away a real accessibility feature just to work
+// around one input's font-size.
+@media (max-width: 991.98px) {
+  .input-field input,
+  .input-field--select span {
+    font-size: 1rem; // 16px
+  }
+}
