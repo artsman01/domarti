@@ -89,6 +89,7 @@
 @media (min-width: 992px) {
   .catalog__tabs {
     flex-wrap: wrap;
+    justify-content: center;
     overflow-x: visible;
   }
 }
