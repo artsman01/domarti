@@ -190,11 +190,13 @@
   color: var(--bs-primary);
 }
 
-// Tablet (768-991px, e.g. 768/820 viewports): the 3 inputs stay in one
+// Tablet (576-991px, e.g. 767/820 viewports): the 3 inputs stay in one
 // row, but the submit button wraps onto its own full-width row below
 // them — a middle ground between desktop's single row and mobile's full
-// vertical stack (see the <576px block further down).
-@media (min-width: 768px) and (max-width: 991.98px) {
+// vertical stack (see the <576px block further down). Was min-width:768,
+// which left 576-767.98 uncovered — falling back to the base row layout
+// and cramming all 4 fields (incl. the button) into one squeezed row.
+@media (min-width: 576px) and (max-width: 991.98px) {
   .hero-cta__row {
     flex-wrap: wrap;
   }

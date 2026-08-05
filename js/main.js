@@ -310,6 +310,7 @@
         slidesPerView: "auto",
         spaceBetween: isMobileWidth ? 12 : 16,
         speed: 450,
+        loop: true, // cyclic like the desktop accordion — arrows never dead-end/disable
         wrapperClass: "catalog-cards",
         slideClass: "catalog-card",
         navigation: {

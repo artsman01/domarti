@@ -20,6 +20,19 @@
   padding: var(--space-md) 16px;
 }
 
+// .catalog__inner is also Bootstrap's .container, which steps to a
+// narrower centered max-width at sm/md (540px/720px) — that centering
+// margin sits *outside* the 16px padding the mobile bleed calc cancels,
+// so the bled tabs/cards were still nowhere near the real 16px inset at
+// those widths (they just happened to test correctly at <576px, where
+// .container is already 100%). Below the 1280px accordion breakpoint the
+// catalog is always full width regardless of Bootstrap's tier.
+@media (max-width: 1279.98px) {
+  .catalog .container.catalog__inner {
+    max-width: 100%;
+  }
+}
+
 .catalog__intro {
   display: flex;
   flex-direction: column;
@@ -124,15 +137,19 @@
 // spaceBetween (an inline margin per slide) — a CSS gap on top of that
 // would just add to it (12px gap + 12px Swiper margin = 24px, not 12).
 // Accordion mode doesn't use Swiper at all, so it sets its own gap below.
+// transition-duration here is just a fallback — Swiper sets its own
+// inline transitionDuration (from `speed`) before every slide move. What
+// actually matters is transition-property including transform: without
+// it, Swiper's own custom wrapperClass (used instead of its default
+// .swiper-wrapper, which ships this rule in swiper-bundle.css) never
+// gets an animated transform at all, so slides were snapping into place
+// instantly regardless of `speed` — this is the mobile/tablet "abrupt
+// swipe" bug.
 .catalog-cards {
   display: flex;
-  transition: opacity 0.2s ease;
-}
-
-// Toggled by JS for a beat while the arrows/dots swap which cards are
-// laid out, so paging crossfades instead of cutting instantly.
-.catalog-cards.is-paging {
-  opacity: 0;
+  transition-property: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
 }
 
 // Nav arrows: centered on the fixed 410px card row specifically (not

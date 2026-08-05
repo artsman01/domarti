@@ -13236,7 +13236,7 @@ button {
   color: var(--bs-primary);
 }
 
-@media (min-width: 768px) and (max-width: 991.98px) {
+@media (min-width: 576px) and (max-width: 991.98px) {
   .hero-cta__row {
     flex-wrap: wrap;
   }
@@ -13311,6 +13311,11 @@ button {
   padding: var(--space-md) 16px;
 }
 
+@media (max-width: 1279.98px) {
+  .catalog .container.catalog__inner {
+    max-width: 100%;
+  }
+}
 .catalog__intro {
   display: flex;
   flex-direction: column;
@@ -13407,11 +13412,9 @@ button {
 
 .catalog-cards {
   display: flex;
-  transition: opacity 0.2s ease;
-}
-
-.catalog-cards.is-paging {
-  opacity: 0;
+  transition-property: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
 }
 
 .catalog-nav {
