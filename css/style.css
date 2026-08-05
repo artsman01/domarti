@@ -13349,6 +13349,7 @@ button {
 
 .catalog__tabs {
   display: flex;
+  flex-wrap: nowrap;
   gap: 8px;
   align-items: center;
   max-width: 100%;
@@ -13356,14 +13357,14 @@ button {
   scrollbar-width: none;
   margin-top: 8px;
   -ms-overflow-style: none;
-  cursor: grab;
 }
 
-.catalog__tabs.is-dragging {
-  cursor: grabbing;
-  user-select: none;
+@media (min-width: 992px) {
+  .catalog__tabs {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
 }
-
 .catalog__tabs::-webkit-scrollbar {
   display: none;
 }

@@ -64,11 +64,16 @@
   line-height: 1.375rem; // 22px
 }
 
-// Scrolls horizontally instead of wrapping once there are more tabs than
-// fit on one line (designed for up to ~10) — most visible on mobile,
-// where it's a swipe; the scrollbar itself is hidden cross-browser.
+// Below 992px (tablet/mobile, matching the same breakpoint where cards
+// switch out of hover-accordion mode) tabs scroll horizontally as a
+// touch swipe once there are more than fit on one line; the scrollbar
+// itself is hidden cross-browser. At 992px+ they wrap onto additional
+// rows instead (see the min-width:992px override below) — a mouse has
+// no natural horizontal-swipe gesture, so scrolling there needs a
+// dedicated drag/wheel affordance, wrapping just avoids that entirely.
 .catalog__tabs {
   display: flex;
+  flex-wrap: nowrap;
   gap: 8px;
   align-items: center;
   max-width: 100%;
@@ -79,12 +84,13 @@
   // without giving title-subtitle the same bump.
   margin-top: 8px;
   -ms-overflow-style: none;
-  cursor: grab;
 }
 
-.catalog__tabs.is-dragging {
-  cursor: grabbing;
-  user-select: none;
+@media (min-width: 992px) {
+  .catalog__tabs {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
 }
 
 .catalog__tabs::-webkit-scrollbar {

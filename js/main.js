@@ -334,82 +334,9 @@
   function initCatalog(catalog) {
     var tabs = Array.prototype.slice.call(catalog.querySelectorAll(".catalog__tab"));
     var panels = Array.prototype.slice.call(catalog.querySelectorAll("[data-catalog-panel]"));
-    var tabsRow = catalog.querySelector(".catalog__tabs");
 
     panels.forEach(setupAccordion);
     panels.forEach(refreshPanel);
-
-    // Plain vertical mouse-wheel scroll does nothing on a horizontal-only
-    // overflow container in standard browsers (needs Shift+wheel or a
-    // trackpad) — redirect deltaY into scrollLeft so a normal mouse wheel
-    // over the tabs actually pages through them.
-    if (tabsRow) {
-      tabsRow.addEventListener(
-        "wheel",
-        function (e) {
-          if (tabsRow.scrollWidth <= tabsRow.clientWidth) return;
-          var delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-          if (delta === 0) return;
-          e.preventDefault();
-          tabsRow.scrollLeft += delta;
-        },
-        { passive: false }
-      );
-
-      // Click-and-drag with the mouse, the same way the kitchen-card
-      // slider can be dragged — plain overflow-x:auto only responds to
-      // touch/trackpad swipes, not a held-down mouse button. Uses Pointer
-      // Events (not mouse events) specifically so it can bail out on
-      // pointerType !== "mouse": touch already gets native scroll + tap
-      // for free, and touch's synthetic compatibility mousedown/click
-      // pair was getting caught by this same logic, breaking tab taps
-      // on real phones.
-      // A trackpad/mouse click almost always has a pixel or two of jitter
-      // between button-down and button-up — too low a threshold here
-      // flags an ordinary click as a drag and swallows it, so tabs stop
-      // responding to clicks entirely.
-      var DRAG_THRESHOLD = 10;
-      var dragActive = false;
-      var dragMoved = false;
-      var dragStartX = 0;
-      var dragStartScrollLeft = 0;
-
-      tabsRow.addEventListener("pointerdown", function (e) {
-        if (e.pointerType !== "mouse") return;
-        if (tabsRow.scrollWidth <= tabsRow.clientWidth) return;
-        dragActive = true;
-        dragMoved = false;
-        dragStartX = e.clientX;
-        dragStartScrollLeft = tabsRow.scrollLeft;
-        tabsRow.classList.add("is-dragging");
-        e.preventDefault(); // avoid native text/label drag ghosting
-      });
-
-      window.addEventListener("pointermove", function (e) {
-        if (!dragActive) return;
-        var delta = e.clientX - dragStartX;
-        if (Math.abs(delta) > DRAG_THRESHOLD) dragMoved = true;
-        // Only actually scroll once past the threshold — otherwise the
-        // few px of click jitter itself nudges scrollLeft before we've
-        // even decided this is a drag.
-        if (dragMoved) tabsRow.scrollLeft = dragStartScrollLeft - delta;
-      });
-
-      window.addEventListener("pointerup", function () {
-        if (!dragActive) return;
-        dragActive = false;
-        tabsRow.classList.remove("is-dragging");
-        if (dragMoved) {
-          // swallow the click that follows a real drag so a tab doesn't
-          // switch just because the drag happened to end over it
-          var suppressClick = function (e) {
-            e.stopPropagation();
-            e.preventDefault();
-          };
-          tabsRow.addEventListener("click", suppressClick, { capture: true, once: true });
-        }
-      });
-    }
 
     tabs.forEach(function (tab) {
       tab.addEventListener("click", function () {
