@@ -13364,10 +13364,6 @@ button {
   user-select: none;
 }
 
-.catalog__tabs.is-dragging .catalog__tab {
-  pointer-events: none;
-}
-
 .catalog__tabs::-webkit-scrollbar {
   display: none;
 }
