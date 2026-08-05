@@ -355,6 +355,46 @@
         },
         { passive: false }
       );
+
+      // Click-and-drag with the mouse, the same way the kitchen-card
+      // slider can be dragged — plain overflow-x:auto only responds to
+      // touch/trackpad swipes, not a held-down mouse button.
+      var dragActive = false;
+      var dragMoved = false;
+      var dragStartX = 0;
+      var dragStartScrollLeft = 0;
+
+      tabsRow.addEventListener("mousedown", function (e) {
+        if (tabsRow.scrollWidth <= tabsRow.clientWidth) return;
+        dragActive = true;
+        dragMoved = false;
+        dragStartX = e.clientX;
+        dragStartScrollLeft = tabsRow.scrollLeft;
+        tabsRow.classList.add("is-dragging");
+        e.preventDefault(); // avoid native text/label drag ghosting
+      });
+
+      window.addEventListener("mousemove", function (e) {
+        if (!dragActive) return;
+        var delta = e.clientX - dragStartX;
+        if (Math.abs(delta) > 3) dragMoved = true;
+        tabsRow.scrollLeft = dragStartScrollLeft - delta;
+      });
+
+      window.addEventListener("mouseup", function () {
+        if (!dragActive) return;
+        dragActive = false;
+        tabsRow.classList.remove("is-dragging");
+        if (dragMoved) {
+          // swallow the click that follows a real drag so a tab doesn't
+          // switch just because the drag happened to end over it
+          var suppressClick = function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+          };
+          tabsRow.addEventListener("click", suppressClick, { capture: true, once: true });
+        }
+      });
     }
 
     tabs.forEach(function (tab) {

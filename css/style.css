@@ -13356,6 +13356,16 @@ button {
   scrollbar-width: none;
   margin-top: 8px;
   -ms-overflow-style: none;
+  cursor: grab;
+}
+
+.catalog__tabs.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.catalog__tabs.is-dragging .catalog__tab {
+  pointer-events: none;
 }
 
 .catalog__tabs::-webkit-scrollbar {
