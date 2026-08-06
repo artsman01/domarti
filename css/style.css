@@ -13777,6 +13777,11 @@ button {
     right: 32px;
   }
 }
+.calculator {
+  background: var(--color-secondary-bg);
+  padding: var(--space-md) 0;
+}
+
 .calculator__intro {
   display: flex;
   flex-direction: column;

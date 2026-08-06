@@ -5,6 +5,14 @@
 // scrolling child). Below xl the two stack vertically and everything
 // flows in the normal page scroll instead, so the fixed height/inner
 // scroll only applies at the desktop tier.
+// Full-bleed gray band with its own top/bottom breathing room — unlike
+// Hero/Catalog (plain white, relying only on .section-spacer between
+// sections), this section carries its own background and padding.
+.calculator {
+  background: var(--color-secondary-bg);
+  padding: var(--space-md) 0;
+}
+
 .calculator__intro {
   display: flex;
   flex-direction: column;
