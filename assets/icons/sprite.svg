@@ -178,4 +178,13 @@
 </g>
 </g>
 </symbol>
+<symbol id="info" viewBox="0 0 24 24">
+<g id="Sprite">
+<g id="info">
+<circle id="Ellipse" cx="12" cy="12" r="8.5" stroke="currentColor"/>
+<path id="Vector" d="M12 11V16.5" stroke="currentColor" stroke-linecap="round"/>
+<path id="Vector_2" d="M12 8V8.01" stroke="currentColor" stroke-linecap="round"/>
+</g>
+</g>
+</symbol>
 </svg>
