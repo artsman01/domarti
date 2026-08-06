@@ -1,0 +1,28 @@
+<svg width="1680" height="1680" viewBox="0 0 1680 1680" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1680" height="1680" fill="white"/>
+<path d="M712 712L712 968L456 968L456 712L712 712Z" fill="#EBEBEB"/>
+<path d="M712 712L712.5 712L712.5 711.5L712 711.5L712 712ZM712 968L712 968.5L712.5 968.5L712.5 968L712 968ZM712 712L711.5 712L711.5 968L712 968L712.5 968L712.5 712L712 712ZM712 968L712 967.5L456 967.5L456 968L456 968.5L712 968.5L712 968ZM456 712L456 712.5L712 712.5L712 712L712 711.5L456 711.5L456 712Z" fill="#726E6E"/>
+<path d="M517 968H645V974H517V968Z" fill="#726E6E"/>
+<path d="M456 712L456 968L200 968L200 712L456 712Z" fill="#EBEBEB"/>
+<path d="M200 968L199.5 968L199.5 968.5L200 968.5L200 968ZM200 712L200 711.5L199.5 711.5L199.5 712L200 712ZM456 968L456 967.5L200 967.5L200 968L200 968.5L456 968.5L456 968ZM200 968L200.5 968L200.5 712L200 712L199.5 712L199.5 968L200 968ZM200 712L200 712.5L456 712.5L456 712L456 711.5L200 711.5L200 712Z" fill="#726E6E"/>
+<path d="M261 968H389V974H261V968Z" fill="#726E6E"/>
+<rect x="272" y="736" width="368" height="208" rx="8" fill="white" stroke="#726E6E"/>
+<rect x="444" y="748" width="184" height="184" rx="6" fill="white" stroke="#726E6E"/>
+<circle cx="604" cy="908" r="12" fill="white" stroke="#726E6E"/>
+<line x1="419.5" y1="780.5" x2="296.5" y2="780.5" stroke="#726E6E" stroke-linecap="round"/>
+<line x1="419.5" y1="804.5" x2="296.5" y2="804.5" stroke="#726E6E" stroke-linecap="round"/>
+<line x1="419.5" y1="828.5" x2="296.5" y2="828.5" stroke="#726E6E" stroke-linecap="round"/>
+<line x1="419.5" y1="852.5" x2="296.5" y2="852.5" stroke="#726E6E" stroke-linecap="round"/>
+<line x1="419.5" y1="876.5" x2="296.5" y2="876.5" stroke="#726E6E" stroke-linecap="round"/>
+<line x1="419.5" y1="900.5" x2="296.5" y2="900.5" stroke="#726E6E" stroke-linecap="round"/>
+<path d="M968 712H1224V968H968V712Z" fill="#EBEBEB" stroke="#726E6E"/>
+<circle cx="1032" cy="776" r="40" fill="white" stroke="#726E6E"/>
+<circle cx="1160" cy="776" r="40" fill="white" stroke="#726E6E"/>
+<circle cx="1032" cy="904" r="40" fill="white" stroke="#726E6E"/>
+<circle cx="1160" cy="904" r="40" fill="white" stroke="#726E6E"/>
+<path d="M1032 968H1160V974H1032V968Z" fill="#726E6E"/>
+<path d="M712 712H968V968H712V712Z" fill="#EBEBEB" stroke="#726E6E"/>
+<path d="M776 968H904V974H776V968Z" fill="#726E6E"/>
+<path d="M1224 712H1480V968H1224V712Z" fill="#EBEBEB" stroke="#726E6E"/>
+<path d="M1288 968H1416V974H1288V968Z" fill="#726E6E"/>
+</svg>

@@ -365,4 +365,90 @@
   }
 
   document.querySelectorAll(".catalog").forEach(initCatalog);
+
+  var CALCULATOR_SCHEME_BASE = "assets/calculator/";
+  var CALCULATOR_DEFAULT_TYPE = "angle";
+
+  function initCalculator(calculator) {
+    var groups = Array.prototype.slice.call(calculator.querySelectorAll(".calculator__tabs"));
+    var schemeImg = calculator.querySelector("[data-calculator-scheme]");
+    var barInput = calculator.querySelector("[data-calculator-bar]");
+    var typeGroup = calculator.querySelector('[data-calculator-group="type"]');
+    var customPanel = calculator.querySelector("[data-calculator-custom]");
+    var customToggle = calculator.querySelector("[data-calculator-custom-toggle]");
+    var resetBtn = calculator.querySelector("[data-calculator-reset]");
+
+    function activeTypeValue() {
+      var active = typeGroup && typeGroup.querySelector(".calculator__tab.is-active");
+      return (active && active.dataset.value) || CALCULATOR_DEFAULT_TYPE;
+    }
+
+    function updateScheme() {
+      if (!schemeImg) return;
+      var type = activeTypeValue();
+      if (type === "other") return; // no illustration for a custom/unlisted layout
+      var withBar = !barInput || barInput.checked;
+      schemeImg.src = CALCULATOR_SCHEME_BASE + type + (withBar ? "-bar" : "") + ".svg";
+    }
+
+    function updateCustomPanel() {
+      if (!customPanel || !customToggle) return;
+      customPanel.hidden = !customToggle.classList.contains("is-active");
+    }
+
+    groups.forEach(function (group) {
+      var tabs = Array.prototype.slice.call(group.querySelectorAll(".calculator__tab"));
+      var multiple = group.dataset.select === "multiple";
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          if (multiple) {
+            tab.classList.toggle("is-active");
+          } else {
+            if (tab.classList.contains("is-active")) return;
+            tabs.forEach(function (t) {
+              t.classList.toggle("is-active", t === tab);
+            });
+          }
+
+          if (group === typeGroup) updateScheme();
+          if (tab === customToggle) updateCustomPanel();
+        });
+      });
+    });
+
+    if (barInput) {
+      barInput.addEventListener("change", updateScheme);
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener("click", function () {
+        groups.forEach(function (group) {
+          var tabs = Array.prototype.slice.call(group.querySelectorAll(".calculator__tab"));
+          var multiple = group.dataset.select === "multiple";
+          tabs.forEach(function (tab, i) {
+            tab.classList.toggle("is-active", multiple ? tab === customToggle : i === 0);
+          });
+        });
+
+        if (barInput) barInput.checked = true;
+        updateScheme();
+        updateCustomPanel();
+
+        var dimInputs = calculator.querySelectorAll(".calculator__dims input");
+        if (dimInputs[0]) dimInputs[0].value = "3890";
+        if (dimInputs[1]) dimInputs[1].value = "";
+
+        var customInput = customPanel && customPanel.querySelector("input");
+        if (customInput) customInput.value = "";
+
+        var textarea = calculator.querySelector(".calculator__textarea");
+        if (textarea) textarea.value = "";
+      });
+    }
+
+    updateCustomPanel();
+  }
+
+  document.querySelectorAll(".calculator").forEach(initCalculator);
 })();

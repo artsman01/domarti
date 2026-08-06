@@ -160,4 +160,22 @@
 </g>
 </g>
 </symbol>
+<symbol id="download" viewBox="0 0 24 24">
+<g id="Sprite">
+<g id="download">
+<path id="Vector" d="M12 4V15M12 15L16 11M12 15L8 11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M5 17V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</symbol>
+<symbol id="refresh" viewBox="0 0 24 24">
+<g id="Sprite">
+<g id="refresh">
+<path id="Vector" d="M20 11C19.375 7.05369 15.9502 4 11.8333 4C7.94289 4 4.66983 6.73142 4 10.4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M4 13C4.62483 16.9463 8.04957 20 12.1665 20C16.0569 20 19.3299 17.2686 20 13.6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M20 6.5V11H15.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M4 17.5V13H8.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</symbol>
 </svg>
