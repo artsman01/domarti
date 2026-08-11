@@ -571,7 +571,12 @@
     // each slide's width inline as a share of the container, peeking
     // the next one at the edge without any manual bleed/bleed-padding
     // math (and without ever growing the page's own scrollWidth, since
-    // it all stays inside .features-swiper's overflow:hidden).
+    // it all stays inside .features-swiper's overflow:hidden). That 1.1
+    // is only right for true small phones though — held all the way up
+    // to 767.98px it turned into a single giant near-full-width square
+    // (aspect-ratio:1/1 on a ~600-700px-wide card) on wider "adaptive"
+    // phones/small tablets, so 576px+ steps up to ~2.3 cards per view,
+    // keeping each one a reasonably-sized square instead.
     new Swiper(swiperEl, {
       slidesPerView: 1.1,
       spaceBetween: 12,
@@ -583,7 +588,15 @@
         clickable: true,
       },
       breakpoints: {
-        768: { enabled: false },
+        576: { slidesPerView: 2.3, spaceBetween: 12 },
+        // enabled:false alone still leaves slidesPerView in effect,
+        // which makes Swiper keep setting each slide's width inline
+        // even while "disabled" — that inline width blew out the CSS
+        // grid at 768px+ (every item claiming a whole row, stacking
+        // into a single column instead of 4/2 across). Reverting
+        // slidesPerView to "auto" here too stops Swiper from touching
+        // slide width at all, handing sizing back to the grid.
+        768: { enabled: false, slidesPerView: "auto" },
       },
     });
   }

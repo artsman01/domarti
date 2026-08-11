@@ -14753,6 +14753,11 @@ button {
     line-height: 2rem;
   }
 }
+@media (max-width: 767.98px) {
+  .seo__card {
+    border-bottom: 1px solid var(--bs-border-color);
+  }
+}
 .features {
   background: var(--bs-body-bg);
 }

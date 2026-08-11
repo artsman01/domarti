@@ -148,3 +148,13 @@
     line-height: 2rem; // 32px
   }
 }
+
+// Mobile only (plain stacked flow, no floating card — see the file
+// comment up top): a separator line closes off the card's bottom edge,
+// otherwise it blends straight into the next white section with only
+// the .section-spacer's height and no visible boundary between them.
+@media (max-width: 767.98px) {
+  .seo__card {
+    border-bottom: 1px solid var(--bs-border-color);
+  }
+}
