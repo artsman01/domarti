@@ -536,3 +536,31 @@
 
   document.querySelectorAll(".portfolio").forEach(initPortfolio);
 })();
+
+(function () {
+  // Same markup for every breakpoint — Swiper runs the carousel below
+  // 768px, then disables itself via its own `enabled` breakpoint from
+  // 768px up, handing the now-untouched DOM back to plain CSS grid
+  // (see .features__grid's own breakpoints in _features.scss).
+  function initFeatures(section) {
+    var swiperEl = section.querySelector(".features-swiper");
+    if (!swiperEl) return;
+
+    new Swiper(swiperEl, {
+      slidesPerView: "auto",
+      spaceBetween: 12,
+      speed: 450,
+      wrapperClass: "features__grid",
+      slideClass: "features__item",
+      pagination: {
+        el: section.querySelector(".features-dots"),
+        clickable: true,
+      },
+      breakpoints: {
+        768: { enabled: false },
+      },
+    });
+  }
+
+  document.querySelectorAll(".features").forEach(initFeatures);
+})();
