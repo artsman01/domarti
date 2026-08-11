@@ -386,7 +386,6 @@
     function updateScheme() {
       if (!schemeImg) return;
       var type = activeTypeValue();
-      if (type === "other") return; // no illustration for a custom/unlisted layout
       var withBar = !barInput || barInput.checked;
       schemeImg.src = CALCULATOR_SCHEME_BASE + type + (withBar ? "-bar" : "") + ".svg";
     }
@@ -451,4 +450,89 @@
   }
 
   document.querySelectorAll(".calculator").forEach(initCalculator);
+})();
+
+(function () {
+  // Per-card photo browser — a small slider nested inside the outer
+  // Swiper carousel. .portfolio-card__photos holds every photo as a real
+  // <img>, laid out in a row; the arrows translateX it by one slide
+  // width, so switching photos visibly pages like a slider instead of
+  // cross-dissolving.
+  function initPortfolioCardMedia(media) {
+    var photos = media.querySelector(".portfolio-card__photos");
+    var images = Array.prototype.slice.call(photos.querySelectorAll("img"));
+    if (images.length < 2) return;
+
+    var index = 0;
+
+    function show(i) {
+      index = (i + images.length) % images.length;
+      photos.style.transform = "translateX(-" + index * 100 + "%)";
+    }
+
+    var prevBtn = media.querySelector(".portfolio-card__img-nav--prev");
+    var nextBtn = media.querySelector(".portfolio-card__img-nav--next");
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        show(index - 1);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        show(index + 1);
+      });
+    }
+
+    // Belt-and-suspenders against "save image": pointer-events:none on
+    // the <img>s (see _portfolio.scss) already keeps the cursor's hit
+    // target off real image content, but block the context menu outright
+    // too in case a browser still offers to save/copy from here.
+    media.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+  }
+
+  document.querySelectorAll(".portfolio-card__media").forEach(initPortfolioCardMedia);
+
+  function initPortfolio(section) {
+    var swiperEl = section.querySelector(".portfolio-swiper");
+    if (!swiperEl) return;
+
+    var prevBtn = section.querySelector(".portfolio-nav--prev");
+    var nextBtn = section.querySelector(".portfolio-nav--next");
+
+    // Below 768px: "auto" + the fixed 296px card width in CSS gives a
+    // peeking mobile card; 768–991.98px is still "auto" but with a fixed
+    // 416px tablet card (see _portfolio.scss) — the nav is hidden at both
+    // of these tiers anyway. From 992px, numeric slidesPerView takes over
+    // and Swiper sizes each slide itself (stretched to exactly fill the
+    // row): 2.5-up, then 3-up once there's enough room for the full
+    // 1280px/416px-card layout.
+    new Swiper(swiperEl, {
+      slidesPerView: "auto",
+      spaceBetween: 12,
+      speed: 450,
+      loop: true,
+      wrapperClass: "portfolio-cards",
+      slideClass: "portfolio-card",
+      navigation: {
+        nextEl: nextBtn,
+        prevEl: prevBtn,
+      },
+      pagination: {
+        el: section.querySelector(".portfolio-dots"),
+        clickable: true,
+      },
+      breakpoints: {
+        768: { spaceBetween: 16 },
+        992: { slidesPerView: 2.5, spaceBetween: 16 },
+        1327: { slidesPerView: 3, spaceBetween: 16 },
+      },
+    });
+  }
+
+  document.querySelectorAll(".portfolio").forEach(initPortfolio);
 })();

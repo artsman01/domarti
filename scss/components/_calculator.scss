@@ -370,8 +370,15 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--bs-border-color);
   color: var(--bs-body-color);
   font-size: 0.8125rem; // 13px
+}
+
+.calculator__totals-row--total {
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .calculator__totals-row--total {
@@ -410,17 +417,36 @@
   gap: 6px;
 }
 
-@media (min-width: 1280px) {
+// The fixed-height/inner-scroll card layout holds from tablet up —
+// only true mobile (below) flows normally instead. Below xl specifically
+// the illustration column stops being a fixed 672px and instead shares
+// space with the panel, so both just narrow together as the viewport
+// does instead of the illustration hogging a fixed width until the
+// panel has nowhere left to shrink.
+@media (min-width: 768px) {
   .calculator__card {
     height: 672px;
   }
 }
 
-// Below xl the illustration/panel stack vertically and the panel just
-// flows with the page instead of scrolling internally — a fixed inner
-// scroll region only makes sense while the two columns must share one
-// height.
-@media (max-width: 1279.98px) {
+@media (min-width: 768px) and (max-width: 1279.98px) {
+  .calculator__illustration {
+    flex: 1 1 0%;
+    min-width: 0;
+    padding: 24px;
+  }
+
+  .calculator__panel {
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+}
+
+// Only true mobile stacks the illustration/panel vertically and lets the
+// panel flow with the page instead of scrolling internally — a fixed
+// inner scroll region only makes sense while the two columns must share
+// one height, which a stacked layout no longer needs.
+@media (max-width: 767.98px) {
   .calculator__card {
     flex-direction: column;
   }

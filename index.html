@@ -414,6 +414,7 @@
   </section>
 
   <div class="section-spacer"></div>
+  <div class="section-spacer section-spacer--gray"></div>
 
   <section class="calculator" id="calculator">
     <div class="container calculator__inner">
@@ -449,7 +450,6 @@
                 <button class="calculator__tab" type="button" data-value="straight">Прямая</button>
                 <button class="calculator__tab" type="button" data-value="island">С островом</button>
                 <button class="calculator__tab" type="button" data-value="parallel">Параллельная</button>
-                <button class="calculator__tab" type="button" data-value="other">Другая</button>
               </div>
               <label class="calculator__switch-row">
                 <span class="switch">
@@ -470,7 +470,7 @@
                 <label class="calculator__field">
                   <span class="calculator__field-label">Длина, мм (Сторона А)</span>
                   <span class="input-field">
-                    <input type="text" inputmode="numeric" value="3890">
+                    <input type="text" inputmode="numeric" placeholder="Длина, мм" value="3890">
                   </span>
                 </label>
                 <label class="calculator__field">
@@ -491,7 +491,6 @@
               <div class="calculator__tabs" role="tablist" data-select="single">
                 <button class="calculator__tab is-active" type="button">ЛДСП</button>
                 <button class="calculator__tab" type="button">МДФ</button>
-                <button class="calculator__tab" type="button">Стили кухонь</button>
               </div>
               <p class="calculator__hint">ЛДСП — самый популярный материал для корпуса кухни. Цвет корпуса можно будет выбрать после общения с менеджером и при разработке дизайн-проекта.</p>
             </div>
@@ -504,7 +503,6 @@
               <div class="calculator__tabs" role="tablist" data-select="single">
                 <button class="calculator__tab is-active" type="button">МДФ</button>
                 <button class="calculator__tab" type="button">Пластик</button>
-                <button class="calculator__tab" type="button">Стили кухонь</button>
               </div>
               <p class="calculator__hint">МДФ — самый популярный материал для фасадов кухни. Цвет фасадов можно будет выбрать после общения с менеджером и при разработке дизайн-проекта.</p>
             </div>
@@ -601,6 +599,352 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-spacer section-spacer--gray"></div>
+  <div class="section-spacer"></div>
+
+  <section class="portfolio" id="portfolio">
+    <div class="portfolio__inner">
+      <div class="portfolio__intro">
+        <h2 class="portfolio__title">Реализованные проекты<span> кухонь</span></h2>
+        <p class="portfolio__subtitle">Фотографии кухонь с наших установок в Самаре</p>
+      </div>
+
+      <div class="portfolio__slider">
+        <div class="portfolio__cards-wrap">
+          <button type="button" class="portfolio-nav portfolio-nav--prev" aria-label="Предыдущие проекты">
+            <svg class="icon"><use href="assets/icons/sprite.svg#angle-left"></use></svg>
+          </button>
+          <button type="button" class="portfolio-nav portfolio-nav--next" aria-label="Следующие проекты">
+            <svg class="icon"><use href="assets/icons/sprite.svg#angle-right"></use></svg>
+          </button>
+
+          <div class="portfolio__clip">
+          <div class="portfolio-swiper">
+            <div class="portfolio-cards">
+              <article class="portfolio-card">
+                <div class="portfolio-card__media">
+                  <div class="portfolio-card__photos">
+                    <img src="assets/catalog/p-shaped.jpg" alt="П-образная кухня, Самара, ЖК Панова Парк" loading="lazy">
+                    <img src="assets/catalog/angle.jpg" alt="" loading="lazy">
+                    <img src="assets/catalog/straight.jpg" alt="" loading="lazy">
+                  </div>
+                  <span class="portfolio-card__badge">
+                    <svg class="icon icon--16"><use href="assets/icons/sprite.svg#gallery"></use></svg>
+                    3 фото
+                  </span>
+                  <button type="button" class="portfolio-card__img-nav portfolio-card__img-nav--prev" aria-label="Предыдущее фото">
+                    <svg class="icon"><use href="assets/icons/sprite.svg#image-nav"></use></svg>
+                  </button>
+                  <button type="button" class="portfolio-card__img-nav portfolio-card__img-nav--next" aria-label="Следующее фото">
+                    <svg class="icon"><use href="assets/icons/sprite.svg#image-nav"></use></svg>
+                  </button>
+                </div>
+                <div class="portfolio-card__body">
+                  <div class="portfolio-card__heading">
+                    <p class="portfolio-card__location">Самара, ЖК Панова Парк</p>
+                    <h3 class="portfolio-card__title">П-образная кухня</h3>
+                    <p class="portfolio-card__size">3480 x 1280 мм</p>
+                  </div>
+                  <div class="portfolio-card__specs">
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Каркас</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">ЛДСП Lamarty</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Фасады</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">МДФ в ПВХ пленке</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Фурнитура</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">Hettich, Blum</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Столешница</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">Пластик</span>
+                    </div>
+                  </div>
+                  <div class="portfolio-card__totals">
+                    <div class="portfolio-card__total">
+                      <span class="portfolio-card__total-label">Сроки:</span>
+                      <span class="portfolio-card__total-value">21 день</span>
+                    </div>
+                    <div class="portfolio-card__total">
+                      <span class="portfolio-card__total-label">Итоговая стоимость:</span>
+                      <span class="portfolio-card__total-value">244 000 ₽</span>
+                    </div>
+                  </div>
+                  <div class="portfolio-card__actions">
+                    <button type="button" class="btn btn-primary">Рассчитать похожую</button>
+                    <button type="button" class="btn btn-stroke">Подробнее</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="portfolio-card">
+                <div class="portfolio-card__media">
+                  <div class="portfolio-card__photos">
+                    <img src="assets/catalog/angle.jpg" alt="Угловая кухня с барной стойкой, Самара, ул. Советской армии, д. 139" loading="lazy">
+                    <img src="assets/catalog/island.jpg" alt="" loading="lazy">
+                    <img src="assets/catalog/p-shaped.jpg" alt="" loading="lazy">
+                  </div>
+                  <span class="portfolio-card__badge">
+                    <svg class="icon icon--16"><use href="assets/icons/sprite.svg#gallery"></use></svg>
+                    3 фото
+                  </span>
+                  <button type="button" class="portfolio-card__img-nav portfolio-card__img-nav--prev" aria-label="Предыдущее фото">
+                    <svg class="icon"><use href="assets/icons/sprite.svg#image-nav"></use></svg>
+                  </button>
+                  <button type="button" class="portfolio-card__img-nav portfolio-card__img-nav--next" aria-label="Следующее фото">
+                    <svg class="icon"><use href="assets/icons/sprite.svg#image-nav"></use></svg>
+                  </button>
+                </div>
+                <div class="portfolio-card__body">
+                  <div class="portfolio-card__heading">
+                    <p class="portfolio-card__location">Самара, ул. Советской армии, д. 139</p>
+                    <h3 class="portfolio-card__title">Угловая кухня с барной стойкой</h3>
+                    <p class="portfolio-card__size">3480 x 1280 мм</p>
+                  </div>
+                  <div class="portfolio-card__specs">
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Каркас</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">ЛДСП Lamarty</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Фасады</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">МДФ в ПВХ пленке</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Фурнитура</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">Hettich, Blum</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Столешница</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">Пластик</span>
+                    </div>
+                  </div>
+                  <div class="portfolio-card__totals">
+                    <div class="portfolio-card__total">
+                      <span class="portfolio-card__total-label">Сроки:</span>
+                      <span class="portfolio-card__total-value">21 день</span>
+                    </div>
+                    <div class="portfolio-card__total">
+                      <span class="portfolio-card__total-label">Итоговая стоимость:</span>
+                      <span class="portfolio-card__total-value">244 000 ₽</span>
+                    </div>
+                  </div>
+                  <div class="portfolio-card__actions">
+                    <button type="button" class="btn btn-primary">Рассчитать похожую</button>
+                    <button type="button" class="btn btn-stroke">Подробнее</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="portfolio-card">
+                <div class="portfolio-card__media">
+                  <div class="portfolio-card__photos">
+                    <img src="assets/catalog/straight.jpg" alt="Прямая кухня со стенкой, Самара, ЖК Королев" loading="lazy">
+                    <img src="assets/catalog/island.jpg" alt="" loading="lazy">
+                    <img src="assets/catalog/angle.jpg" alt="" loading="lazy">
+                  </div>
+                  <span class="portfolio-card__badge">
+                    <svg class="icon icon--16"><use href="assets/icons/sprite.svg#gallery"></use></svg>
+                    3 фото
+                  </span>
+                  <button type="button" class="portfolio-card__img-nav portfolio-card__img-nav--prev" aria-label="Предыдущее фото">
+                    <svg class="icon"><use href="assets/icons/sprite.svg#image-nav"></use></svg>
+                  </button>
+                  <button type="button" class="portfolio-card__img-nav portfolio-card__img-nav--next" aria-label="Следующее фото">
+                    <svg class="icon"><use href="assets/icons/sprite.svg#image-nav"></use></svg>
+                  </button>
+                </div>
+                <div class="portfolio-card__body">
+                  <div class="portfolio-card__heading">
+                    <p class="portfolio-card__location">Самара, ЖК Королев</p>
+                    <h3 class="portfolio-card__title">Прямая кухня со стенкой</h3>
+                    <p class="portfolio-card__size">3480 x 1280 мм</p>
+                  </div>
+                  <div class="portfolio-card__specs">
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Каркас</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">ЛДСП Lamarty</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Фасады</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">МДФ в ПВХ пленке</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Фурнитура</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">Hettich, Blum</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Столешница</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">Пластик</span>
+                    </div>
+                  </div>
+                  <div class="portfolio-card__totals">
+                    <div class="portfolio-card__total">
+                      <span class="portfolio-card__total-label">Сроки:</span>
+                      <span class="portfolio-card__total-value">21 день</span>
+                    </div>
+                    <div class="portfolio-card__total">
+                      <span class="portfolio-card__total-label">Итоговая стоимость:</span>
+                      <span class="portfolio-card__total-value">244 000 ₽</span>
+                    </div>
+                  </div>
+                  <div class="portfolio-card__actions">
+                    <button type="button" class="btn btn-primary">Рассчитать похожую</button>
+                    <button type="button" class="btn btn-stroke">Подробнее</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="portfolio-card">
+                <div class="portfolio-card__media">
+                  <div class="portfolio-card__photos">
+                    <img src="assets/catalog/island.jpg" alt="Кухня с островом, Самара, ЖК Прибрежный" loading="lazy">
+                    <img src="assets/catalog/straight.jpg" alt="" loading="lazy">
+                    <img src="assets/catalog/p-shaped.jpg" alt="" loading="lazy">
+                  </div>
+                  <span class="portfolio-card__badge">
+                    <svg class="icon icon--16"><use href="assets/icons/sprite.svg#gallery"></use></svg>
+                    3 фото
+                  </span>
+                  <button type="button" class="portfolio-card__img-nav portfolio-card__img-nav--prev" aria-label="Предыдущее фото">
+                    <svg class="icon"><use href="assets/icons/sprite.svg#image-nav"></use></svg>
+                  </button>
+                  <button type="button" class="portfolio-card__img-nav portfolio-card__img-nav--next" aria-label="Следующее фото">
+                    <svg class="icon"><use href="assets/icons/sprite.svg#image-nav"></use></svg>
+                  </button>
+                </div>
+                <div class="portfolio-card__body">
+                  <div class="portfolio-card__heading">
+                    <p class="portfolio-card__location">Самара, ЖК Прибрежный</p>
+                    <h3 class="portfolio-card__title">Кухня с островом</h3>
+                    <p class="portfolio-card__size">3480 x 1280 мм</p>
+                  </div>
+                  <div class="portfolio-card__specs">
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Каркас</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">ЛДСП Lamarty</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Фасады</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">МДФ в ПВХ пленке</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Фурнитура</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">Hettich, Blum</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Столешница</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">Пластик</span>
+                    </div>
+                  </div>
+                  <div class="portfolio-card__totals">
+                    <div class="portfolio-card__total">
+                      <span class="portfolio-card__total-label">Сроки:</span>
+                      <span class="portfolio-card__total-value">21 день</span>
+                    </div>
+                    <div class="portfolio-card__total">
+                      <span class="portfolio-card__total-label">Итоговая стоимость:</span>
+                      <span class="portfolio-card__total-value">244 000 ₽</span>
+                    </div>
+                  </div>
+                  <div class="portfolio-card__actions">
+                    <button type="button" class="btn btn-primary">Рассчитать похожую</button>
+                    <button type="button" class="btn btn-stroke">Подробнее</button>
+                  </div>
+                </div>
+              </article>
+
+              <article class="portfolio-card">
+                <div class="portfolio-card__media">
+                  <div class="portfolio-card__photos">
+                    <img src="assets/catalog/p-shaped.jpg" alt="П-образная кухня, Самара, ул. Мичурина" loading="lazy">
+                    <img src="assets/catalog/straight.jpg" alt="" loading="lazy">
+                    <img src="assets/catalog/angle.jpg" alt="" loading="lazy">
+                  </div>
+                  <span class="portfolio-card__badge">
+                    <svg class="icon icon--16"><use href="assets/icons/sprite.svg#gallery"></use></svg>
+                    3 фото
+                  </span>
+                  <button type="button" class="portfolio-card__img-nav portfolio-card__img-nav--prev" aria-label="Предыдущее фото">
+                    <svg class="icon"><use href="assets/icons/sprite.svg#image-nav"></use></svg>
+                  </button>
+                  <button type="button" class="portfolio-card__img-nav portfolio-card__img-nav--next" aria-label="Следующее фото">
+                    <svg class="icon"><use href="assets/icons/sprite.svg#image-nav"></use></svg>
+                  </button>
+                </div>
+                <div class="portfolio-card__body">
+                  <div class="portfolio-card__heading">
+                    <p class="portfolio-card__location">Самара, ул. Мичурина</p>
+                    <h3 class="portfolio-card__title">П-образная кухня</h3>
+                    <p class="portfolio-card__size">3480 x 1280 мм</p>
+                  </div>
+                  <div class="portfolio-card__specs">
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Каркас</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">ЛДСП Lamarty</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Фасады</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">МДФ в ПВХ пленке</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Фурнитура</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">Hettich, Blum</span>
+                    </div>
+                    <div class="portfolio-card__spec">
+                      <span class="portfolio-card__spec-label">Столешница</span>
+                      <span class="portfolio-card__spec-line"></span>
+                      <span class="portfolio-card__spec-value">Пластик</span>
+                    </div>
+                  </div>
+                  <div class="portfolio-card__totals">
+                    <div class="portfolio-card__total">
+                      <span class="portfolio-card__total-label">Сроки:</span>
+                      <span class="portfolio-card__total-value">21 день</span>
+                    </div>
+                    <div class="portfolio-card__total">
+                      <span class="portfolio-card__total-label">Итоговая стоимость:</span>
+                      <span class="portfolio-card__total-value">244 000 ₽</span>
+                    </div>
+                  </div>
+                  <div class="portfolio-card__actions">
+                    <button type="button" class="btn btn-primary">Рассчитать похожую</button>
+                    <button type="button" class="btn btn-stroke">Подробнее</button>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        <div class="portfolio-dots"></div>
       </div>
     </div>
   </section>

@@ -56,9 +56,13 @@
 // visible a tier earlier than the rest of the nav, see index.html), but
 // it should still sit exactly 24px from the first nav item once both are
 // visible together (>=1280px) — not the 32px the middle line otherwise
-// uses between its top-level groups.
+// uses between its top-level groups. Scoped to .header — .btn.btn-stroke
+// on its own also matches any other stroke button site-wide (e.g.
+// Portfolio's "Подробнее"), and a negative margin there was quietly
+// widening every stroke button in a flex row by leaking extra space into
+// flex-grow's distribution.
 @media (min-width: 1280px) {
-  .btn.btn-stroke {
+  .header .btn.btn-stroke {
     margin-right: -8px;
   }
 }

@@ -1,0 +1,535 @@
+// PortfolioSection: a Swiper carousel of completed-project cards, always in
+// "slider" mode (no accordion tier like .catalog — every card shows its full
+// content all the time).
+//
+// Card sizing is responsive via Swiper's own `breakpoints` (see the JS
+// init): 3-up stretched to exactly fill 1280px from 1327px up, 2.5-up
+// from 992px (a hair narrower than a plain 2-up, which read as too big),
+// and a fixed-width peeking card below that (296px mobile, 416px
+// tablet) — so there's no dead zone where fixed-width cards almost but
+// don't quite fit. Swiper sets each slide's width inline for the two
+// numeric tiers, overriding the .portfolio-card width rules below, which
+// only govern the <992px "auto" tiers.
+//
+// Nav arrows only show at >=992px (mobile/tablet page via touch/dots
+// instead) — same floating-outside-the-container formula and same
+// top:50%-of-the-row centering as .catalog-nav.
+
+.portfolio {
+  background: var(--bs-body-bg);
+}
+
+// gap is 8px, not the 32px this visually needs to land on — .portfolio-swiper
+// already contributes 24px of its own top padding (for the card shadow,
+// see its comment), so 8 + 24 = 32. Same reasoning for .portfolio__slider's
+// gap below (cards→dots), against .portfolio-swiper's bottom padding.
+.portfolio__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: var(--space-md) 16px;
+}
+
+.portfolio__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+// Base color is the brand tone; the trailing word is overridden back to the
+// body color — the reverse of .catalog__title, which highlights via a span
+// instead of the base color.
+.portfolio__title {
+  max-width: 948px;
+  margin: 0;
+  color: var(--bs-primary);
+  font-weight: 700;
+  font-size: 2.5rem; // 40px
+  line-height: 3rem; // 48px
+}
+
+.portfolio__title span {
+  color: var(--bs-body-color);
+}
+
+.portfolio__subtitle {
+  max-width: 548px;
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 500;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.375rem; // 22px
+}
+
+.portfolio__slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 1280px;
+}
+
+// Nav buttons anchor to this wrapper (not .portfolio__slider, which also
+// includes the dots below it) so top:50% centers on the card row alone,
+// regardless of how tall the cards end up — unlike .catalog-nav, card height
+// here isn't fixed, so a hardcoded top offset would drift.
+.portfolio__cards-wrap {
+  position: relative;
+  width: 100%;
+}
+
+// Bleeding this wider than .portfolio-swiper (tried previously, for
+// shadow room) also exposed a sliver of the next/prev card past the
+// intended edge — Swiper hides slides based on its own (un-bled) box,
+// so a wider clip mask just reveals whatever sits just past that
+// boundary. Horizontal shadow clipping at the viewport edge is the
+// tradeoff that keeps: no peeking neighbor slides.
+.portfolio__clip {
+  overflow: hidden;
+}
+
+// Vertical-only padding — gives the shadow's top/bottom spread room
+// without the horizontal peeking problem above (Swiper doesn't position
+// slides vertically, so padding here doesn't touch slide-visibility
+// math). .portfolio__inner/.portfolio__slider's own gaps are trimmed by
+// this same 24px so the total visible gap still lands on 32/24px — see
+// their comments below.
+.portfolio-swiper {
+  width: 100%;
+  padding: 24px 0;
+}
+
+.portfolio-cards {
+  display: flex;
+  transition-property: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.portfolio-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  transition: background-color 0.15s ease;
+}
+
+.portfolio-nav.swiper-button-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.portfolio-nav--prev {
+  left: max(-64px, 16px - max(0px, (100vw - 1280px) / 2));
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  color: var(--bs-body-color);
+}
+
+.portfolio-nav--prev:hover {
+  background: var(--color-secondary-bg);
+}
+
+.portfolio-nav--next {
+  right: max(-64px, 16px - max(0px, (100vw - 1280px) / 2));
+  background: var(--bs-primary);
+  color: var(--color-text-button);
+}
+
+.portfolio-nav--next:hover {
+  background: var(--color-brand-hover);
+}
+
+// Mobile pages via touch/dots only; tablet's peeking cards don't leave
+// room for a floating arrow either.
+@media (max-width: 991.98px) {
+  .portfolio-nav {
+    display: none;
+  }
+}
+
+.portfolio-dots {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+// Swiper's own bundled CSS gives every bullet a 4px horizontal margin
+// via `.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet`
+// (3 classes' worth of specificity — beats this rule's 2 without
+// !important) — on top of this flex row's own 12px gap that reads as
+// 20px between dots. Zeroing it out here makes the real Swiper-driven
+// gap match .catalog-dots's 12px exactly (those are hand-built in
+// accordion mode, so they never had Swiper's own margin to begin with).
+.portfolio-dots .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  margin: 0 !important;
+  border-radius: 50rem;
+  background: var(--color-tertiary-bg);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.portfolio-dots .swiper-pagination-bullet-active {
+  background: var(--color-success);
+}
+
+// --- card ---
+
+// overflow:hidden lives on .portfolio-card__media (below), not here — the
+// hover box-shadow needs to extend past the card's own box, and an
+// overflow:hidden ancestor would clip it on every side.
+.portfolio-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 416px;
+  display: flex;
+  flex-direction: column;
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 16px;
+  transition: box-shadow 0.2s ease;
+}
+
+.portfolio-card:hover {
+  box-shadow: 0px 8px 16px 4px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 767.98px) {
+  .portfolio-card {
+    width: 296px;
+  }
+}
+
+// 768–991.98px: still Swiper's "auto" mode (the 2.5-up/3-up numeric
+// tiers only kick in from 992px), so this fixed width is what actually
+// sizes the peeking tablet card.
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .portfolio-card {
+    width: 416px;
+  }
+}
+
+.portfolio-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+}
+
+// A real filmstrip, not a fade: all of a project's photos sit side by
+// side and the JS just translateX's this row by one slide width, so
+// switching photos visibly pages like a slider instead of cross-dissolving.
+.portfolio-card__photos {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.35s ease;
+}
+
+// pointer-events:none so hover/right-click hit-tests fall through to
+// .portfolio-card__media instead of the <img> itself — Yandex Browser's
+// per-image hover toolbar (and Chromium's own save/copy-image handling)
+// key off the element actually under the cursor being real image content.
+.portfolio-card__photos img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+// Figma's badge height comes from a 24px icon box (16px glyph, 4px
+// padding), not the padding alone — with a plain 16px icon (.icon--16,
+// matching every other sprite icon's actual size), 8px vertical padding
+// reproduces that same ~32px badge height directly.
+.portfolio-card__badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 50rem;
+  background: var(--color-success);
+  color: var(--color-text-button);
+  font-weight: 500;
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+}
+
+// Per-project photo browser arrows — cycle .portfolio-card__media's own
+// photo set (see the JS init). Placeholder cards reuse the same handful of
+// catalog images across projects rather than real per-project photo sets.
+.portfolio-card__img-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-button);
+  transition: transform 0.3s ease;
+}
+
+.portfolio-card__img-nav svg {
+  display: block;
+  width: 10px;
+  height: 21px;
+}
+
+.portfolio-card__img-nav--prev {
+  left: 12px;
+}
+
+// translateX runs before scaleX in the applied (right-to-left) order, so
+// a negative X here ends up moving the element right on screen once the
+// flip is applied — nudging both arrows toward the side they page to.
+.portfolio-card__img-nav--prev:hover {
+  transform: translateY(-50%) translateX(-3px);
+}
+
+.portfolio-card__img-nav--next {
+  right: 12px;
+  transform: translateY(-50%) scaleX(-1);
+}
+
+.portfolio-card__img-nav--next:hover {
+  transform: translateY(-50%) scaleX(-1) translateX(-3px);
+}
+
+.portfolio-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 24px 24px;
+}
+
+.portfolio-card__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.portfolio-card__location {
+  margin: 0;
+  color: var(--color-success);
+  font-weight: 600;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
+
+// The only clickable-reading part of the card for now — "Подробнее"
+// will carry the real link to the project detail page later.
+.portfolio-card__title {
+  margin: 0;
+  overflow: hidden;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 1.125rem; // 18px
+  line-height: 1.5rem; // 24px
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.portfolio-card__size {
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
+
+.portfolio-card__specs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.portfolio-card__spec {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.portfolio-card__spec-label,
+.portfolio-card__spec-value {
+  flex-shrink: 0;
+  color: var(--bs-body-color);
+  font-weight: 400;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+  white-space: nowrap;
+}
+
+.portfolio-card__spec-line {
+  flex: 1 1 0%;
+  min-width: 0;
+  height: 16px;
+  border-bottom: 1px dashed var(--bs-border-color);
+}
+
+.portfolio-card__totals {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.portfolio-card__total {
+  display: flex;
+  flex: 1 1 0%;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.portfolio-card__total-label {
+  color: var(--color-hint);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
+
+.portfolio-card__total-value {
+  color: var(--bs-body-color);
+  font-weight: 600;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.375rem; // 22px
+}
+
+.portfolio-card__actions {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+// Outranks the shared .btn-primary/.btn-stroke sizing (36px height) the
+// same way .catalog-card__actions does — see _buttons.scss's header note.
+// Figma's own px-24 padding leaves "Рассчитать похожую" only a hair of
+// room at this button width, tight enough that overflow-clipping it read
+// as off-center — 16px padding gives the label enough room to actually
+// center instead of relying on a clip.
+// No white-space:nowrap: the 992–1327px tier stacks these into a column
+// (below) where a single line always fits, but Swiper resizing the card
+// width and this media query flipping aren't perfectly atomic — if a
+// resize is ever caught mid-transition, wrapping to a second line reads
+// far better than text clipped against a fixed height.
+.portfolio-card__actions .btn {
+  flex: 1 1 0%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 8px 16px;
+  border-radius: 10px;
+}
+
+// Below the 768px card-width breakpoint (296px cards), the two actions
+// no longer fit side by side without clipping — stack them, same as
+// .catalog__panel--slider's own narrow-card treatment. The narrower card
+// also gets tighter body padding (16px instead of 24px) to match.
+@media (max-width: 767.98px) {
+  .portfolio-card__body {
+    padding: 16px;
+  }
+
+  .portfolio-card__totals {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .portfolio-card__actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .portfolio-card__actions .btn {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+// The 992–1327px "2.5-up" tier: card (and so the button) is narrower
+// than at full desktop width, and "Рассчитать похожую" doesn't fit on
+// one line — stack the two actions instead of wrapping the label inside
+// a single-line button, same fix as the mobile tier above.
+@media (min-width: 992px) and (max-width: 1326.98px) {
+  .portfolio-card__actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .portfolio-card__actions .btn {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .portfolio__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+  }
+
+  .portfolio__subtitle {
+    font-size: 0.875rem; // 14px
+  }
+
+  // Portfolio's own mobile rhythm is 24px total, not the 16px --space-md
+  // falls back to sitewide on mobile — but .portfolio-swiper's own 24px
+  // padding (unchanged on mobile) already covers all of it, so the gap
+  // itself goes to 0 here (0 + 24 = 24, vs desktop's 8 + 24 = 32).
+  .portfolio__inner,
+  .portfolio__slider {
+    gap: 0;
+  }
+
+  // Full-bleed, same technique as .catalog__slider/.catalog-swiper: the
+  // wrapper extends to the true viewport edge so the last peeking card can
+  // scroll off-screen, while the swiper's own padding keeps content
+  // visually inset in line with the rest of the page.
+  .portfolio__cards-wrap {
+    width: calc(100% + 32px);
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  .portfolio-swiper {
+    padding: 24px 16px;
+  }
+
+  // Same 32px-from-true-edge resting position as .catalog-nav on mobile.
+  .portfolio-nav--prev {
+    left: 32px;
+  }
+
+  .portfolio-nav--next {
+    right: 32px;
+  }
+}

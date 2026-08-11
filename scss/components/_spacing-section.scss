@@ -3,3 +3,10 @@
 .section-spacer {
   height: var(--space-md);
 }
+
+// Figma pairs a plain spacer with a second, gray one directly against
+// .calculator on both sides — bleeding its gray band into the gap
+// instead of stopping flush at the section edge.
+.section-spacer--gray {
+  background: var(--color-secondary-bg);
+}
