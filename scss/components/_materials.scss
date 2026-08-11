@@ -1,0 +1,388 @@
+// MaterialsSection: a fixed-width peeking-card Swiper carousel (same
+// technique as .portfolio-cards — "auto" slidesPerView + a fixed CSS
+// card width per breakpoint, not a fluid/percentage one) with a tab row
+// above it sharing .catalog__tabs' exact wrap/scroll logic. Desktop
+// cards are white by default and only turn into the dark "expanded"
+// look (bg swap + revealed button) on real :hover; tablet and mobile
+// have no hover input at all, so Figma just keeps every card
+// permanently in that expanded look instead (mobile keeps the white
+// bg though — only tablet uses the dark one).
+
+.materials {
+  background: var(--color-secondary-bg);
+}
+
+.materials__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) 16px;
+}
+
+.materials__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+// Same size/breakpoint as .catalog__title; base color/span swap match
+// .features__title instead (brand-colored lead, dark trailing word).
+.materials__title {
+  max-width: 948px;
+  margin: 0;
+  color: var(--bs-primary);
+  font-weight: 700;
+  font-size: 2.5rem; // 40px
+  line-height: 3rem; // 48px
+}
+
+.materials__title span {
+  color: var(--bs-body-color);
+}
+
+@media (max-width: 575.98px) {
+  .materials__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+  }
+}
+
+.materials__subtitle {
+  max-width: 548px;
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 500;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.375rem; // 22px
+}
+
+// Tabs: identical wrap/scroll rules to .catalog__tabs — only true mobile
+// (<576px) scrolls as a touch swipe, everything from 576px up (tablet,
+// narrowed desktop windows included) wraps onto extra rows instead,
+// since a mouse has no natural horizontal-swipe gesture.
+.materials__tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  align-items: center;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+@media (min-width: 576px) {
+  .materials__tabs {
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow-x: visible;
+  }
+}
+
+.materials__tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.materials__tab {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 50rem;
+  border: 1px solid var(--bs-border-color);
+  background: transparent;
+  color: var(--bs-body-color);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.materials__tab:hover:not(.is-active) {
+  background: var(--color-secondary-bg);
+}
+
+.materials__tab.is-active {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: var(--color-text-button);
+}
+
+.materials__panel[hidden] {
+  display: none;
+}
+
+.materials__slider {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.materials-swiper {
+  overflow: hidden;
+  width: 100%;
+}
+
+// No CSS gap here: Swiper's own spaceBetween (main.js) already spaces
+// the slides via inline margin — a gap on top would double it, same
+// gotcha as every other slider on this site.
+.materials-cards {
+  display: flex;
+}
+
+// Nav arrows: same floating-outside-the-1280px-container positioning
+// formula as .catalog-nav, just recolored (gray "prev" / brand "next"
+// per Figma, vs Catalog's white/brand). Hidden below 992px — Figma has
+// no tablet/mobile variant of these at all (no touch equivalent needed,
+// Swiper's own touch-drag covers it there).
+.materials-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  transition: background-color 0.15s ease;
+}
+
+.materials-nav.swiper-button-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.materials-nav--prev {
+  left: max(-64px, 16px - max(0px, (100vw - 1280px) / 2));
+  background: var(--color-tertiary-bg);
+  color: var(--bs-body-color);
+}
+
+.materials-nav--prev:hover {
+  background: var(--bs-border-color);
+}
+
+.materials-nav--next {
+  right: max(-64px, 16px - max(0px, (100vw - 1280px) / 2));
+  background: var(--bs-primary);
+  color: var(--color-text-button);
+}
+
+.materials-nav--next:hover {
+  background: var(--color-brand-hover);
+}
+
+@media (min-width: 992px) {
+  .materials-nav {
+    display: flex;
+  }
+}
+
+.materials-dots {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.materials-dots .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  margin: 0 !important; // see .portfolio-dots for why this needs !important
+  border-radius: 50rem;
+  background: var(--color-tertiary-bg);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.materials-dots .swiper-pagination-bullet-active {
+  background: var(--color-success);
+}
+
+.materials__more {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 50rem;
+  border: 1px solid var(--bs-border-color);
+  background: transparent;
+  color: var(--bs-body-color);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+  transition: background-color 0.15s ease;
+}
+
+.materials__more:hover {
+  background: var(--color-secondary-bg);
+}
+
+// --- card ---
+// A fixed-height card (456px desktop/tablet, 414px mobile — matches
+// Figma exactly) with the image absolutely filling it and a
+// bottom-anchored text panel overlapping the image from below. The
+// panel's own height is what actually changes (button appears/
+// disappears); anchoring it to the bottom instead of animating the
+// whole card's height is what makes that read as the panel "rising up"
+// over the image rather than the card resizing.
+.materials-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 308px;
+  height: 456px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.materials-card__img {
+  position: absolute;
+  inset: 0;
+}
+
+.materials-card__img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.materials-card__body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--bs-body-bg);
+  transition: background-color 0.25s ease;
+}
+
+.materials-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.materials-card__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.materials-card__title {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 1.125rem; // 18px
+  line-height: 1.5rem; // 24px
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.25s ease;
+}
+
+.materials-card__count {
+  margin: 0;
+  color: var(--color-success);
+  font-weight: 600;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
+
+.materials-card__desc {
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  transition: color 0.25s ease;
+}
+
+// Collapsed by default on desktop (button hidden — see the 992px+ hover
+// rule below); max-height is set to the button's own real height so the
+// transition lands exactly on target with no overshoot/clipping.
+.materials-card__btn {
+  width: 100%;
+  height: 48px;
+  max-height: 0;
+  margin-top: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition: max-height 0.3s ease, margin-top 0.3s ease, opacity 0.25s ease;
+}
+
+@media (min-width: 992px) {
+  .materials-card:hover .materials-card__body {
+    background: var(--color-dark-separator);
+  }
+
+  .materials-card:hover .materials-card__title {
+    color: var(--color-text-button);
+  }
+
+  .materials-card:hover .materials-card__desc {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .materials-card:hover .materials-card__btn {
+    max-height: 48px;
+    margin-top: 16px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+// Tablet (768–991.98px): no hover input at this size, so Figma keeps
+// every card permanently in the "expanded" dark look instead.
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .materials-card__body {
+    background: var(--color-dark-separator);
+  }
+
+  .materials-card__title {
+    color: var(--color-text-button);
+  }
+
+  .materials-card__desc {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .materials-card__btn {
+    max-height: 48px;
+    margin-top: 16px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+// Mobile (<768px): also no hover, button stays visible — but unlike
+// tablet, Figma keeps the card white here (only the button's own
+// collapse is lifted, not the color swap).
+@media (max-width: 767.98px) {
+  .materials-card {
+    height: 414px;
+  }
+
+  .materials-card__btn {
+    max-height: 48px;
+    margin-top: 16px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

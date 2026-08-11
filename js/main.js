@@ -623,3 +623,62 @@
 
   document.querySelectorAll(".features").forEach(initFeatures);
 })();
+
+(function () {
+  // MaterialsSection: same fixed-width-peeking-card technique as
+  // .portfolio-cards (slidesPerView:"auto" + a fixed CSS card width, not
+  // a fluid one), plus a tab row that swaps which panel's Swiper is
+  // visible — one real Swiper instance per panel, both built up front,
+  // so switching tabs is just a hidden-attribute toggle + telling the
+  // now-visible one to recompute its layout (Swiper miscalculates sizes
+  // while its container is display:none).
+  function initMaterials(section) {
+    var tabs = Array.prototype.slice.call(section.querySelectorAll(".materials__tab"));
+    var panels = Array.prototype.slice.call(section.querySelectorAll("[data-materials-panel]"));
+
+    panels.forEach(function (panel) {
+      var swiperEl = panel.querySelector(".materials-swiper");
+      if (!swiperEl) return;
+
+      panel._swiper = new Swiper(swiperEl, {
+        slidesPerView: "auto",
+        spaceBetween: 12,
+        speed: 450,
+        loop: true,
+        wrapperClass: "materials-cards",
+        slideClass: "materials-card",
+        navigation: {
+          nextEl: panel.querySelector(".materials-nav--next"),
+          prevEl: panel.querySelector(".materials-nav--prev"),
+        },
+        pagination: {
+          el: panel.querySelector(".materials-dots"),
+          clickable: true,
+        },
+        breakpoints: {
+          768: { spaceBetween: 16 },
+        },
+      });
+    });
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        if (tab.classList.contains("is-active")) return;
+
+        tabs.forEach(function (t) {
+          t.classList.toggle("is-active", t === tab);
+          t.setAttribute("aria-selected", t === tab ? "true" : "false");
+        });
+
+        var target = tab.dataset.materialsTab;
+        panels.forEach(function (panel) {
+          var visible = panel.dataset.materialsPanel === target;
+          panel.hidden = !visible;
+          if (visible && panel._swiper) panel._swiper.update();
+        });
+      });
+    });
+  }
+
+  document.querySelectorAll(".materials").forEach(initMaterials);
+})();
