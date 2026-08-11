@@ -14496,6 +14496,11 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.portfolio-card__title:hover {
+  opacity: 0.6;
 }
 
 .portfolio-card__size {
@@ -14583,20 +14588,12 @@ button {
   .portfolio-card__body {
     padding: 16px;
   }
+}
+@media (max-width: 1326.98px) {
   .portfolio-card__totals {
     flex-direction: column;
     gap: 8px;
   }
-  .portfolio-card__actions {
-    flex-direction: column;
-    gap: 8px;
-  }
-  .portfolio-card__actions .btn {
-    flex: 0 0 auto;
-    width: 100%;
-  }
-}
-@media (min-width: 992px) and (max-width: 1326.98px) {
   .portfolio-card__actions {
     flex-direction: column;
     gap: 8px;
@@ -14631,5 +14628,112 @@ button {
   }
   .portfolio-nav--next {
     right: 32px;
+  }
+}
+.seo {
+  position: relative;
+}
+
+.seo__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+}
+
+.seo__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.seo__inner {
+  width: 100%;
+}
+
+.seo__card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  padding: 24px;
+  background: var(--bs-body-bg);
+}
+
+.seo__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.seo__eyebrow {
+  margin: 0;
+  color: var(--color-success);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+}
+
+.seo__title {
+  margin: 0;
+  color: var(--bs-primary);
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+}
+
+.seo__title span {
+  color: var(--bs-body-color);
+}
+
+.seo__text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.seo__text p {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+}
+
+.seo__btn {
+  align-self: flex-start;
+  padding: 0 16px;
+}
+
+@media (min-width: 768px) {
+  .seo {
+    padding: 0 16px;
+  }
+}
+@media (min-width: 992px) {
+  .seo {
+    padding: 64px 16px;
+  }
+  .seo__media {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto;
+  }
+  .seo__inner {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .seo__card {
+    max-width: 632px;
+    padding: 48px;
+    border-radius: 16px;
+  }
+  .seo__title {
+    font-size: 2.5rem;
+    line-height: 3rem;
   }
 }

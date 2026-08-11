@@ -356,6 +356,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.portfolio-card__title:hover {
+  opacity: 0.6;
 }
 
 .portfolio-card__size {
@@ -458,28 +463,20 @@
   .portfolio-card__body {
     padding: 16px;
   }
+}
 
+// Everything below the full 3-up desktop tier (1327px) stacks totals and
+// actions — not just mobile/tablet. At 992–1326.98px ("2.5-up") the card
+// is already narrower than full desktop and "Рассчитать похожую" doesn't
+// fit one line; rather than draw a line between "narrow because 2.5-up"
+// and "narrow because mobile", every tier below 1327px gets the same
+// stacked treatment for consistency.
+@media (max-width: 1326.98px) {
   .portfolio-card__totals {
     flex-direction: column;
     gap: 8px;
   }
 
-  .portfolio-card__actions {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .portfolio-card__actions .btn {
-    flex: 0 0 auto;
-    width: 100%;
-  }
-}
-
-// The 992–1327px "2.5-up" tier: card (and so the button) is narrower
-// than at full desktop width, and "Рассчитать похожую" doesn't fit on
-// one line — stack the two actions instead of wrapping the label inside
-// a single-line button, same fix as the mobile tier above.
-@media (min-width: 992px) and (max-width: 1326.98px) {
   .portfolio-card__actions {
     flex-direction: column;
     gap: 8px;
