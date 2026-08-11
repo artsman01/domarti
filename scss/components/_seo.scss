@@ -50,13 +50,15 @@
 }
 
 // Base color is the brand tone; the trailing word is overridden back to
-// the body color — same technique as .portfolio__title.
+// the body color — same technique as .portfolio__title. Size/breakpoint
+// matches .catalog__title exactly: 40px everywhere down to tablet, 24px
+// only below 576px.
 .seo__title {
   margin: 0;
   color: var(--bs-primary);
   font-weight: 700;
-  font-size: 1.75rem; // 28px — mobile/tablet only, desktop bumps to 40px below
-  line-height: 2.25rem; // 36px
+  font-size: 2.5rem; // 40px
+  line-height: 3rem; // 48px
 }
 
 .seo__title span {
@@ -77,10 +79,16 @@
   line-height: 1.375rem; // 22px
 }
 
-// padding-left/right only — a plain `padding: 0 16px` shorthand zeroes
-// out the vertical padding .btn-primary relies on to center its text in
-// the fixed 36px height (broke that the first time around).
+// flex + align-items/justify-content centers the label independent of
+// line-height/font-metrics math — this is an <a>, and relying on
+// line-height alone (like a plain padding-based center) reads visibly
+// off-center on iOS Safari, where the font's ascent/descent isn't split
+// evenly around the baseline. Same technique as
+// .calculator__actions .btn.
 .seo__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   align-self: flex-start;
   padding-left: 16px;
   padding-right: 16px;
@@ -121,8 +129,7 @@
   }
 }
 
-// Desktop: fixed-width card pinned to the right of the row, and the
-// bigger 40px title this tier has room for.
+// Desktop: fixed-width card pinned to the right of the row.
 @media (min-width: 992px) {
   .seo__inner {
     display: flex;
@@ -132,9 +139,12 @@
   .seo__card {
     max-width: 632px;
   }
+}
 
+// Matches .catalog__title's own mobile size/breakpoint.
+@media (max-width: 575.98px) {
   .seo__title {
-    font-size: 2.5rem; // 40px
-    line-height: 3rem; // 48px
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
   }
 }

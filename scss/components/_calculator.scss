@@ -471,6 +471,13 @@
 }
 
 @media (max-width: 575.98px) {
+  // Matches .catalog__title's own mobile size — this was missing
+  // entirely, leaving the title at the full 40px on every screen size.
+  .calculator__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+  }
+
   .calculator__illustration {
     padding: 24px;
   }

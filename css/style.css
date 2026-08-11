@@ -14201,6 +14201,10 @@ button {
   }
 }
 @media (max-width: 575.98px) {
+  .calculator__title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
   .calculator__illustration {
     padding: 24px;
   }
@@ -14679,8 +14683,8 @@ button {
   margin: 0;
   color: var(--bs-primary);
   font-weight: 700;
-  font-size: 1.75rem;
-  line-height: 2.25rem;
+  font-size: 2.5rem;
+  line-height: 3rem;
 }
 
 .seo__title span {
@@ -14702,6 +14706,9 @@ button {
 }
 
 .seo__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   align-self: flex-start;
   padding-left: 16px;
   padding-right: 16px;
@@ -14739,8 +14746,10 @@ button {
   .seo__card {
     max-width: 632px;
   }
+}
+@media (max-width: 575.98px) {
   .seo__title {
-    font-size: 2.5rem;
-    line-height: 3rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
