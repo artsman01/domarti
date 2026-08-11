@@ -140,14 +140,26 @@
 
 // Mobile: Swiper takes over (see main.js) and each item becomes a
 // bordered, vertically-centered square card instead of a plain grid
-// cell. Width is NOT fixed — Swiper's own slidesPerView:1.1 sets it
-// inline to ~91% of the container so the card stretches with whatever
+// cell. Width is NOT fixed — Swiper's own slidesPerView sets it inline
+// as a share of the container so the card stretches with whatever
 // width is available (peeking the next one at the edge) instead of a
-// fixed px size; no CSS gap here either, since Swiper's spaceBetween
-// already adds it as inline margin — a gap here on top would double it.
+// fixed px size. column-gap/row-gap must be zeroed here explicitly —
+// they're not just a grid-only thing, flex honors them too, so the
+// base rule's desktop 16px/32px was silently still adding on top of
+// Swiper's own spaceBetween (applied as inline margin), doubling the
+// real gap well past the intended 12px.
 @media (max-width: 767.98px) {
   .features__grid {
     display: flex;
+    // align-items defaults to stretch, which — since every slide is a
+    // real flex sibling in the same row, not just the visible one(s) —
+    // stretched every card's height to match whichever item's own
+    // content happened to be tallest (longer title/desc wrapping to an
+    // extra line), overriding aspect-ratio and turning every other card
+    // into a tall rectangle instead of a square.
+    align-items: flex-start;
+    column-gap: 0;
+    row-gap: 0;
   }
 
   .features__item {
