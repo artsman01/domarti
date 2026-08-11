@@ -1,10 +1,9 @@
-// SeoSection: mobile and tablet both stack the photo and card as plain
-// flow blocks — a white section with text, no overlap, no card rounding
-// (tablet just adds a 16px side inset mobile doesn't have). Only at
-// >=992px does the card float over a full-bleed version of the same
-// photo. That's a big enough structural difference (position:absolute
-// vs normal flow, card padding 24px vs 48px) that it's driven by a
-// single breakpoint switch below rather than incremental overrides.
+// SeoSection: mobile stacks the photo and card as plain flow blocks — a
+// white section with text, no overlap, no card rounding. From 768px up,
+// the card instead floats over a full-bleed version of the same photo:
+// tablet stretches that card to fill the row with a 16px inset each
+// side, desktop switches to a fixed 632px card pinned to the right (see
+// each tier's own comment below).
 .seo {
   position: relative;
 }
@@ -78,23 +77,19 @@
   line-height: 1.375rem; // 22px
 }
 
+// padding-left/right only — a plain `padding: 0 16px` shorthand zeroes
+// out the vertical padding .btn-primary relies on to center its text in
+// the fixed 36px height (broke that the first time around).
 .seo__btn {
   align-self: flex-start;
-  padding: 0 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
-// Tablet: same stacked white-section structure as mobile, just inset
-// 16px from the true edge instead of running flush to it.
+// From 768px up: the photo becomes a full-bleed background
+// (position:absolute) with the card floating over it instead of sitting
+// below it in normal flow.
 @media (min-width: 768px) {
-  .seo {
-    padding: 0 16px;
-  }
-}
-
-// Desktop: the photo becomes a full-bleed background (position:absolute)
-// with the card floating over it instead of sitting below it in normal
-// flow.
-@media (min-width: 992px) {
   .seo {
     padding: 64px 16px;
   }
@@ -107,16 +102,35 @@
 
   .seo__inner {
     position: relative;
-    display: flex;
-    justify-content: flex-end;
     max-width: 1280px;
     margin: 0 auto;
   }
 
   .seo__card {
-    max-width: 632px;
     padding: 48px;
     border-radius: 16px;
+  }
+}
+
+// Tablet only (768–991.98px): the card stretches to fill the row (a
+// fixed 632px pinned to the right, like desktop, would leave the photo
+// showing through a huge gap on the left at this width).
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .seo__card {
+    width: 100%;
+  }
+}
+
+// Desktop: fixed-width card pinned to the right of the row, and the
+// bigger 40px title this tier has room for.
+@media (min-width: 992px) {
+  .seo__inner {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .seo__card {
+    max-width: 632px;
   }
 
   .seo__title {
