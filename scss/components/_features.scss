@@ -16,6 +16,17 @@
   padding: var(--space-md) 16px;
 }
 
+// Mobile rhythm is 24px, not the 16px --space-md falls back to sitewide
+// on mobile — applies uniformly to header→cards and cards→dots since
+// both sit between the same three flex children. Same pattern as
+// .portfolio__inner/.portfolio__slider — worth remembering for future
+// sections too.
+@media (max-width: 575.98px) {
+  .features__inner {
+    gap: 24px;
+  }
+}
+
 .features__intro {
   display: flex;
   flex-direction: column;
@@ -37,6 +48,16 @@
 
 .features__title span {
   color: var(--bs-body-color);
+}
+
+// Matches .catalog__title's own mobile size/breakpoint — easy to miss
+// since it's a separate override, not part of the base rule (bit
+// Calculator and Seo both shipped without it too before this).
+@media (max-width: 575.98px) {
+  .features__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+  }
 }
 
 .features__subtitle {
@@ -119,17 +140,18 @@
 
 // Mobile: Swiper takes over (see main.js) and each item becomes a
 // bordered, vertically-centered square card instead of a plain grid
-// cell — sized/spaced to match Figma's mobile frame exactly (308px
-// square cards, 12px gap, next card peeking at the edge).
+// cell. Width is NOT fixed — Swiper's own slidesPerView:1.1 sets it
+// inline to ~91% of the container so the card stretches with whatever
+// width is available (peeking the next one at the edge) instead of a
+// fixed px size; no CSS gap here either, since Swiper's spaceBetween
+// already adds it as inline margin — a gap here on top would double it.
 @media (max-width: 767.98px) {
   .features__grid {
     display: flex;
-    gap: 12px;
   }
 
   .features__item {
     flex-shrink: 0;
-    width: 308px;
     aspect-ratio: 1 / 1;
     justify-content: center;
     padding: 16px;

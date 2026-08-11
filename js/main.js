@@ -325,6 +325,26 @@
           el: dotsEl,
           clickable: true,
         },
+        // Below 576px the fixed 308px card (see .catalog-card's own CSS)
+        // is the real Figma-mobile design and already works fine. From
+        // 576px up — tablet and any narrowed desktop window — a fixed
+        // card just overflows the row uncut, which read as "cards don't
+        // fit"; a decimal slidesPerView (same fluid-card technique as
+        // FeaturesSection) makes Swiper size each slide as a share of the
+        // container instead, so it always fits with just the next one
+        // peeking, same as the fixed-width mobile version overrides via
+        // its own inline slide width — but resizing with the viewport
+        // instead of a plain px slide width.
+        breakpoints: {
+          576: {
+            slidesPerView: 1.4,
+            spaceBetween: 16,
+          },
+          768: {
+            slidesPerView: 2.3,
+            spaceBetween: 16,
+          },
+        },
       });
     } else if (panel._accordionActivate) {
       panel._accordionActivate();
@@ -546,8 +566,14 @@
     var swiperEl = section.querySelector(".features-swiper");
     if (!swiperEl) return;
 
+    // 1.1 (not "auto") is what makes the card stretch to fill the
+    // container instead of sitting at a fixed px width — Swiper sets
+    // each slide's width inline as a share of the container, peeking
+    // the next one at the edge without any manual bleed/bleed-padding
+    // math (and without ever growing the page's own scrollWidth, since
+    // it all stays inside .features-swiper's overflow:hidden).
     new Swiper(swiperEl, {
-      slidesPerView: "auto",
+      slidesPerView: 1.1,
       spaceBetween: 12,
       speed: 450,
       wrapperClass: "features__grid",

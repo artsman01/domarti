@@ -64,13 +64,13 @@
   line-height: 1.375rem; // 22px
 }
 
-// Below 992px (tablet/mobile, matching the same breakpoint where cards
-// switch out of hover-accordion mode) tabs scroll horizontally as a
-// touch swipe once there are more than fit on one line; the scrollbar
-// itself is hidden cross-browser. At 992px+ they wrap onto additional
-// rows instead (see the min-width:992px override below) — a mouse has
-// no natural horizontal-swipe gesture, so scrolling there needs a
-// dedicated drag/wheel affordance, wrapping just avoids that entirely.
+// Only true mobile (<576px, where a touch swipe is a natural gesture)
+// scrolls the tab row horizontally; the scrollbar itself is hidden
+// cross-browser. From 576px up — tablet, small-desktop laptop windows,
+// and full desktop alike — tabs wrap onto additional rows instead (see
+// the min-width:576px override below). A mouse/trackpad has no natural
+// horizontal-swipe gesture, so anything wider than a phone wraps rather
+// than relying on scrolling the user can't discover.
 .catalog__tabs {
   display: flex;
   flex-wrap: nowrap;
@@ -86,7 +86,7 @@
   -ms-overflow-style: none;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 576px) {
   .catalog__tabs {
     flex-wrap: wrap;
     justify-content: center;
@@ -348,13 +348,16 @@
   border-radius: 10px;
 }
 
-// Slider mode (mobile/tablet always, or desktop w/ >4 cards): fixed-width
-// peeking cards, Swiper handles the horizontal scroll. Cards show their
-// full content all the time (no hover/collapse), so the content anchors
-// near the top instead of centering in the leftover space, and actions
-// stack two rows — mode-scoped rather than a mobile-only breakpoint,
-// since it should look the same at any width slider mode is active,
-// tablet included.
+// Slider mode (mobile/tablet always, or desktop w/ >4 cards): peeking
+// cards, Swiper handles the horizontal scroll. Cards show their full
+// content all the time (no hover/collapse), so the content anchors near
+// the top instead of centering in the leftover space, and actions stack
+// two rows — mode-scoped rather than a mobile-only breakpoint, since it
+// should look the same at any width slider mode is active, tablet
+// included. This fixed 308px only actually applies below 576px — from
+// there up, Swiper's own `breakpoints` (see main.js) switch to a decimal
+// slidesPerView and set each slide's width inline, which wins over this
+// regardless of specificity (inline beats any class selector).
 .catalog__panel--slider .catalog-card {
   width: 308px;
 }
