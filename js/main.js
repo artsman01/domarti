@@ -309,10 +309,9 @@
       // telling Swiper about that same inset via slidesOffsetBefore/After
       // double-counted it (16px padding + 16px offset = 32px), which is
       // why the first card wasn't flush at the intended 16px.
-      var isMobileWidth = window.matchMedia("(max-width: 575.98px)").matches;
       panel._swiper = new Swiper(swiperEl, {
         slidesPerView: "auto",
-        spaceBetween: isMobileWidth ? 12 : 16,
+        spaceBetween: 16,
         speed: 450,
         loop: true, // cyclic like the desktop accordion — arrows never dead-end/disable
         wrapperClass: "catalog-cards",
@@ -533,7 +532,7 @@
     // 1280px/416px-card layout.
     new Swiper(swiperEl, {
       slidesPerView: "auto",
-      spaceBetween: 12,
+      spaceBetween: 16,
       speed: 450,
       loop: true,
       wrapperClass: "portfolio-cards",
@@ -547,7 +546,6 @@
         clickable: true,
       },
       breakpoints: {
-        768: { spaceBetween: 16 },
         992: { slidesPerView: 2.5, spaceBetween: 16 },
         1327: { slidesPerView: 3, spaceBetween: 16 },
       },
@@ -598,7 +596,7 @@
 
       swiper = new Swiper(swiperEl, {
         slidesPerView: 1.1,
-        spaceBetween: 12,
+        spaceBetween: 16,
         speed: 450,
         wrapperClass: "features__grid",
         slideClass: "features__item",
@@ -607,7 +605,7 @@
           clickable: true,
         },
         breakpoints: {
-          576: { slidesPerView: 2.3, spaceBetween: 12 },
+          576: { slidesPerView: 2.3, spaceBetween: 16 },
         },
       });
     }
@@ -642,7 +640,7 @@
 
       panel._swiper = new Swiper(swiperEl, {
         slidesPerView: "auto",
-        spaceBetween: 12,
+        spaceBetween: 16,
         speed: 450,
         loop: true,
         wrapperClass: "materials-cards",
@@ -654,9 +652,6 @@
         pagination: {
           el: panel.querySelector(".materials-dots"),
           clickable: true,
-        },
-        breakpoints: {
-          768: { spaceBetween: 16 },
         },
       });
     });

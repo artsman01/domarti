@@ -139,10 +139,15 @@
 // and a flex column's non-stretch align-items would size an unconstrained
 // width:100% child by fit-content against that full intrinsic content
 // width instead of the space actually available (see .materials__panel's
-// own comment above — this is the same trap one level up).
+// own comment above — this is the same trap one level up). Since
+// .materials__panel (its plain-block parent) is always full width, this
+// needs its own margin:auto to center once it's narrower than that —
+// .materials__inner's align-items:center only centers .materials__panel
+// itself, which already fills 100% and has nothing left to center it.
 .materials__slider {
   width: 100%;
   max-width: 1280px;
+  margin: 0 auto;
 }
 
 // Nav arrows anchor to this wrapper (not .materials__slider, which also
