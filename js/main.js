@@ -688,3 +688,46 @@
 
   document.querySelectorAll(".materials").forEach(initMaterials);
 })();
+
+(function () {
+  // ReviewsSection: same fixed-width-peeking-card technique as
+  // .portfolio-cards (slidesPerView:"auto" + a fixed CSS card width per
+  // breakpoint) — nav visible from 768px up, hidden below (Swiper's own
+  // touch-drag covers mobile instead, same threshold as the card width
+  // switching in _reviews.scss).
+  function initReviews(section) {
+    var swiperEl = section.querySelector(".reviews-swiper");
+    if (swiperEl) {
+      new Swiper(swiperEl, {
+        slidesPerView: "auto",
+        spaceBetween: 16,
+        speed: 450,
+        loop: true,
+        wrapperClass: "reviews-cards",
+        slideClass: "reviews-card",
+        navigation: {
+          nextEl: section.querySelector(".reviews-nav--next"),
+          prevEl: section.querySelector(".reviews-nav--prev"),
+        },
+        pagination: {
+          el: section.querySelector(".reviews-dots"),
+          clickable: true,
+        },
+      });
+    }
+
+    // "Развернуть"/"Свернуть" — plain line-clamp toggle, no height
+    // animation (the card's own border already gives an abrupt-enough
+    // edge that animating it isn't worth the layout-shift complexity).
+    var toggles = section.querySelectorAll(".reviews-card__toggle");
+    toggles.forEach(function (toggle) {
+      var text = toggle.previousElementSibling;
+      toggle.addEventListener("click", function () {
+        var expanded = text.classList.toggle("is-expanded");
+        toggle.textContent = expanded ? "Свернуть" : "Развернуть";
+      });
+    });
+  }
+
+  document.querySelectorAll(".reviews").forEach(initReviews);
+})();

@@ -1,0 +1,368 @@
+// ReviewsSection: a fixed-width peeking-card Swiper carousel — same
+// "auto" slidesPerView + fixed CSS card width technique as
+// .portfolio-cards — plus a Yandex rating badge in the header and a
+// per-card expandable review text ("Развернуть"/"Свернуть").
+// Cards only ever show one photo each right now (no real per-review
+// photo sets yet), so unlike Portfolio's cards this doesn't wire up a
+// mini photo browser — just a static image, optionally with a video
+// play button overlay for reviews that have one.
+
+.reviews {
+  background: var(--color-secondary-bg);
+}
+
+.reviews__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) 16px;
+}
+
+.reviews__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+// Base color is brand; only the trailing words go dark — same
+// convention as .features__title.
+.reviews__title {
+  max-width: 948px;
+  margin: 0;
+  color: var(--bs-primary);
+  font-weight: 700;
+  font-size: 2.5rem; // 40px
+  line-height: 3rem; // 48px
+}
+
+.reviews__title span {
+  color: var(--bs-body-color);
+}
+
+@media (max-width: 575.98px) {
+  .reviews__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+  }
+}
+
+.reviews__rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reviews__rating-score {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.reviews__rating-score img {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.reviews__rating-value {
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 3rem; // 48px
+  line-height: 3.5rem; // 56px
+}
+
+.reviews__rating-stars {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.reviews__rating-label {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 400;
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+}
+
+// Shared star rating row — used both in the header badge and on every
+// card. Gold for a filled star, tertiary-bg gray for an empty one
+// (a card can show fewer than 5, e.g. a 4-star review).
+.reviews-stars {
+  display: flex;
+  align-items: center;
+}
+
+.reviews-star {
+  width: 20px;
+  height: 20px;
+  color: #efc365;
+}
+
+.reviews-star--empty {
+  color: var(--color-tertiary-bg);
+}
+
+.reviews__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 1280px;
+}
+
+.reviews__cards-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.reviews-swiper {
+  overflow: hidden;
+  width: 100%;
+}
+
+// No CSS gap: Swiper's own spaceBetween (main.js) already spaces the
+// slides via inline margin — a gap here on top would double it.
+.reviews-cards {
+  display: flex;
+}
+
+// Same floating-outside-the-1280px-container formula as
+// .catalog-nav/.portfolio-nav — it naturally settles "outside" on wide
+// viewports and slides onto the card row itself once there's no room
+// left, so no separate tablet-specific position override is needed.
+.reviews-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  transition: background-color 0.15s ease;
+}
+
+.reviews-nav.swiper-button-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.reviews-nav--prev {
+  left: max(-64px, 16px - max(0px, (100vw - 1280px) / 2));
+  background: var(--color-tertiary-bg);
+  color: var(--bs-body-color);
+}
+
+.reviews-nav--prev:hover {
+  background: var(--bs-border-color);
+}
+
+.reviews-nav--next {
+  right: max(-64px, 16px - max(0px, (100vw - 1280px) / 2));
+  background: var(--bs-primary);
+  color: var(--color-text-button);
+}
+
+.reviews-nav--next:hover {
+  background: var(--color-brand-hover);
+}
+
+// Visible from tablet up — mobile relies on Swiper's own touch-drag
+// instead, same threshold as the card width switching below.
+@media (min-width: 768px) {
+  .reviews-nav {
+    display: flex;
+  }
+}
+
+.reviews-dots {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.reviews-dots .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  margin: 0 !important; // see .portfolio-dots for why this needs !important
+  border-radius: 50rem;
+  background: var(--color-tertiary-bg);
+  opacity: 1;
+  cursor: pointer;
+}
+
+.reviews-dots .swiper-pagination-bullet-active {
+  background: var(--color-success);
+}
+
+.reviews__more {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 50rem;
+  border: 1px solid var(--bs-border-color);
+  background: transparent;
+  color: var(--bs-body-color);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.reviews__more:hover {
+  background: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: var(--color-text-button);
+}
+
+// --- card ---
+
+.reviews-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+  width: 416px;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 16px;
+  background: var(--bs-body-bg);
+  overflow: hidden;
+}
+
+@media (max-width: 767.98px) {
+  .reviews-card {
+    width: 280px;
+  }
+}
+
+.reviews-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.reviews-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reviews-card__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--color-text-button);
+  transition: background-color 0.15s ease;
+}
+
+.reviews-card__play .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.reviews-card__play:hover {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.reviews-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 8px 24px 24px;
+}
+
+.reviews-card__head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.reviews-card__name {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 1.125rem; // 18px
+  line-height: 1.5rem; // 24px
+}
+
+.reviews-card__location {
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
+
+.reviews-card__text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.reviews-card__text {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 400;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.375rem; // 22px
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+.reviews-card__text.is-expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.reviews-card__toggle {
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-hint);
+  font: inherit;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.reviews-card__toggle:hover {
+  color: var(--bs-primary);
+}
+
+.reviews-card__date {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 400;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
