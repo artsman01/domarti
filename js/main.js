@@ -630,6 +630,61 @@
   // so switching tabs is just a hidden-attribute toggle + telling the
   // now-visible one to recompute its layout (Swiper miscalculates sizes
   // while its container is display:none).
+
+  // Dots are pages, not slides: with 6 real cards and 3 fitting per
+  // view, that's 2 dots, not 6 — clicking a dot jumps a full page, but
+  // the arrows/touch-drag still move one card at a time (slidesPerGroup
+  // stays at Swiper's default of 1). Swiper's own pagination module
+  // always renders one bullet per real slide with no "group into pages
+  // but still step by one" mode, so this rebuilds the dots by hand —
+  // same manual-bullet approach as Catalog's accordion mode.
+  function currentPerPage(swiper) {
+    var spv = swiper.params.slidesPerView;
+    if (typeof spv === "number") return Math.max(1, Math.floor(spv));
+    return Math.max(1, Math.floor(swiper.slidesPerViewDynamic("current", true)));
+  }
+
+  function setupPageDots(swiper, dotsEl, realCount) {
+    var perPage = 1;
+    var pageCount = 1;
+
+    function activePage() {
+      return Math.floor(swiper.realIndex / perPage);
+    }
+
+    function renderDots() {
+      perPage = currentPerPage(swiper);
+      pageCount = Math.max(1, Math.ceil(realCount / perPage));
+      dotsEl.innerHTML = "";
+      for (var i = 0; i < pageCount; i++) {
+        (function (pageIndex) {
+          var dot = document.createElement("button");
+          dot.type = "button";
+          dot.className = "swiper-pagination-bullet";
+          dot.setAttribute("aria-label", "Страница " + (pageIndex + 1));
+          dot.addEventListener("click", function () {
+            swiper.slideToLoop(Math.min(pageIndex * perPage, realCount - 1));
+          });
+          dotsEl.appendChild(dot);
+        })(i);
+      }
+      updateActiveDot();
+    }
+
+    function updateActiveDot() {
+      var active = activePage();
+      var dots = dotsEl.querySelectorAll(".swiper-pagination-bullet");
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle("swiper-pagination-bullet-active", i === active);
+      });
+    }
+
+    renderDots();
+    swiper.on("resize breakpoint", renderDots);
+    swiper.on("slideChange", updateActiveDot);
+    return renderDots;
+  }
+
   function initMaterials(section) {
     var tabs = Array.prototype.slice.call(section.querySelectorAll(".materials__tab"));
     var panels = Array.prototype.slice.call(section.querySelectorAll("[data-materials-panel]"));
@@ -637,6 +692,11 @@
     panels.forEach(function (panel) {
       var swiperEl = panel.querySelector(".materials-swiper");
       if (!swiperEl) return;
+
+      // Counted before Swiper mutates the DOM with its own loop-mode
+      // duplicate slides.
+      var realCount = swiperEl.querySelectorAll(".materials-card").length;
+      var dotsEl = panel.querySelector(".materials-dots");
 
       panel._swiper = new Swiper(swiperEl, {
         slidesPerView: "auto",
@@ -649,22 +709,20 @@
           nextEl: panel.querySelector(".materials-nav--next"),
           prevEl: panel.querySelector(".materials-nav--prev"),
         },
-        pagination: {
-          el: panel.querySelector(".materials-dots"),
-          clickable: true,
-        },
         // 992–1279.98px ("small desktop/laptop", nav arrows already
-        // visible there): 4 fixed-308px cards don't fit, so one always
-        // peeked awkwardly. 3.2 makes Swiper size each slide as a fluid
-        // share of the container instead (inline width, overriding the
-        // CSS 308px) — 3 cards fill the row, the .2 peeks the 4th. Full
-        // desktop (1280px+, where 4 real cards fit exactly per Figma)
-        // reverts to "auto" so cards go back to their fixed width.
+        // visible there): 4 fixed-308px cards don't fit. 3 (not 3.2)
+        // makes Swiper size each slide as an exact 1/3 share of the
+        // container instead (inline width, overriding the CSS 308px) —
+        // 3 cards fill the whole row, no 4th peeking. Full desktop
+        // (1280px+, where 4 real cards fit exactly per Figma) reverts
+        // to "auto" so cards go back to their fixed width.
         breakpoints: {
-          992: { slidesPerView: 3.2 },
+          992: { slidesPerView: 3 },
           1280: { slidesPerView: "auto" },
         },
       });
+
+      panel._refreshDots = setupPageDots(panel._swiper, dotsEl, realCount);
     });
 
     tabs.forEach(function (tab) {
@@ -680,7 +738,10 @@
         panels.forEach(function (panel) {
           var visible = panel.dataset.materialsPanel === target;
           panel.hidden = !visible;
-          if (visible && panel._swiper) panel._swiper.update();
+          if (visible && panel._swiper) {
+            panel._swiper.update();
+            if (panel._refreshDots) panel._refreshDots();
+          }
         });
       });
     });
