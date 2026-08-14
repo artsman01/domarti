@@ -116,14 +116,41 @@
   color: var(--color-text-button);
 }
 
+// Explicit width is what actually matters here, not just a display
+// reset — Catalog/Portfolio's own sliders are direct flex children of
+// their `__inner`, but this one sits inside an extra `__panel`
+// wrapper (needed for the tab-switching), and a flex column's
+// non-stretch align-items leaves an unsized child to fit-content
+// itself against its own descendants' full intrinsic width — which
+// for a fixed-width "auto" Swiper is the sum of every real slide,
+// ignoring the viewport entirely and only ever getting clamped down by
+// .materials__slider's own max-width, never by how much space is
+// actually available. Pinning the width here breaks that chain.
+.materials__panel {
+  width: 100%;
+}
+
 .materials__panel[hidden] {
   display: none;
 }
 
+// Deliberately a plain block, not a flex container — .materials-swiper's
+// fixed-width "auto" cards can be much wider in total than the viewport,
+// and a flex column's non-stretch align-items would size an unconstrained
+// width:100% child by fit-content against that full intrinsic content
+// width instead of the space actually available (see .materials__panel's
+// own comment above — this is the same trap one level up).
 .materials__slider {
-  position: relative;
   width: 100%;
   max-width: 1280px;
+}
+
+// Nav arrows anchor to this wrapper (not .materials__slider, which also
+// includes the dots below) so top:50% centers on the card row alone —
+// same pattern/reasoning as .portfolio__cards-wrap.
+.materials__cards-wrap {
+  position: relative;
+  width: 100%;
 }
 
 .materials-swiper {
@@ -139,10 +166,9 @@
 }
 
 // Nav arrows: same floating-outside-the-1280px-container positioning
-// formula as .catalog-nav, just recolored (gray "prev" / brand "next"
-// per Figma, vs Catalog's white/brand). Hidden below 992px — Figma has
-// no tablet/mobile variant of these at all (no touch equivalent needed,
-// Swiper's own touch-drag covers it there).
+// formula as .catalog-nav/.portfolio-nav. Hidden below 992px — Figma
+// has no tablet/mobile variant of these at all (no touch equivalent
+// needed, Swiper's own touch-drag covers it there).
 .materials-nav {
   position: absolute;
   top: 50%;
@@ -164,14 +190,18 @@
   pointer-events: none;
 }
 
+// Matches .catalog-nav--prev/.portfolio-nav--prev exactly (white +
+// border) — Figma's own gray/borderless prev was inconsistent with
+// every other slider on the site.
 .materials-nav--prev {
   left: max(-64px, 16px - max(0px, (100vw - 1280px) / 2));
-  background: var(--color-tertiary-bg);
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
   color: var(--bs-body-color);
 }
 
 .materials-nav--prev:hover {
-  background: var(--bs-border-color);
+  background: var(--color-secondary-bg);
 }
 
 .materials-nav--next {
