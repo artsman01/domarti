@@ -257,13 +257,13 @@
   font-weight: 500;
   font-size: 0.8125rem; // 13px
   line-height: 1.25rem; // 20px
-  transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
-// Same contrast fix as the tab hover above — var(--color-secondary-bg)
-// is invisible against .materials' own identical background.
 .materials__more:hover {
-  background: var(--bs-body-bg);
+  background: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: var(--color-text-button);
 }
 
 // --- card ---

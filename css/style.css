@@ -15131,11 +15131,13 @@ button {
   font-weight: 500;
   font-size: 0.8125rem;
   line-height: 1.25rem;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
 .materials__more:hover {
-  background: var(--bs-body-bg);
+  background: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: var(--color-text-button);
 }
 
 .materials-card {
@@ -15489,12 +15491,19 @@ button {
 }
 
 .steps__phone {
+  display: inline-block;
   margin: 0;
   color: var(--bs-body-color);
+  text-decoration: none;
   font-weight: 700;
   font-size: 2rem;
   line-height: 2.5rem;
   white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.steps__phone:hover {
+  opacity: 0.7;
 }
 
 @media (max-width: 767.98px) {
@@ -15507,6 +15516,15 @@ button {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.steps__messengers a {
+  display: flex;
+  transition: opacity 0.15s ease;
+}
+
+.steps__messengers a:hover {
+  opacity: 0.7;
 }
 
 .steps__messengers img {
