@@ -1291,7 +1291,7 @@
         <div class="steps__grid">
           <div class="steps__item">
             <div class="steps__img">
-              <img src="assets/steps/step1.jpg" alt="Заявка" loading="lazy">
+              <div class="steps__img-photo"><img src="assets/steps/step1.jpg" alt="Заявка" loading="lazy"></div>
               <span class="steps__badge">1</span>
             </div>
             <div class="steps__text">
@@ -1303,7 +1303,7 @@
 
           <div class="steps__item">
             <div class="steps__img">
-              <img src="assets/steps/step2.jpg" alt="Замер кухни" loading="lazy">
+              <div class="steps__img-photo"><img src="assets/steps/step2.jpg" alt="Замер кухни" loading="lazy"></div>
               <span class="steps__badge">2</span>
             </div>
             <div class="steps__text">
@@ -1315,7 +1315,7 @@
 
           <div class="steps__item">
             <div class="steps__img">
-              <img src="assets/steps/step3.jpg" alt="Дизайн-проект" loading="lazy">
+              <div class="steps__img-photo"><img src="assets/steps/step3.jpg" alt="Дизайн-проект" loading="lazy"></div>
               <span class="steps__badge">3</span>
             </div>
             <div class="steps__text">
@@ -1327,7 +1327,7 @@
 
           <div class="steps__item">
             <div class="steps__img">
-              <img src="assets/steps/step4.jpg" alt="Подписание договора" loading="lazy">
+              <div class="steps__img-photo"><img src="assets/steps/step4.jpg" alt="Подписание договора" loading="lazy"></div>
               <span class="steps__badge">4</span>
             </div>
             <div class="steps__text">
@@ -1339,7 +1339,7 @@
 
           <div class="steps__item">
             <div class="steps__img">
-              <img src="assets/steps/step5.jpg" alt="Изготовление кухни" loading="lazy">
+              <div class="steps__img-photo"><img src="assets/steps/step5.jpg" alt="Изготовление кухни" loading="lazy"></div>
               <span class="steps__badge">5</span>
             </div>
             <div class="steps__text">
@@ -1351,7 +1351,7 @@
 
           <div class="steps__item">
             <div class="steps__img">
-              <img src="assets/steps/step6.jpg" alt="Доставка и установка" loading="lazy">
+              <div class="steps__img-photo"><img src="assets/steps/step6.jpg" alt="Доставка и установка" loading="lazy"></div>
               <span class="steps__badge">6</span>
             </div>
             <div class="steps__text">
@@ -1373,6 +1373,40 @@
           </div>
           <button type="button" class="btn btn-primary">Оставить заявку</button>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-spacer"></div>
+
+  <section class="cta">
+    <div class="cta__media">
+      <img src="assets/cta/bg.jpg" alt="" loading="lazy">
+    </div>
+    <div class="cta__inner">
+      <div class="cta__card">
+        <div class="cta__head">
+          <h2 class="cta__title">Заказать авторский дизайн-проект <span>бесплатно</span></h2>
+          <p class="cta__subtitle">Наш специалист разработает для вас дизайн-проект бесплатно</p>
+        </div>
+
+        <form class="cta__form">
+          <div class="input-field">
+            <input type="text" placeholder="Ваше имя" aria-label="Ваше имя" required>
+            <svg class="icon"><use href="assets/icons/sprite.svg#user"></use></svg>
+          </div>
+          <div class="input-field">
+            <input type="tel" placeholder="Ваш телефон" aria-label="Ваш телефон" required>
+            <svg class="icon"><use href="assets/icons/sprite.svg#call"></use></svg>
+          </div>
+          <button type="submit" class="btn btn-primary cta__submit">Заказать дизайн-проект</button>
+        </form>
+
+        <label class="checkbox-field cta__consent">
+          <input type="checkbox" class="checkbox-field__input" required>
+          <span class="checkbox-field__box"><svg class="icon icon--16"><use href="assets/icons/sprite.svg#check"></use></svg></span>
+          <span class="cta__consent-text">Я даю с<a href="#">огласие на обработку своих персональных данных</a> в соответствии с <a href="#">Политикой защиты и обработки персональных данных</a></span>
+        </label>
       </div>
     </div>
   </section>

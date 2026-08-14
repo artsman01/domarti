@@ -15406,8 +15406,14 @@ button {
   flex-shrink: 0;
   width: 156px;
   height: 156px;
-  border-radius: 12px;
   overflow: visible;
+}
+
+.steps__img-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .steps__img img {
@@ -15415,7 +15421,11 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  transition: transform 0.4s ease;
+}
+
+.steps__item:hover .steps__img img {
+  transform: scale(1.05);
 }
 
 .steps__badge {
@@ -15542,4 +15552,127 @@ button {
   display: block;
   width: 24px;
   height: 24px;
+}
+
+.cta {
+  position: relative;
+}
+
+.cta__media {
+  position: absolute;
+  inset: 0;
+  background: var(--color-dark);
+}
+
+.cta__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cta__inner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 64px 16px;
+}
+
+@media (max-width: 575.98px) {
+  .cta__inner {
+    padding: 32px 16px;
+  }
+}
+.cta__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 632px;
+  padding: 48px;
+  border-radius: 16px;
+  background: var(--bs-body-bg);
+}
+
+@media (max-width: 575.98px) {
+  .cta__card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+}
+.cta__head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  text-align: center;
+}
+
+.cta__title {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 3rem;
+}
+
+.cta__title span {
+  color: var(--bs-primary);
+}
+
+@media (max-width: 575.98px) {
+  .cta__title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+.cta__subtitle {
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+}
+
+.cta__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.cta__form .input-field {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+.cta__submit {
+  width: 100%;
+  height: 48px;
+  border-radius: 10px;
+}
+
+.cta__consent {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.cta__consent-text {
+  flex: 0 1 auto;
+  min-width: 0;
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 400;
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+}
+
+.cta__consent-text a {
+  color: var(--bs-body-color);
+}
+
+.cta__consent-text a:hover {
+  color: var(--bs-primary);
 }

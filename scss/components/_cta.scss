@@ -1,0 +1,138 @@
+// CTASection ("Заказать авторский дизайн-проект бесплатно"): a
+// full-bleed photo background (same technique as .seo__media, but here
+// it's absolute at every breakpoint — no mobile-stacked variant) with a
+// centered white card floating over it. The form reuses the site's
+// shared .input-field/.checkbox-field components verbatim (same ones
+// Hero's own CTA form uses) rather than duplicating their styles.
+
+.cta {
+  position: relative;
+}
+
+.cta__media {
+  position: absolute;
+  inset: 0;
+  background: var(--color-dark);
+}
+
+.cta__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cta__inner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 64px 16px;
+}
+
+@media (max-width: 575.98px) {
+  .cta__inner {
+    padding: 32px 16px;
+  }
+}
+
+.cta__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 632px;
+  padding: 48px;
+  border-radius: 16px;
+  background: var(--bs-body-bg);
+}
+
+@media (max-width: 575.98px) {
+  .cta__card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+}
+
+.cta__head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  text-align: center;
+}
+
+// Base color is body text; only the trailing word ("бесплатно") picks
+// up the brand color — opposite of Catalog's own span convention, same
+// as Features/Materials.
+.cta__title {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 2.5rem; // 40px
+  line-height: 3rem; // 48px
+}
+
+.cta__title span {
+  color: var(--bs-primary);
+}
+
+@media (max-width: 575.98px) {
+  .cta__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+  }
+}
+
+.cta__subtitle {
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 400;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.375rem; // 22px
+}
+
+.cta__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+// .input-field defaults to flex:1 1 0% for a horizontal row (see
+// .hero-cta__row) — reset to a plain full-width block for this
+// vertically-stacked form instead.
+.cta__form .input-field {
+  flex: 0 0 auto;
+  width: 100%;
+}
+
+.cta__submit {
+  width: 100%;
+  height: 48px;
+  border-radius: 10px;
+}
+
+.cta__consent {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.cta__consent-text {
+  flex: 0 1 auto;
+  min-width: 0;
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 400;
+  font-size: var(--text-small);
+  line-height: var(--lh-small);
+}
+
+.cta__consent-text a {
+  color: var(--bs-body-color);
+}
+
+.cta__consent-text a:hover {
+  color: var(--bs-primary);
+}
