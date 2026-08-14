@@ -15378,6 +15378,17 @@ button {
     grid-template-columns: 1fr;
   }
 }
+@media (max-width: 575.98px) {
+  .steps__inner {
+    gap: 32px;
+  }
+  .steps__content {
+    gap: 32px;
+  }
+  .steps__grid {
+    row-gap: 32px;
+  }
+}
 .steps__item {
   display: flex;
   flex-direction: column;

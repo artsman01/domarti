@@ -83,6 +83,23 @@
   }
 }
 
+// Every other section drops to a tighter 24px rhythm on mobile — this
+// one is a deliberate exception, keeping the same 32px used everywhere
+// else (subtitle->first item, between items, last item->phone block).
+@media (max-width: 575.98px) {
+  .steps__inner {
+    gap: 32px;
+  }
+
+  .steps__content {
+    gap: 32px;
+  }
+
+  .steps__grid {
+    row-gap: 32px;
+  }
+}
+
 .steps__item {
   display: flex;
   flex-direction: column;
