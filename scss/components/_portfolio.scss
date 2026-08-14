@@ -243,12 +243,21 @@
   transition: transform 0.35s ease;
 }
 
-// pointer-events:none so hover/right-click hit-tests fall through to
-// .portfolio-card__media instead of the <img> itself — Yandex Browser's
-// per-image hover toolbar (and Chromium's own save/copy-image handling)
-// key off the element actually under the cursor being real image content.
-.portfolio-card__photos img {
+// Each photo is a real link now (same project-detail destination for
+// every angle) — the <a> is the flex item/slide, sized to fill it.
+.portfolio-card__photo {
+  display: block;
   flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+}
+
+// pointer-events:none so hover/right-click hit-tests fall through to
+// .portfolio-card__photo (the link) instead of the <img> itself —
+// Yandex Browser's per-image hover toolbar (and Chromium's own
+// save/copy-image handling) key off the element actually under the
+// cursor being real image content.
+.portfolio-card__photos img {
   width: 100%;
   height: 100%;
   object-fit: cover;

@@ -102,8 +102,12 @@
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
+// var(--color-secondary-bg) — Catalog's own hover tint — is invisible
+// here: .materials itself already sits on that exact background, so a
+// hover state using the same color read as "no hover at all." White
+// gives real contrast against the section's own gray.
 .materials__tab:hover:not(.is-active) {
-  background: var(--color-secondary-bg);
+  background: var(--bs-body-bg);
 }
 
 .materials__tab.is-active {
@@ -191,6 +195,7 @@
   gap: 12px;
   align-items: center;
   justify-content: center;
+  margin-top: var(--space-md);
 }
 
 .materials-dots .swiper-pagination-bullet {
@@ -220,8 +225,10 @@
   transition: background-color 0.15s ease;
 }
 
+// Same contrast fix as the tab hover above — var(--color-secondary-bg)
+// is invisible against .materials' own identical background.
 .materials__more:hover {
-  background: var(--color-secondary-bg);
+  background: var(--bs-body-bg);
 }
 
 // --- card ---
@@ -232,13 +239,19 @@
 // disappears); anchoring it to the bottom instead of animating the
 // whole card's height is what makes that read as the panel "rising up"
 // over the image rather than the card resizing.
+// A real link now (the whole card, not just the button, goes to the
+// project's detail page) — reset the anchor defaults it otherwise
+// inherits (underline, link-blue text).
 .materials-card {
   position: relative;
+  display: block;
   flex-shrink: 0;
   width: 308px;
   height: 456px;
   overflow: hidden;
   border-radius: 12px;
+  color: inherit;
+  text-decoration: none;
 }
 
 .materials-card__img {
@@ -251,8 +264,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.4s ease;
 }
 
+// Body's bottom edge sits flush against the card's own bottom edge —
+// rounding it there too fought the outer 12px clip (overflow:hidden
+// above) at a different radius, leaving a sliver of whatever sits
+// behind it (the button's own brand-brown background) visible past the
+// mismatched curve. Only the top corners are a real internal edge.
 .materials-card__body {
   position: absolute;
   left: 0;
@@ -261,7 +280,7 @@
   display: flex;
   flex-direction: column;
   padding: 24px;
-  border-radius: 16px;
+  border-radius: 16px 16px 0 0;
   background: var(--bs-body-bg);
   transition: background-color 0.25s ease;
 }
@@ -317,8 +336,6 @@
 // rule below); max-height is set to the button's own real height so the
 // transition lands exactly on target with no overshoot/clipping.
 .materials-card__btn {
-  width: 100%;
-  height: 48px;
   max-height: 0;
   margin-top: 0;
   opacity: 0;
@@ -327,7 +344,26 @@
   transition: max-height 0.3s ease, margin-top 0.3s ease, opacity 0.25s ease;
 }
 
+// .btn.btn-primary's own base rule (36px, pill radius) has the same
+// 2-class specificity — an ancestor class here (matching
+// .catalog-card__actions .btn.btn-primary's exact pattern) is what
+// actually wins, not source order alone. Flex-centers its own label
+// explicitly too: a plain line-height center reads off-center on iOS
+// Safari, same fix as .seo__btn.
+.materials-card__body .btn.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  border-radius: 10px;
+}
+
 @media (min-width: 992px) {
+  .materials-card:hover .materials-card__img img {
+    transform: scale(1.05);
+  }
+
   .materials-card:hover .materials-card__body {
     background: var(--color-dark-separator);
   }
