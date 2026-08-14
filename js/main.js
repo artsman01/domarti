@@ -653,6 +653,17 @@
           el: panel.querySelector(".materials-dots"),
           clickable: true,
         },
+        // 992–1279.98px ("small desktop/laptop", nav arrows already
+        // visible there): 4 fixed-308px cards don't fit, so one always
+        // peeked awkwardly. 3.2 makes Swiper size each slide as a fluid
+        // share of the container instead (inline width, overriding the
+        // CSS 308px) — 3 cards fill the row, the .2 peeks the 4th. Full
+        // desktop (1280px+, where 4 real cards fit exactly per Figma)
+        // reverts to "auto" so cards go back to their fixed width.
+        breakpoints: {
+          992: { slidesPerView: 3.2 },
+          1280: { slidesPerView: "auto" },
+        },
       });
     });
 

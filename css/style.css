@@ -15289,3 +15289,14 @@ button {
     pointer-events: auto;
   }
 }
+@media (max-width: 575.98px) {
+  .materials__panel {
+    margin-top: 8px;
+  }
+  .materials-dots {
+    margin-top: 24px;
+  }
+  .materials__more {
+    margin-top: 8px;
+  }
+}

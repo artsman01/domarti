@@ -457,3 +457,21 @@
     pointer-events: auto;
   }
 }
+
+// Mobile rhythm is 24px between tabs→cards, cards→dots, and dots→"Смотреть
+// все" — all three ride on .materials__inner's own 16px --space-md gap or
+// .materials-dots' own margin-top, so each needs its own +8px bump on top
+// (same technique as .catalog__panel/.catalog-dots's mobile overrides).
+@media (max-width: 575.98px) {
+  .materials__panel {
+    margin-top: 8px;
+  }
+
+  .materials-dots {
+    margin-top: 24px;
+  }
+
+  .materials__more {
+    margin-top: 8px;
+  }
+}
