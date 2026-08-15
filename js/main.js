@@ -756,3 +756,19 @@
 
   document.querySelectorAll(".faq").forEach(initFaq);
 })();
+
+(function () {
+  // FooterSection nav columns: independent toggles (unlike FAQ, any
+  // number can be open at once) — only meaningful on mobile, where CSS
+  // turns each column into a collapsible accordion row; desktop forces
+  // every column open regardless of .is-open via its own media query.
+  function initFooterCol(col) {
+    var head = col.querySelector(".footer-col__head");
+    head.addEventListener("click", function () {
+      var isOpen = col.classList.toggle("is-open");
+      head.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+  }
+
+  document.querySelectorAll("[data-footer-col]").forEach(initFooterCol);
+})();
