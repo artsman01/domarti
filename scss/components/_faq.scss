@@ -1,0 +1,145 @@
+// FAQSection: a single-open accordion, first item expanded by default.
+
+.faq {
+  background: var(--bs-body-bg);
+}
+
+.faq__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) 16px;
+}
+
+.faq__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+// Base color is brand; only the trailing words go dark — same
+// convention as .features__title/.reviews__title/.stocks__title.
+.faq__title {
+  max-width: 948px;
+  margin: 0;
+  color: var(--bs-primary);
+  font-weight: 700;
+  font-size: 2.5rem; // 40px
+  line-height: 3rem; // 48px
+}
+
+.faq__title span {
+  color: var(--bs-body-color);
+}
+
+@media (max-width: 575.98px) {
+  .faq__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+  }
+}
+
+.faq__subtitle {
+  max-width: 548px;
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 500;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.375rem; // 22px
+}
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 848px;
+}
+
+.faq-item {
+  border-radius: 12px;
+  background: var(--color-secondary-bg);
+  overflow: hidden;
+}
+
+.faq-item__head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 16px 24px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faq-item__question {
+  flex: 1 1 0%;
+  min-width: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 1.125rem; // 18px
+  line-height: 1.5rem; // 24px
+}
+
+.faq-item__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--color-success);
+  color: var(--color-text-button);
+  transition: transform 0.2s ease;
+}
+
+.faq-item__toggle .icon {
+  width: 24px;
+  height: 24px;
+}
+
+// The design only ships a plus icon (no separate minus/close asset) —
+// rotating it 45° on open turns it into an "×", the standard
+// plus-becomes-close accordion affordance.
+.faq-item.is-open .faq-item__toggle {
+  transform: rotate(45deg);
+}
+
+// Grid-rows 0fr->1fr is what actually animates a height nobody knows
+// in advance (the answer text wraps differently per breakpoint) —
+// height:auto can't transition, and max-height needs a guessed ceiling
+// that either clips long answers or leaves a pause at the end of the
+// animation for short ones.
+.faq-item__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  padding: 0 24px;
+  transition: grid-template-rows 0.25s ease, padding-bottom 0.25s ease;
+}
+
+.faq-item.is-open .faq-item__answer {
+  grid-template-rows: 1fr;
+  padding-bottom: 16px;
+}
+
+.faq-item__answer p {
+  margin: 0;
+  min-height: 0;
+  overflow: hidden;
+  color: var(--bs-body-color);
+  font-weight: 400;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
+
+.faq__more {
+  height: 36px;
+  padding: 0 16px;
+}

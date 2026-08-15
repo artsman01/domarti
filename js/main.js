@@ -731,3 +731,28 @@
 
   document.querySelectorAll(".reviews").forEach(initReviews);
 })();
+
+(function () {
+  // FAQSection: single-open accordion — opening one closes whichever
+  // else was open, matching Figma's default of exactly one expanded.
+  function initFaq(section) {
+    var items = Array.prototype.slice.call(section.querySelectorAll("[data-faq-item]"));
+
+    items.forEach(function (item) {
+      var head = item.querySelector(".faq-item__head");
+      head.addEventListener("click", function () {
+        var wasOpen = item.classList.contains("is-open");
+        items.forEach(function (other) {
+          other.classList.remove("is-open");
+          other.querySelector(".faq-item__head").setAttribute("aria-expanded", "false");
+        });
+        if (!wasOpen) {
+          item.classList.add("is-open");
+          head.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+  }
+
+  document.querySelectorAll(".faq").forEach(initFaq);
+})();
