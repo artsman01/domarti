@@ -1,0 +1,99 @@
+// SeoSection ("Light" template) — the second, simpler SEO-style block:
+// no photo, no floating card, just a title/text pair. Desktop puts them
+// side by side (title left, text+button right); tablet and mobile stack
+// them, title on top.
+
+.seo-light {
+  background: var(--bs-body-bg);
+}
+
+.seo-light__inner {
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.seo-light__row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 1280px;
+}
+
+@media (min-width: 576px) {
+  .seo-light__row {
+    gap: 24px;
+  }
+}
+
+@media (min-width: 992px) {
+  .seo-light__row {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 64px;
+  }
+}
+
+.seo-light__title {
+  margin: 0;
+  color: var(--bs-primary);
+  font-weight: 700;
+  font-size: 2.5rem; // 40px
+  line-height: 3rem; // 48px
+}
+
+.seo-light__title span {
+  color: var(--bs-body-color);
+}
+
+@media (max-width: 575.98px) {
+  .seo-light__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+  }
+}
+
+@media (min-width: 992px) {
+  .seo-light__title {
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+}
+
+.seo-light__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .seo-light__content {
+    gap: 24px;
+  }
+}
+
+@media (min-width: 992px) {
+  .seo-light__content {
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+}
+
+.seo-light__text {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 400;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.375rem; // 22px
+}
+
+// Flex-centers its own label explicitly — a plain line-height center
+// reads off-center on iOS Safari, same fix as .seo__btn.
+.seo-light__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
