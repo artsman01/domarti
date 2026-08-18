@@ -161,12 +161,7 @@
 </g>
 </symbol>
 <symbol id="download" viewBox="0 0 24 24">
-<g id="Sprite">
-<g id="download">
-<path id="Vector" d="M12 4V15M12 15L16 11M12 15L8 11" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_2" d="M5 17V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
+<path d="M12 14.6V5M15.2 11.4L12 14.6L8.8 11.4M4 16.2L4.4968 18.188C4.58332 18.5341 4.78306 18.8414 5.06426 19.061C5.34547 19.2806 5.69201 19.3999 6.0488 19.4H17.9504C18.3072 19.3999 18.6537 19.2806 18.9349 19.061C19.2161 18.8414 19.4159 18.5341 19.5024 18.188L20 16.2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
 <symbol id="refresh" viewBox="0 0 24 24">
 <g id="Sprite">

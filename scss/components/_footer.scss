@@ -223,6 +223,11 @@
   font-weight: 700;
   font-size: 1.375rem; // 22px
   line-height: 1.75rem; // 28px
+  transition: color 0.15s ease;
+}
+
+.footer-contact__phone:hover {
+  color: var(--bs-primary);
 }
 
 @media (min-width: 992px) {
@@ -237,6 +242,11 @@
   font-weight: 400;
   font-size: 0.8125rem; // 13px
   line-height: 1.25rem; // 20px
+  transition: color 0.15s ease;
+}
+
+.footer-contact__email:hover {
+  color: var(--color-text-button);
 }
 
 .footer-contact__messengers {
@@ -269,13 +279,17 @@
   align-items: center;
   gap: 8px;
   color: #fff;
-  font-weight: 400;
-  font-size: 0.9375rem; // 15px
-  line-height: 1.375rem; // 22px
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
   transition: color 0.15s ease;
 }
 
 .footer-contact__download:hover {
+  color: var(--bs-primary);
+}
+
+.footer-contact__download .icon {
   color: var(--bs-primary);
 }
 
@@ -304,6 +318,14 @@
     gap: 12px;
     max-width: 1280px;
   }
+}
+
+// Bootstrap's reboot leaves <p> with its own default margin-bottom:1rem
+// unreset — that stacked on top of this flex column's own 4px gap,
+// inflating the space below the last line and pushing whatever sits
+// after .footer__copyright in .footer__meta further down than intended.
+.footer__copyright p {
+  margin-bottom: 0;
 }
 
 .footer__copyright,
