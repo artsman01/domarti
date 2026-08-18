@@ -14163,7 +14163,6 @@ button {
 .calculator__actions .btn {
   flex: 1 1 0%;
   height: 48px;
-  border-radius: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
