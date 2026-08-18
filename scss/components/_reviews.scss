@@ -1,11 +1,10 @@
-// ReviewsSection: a fixed-width peeking-card Swiper carousel — same
-// "auto" slidesPerView + fixed CSS card width technique as
-// .portfolio-cards — plus a Yandex rating badge in the header and a
-// per-card expandable review text ("Развернуть"/"Свернуть").
-// Cards only ever show one photo each right now (no real per-review
-// photo sets yet), so unlike Portfolio's cards this doesn't wire up a
-// mini photo browser — just a static image, optionally with a video
-// play button overlay for reviews that have one.
+// ReviewsSection: same Swiper carousel as .portfolio-cards — "auto"
+// slidesPerView + a fixed CSS card width below the numeric-slidesPerView
+// breakpoints (see main.js), same nav-arrow styling, same per-card
+// filmstrip photo browser — plus a Yandex rating badge in the header
+// and a per-card expandable review text ("Развернуть"/"Свернуть").
+// Cards without real per-review photo sets yet reuse the same handful
+// of placeholder images, same as Portfolio's own placeholder cards.
 
 .reviews {
   background: var(--color-secondary-bg);
@@ -137,6 +136,8 @@
 // .catalog-nav/.portfolio-nav — it naturally settles "outside" on wide
 // viewports and slides onto the card row itself once there's no room
 // left, so no separate tablet-specific position override is needed.
+// Styling and visibility threshold match .portfolio-nav/.materials-nav
+// exactly — every slider on the site shares one arrow look.
 .reviews-nav {
   position: absolute;
   top: 50%;
@@ -160,12 +161,13 @@
 
 .reviews-nav--prev {
   left: max(-64px, 16px - max(0px, (100vw - 1280px) / 2));
-  background: var(--color-tertiary-bg);
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
   color: var(--bs-body-color);
 }
 
 .reviews-nav--prev:hover {
-  background: var(--bs-border-color);
+  background: var(--color-secondary-bg);
 }
 
 .reviews-nav--next {
@@ -178,9 +180,10 @@
   background: var(--color-brand-hover);
 }
 
-// Visible from tablet up — mobile relies on Swiper's own touch-drag
-// instead, same threshold as the card width switching below.
-@media (min-width: 768px) {
+// Hidden below 992px (peeking cards don't leave room for a floating
+// arrow at those widths) — mobile/tablet rely on Swiper's own
+// touch-drag and the dots instead, same threshold as Portfolio's.
+@media (min-width: 992px) {
   .reviews-nav {
     display: flex;
   }
@@ -240,9 +243,10 @@
   overflow: hidden;
 }
 
+// Matches .portfolio-card's own mobile width exactly.
 @media (max-width: 767.98px) {
   .reviews-card {
-    width: 280px;
+    width: 296px;
   }
 }
 
@@ -250,13 +254,87 @@
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
+  overflow: hidden;
 }
 
-.reviews-card__media img {
+// A real filmstrip, not a fade — same technique as
+// .portfolio-card__photos, so photos (and the video thumbnail, as
+// slide 1) page instead of cross-dissolving.
+.reviews-card__photos {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.35s ease;
+}
+
+.reviews-card__photo {
+  display: block;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+// pointer-events:none so hover/right-click hit-tests fall through to
+// the inert wrapper instead of the <img> itself — same "hide from
+// browser" technique as .portfolio-card__photos img.
+.reviews-card__photo img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.35s ease;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.reviews-card__media:hover .reviews-card__photo img {
+  transform: scale(1.05);
+}
+
+// Per-review photo/video browser arrows — cycle .reviews-card__media's
+// own slide set (see the JS init). Styling copied from
+// .portfolio-card__img-nav verbatim.
+.reviews-card__img-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-button);
+  transition: transform 0.3s ease;
+}
+
+.reviews-card__img-nav svg {
+  display: block;
+  width: 10px;
+  height: 21px;
+}
+
+.reviews-card__img-nav--prev {
+  left: 12px;
+}
+
+.reviews-card__img-nav--prev:hover {
+  transform: translateY(-50%) translateX(-3px);
+}
+
+.reviews-card__img-nav--next {
+  right: 12px;
+  transform: translateY(-50%) scaleX(-1);
+}
+
+.reviews-card__img-nav--next:hover {
+  transform: translateY(-50%) scaleX(-1) translateX(-3px);
 }
 
 .reviews-card__play {
@@ -294,6 +372,12 @@
   padding: 8px 24px 24px;
 }
 
+@media (min-width: 768px) {
+  .reviews-card__body {
+    padding-top: 24px;
+  }
+}
+
 .reviews-card__head {
   display: flex;
   flex-direction: column;
@@ -324,22 +408,19 @@
   width: 100%;
 }
 
+// max-height (not -webkit-line-clamp) so the expand/collapse can
+// actually transition — the JS toggle sets an inline max-height (the
+// measured scrollHeight to open, cleared to fall back to this 4-line
+// value to close) on top of this.
 .reviews-card__text {
   margin: 0;
   color: var(--bs-body-color);
   font-weight: 400;
   font-size: 0.9375rem; // 15px
   line-height: 1.375rem; // 22px
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
+  max-height: 5.5rem; // 4 lines
   overflow: hidden;
-}
-
-.reviews-card__text.is-expanded {
-  display: block;
-  -webkit-line-clamp: unset;
-  overflow: visible;
+  transition: max-height 0.35s ease;
 }
 
 .reviews-card__toggle {

@@ -690,11 +690,50 @@
 })();
 
 (function () {
-  // ReviewsSection: same fixed-width-peeking-card technique as
-  // .portfolio-cards (slidesPerView:"auto" + a fixed CSS card width per
-  // breakpoint) — nav visible from 768px up, hidden below (Swiper's own
-  // touch-drag covers mobile instead, same threshold as the card width
-  // switching in _reviews.scss).
+  // Per-card photo/video browser — identical to
+  // initPortfolioCardMedia below, plus hiding the video play button
+  // once its slide (always index 0) has been paged away from.
+  function initReviewsCardMedia(media) {
+    var photos = media.querySelector(".reviews-card__photos");
+    var images = Array.prototype.slice.call(photos.querySelectorAll("img"));
+    var playBtn = media.querySelector(".reviews-card__play");
+    if (images.length < 2) return;
+
+    var index = 0;
+
+    function show(i) {
+      index = (i + images.length) % images.length;
+      photos.style.transform = "translateX(-" + index * 100 + "%)";
+      if (playBtn) playBtn.style.display = index === 0 ? "flex" : "none";
+    }
+
+    var prevBtn = media.querySelector(".reviews-card__img-nav--prev");
+    var nextBtn = media.querySelector(".reviews-card__img-nav--next");
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        show(index - 1);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        show(index + 1);
+      });
+    }
+
+    media.addEventListener("contextmenu", function (e) {
+      e.preventDefault();
+    });
+  }
+
+  document.querySelectorAll(".reviews-card__media").forEach(initReviewsCardMedia);
+
+  // ReviewsSection: same slider as .portfolio-cards — "auto"
+  // slidesPerView + a fixed CSS card width below 992px, numeric
+  // slidesPerView (cards stretch to fill the row) above it; nav
+  // hidden below 992px, same breakpoint as .portfolio-nav's.
   function initReviews(section) {
     var swiperEl = section.querySelector(".reviews-swiper");
     if (swiperEl) {
@@ -713,17 +752,22 @@
           el: section.querySelector(".reviews-dots"),
           clickable: true,
         },
+        breakpoints: {
+          992: { slidesPerView: 2.5, spaceBetween: 16 },
+          1327: { slidesPerView: 3, spaceBetween: 16 },
+        },
       });
     }
 
-    // "Развернуть"/"Свернуть" — plain line-clamp toggle, no height
-    // animation (the card's own border already gives an abrupt-enough
-    // edge that animating it isn't worth the layout-shift complexity).
+    // "Развернуть"/"Свернуть" — max-height transitions between the
+    // CSS's 4-line collapsed value and the text's real measured height,
+    // smoothly both ways (see .reviews-card__text in _reviews.scss).
     var toggles = section.querySelectorAll(".reviews-card__toggle");
     toggles.forEach(function (toggle) {
       var text = toggle.previousElementSibling;
       toggle.addEventListener("click", function () {
         var expanded = text.classList.toggle("is-expanded");
+        text.style.maxHeight = expanded ? text.scrollHeight + "px" : "";
         toggle.textContent = expanded ? "Свернуть" : "Развернуть";
       });
     });
