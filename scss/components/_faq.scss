@@ -28,12 +28,12 @@
 }
 
 // Base color is brand; only the trailing words go dark — same
-// convention as .features__title/.reviews__title/.stocks__title.
-// Wider max-width than those (FAQ's own copy runs noticeably longer) —
-// 948px left this wrapping onto a second line right around the
-// desktop/tablet boundary, with barely any margin to spare.
+// convention as .features__title/.reviews__title/.stocks__title. The
+// <br> before the span is a deliberate hard break (not a wrap
+// side-effect) — two lines every time on desktop, regardless of
+// container width.
 .faq__title {
-  max-width: 1040px;
+  max-width: 948px;
   margin: 0;
   color: var(--bs-primary);
   font-weight: 700;
@@ -73,6 +73,11 @@
   border-radius: 12px;
   background: var(--color-secondary-bg);
   overflow: hidden;
+  transition: background-color 0.15s ease;
+}
+
+.faq-item:hover {
+  background: rgba(31, 30, 30, 0.08);
 }
 
 .faq-item__head {

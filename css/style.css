@@ -16447,7 +16447,7 @@ button {
 }
 
 .faq__title {
-  max-width: 1040px;
+  max-width: 948px;
   margin: 0;
   color: var(--bs-primary);
   font-weight: 700;
@@ -16486,6 +16486,11 @@ button {
   border-radius: 12px;
   background: var(--color-secondary-bg);
   overflow: hidden;
+  transition: background-color 0.15s ease;
+}
+
+.faq-item:hover {
+  background: rgba(31, 30, 30, 0.08);
 }
 
 .faq-item__head {
@@ -16839,13 +16844,17 @@ button {
   align-items: center;
   gap: 8px;
   color: var(--color-hint);
-  font-weight: 400;
-  font-size: 0.9375rem;
-  line-height: 1.375rem;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
   transition: color 0.15s ease;
 }
 
 .contact__download:hover {
+  color: var(--bs-primary);
+}
+
+.contact__download .icon {
   color: var(--bs-primary);
 }
 
