@@ -16290,9 +16290,10 @@ button {
   border-radius: 16px;
   background: var(--bs-body-bg);
   overflow: hidden;
+  transition: background-color 0.15s ease;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .stock-card {
     flex-direction: row;
     align-items: stretch;
@@ -16304,7 +16305,7 @@ button {
   aspect-ratio: 4/3;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .stock-card__media {
     flex: 1 1 0%;
     min-width: 0;
@@ -16339,7 +16340,7 @@ button {
   padding: 24px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .stock-card__body {
     flex: 1 1 0%;
     min-width: 0;
@@ -16400,26 +16401,28 @@ button {
     background: var(--color-brand-hover);
   }
 }
-@media (min-width: 992px) {
-  .stock-card--featured {
-    background: var(--color-dark-separator);
-  }
-  .stock-card--featured .stock-card__title {
-    color: var(--color-text-button);
-  }
-  .stock-card--featured .stock-card__desc {
-    color: rgba(255, 255, 255, 0.72);
-  }
-  .stock-card--featured .stock-card__btn {
-    border-color: transparent;
-    background: var(--bs-primary);
-    color: var(--color-text-button);
-    font-weight: 600;
-  }
-  .stock-card--featured .stock-card__btn:hover {
-    background: var(--color-brand-hover);
-  }
+.stock-card:hover {
+  background: var(--bs-primary);
 }
+
+.stock-card:hover .stock-card__title {
+  color: var(--color-text-button);
+}
+
+.stock-card:hover .stock-card__desc {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.stock-card:hover .stock-card__btn {
+  border-color: var(--color-text-button);
+  background: var(--color-text-button);
+  color: var(--bs-primary);
+}
+
+.stock-card:hover .stock-card__btn:hover {
+  background: var(--color-brand-pale);
+}
+
 .faq {
   background: var(--bs-body-bg);
 }

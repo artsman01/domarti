@@ -1,13 +1,8 @@
 // StocksSection ("Актуальные акции"): a plain 2x2/1-col grid (no
 // slider) of promo cards. Each card is a photo + text pane, side by
-// side from 992px up, stacked below it — same breakpoint the grid
-// itself switches from 2 columns to 1 at.
-//
-// One card (the 2nd) is a "featured" dark variant with a filled brand
-// button instead of the other three's outline one — but only at
-// 992px+; Figma reverts it to the plain white/outline look on tablet,
-// and mobile drops the outline/filled distinction entirely, forcing
-// every card's button to filled regardless of which card it is.
+// side from 768px up (.stocks__grid itself only goes 2-column at
+// 992px, so 768-991.98px shows one full-width horizontal card per
+// row), stacked below 768px. Every card goes brand-brown on hover.
 
 .stocks {
   background: var(--color-secondary-bg);
@@ -106,15 +101,19 @@
 
 // --- card ---
 
+// Row layout (media/body side by side) starts at 768px — a whole tier
+// earlier than .stocks__grid's own 2-column switch at 992px, so
+// 768-991.98px shows a single column of horizontal cards.
 .stock-card {
   display: flex;
   flex-direction: column;
   border-radius: 16px;
   background: var(--bs-body-bg);
   overflow: hidden;
+  transition: background-color 0.15s ease;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .stock-card {
     flex-direction: row;
     align-items: stretch;
@@ -127,7 +126,7 @@
   aspect-ratio: 4 / 3;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .stock-card__media {
     flex: 1 1 0%;
     min-width: 0;
@@ -163,7 +162,7 @@
   padding: 24px;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .stock-card__body {
     flex: 1 1 0%;
     min-width: 0;
@@ -232,29 +231,26 @@
   }
 }
 
-// Dark/filled variant — only actually looks different at 992px+
-// (Figma has it plain white on tablet, same as every other card).
-@media (min-width: 992px) {
-  .stock-card--featured {
-    background: var(--color-dark-separator);
-  }
+// Every card (not just one) goes brand-brown on hover — its own outline
+// button inverts to solid white so it stays visible against that fill.
+.stock-card:hover {
+  background: var(--bs-primary);
+}
 
-  .stock-card--featured .stock-card__title {
-    color: var(--color-text-button);
-  }
+.stock-card:hover .stock-card__title {
+  color: var(--color-text-button);
+}
 
-  .stock-card--featured .stock-card__desc {
-    color: rgba(255, 255, 255, 0.72);
-  }
+.stock-card:hover .stock-card__desc {
+  color: rgba(255, 255, 255, 0.72);
+}
 
-  .stock-card--featured .stock-card__btn {
-    border-color: transparent;
-    background: var(--bs-primary);
-    color: var(--color-text-button);
-    font-weight: 600;
-  }
+.stock-card:hover .stock-card__btn {
+  border-color: var(--color-text-button);
+  background: var(--color-text-button);
+  color: var(--bs-primary);
+}
 
-  .stock-card--featured .stock-card__btn:hover {
-    background: var(--color-brand-hover);
-  }
+.stock-card:hover .stock-card__btn:hover {
+  background: var(--color-brand-pale);
 }
