@@ -34,6 +34,12 @@
   padding: 64px 16px;
 }
 
+@media (max-width: 767.98px) {
+  .visit-cta__inner {
+    gap: 24px;
+  }
+}
+
 @media (max-width: 575.98px) {
   .visit-cta__inner {
     padding: 32px 16px;
@@ -73,6 +79,10 @@
   line-height: 1.375rem; // 22px
 }
 
+// .visit-cta__card and everything below it is deliberately kept
+// value-for-value identical to .hero-cta (same component in Figma,
+// reused for a different form) — mirror any future edit to one of
+// these onto the other.
 .visit-cta__card {
   display: flex;
   flex-direction: column;
@@ -86,8 +96,7 @@
 
 @media (max-width: 575.98px) {
   .visit-cta__card {
-    padding: 16px;
-    border-radius: 12px;
+    padding: 24px;
   }
 }
 
@@ -95,7 +104,6 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 100%;
   text-align: center;
 }
 
@@ -115,63 +123,62 @@
   line-height: 1.375rem; // 22px
 }
 
-// Mobile/base: everything stacked full-width, 8px gap (Figma uses a
-// tighter gap here than the 12px used once the row wraps).
+@media (max-width: 575.98px) {
+  .visit-cta__card-title {
+    font-size: 1.25rem; // 20px
+    line-height: 1.625rem; // 26px
+  }
+
+  .visit-cta__card-subtitle {
+    font-size: 0.875rem; // 14px
+  }
+}
+
 .visit-cta__fields {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   width: 100%;
 }
 
-.visit-cta__fields .input-field {
-  flex: 0 0 auto;
-  width: 100%;
-}
-
-// Tablet: 3 fields wrap into one row (each ~216px, filling the 672px
-// card content width exactly), button drops to its own full-width row.
-@media (min-width: 768px) {
-  .visit-cta__fields {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .visit-cta__fields .input-field {
-    flex: 1 1 216px;
-    width: auto;
-  }
-
-  .visit-cta__fields .visit-cta__submit {
-    flex: 1 1 100%;
-    width: 100%;
-    order: 1;
-  }
-}
-
-// Desktop: all 4 items share one row as equal-width flex items.
-@media (min-width: 992px) {
-  .visit-cta__fields {
-    flex-wrap: nowrap;
-  }
-
-  .visit-cta__fields .input-field {
-    flex: 1 1 0%;
-    min-width: 0;
-  }
-
-  .visit-cta__fields .visit-cta__submit {
-    flex: 1 1 0%;
-    width: auto;
-    order: 0;
-  }
-}
-
-.visit-cta__submit {
+// .btn.visit-cta__submit (not just .visit-cta__submit) — .btn.btn-primary
+// sets its own height:36px at the same two-class specificity, which
+// would otherwise win over a plain one-class override regardless of
+// source order (see .btn.hero-cta__submit for the identical fix).
+.btn.visit-cta__submit {
+  flex: 1 1 0%;
+  min-width: 0;
   height: 48px;
   border-radius: 10px;
   white-space: nowrap;
+}
+
+// 576-991.98px: fields stay in one row, the submit button wraps onto
+// its own full-width row below them.
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .visit-cta__fields {
+    flex-wrap: wrap;
+  }
+
+  .visit-cta__fields > .visit-cta__submit {
+    flex: 1 1 100%;
+  }
+}
+
+// <576px: every field (including the button) stacks full-width.
+@media (max-width: 575.98px) {
+  .visit-cta__fields {
+    flex-direction: column;
+  }
+
+  .visit-cta__fields > * {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .visit-cta__fields > .visit-cta__submit {
+    flex: 0 0 auto;
+    width: 100%;
+  }
 }
 
 .visit-cta__consent {

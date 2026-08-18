@@ -133,9 +133,22 @@
   width: 100%;
 }
 
-.reviews-swiper {
+// The overflow:hidden clip boundary — pulled back to zero net height
+// via a matching negative margin (padding +24 on .reviews-swiper below,
+// margin -24 here cancel out in the surrounding flex gap math) so the
+// hover shadow gets 24px of vertical room to render in without
+// disturbing .reviews__content's own gap. Horizontal is left flush
+// (no padding/margin there) — same tradeoff .portfolio__clip documents:
+// widening it to fit the shadow also exposes a sliver of the
+// next/prev card past the intended edge.
+.reviews__clip {
   overflow: hidden;
+  margin: -24px 0;
+}
+
+.reviews-swiper {
   width: 100%;
+  padding: 24px 0;
 }
 
 // No CSS gap: Swiper's own spaceBetween (main.js) already spaces the

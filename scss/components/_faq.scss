@@ -29,8 +29,11 @@
 
 // Base color is brand; only the trailing words go dark — same
 // convention as .features__title/.reviews__title/.stocks__title.
+// Wider max-width than those (FAQ's own copy runs noticeably longer) —
+// 948px left this wrapping onto a second line right around the
+// desktop/tablet boundary, with barely any margin to spare.
 .faq__title {
-  max-width: 948px;
+  max-width: 1040px;
   margin: 0;
   color: var(--bs-primary);
   font-weight: 700;
