@@ -18,6 +18,12 @@
   padding: var(--space-md) 16px;
 }
 
+@media (max-width: 767.98px) {
+  .reviews__inner {
+    padding: 24px 16px;
+  }
+}
+
 .reviews__intro {
   display: flex;
   flex-direction: column;
@@ -114,6 +120,12 @@
   gap: var(--space-md);
   width: 100%;
   max-width: 1280px;
+}
+
+@media (max-width: 767.98px) {
+  .reviews__content {
+    gap: 24px;
+  }
 }
 
 .reviews__cards-wrap {
@@ -231,6 +243,7 @@
 
 // --- card ---
 
+// Hover shadow matches .portfolio-card's exactly.
 .reviews-card {
   display: flex;
   flex-direction: column;
@@ -241,6 +254,11 @@
   border-radius: 16px;
   background: var(--bs-body-bg);
   overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.reviews-card:hover {
+  box-shadow: 0px 8px 16px 4px rgba(0, 0, 0, 0.12);
 }
 
 // Matches .portfolio-card's own mobile width exactly.
@@ -369,12 +387,12 @@
   align-items: flex-start;
   gap: 12px;
   width: 100%;
-  padding: 8px 24px 24px;
+  padding: 16px;
 }
 
 @media (min-width: 768px) {
   .reviews-card__body {
-    padding-top: 24px;
+    padding: 24px;
   }
 }
 
