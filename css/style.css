@@ -16570,6 +16570,11 @@ button {
   padding: var(--space-md) 16px;
 }
 
+@media (max-width: 767.98px) {
+  .contact__inner {
+    gap: 24px;
+  }
+}
 .contact__intro {
   display: flex;
   flex-direction: column;
@@ -16702,6 +16707,11 @@ button {
   gap: 16px;
 }
 
+@media (max-width: 767.98px) {
+  .contact__phone-row {
+    justify-content: center;
+  }
+}
 .contact__phone {
   color: var(--bs-body-color);
   font-weight: 700;
@@ -16766,6 +16776,14 @@ button {
   line-height: 1.375rem;
 }
 
+.contact__email {
+  transition: color 0.15s ease;
+}
+
+.contact__email:hover {
+  color: var(--bs-primary);
+}
+
 .contact__requisites {
   display: flex;
   flex-wrap: wrap;
@@ -16775,6 +16793,11 @@ button {
   width: 100%;
 }
 
+@media (max-width: 767.98px) {
+  .contact__requisites {
+    justify-content: center;
+  }
+}
 .contact__download {
   display: flex;
   align-items: center;

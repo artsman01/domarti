@@ -20,6 +20,12 @@
   padding: var(--space-md) 16px;
 }
 
+@media (max-width: 767.98px) {
+  .contact__inner {
+    gap: 24px;
+  }
+}
+
 .contact__intro {
   display: flex;
   flex-direction: column;
@@ -167,6 +173,12 @@
   gap: 16px;
 }
 
+@media (max-width: 767.98px) {
+  .contact__phone-row {
+    justify-content: center;
+  }
+}
+
 .contact__phone {
   color: var(--bs-body-color);
   font-weight: 700;
@@ -232,6 +244,14 @@
   line-height: 1.375rem; // 22px
 }
 
+.contact__email {
+  transition: color 0.15s ease;
+}
+
+.contact__email:hover {
+  color: var(--bs-primary);
+}
+
 .contact__requisites {
   display: flex;
   flex-wrap: wrap;
@@ -239,6 +259,16 @@
   justify-content: inherit;
   gap: 8px;
   width: 100%;
+}
+
+// Mobile only — the info card's own align-items:center (<768px) only
+// centers each field's own width, not this row's wrapped children, so
+// it still needs its own override. Left at the default flex-start on
+// tablet, where .contact__info itself stays left-aligned too.
+@media (max-width: 767.98px) {
+  .contact__requisites {
+    justify-content: center;
+  }
 }
 
 .contact__download {
