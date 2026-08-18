@@ -243,7 +243,10 @@
 
 // --- card ---
 
-// Hover shadow matches .portfolio-card's exactly.
+// No overflow:hidden here (matches .portfolio-card) — that would clip
+// the hover box-shadow below at the card's own edge. .reviews-card__media
+// gets its own border-radius/overflow:hidden instead, to round just
+// its top corners.
 .reviews-card {
   display: flex;
   flex-direction: column;
@@ -253,7 +256,6 @@
   border: 1px solid var(--bs-border-color);
   border-radius: 16px;
   background: var(--bs-body-bg);
-  overflow: hidden;
   transition: box-shadow 0.2s ease;
 }
 
@@ -273,6 +275,7 @@
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
+  border-radius: 16px 16px 0 0;
 }
 
 // A real filmstrip, not a fade — same technique as

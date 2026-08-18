@@ -12,6 +12,12 @@
   padding: var(--space-md) 16px;
 }
 
+@media (max-width: 767.98px) {
+  .faq__inner {
+    gap: 24px;
+  }
+}
+
 .faq__intro {
   display: flex;
   flex-direction: column;

@@ -15902,7 +15902,6 @@ button {
   border: 1px solid var(--bs-border-color);
   border-radius: 16px;
   background: var(--bs-body-bg);
-  overflow: hidden;
   transition: box-shadow 0.2s ease;
 }
 
@@ -15920,6 +15919,7 @@ button {
   width: 100%;
   aspect-ratio: 4/3;
   overflow: hidden;
+  border-radius: 16px 16px 0 0;
 }
 
 .reviews-card__photos {
@@ -16427,6 +16427,11 @@ button {
   padding: var(--space-md) 16px;
 }
 
+@media (max-width: 767.98px) {
+  .faq__inner {
+    gap: 24px;
+  }
+}
 .faq__intro {
   display: flex;
   flex-direction: column;

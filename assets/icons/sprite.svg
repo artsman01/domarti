@@ -243,7 +243,7 @@
 <symbol id="play" viewBox="0 0 24 24">
 <path d="M7.50999 18.8701C7.65999 18.9601 7.82999 19.0001 7.99999 19.0001C8.16999 19.0001 8.35999 18.9501 8.50999 18.8601L18.51 12.8601C18.81 12.6801 19 12.3501 19 12.0001C19 11.6501 18.82 11.3201 18.51 11.1401L8.50999 5.14013C8.35804 5.04796 8.18407 4.99839 8.00636 4.99663C7.82865 4.99487 7.65374 5.04098 7.49999 5.13013C7.18999 5.31013 6.98999 5.64013 6.98999 6.00013V18.0001C6.98999 18.3601 7.17999 18.6901 7.49999 18.8701H7.50999Z" fill="currentColor"/>
 </symbol>
-<symbol id="plus" viewBox="0 0 15.5 15.5">
-<path d="M7.75 0.75V14.75M0.75 7.75H14.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<symbol id="plus" viewBox="0 0 24 24">
+<path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
 </svg>
