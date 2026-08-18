@@ -164,11 +164,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
   border-radius: 50%;
-  border: 1px solid var(--bs-border-color);
+  background: var(--color-secondary-bg);
   color: var(--color-hint);
   font-size: 0.75rem; // 12px
   font-weight: 600;
@@ -411,10 +411,19 @@
 .calculator__actions .btn {
   flex: 1 1 0%;
   height: 48px;
+  border-radius: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
+}
+
+// Sized to its own content (not stretched like "Оставить заявку") —
+// height still comes from the shared rule above, padding is what
+// actually determines its width now.
+.calculator__pdf {
+  flex: 0 0 auto;
+  padding: 16px 24px;
 }
 
 // The fixed-height/inner-scroll card layout holds from tablet up —

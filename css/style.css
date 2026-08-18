@@ -13928,11 +13928,11 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
   border-radius: 50%;
-  border: 1px solid var(--bs-border-color);
+  background: var(--color-secondary-bg);
   color: var(--color-hint);
   font-size: 0.75rem;
   font-weight: 600;
@@ -14163,10 +14163,16 @@ button {
 .calculator__actions .btn {
   flex: 1 1 0%;
   height: 48px;
+  border-radius: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
+}
+
+.calculator__pdf {
+  flex: 0 0 auto;
+  padding: 16px 24px;
 }
 
 @media (min-width: 768px) {
