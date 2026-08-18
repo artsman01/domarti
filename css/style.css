@@ -16661,6 +16661,42 @@ button {
   border: 0;
 }
 
+.contact__map-guard {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: rgba(31, 30, 30, 0);
+  transition: background-color 0.15s ease;
+}
+
+.contact__map-guard:hover {
+  background: rgba(31, 30, 30, 0.08);
+}
+
+.contact__map-guard.is-disabled {
+  pointer-events: none;
+}
+
+.contact__map-hint {
+  padding: 8px 16px;
+  border-radius: 50rem;
+  background: rgba(31, 30, 30, 0.72);
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.contact__map-guard:hover .contact__map-hint {
+  opacity: 1;
+}
+
 .contact__info {
   display: flex;
   flex-direction: column;

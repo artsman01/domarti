@@ -816,3 +816,26 @@
 
   document.querySelectorAll("[data-footer-col]").forEach(initFooterCol);
 })();
+
+(function () {
+  // ContactSection map: a click-to-activate guard over the Yandex
+  // iframe so scrolling the page past the map doesn't get hijacked
+  // into zooming it (a cross-origin iframe can't be told to pass wheel
+  // events through, so the fix has to sit above it instead). Clicking
+  // the guard disarms it for as long as the cursor stays over the map;
+  // leaving re-arms it for the next time the page scrolls past here.
+  function initMapGuard(map) {
+    var guard = map.querySelector("[data-map-guard]");
+    if (!guard) return;
+
+    guard.addEventListener("click", function () {
+      guard.classList.add("is-disabled");
+    });
+
+    map.addEventListener("mouseleave", function () {
+      guard.classList.remove("is-disabled");
+    });
+  }
+
+  document.querySelectorAll(".contact__map").forEach(initMapGuard);
+})();
