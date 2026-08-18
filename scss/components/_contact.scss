@@ -118,53 +118,14 @@
   }
 }
 
-.contact__map iframe {
-  display: block;
+// Rendered by the Yandex Maps JS API (see the JS init) — the API's own
+// scrollZoom behavior is what keeps the page scrolling normally past
+// this map instead of an overlay guard, since it can toggle just the
+// wheel-zoom without blocking clicks/dragging the way a blocking div
+// over a cross-origin iframe would have to.
+.contact__map-canvas {
   width: 100%;
   height: 100%;
-  border: 0;
-}
-
-// Sits on top of the iframe and eats the page's scroll/click by
-// default (a cross-origin iframe can't be told "let the page scroll
-// unless the user means to zoom the map", so the fix lives out here
-// instead) — a click disarms it so the map becomes fully interactive,
-// re-armed on mouseleave so scrolling back past the map later doesn't
-// hijack the page again. See the JS init.
-.contact__map-guard {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background: rgba(31, 30, 30, 0);
-  transition: background-color 0.15s ease;
-}
-
-.contact__map-guard:hover {
-  background: rgba(31, 30, 30, 0.08);
-}
-
-.contact__map-guard.is-disabled {
-  pointer-events: none;
-}
-
-.contact__map-hint {
-  padding: 8px 16px;
-  border-radius: 50rem;
-  background: rgba(31, 30, 30, 0.72);
-  color: #fff;
-  font-weight: 500;
-  font-size: 0.8125rem; // 13px
-  line-height: 1.25rem; // 20px
-  opacity: 0;
-  transition: opacity 0.15s ease;
-}
-
-.contact__map-guard:hover .contact__map-hint {
-  opacity: 1;
 }
 
 .contact__info {

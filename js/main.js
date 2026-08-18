@@ -818,24 +818,45 @@
 })();
 
 (function () {
-  // ContactSection map: a click-to-activate guard over the Yandex
-  // iframe so scrolling the page past the map doesn't get hijacked
-  // into zooming it (a cross-origin iframe can't be told to pass wheel
-  // events through, so the fix has to sit above it instead). Clicking
-  // the guard disarms it for as long as the cursor stays over the map;
-  // leaving re-arms it for the next time the page scrolls past here.
-  function initMapGuard(map) {
-    var guard = map.querySelector("[data-map-guard]");
-    if (!guard) return;
+  // ContactSection map: real Yandex Maps JS API instance (see the
+  // <script src="https://api-maps.yandex.ru/..."> tag) with a custom
+  // brand-gold pin instead of the stock preset markers the plain
+  // iframe embed was limited to. scrollZoom starts disabled so
+  // scrolling the page past the map doesn't hijack it into zooming —
+  // a click enables it for as long as the cursor stays over the map,
+  // mouseleave disables it again for the next time the page scrolls by.
+  function initContactMap(canvas) {
+    if (typeof ymaps === "undefined") return;
 
-    guard.addEventListener("click", function () {
-      guard.classList.add("is-disabled");
-    });
+    ymaps.ready(function () {
+      var center = [parseFloat(canvas.dataset.lat), parseFloat(canvas.dataset.lon)];
+      var zoom = parseInt(canvas.dataset.zoom, 10) || 15;
 
-    map.addEventListener("mouseleave", function () {
-      guard.classList.remove("is-disabled");
+      var map = new ymaps.Map(canvas, {
+        center: center,
+        zoom: zoom,
+        controls: ["zoomControl"],
+      });
+
+      map.behaviors.disable("scrollZoom");
+
+      canvas.addEventListener("click", function () {
+        map.behaviors.enable("scrollZoom");
+      });
+      canvas.addEventListener("mouseleave", function () {
+        map.behaviors.disable("scrollZoom");
+      });
+
+      var placemark = new ymaps.Placemark(center, {}, {
+        iconLayout: "default#image",
+        iconImageHref: "assets/icons/pin.svg",
+        iconImageSize: [64, 64],
+        iconImageOffset: [-32, -64],
+      });
+
+      map.geoObjects.add(placemark);
     });
   }
 
-  document.querySelectorAll(".contact__map").forEach(initMapGuard);
+  document.querySelectorAll("[data-map-canvas]").forEach(initContactMap);
 })();
