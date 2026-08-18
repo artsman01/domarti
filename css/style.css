@@ -14163,6 +14163,7 @@ button {
 .calculator__actions .btn {
   flex: 1 1 0%;
   height: 48px;
+  border-radius: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -14171,7 +14172,8 @@ button {
 
 .calculator__pdf {
   flex: 0 0 auto;
-  padding: 16px 24px;
+  gap: 8px;
+  padding: 0 24px 0 16px;
 }
 
 @media (min-width: 768px) {

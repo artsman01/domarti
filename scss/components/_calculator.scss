@@ -408,9 +408,13 @@
   margin-top: 16px;
 }
 
+// 10px radius confirmed straight from Figma's ButtonComponent
+// definition (node 333:477/333:488) — matches the pixel-accurate
+// screenshot, not the rounder look a quick visual guess suggested.
 .calculator__actions .btn {
   flex: 1 1 0%;
   height: 48px;
+  border-radius: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -418,11 +422,14 @@
 }
 
 // Sized to its own content (not stretched like "Оставить заявку") —
-// height still comes from the shared rule above, padding is what
-// actually determines its width now.
+// height still comes from the shared rule above; Figma's own padding
+// is horizontal-only and asymmetric (16px by the icon, 24px on the
+// outer edge), not the even 16/24 box padding a symmetric guess would
+// produce.
 .calculator__pdf {
   flex: 0 0 auto;
-  padding: 16px 24px;
+  gap: 8px;
+  padding: 0 24px 0 16px;
 }
 
 // The fixed-height/inner-scroll card layout holds from tablet up —
