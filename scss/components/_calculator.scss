@@ -160,6 +160,7 @@
   color: var(--color-hint);
   font-size: 0.8125rem; // 13px
   font-weight: 500;
+  white-space: nowrap;
   transition: color 0.15s ease;
 }
 
@@ -550,11 +551,16 @@
     max-height: 98vh;
   }
 
+  // flex:1 1 0% (the shared desktop rule) sets flex-basis:0%, which in
+  // column mode overrides each button's own explicit height:48px in
+  // favor of shrinking to min-content — flex:0 0 auto here lets that
+  // height actually apply, matching .calculator__pdf's own button.
   .calculator__actions {
     flex-direction: column;
   }
 
-  .calculator__actions .calculator__pdf {
+  .calculator__actions .btn {
+    flex: 0 0 auto;
     width: 100%;
   }
 }

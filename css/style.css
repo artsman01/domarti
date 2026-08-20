@@ -13914,6 +13914,7 @@ button {
   color: var(--color-hint);
   font-size: 0.8125rem;
   font-weight: 500;
+  white-space: nowrap;
   transition: color 0.15s ease;
 }
 
@@ -14254,7 +14255,8 @@ button {
   .calculator__actions {
     flex-direction: column;
   }
-  .calculator__actions .calculator__pdf {
+  .calculator__actions .btn {
+    flex: 0 0 auto;
     width: 100%;
   }
 }
