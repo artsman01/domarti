@@ -14249,7 +14249,13 @@ button {
     bottom: 16px;
   }
   .calculator__panel {
-    max-height: 140vh;
+    max-height: 98vh;
+  }
+  .calculator__actions {
+    flex-direction: column;
+  }
+  .calculator__actions .calculator__pdf {
+    width: 100%;
   }
 }
 @media (max-width: 575.98px) {
