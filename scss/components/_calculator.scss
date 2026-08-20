@@ -66,7 +66,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 16px;
   flex: 0 0 672px;
   // Horizontal padding is bigger than vertical on purpose: the scheme is
@@ -77,9 +76,25 @@
   padding: 24px 56px;
 }
 
+// Grows to absorb whatever vertical space .calculator__reset's own
+// margin-top:auto doesn't claim, and centers the (possibly
+// height-capped) scheme within it — needed once the illustration gets
+// narrower than it is tall (992-1279.98px, and the stacked tiers
+// below 992px) and the square scheme no longer fills the column on
+// its own.
+.calculator__scheme-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
 .calculator__scheme {
   position: relative;
   width: 100%;
+  max-height: 100%;
   aspect-ratio: 1 / 1;
 }
 
@@ -125,14 +140,11 @@
   transform: translate(-50%, -50%) rotate(-90deg);
 }
 
-// margin-top:auto pins this to the bottom of .calculator__illustration
-// whenever that container has extra height to give (the fixed 672px
-// card at 992px+) — .calculator__illustration's own padding-bottom is
-// what actually sets the exact gap on every tier, since an auto-height
-// container (768-991.98px and mobile) has no extra space for the
-// auto-margin to absorb in the first place.
+// .calculator__scheme-wrap's own flex-grow already claims all the
+// illustration's leftover space (to center the scheme within it), so
+// this just sits right after it — the exact 24px/16px gap to the
+// bottom comes from .calculator__illustration's own padding-bottom.
 .calculator__reset {
-  margin-top: auto;
   border: none;
   background: transparent;
   color: var(--color-hint);

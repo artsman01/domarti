@@ -13845,15 +13845,24 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 16px;
   flex: 0 0 672px;
   padding: 24px 56px;
 }
 
+.calculator__scheme-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
 .calculator__scheme {
   position: relative;
   width: 100%;
+  max-height: 100%;
   aspect-ratio: 1/1;
 }
 
@@ -13892,7 +13901,6 @@ button {
 }
 
 .calculator__reset {
-  margin-top: auto;
   border: none;
   background: transparent;
   color: var(--color-hint);
