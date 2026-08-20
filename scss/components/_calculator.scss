@@ -81,8 +81,15 @@
   height: 100%;
 }
 
+// Badges inset from the scheme's own edges (not floating outside it) —
+// dim--a hangs off the top edge, dim--b off the left, each centered
+// along the other axis.
 .calculator__dim {
   position: absolute;
+  padding: 3px 8px;
+  border: 1px solid var(--color-hint);
+  border-radius: 5px;
+  background: var(--bs-body-bg);
   color: var(--color-hint);
   font-size: 0.75rem; // 12px
   font-weight: 500;
@@ -90,18 +97,35 @@
 }
 
 .calculator__dim--a {
-  top: -20px;
+  top: 48px;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .calculator__dim--b {
   top: 50%;
-  left: -12px;
+  left: 48px;
   transform: translateY(-50%) rotate(-90deg);
 }
 
+@media (max-width: 767.98px) {
+  .calculator__dim--a {
+    top: 24px;
+  }
+
+  .calculator__dim--b {
+    left: 24px;
+  }
+}
+
+// margin-top:auto pins this to the bottom of .calculator__illustration
+// whenever that container has extra height to give (the fixed 672px
+// card at 992px+) — .calculator__illustration's own padding-bottom is
+// what actually sets the exact gap on every tier, since an auto-height
+// container (768-991.98px and mobile) has no extra space for the
+// auto-margin to absorb in the first place.
 .calculator__reset {
+  margin-top: auto;
   border: none;
   background: transparent;
   color: var(--color-hint);
@@ -385,7 +409,7 @@
 
 .calculator__disclaimer {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   margin: 16px 0 0;
   color: var(--color-hint);
@@ -395,7 +419,6 @@
 
 .calculator__disclaimer .icon {
   flex-shrink: 0;
-  margin-top: 2px;
   color: var(--bs-primary);
 }
 
@@ -431,6 +454,10 @@
   flex: 0 0 auto;
   gap: 8px;
   padding: 0 24px 0 16px;
+}
+
+.calculator__pdf .icon {
+  color: var(--bs-primary);
 }
 
 // The fixed-height/inner-scroll card layout only makes sense once the
@@ -482,6 +509,14 @@
 
   .calculator__scroll {
     overflow-y: visible;
+  }
+}
+
+// True mobile (not tablet) gets a tighter 16px gap under
+// .calculator__reset instead of the 24px every other tier uses.
+@media (max-width: 767.98px) {
+  .calculator__illustration {
+    padding-bottom: 16px;
   }
 }
 
