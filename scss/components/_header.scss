@@ -2,6 +2,15 @@
 // per-line background colors, logo sizing, phone typography, and the two
 // gaps (12px, 28px) that fall outside the default spacer scale.
 
+// Sticky at every breakpoint — z-index clears every other component's
+// own stacking context (2 is the highest anything else on the site uses).
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bs-body-bg);
+}
+
 .header__logo img {
   height: 36px;
   width: auto;
