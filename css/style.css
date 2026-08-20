@@ -13871,25 +13871,17 @@ button {
 }
 
 .calculator__dim--a {
-  top: 48px;
+  top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 }
 
 .calculator__dim--b {
   top: 50%;
-  left: 48px;
-  transform: translateY(-50%) rotate(-90deg);
+  left: 0;
+  transform: translate(-50%, -50%) rotate(-90deg);
 }
 
-@media (max-width: 767.98px) {
-  .calculator__dim--a {
-    top: 24px;
-  }
-  .calculator__dim--b {
-    left: 24px;
-  }
-}
 .calculator__reset {
   margin-top: auto;
   border: none;

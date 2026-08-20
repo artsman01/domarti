@@ -96,26 +96,18 @@
   white-space: nowrap;
 }
 
+// Straddling the scheme's own border (centered on the line, not inset
+// from it) — half the badge sits outside the container, half inside.
 .calculator__dim--a {
-  top: 48px;
+  top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 }
 
 .calculator__dim--b {
   top: 50%;
-  left: 48px;
-  transform: translateY(-50%) rotate(-90deg);
-}
-
-@media (max-width: 767.98px) {
-  .calculator__dim--a {
-    top: 24px;
-  }
-
-  .calculator__dim--b {
-    left: 24px;
-  }
+  left: 0;
+  transform: translate(-50%, -50%) rotate(-90deg);
 }
 
 // margin-top:auto pins this to the bottom of .calculator__illustration
