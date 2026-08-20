@@ -65,31 +65,22 @@
 .calculator__illustration {
   position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
   flex: 0 0 672px;
-  // Horizontal padding is bigger than vertical on purpose: the scheme is
-  // a locked 1:1 square sized off the available width, so equal padding
-  // on all sides would make it exactly fill the fixed-height column with
-  // nothing left over — the reset link would have nowhere to sit and
-  // would overflow past the card's bottom edge.
   padding: 24px 56px;
 }
 
-// Grows to absorb whatever vertical space .calculator__reset's own
-// margin-top:auto doesn't claim, and centers the (possibly
-// height-capped) scheme within it — needed once the illustration gets
-// narrower than it is tall (992-1279.98px, and the stacked tiers
-// below 992px) and the square scheme no longer fills the column on
-// its own.
+// The only element .calculator__illustration actually lays out now
+// (.calculator__reset is absolutely positioned, out of flow) — fills
+// the full column and centers the (possibly height-capped) scheme
+// within it, needed once the illustration gets narrower than it is
+// tall (992-1279.98px, and the stacked tiers below 992px) and the
+// square scheme no longer fills the column on its own.
 .calculator__scheme-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  flex: 1 1 auto;
-  min-height: 0;
+  height: 100%;
 }
 
 .calculator__scheme {
@@ -154,11 +145,16 @@
   }
 }
 
-// .calculator__scheme-wrap's own flex-grow already claims all the
-// illustration's leftover space (to center the scheme within it), so
-// this just sits right after it — the exact 24px/16px gap to the
-// bottom comes from .calculator__illustration's own padding-bottom.
+// Absolutely positioned (out of flow) so it overlays the illustration
+// instead of taking up height — .calculator__scheme-wrap is the only
+// element .calculator__illustration actually lays out, so it centers
+// in the *full* column height instead of "whatever's left after the
+// reset link."
 .calculator__reset {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
   border: none;
   background: transparent;
   color: var(--color-hint);
@@ -517,10 +513,10 @@
 }
 
 // Tablet (768-991.98) and mobile both stack the illustration on top of
-// the panel and let the panel flow with the page instead of scrolling
-// internally — a fixed inner scroll region only makes sense while the
-// two columns must share one height, which a stacked layout no longer
-// needs.
+// the panel — the panel keeps its own capped-height inner scroll
+// (rather than flowing with the page) so the calculator doesn't turn
+// into one long sheet once the illustration is no longer beside it
+// stretching to match its height.
 @media (max-width: 991.98px) {
   .calculator__card {
     flex-direction: column;
@@ -529,27 +525,21 @@
   .calculator__illustration {
     flex: 0 0 auto;
     width: 100%;
-    // No fixed-height column to protect here — auto height, so the
-    // asymmetric desktop padding (which exists only to leave room for
-    // the reset link inside a fixed 672px box) isn't needed.
     padding: 24px;
   }
 
   .calculator__panel {
+    max-height: 70vh;
     border-left: none;
     border-top: 1px solid var(--bs-border-color);
-  }
-
-  .calculator__scroll {
-    overflow-y: visible;
   }
 }
 
 // True mobile (not tablet) gets a tighter 16px gap under
 // .calculator__reset instead of the 24px every other tier uses.
 @media (max-width: 767.98px) {
-  .calculator__illustration {
-    padding-bottom: 16px;
+  .calculator__reset {
+    bottom: 16px;
   }
 }
 
