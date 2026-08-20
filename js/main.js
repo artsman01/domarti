@@ -449,7 +449,7 @@
           });
         });
 
-        if (barInput) barInput.checked = true;
+        if (barInput) barInput.checked = false;
         updateScheme();
         updateCustomPanel();
 
@@ -466,6 +466,7 @@
     }
 
     updateCustomPanel();
+    updateScheme();
   }
 
   document.querySelectorAll(".calculator").forEach(initCalculator);

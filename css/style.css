@@ -13795,6 +13795,11 @@ button {
   padding: var(--space-md) 0;
 }
 
+.calculator__inner {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
 .calculator__intro {
   display: flex;
   flex-direction: column;
@@ -13856,6 +13861,10 @@ button {
   display: block;
   width: 100%;
   height: 100%;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
 }
 
 .calculator__dim {

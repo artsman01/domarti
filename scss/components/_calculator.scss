@@ -13,6 +13,14 @@
   padding: var(--space-md) 0;
 }
 
+// $container-padding-x is 0 project-wide (see _variables.scss), so
+// .container alone gives this no side padding — every other section's
+// own __inner wrapper adds the same 16px explicitly.
+.calculator__inner {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
 .calculator__intro {
   display: flex;
   flex-direction: column;
@@ -75,10 +83,17 @@
   aspect-ratio: 1 / 1;
 }
 
+// pointer-events:none so hover/right-click hit-tests fall through to
+// .calculator__scheme (an inert div) instead of the <img> itself —
+// same "hide from browser" technique as .portfolio-card__photos img.
 .calculator__scheme-img {
   display: block;
   width: 100%;
   height: 100%;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
 }
 
 // Badges inset from the scheme's own edges (not floating outside it) —
