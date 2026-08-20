@@ -104,9 +104,6 @@
 .calculator__reset {
   border: none;
   background: transparent;
-  display: flex;
-  align-items: center;
-  gap: 6px;
   color: var(--color-hint);
   font-size: 0.8125rem; // 13px
   font-weight: 500;
@@ -399,7 +396,7 @@
 .calculator__disclaimer .icon {
   flex-shrink: 0;
   margin-top: 2px;
-  color: var(--color-hint);
+  color: var(--bs-primary);
 }
 
 .calculator__actions {
@@ -421,30 +418,32 @@
   gap: 6px;
 }
 
-// Sized to its own content (not stretched like "Оставить заявку") —
-// height still comes from the shared rule above; Figma's own padding
-// is horizontal-only and asymmetric (16px by the icon, 24px on the
-// outer edge), not the even 16/24 box padding a symmetric guess would
-// produce.
-.calculator__pdf {
+// .calculator__actions .btn (below) — sized to its own content (not
+// stretched like "Оставить заявку") — height still comes from that
+// shared rule; Figma's own padding is horizontal-only and asymmetric
+// (16px by the icon, 24px on the outer edge), not the even 16/24 box
+// padding a symmetric guess would produce.
+//
+// Selector needs .calculator__actions prefixed (matching that rule's
+// own specificity) or its flex:1 1 0% wins the cascade regardless of
+// source order — a one-class .calculator__pdf alone can't outrank it.
+.calculator__actions .calculator__pdf {
   flex: 0 0 auto;
   gap: 8px;
   padding: 0 24px 0 16px;
 }
 
-// The fixed-height/inner-scroll card layout holds from tablet up —
-// only true mobile (below) flows normally instead. Below xl specifically
-// the illustration column stops being a fixed 672px and instead shares
-// space with the panel, so both just narrow together as the viewport
-// does instead of the illustration hogging a fixed width until the
-// panel has nowhere left to shrink.
-@media (min-width: 768px) {
+// The fixed-height/inner-scroll card layout only makes sense once the
+// illustration/panel actually sit side by side and need to share one
+// height (992px+) — below that, both the tablet and mobile tiers stack
+// them instead (see the shared block below).
+@media (min-width: 992px) {
   .calculator__card {
     height: 672px;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1279.98px) {
+@media (min-width: 992px) and (max-width: 1279.98px) {
   .calculator__illustration {
     flex: 1 1 0%;
     min-width: 0;
@@ -457,11 +456,12 @@
   }
 }
 
-// Only true mobile stacks the illustration/panel vertically and lets the
-// panel flow with the page instead of scrolling internally — a fixed
-// inner scroll region only makes sense while the two columns must share
-// one height, which a stacked layout no longer needs.
-@media (max-width: 767.98px) {
+// Tablet (768-991.98) and mobile both stack the illustration on top of
+// the panel and let the panel flow with the page instead of scrolling
+// internally — a fixed inner scroll region only makes sense while the
+// two columns must share one height, which a stacked layout no longer
+// needs.
+@media (max-width: 991.98px) {
   .calculator__card {
     flex-direction: column;
   }
