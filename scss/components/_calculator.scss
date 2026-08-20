@@ -126,18 +126,32 @@
   white-space: nowrap;
 }
 
-// Straddling the scheme's own border (centered on the line, not inset
-// from it) — half the badge sits outside the container, half inside.
+// Both centered exactly 48px from their respective edge — translate on
+// *both* axes (not just the one that looks needed) matters for --b:
+// with a non-square badge, rotating around the default center only
+// keeps the center itself fixed, so centering has to happen before
+// rotation is added, via the same two-axis translate as --a, not a
+// single-axis one that math out differently once rotated.
 .calculator__dim--a {
-  top: 0;
+  top: 48px;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 .calculator__dim--b {
   top: 50%;
-  left: 0;
+  left: 48px;
   transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+@media (max-width: 767.98px) {
+  .calculator__dim--a {
+    top: 24px;
+  }
+
+  .calculator__dim--b {
+    left: 24px;
+  }
 }
 
 // .calculator__scheme-wrap's own flex-grow already claims all the
