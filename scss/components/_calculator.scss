@@ -536,10 +536,16 @@
 }
 
 // True mobile (not tablet) gets a tighter 16px gap under
-// .calculator__reset instead of the 24px every other tier uses.
+// .calculator__reset instead of the 24px every other tier uses, and a
+// much taller scroll window — 70vh read as a cramped little box once
+// the illustration above it was already eating a chunk of the screen.
 @media (max-width: 767.98px) {
   .calculator__reset {
     bottom: 16px;
+  }
+
+  .calculator__panel {
+    max-height: 140vh;
   }
 }
 

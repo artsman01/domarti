@@ -14248,6 +14248,9 @@ button {
   .calculator__reset {
     bottom: 16px;
   }
+  .calculator__panel {
+    max-height: 140vh;
+  }
 }
 @media (max-width: 575.98px) {
   .calculator__title {
