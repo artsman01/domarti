@@ -277,6 +277,35 @@
       margin-bottom: 16px;
     }
 
+    /* Tabs */
+
+    .tabs {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #343232;
+    }
+
+    .tabs__item {
+      margin-bottom: -1px;
+      padding: 0 4px 12px;
+      background: none;
+      border: 0;
+      border-bottom: 2px solid transparent;
+      color: rgba(255, 255, 255, 0.4);
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.8125rem;
+      line-height: 1.25rem;
+      cursor: pointer;
+    }
+
+    .tabs__item.is-active {
+      color: #fff;
+      border-bottom-color: #be9460;
+    }
+
     /* Pages list */
 
     .pages__label {
@@ -462,6 +491,10 @@
     </aside>
 
     <main>
+      <div class="tabs">
+        <button class="tabs__item is-active" type="button">Основное</button>
+      </div>
+
       <p class="pages__label">Страницы</p>
       <ul class="pages__list">
         <li><a href="home.html" target="_blank" rel="noopener"><span>Главная</span><span class="pages__list-file">home.html</span></a></li>
