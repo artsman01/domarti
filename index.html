@@ -36,6 +36,7 @@
     .sidebar {
       background: #343232;
       padding: 16px;
+      border-radius: 4px;
     }
 
     .sidebar__logo-link {
@@ -133,7 +134,8 @@
       z-index: 10;
     }
 
-    [data-tooltip]:hover::after {
+    [data-tooltip]:hover::after,
+    [data-tooltip].is-tooltip-visible::after {
       opacity: 1;
       transform: translate(-50%, 0);
     }
@@ -296,6 +298,8 @@
       padding: 0;
       list-style: none;
       border: 1px solid #343232;
+      border-radius: 4px;
+      overflow: hidden;
     }
 
     .pages__list li {
@@ -337,6 +341,7 @@
       padding: 12px 16px;
       background: #1f1e1e;
       border: 1px solid #343232;
+      border-radius: 4px;
     }
 
     .note__icon {
@@ -476,5 +481,37 @@
 
   </div>
 
+  <script>
+    (function () {
+      var hideTimer = null;
+
+      document.querySelectorAll('[data-tooltip]').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          if (el.tagName === 'A') e.preventDefault();
+          e.stopPropagation();
+
+          var wasVisible = el.classList.contains('is-tooltip-visible');
+          document.querySelectorAll('.is-tooltip-visible').forEach(function (open) {
+            open.classList.remove('is-tooltip-visible');
+          });
+          clearTimeout(hideTimer);
+
+          if (!wasVisible) {
+            el.classList.add('is-tooltip-visible');
+            hideTimer = setTimeout(function () {
+              el.classList.remove('is-tooltip-visible');
+            }, 1800);
+          }
+        });
+      });
+
+      document.addEventListener('click', function () {
+        document.querySelectorAll('.is-tooltip-visible').forEach(function (open) {
+          open.classList.remove('is-tooltip-visible');
+        });
+        clearTimeout(hideTimer);
+      });
+    })();
+  </script>
 </body>
 </html>
