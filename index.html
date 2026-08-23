@@ -320,6 +320,10 @@
     }
 
     .pages__list a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
       color: #fff;
       background-color: #343232;
       text-decoration: none;
@@ -328,6 +332,18 @@
     .pages__list a:hover {
       color: #fff;
       background-color: #be9460;
+    }
+
+    .pages__list-file {
+      flex: 0 0 auto;
+      color: rgba(255, 255, 255, 0.4);
+      font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+      font-weight: 400;
+      font-size: 0.6875rem;
+    }
+
+    .pages__list a:hover .pages__list-file {
+      color: rgba(255, 255, 255, 0.7);
     }
 
     .pages__list span {
@@ -452,7 +468,7 @@
     <main>
       <p class="pages__label">Страницы</p>
       <ul class="pages__list">
-        <li><a href="home.html" target="_blank" rel="noopener">Главная</a></li>
+        <li><a href="home.html" target="_blank" rel="noopener"><span>Главная</span><span class="pages__list-file">home.html</span></a></li>
         <li><span>Каталог</span></li>
         <li><span>Карточка товара</span></li>
         <li><span>Корзина</span></li>
@@ -467,7 +483,7 @@
         <li><span>Карточка проекта</span></li>
         <li><span>Калькулятор</span></li>
         <li><span>Контакты</span></li>
-        <li><a href="Page404.html" target="_blank" rel="noopener">404</a></li>
+        <li><a href="Page404.html" target="_blank" rel="noopener"><span>404</span><span class="pages__list-file">Page404.html</span></a></li>
         <li><span>Благодарка</span></li>
         <li><span>Попап звонка</span></li>
       </ul>
