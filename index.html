@@ -311,7 +311,7 @@
     }
 
     .pages__list a,
-    .pages__list span {
+    .pages__list > li > span {
       display: block;
       padding: 4px 16px;
       font-weight: 500;
@@ -336,17 +336,13 @@
 
     .pages__list-file {
       flex: 0 0 auto;
-      color: rgba(255, 255, 255, 0.4);
+      color: #fff;
       font-family: "SFMono-Regular", Menlo, Consolas, monospace;
       font-weight: 400;
-      font-size: 0.6875rem;
+      font-size: 0.625rem;
     }
 
-    .pages__list a:hover .pages__list-file {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .pages__list span {
+    .pages__list > li > span {
       color: rgba(255, 255, 255, 0.32);
     }
 
@@ -483,7 +479,7 @@
         <li><span>Карточка проекта</span></li>
         <li><span>Калькулятор</span></li>
         <li><span>Контакты</span></li>
-        <li><a href="Page404.html" target="_blank" rel="noopener"><span>404</span><span class="pages__list-file">Page404.html</span></a></li>
+        <li><a href="page404.html" target="_blank" rel="noopener"><span>404</span><span class="pages__list-file">page404.html</span></a></li>
         <li><span>Благодарка</span></li>
         <li><span>Попап звонка</span></li>
       </ul>
