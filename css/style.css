@@ -16659,6 +16659,10 @@ button {
   background: var(--color-secondary-bg);
 }
 
+.contact--page {
+  background: var(--bs-body-bg);
+}
+
 .contact__inner {
   display: flex;
   flex-direction: column;

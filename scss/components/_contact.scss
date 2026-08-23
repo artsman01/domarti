@@ -12,6 +12,14 @@
   background: var(--color-secondary-bg);
 }
 
+// Contacts page reuses the exact same map+info card, minus the
+// title/subtitle intro (the page's own H1 already covers that) —
+// and sits directly on the page's white background instead of the
+// homepage section's gray band.
+.contact--page {
+  background: var(--bs-body-bg);
+}
+
 .contact__inner {
   display: flex;
   flex-direction: column;
