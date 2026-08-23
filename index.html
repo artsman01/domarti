@@ -26,12 +26,18 @@
     .layout {
       display: grid;
       grid-template-columns: 340px 1fr;
-      gap: 64px;
+      gap: 16px;
       width: 100%;
       align-items: start;
     }
 
     /* Sidebar */
+
+    .sidebar {
+      background: #343232;
+      padding: 16px;
+      border-radius: 12px;
+    }
 
     .sidebar__logo {
       display: block;
@@ -61,7 +67,7 @@
       justify-content: center;
       width: 36px;
       height: 36px;
-      border: 1px solid #343232;
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 8px;
       color: rgba(255, 255, 255, 0.72);
       transition: color 0.15s ease, border-color 0.15s ease;
@@ -117,7 +123,7 @@
       justify-content: space-between;
       gap: 12px;
       padding: 9px 0;
-      border-bottom: 1px solid #343232;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
       font-weight: 500;
       font-size: 0.8125rem;
       line-height: 1.25rem;
@@ -154,7 +160,7 @@
       width: 40px;
       height: 3px;
       border-radius: 2px;
-      background: #343232;
+      background: rgba(255, 255, 255, 0.12);
       overflow: hidden;
     }
 
@@ -173,7 +179,7 @@
 
     .scope__item {
       padding: 4px 10px;
-      border: 1px solid #343232;
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 100px;
       color: rgba(255, 255, 255, 0.88);
       font-weight: 400;
