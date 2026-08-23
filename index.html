@@ -17,94 +17,314 @@
     body {
       margin: 0;
       min-height: 100vh;
-      padding: 96px 64px;
+      padding: 48px 64px;
       background: #2a2828;
       font-family: "Montserrat", sans-serif;
       color: #fff;
     }
 
-    .page {
-      max-width: 480px;
+    .layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 64px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
     }
 
-    .page__logo {
+    /* Sidebar */
+
+    .sidebar__logo {
       display: block;
-      height: 32px;
+      height: 28px;
       width: auto;
       margin-bottom: 16px;
     }
 
-    .page__eyebrow {
-      margin: 0 0 40px;
+    .sidebar__desc {
+      margin: 0 0 20px;
       color: rgba(255, 255, 255, 0.72);
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+    }
+
+    .sidebar__links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar__link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid #343232;
+      border-radius: 8px;
+      color: rgba(255, 255, 255, 0.72);
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .sidebar__link:hover {
+      color: #be9460;
+      border-color: #be9460;
+    }
+
+    .sidebar__link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .sidebar__photo {
+      display: block;
+      aspect-ratio: 4 / 3;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .sidebar__photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .sidebar__block + .sidebar__block {
+      margin-top: 20px;
+    }
+
+    .sidebar__label {
+      margin: 0 0 10px;
+      color: rgba(255, 255, 255, 0.4);
       font-weight: 600;
-      font-size: 0.8125rem;
-      line-height: 1.25rem;
+      font-size: 0.6875rem;
+      line-height: 1rem;
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
-    .page__list {
+    .sidebar__scope {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.88);
+      font-weight: 500;
+      font-size: 0.875rem;
+      line-height: 1.5rem;
+    }
+
+    .roadmap {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .roadmap__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid #343232;
+      font-weight: 500;
+      font-size: 0.875rem;
+      line-height: 1.375rem;
+    }
+
+    .roadmap__item:last-child {
+      border-bottom: 0;
+    }
+
+    .roadmap__name {
+      color: #fff;
+    }
+
+    .roadmap__status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 0 0 auto;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.75rem;
+    }
+
+    .roadmap__item--done .roadmap__status {
+      color: #be9460;
+    }
+
+    .roadmap__status svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .roadmap__bar {
+      display: block;
+      width: 40px;
+      height: 3px;
+      border-radius: 2px;
+      background: #343232;
+      overflow: hidden;
+    }
+
+    .roadmap__bar span {
+      display: block;
+      height: 100%;
+      border-radius: 2px;
+      background: #be9460;
+    }
+
+    /* Pages list */
+
+    .pages__label {
+      margin: 0 0 10px;
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: 600;
+      font-size: 0.6875rem;
+      line-height: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .pages__list {
       margin: 0;
       padding: 0;
       list-style: none;
       border-top: 1px solid #343232;
     }
 
-    .page__list li {
+    .pages__list li {
       border-bottom: 1px solid #343232;
     }
 
-    .page__list a {
+    .pages__list a,
+    .pages__list span {
       display: block;
-      padding: 18px 0;
-      color: #fff;
+      padding: 12px 0;
       font-weight: 500;
-      font-size: 1rem;
-      line-height: 1.5rem;
+      font-size: 0.9375rem;
+      line-height: 1.375rem;
+    }
+
+    .pages__list a {
+      color: #fff;
       text-decoration: none;
       transition: color 0.15s ease;
     }
 
-    .page__list a:hover {
+    .pages__list a:hover {
       color: #be9460;
     }
 
-    .page__list span {
-      display: block;
-      padding: 18px 0;
+    .pages__list span {
       color: rgba(255, 255, 255, 0.32);
-      font-weight: 500;
-      font-size: 1rem;
-      line-height: 1.5rem;
+    }
+
+    @media (max-width: 767.98px) {
+      body {
+        padding: 32px 24px;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .sidebar__photo {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="page">
-    <img src="assets/footer/logo.svg" alt="Domarti" class="page__logo">
-    <p class="page__eyebrow">HTML/CSS/JS</p>
-    <ul class="page__list">
-      <li><a href="home.html" target="_blank" rel="noopener">Главная</a></li>
-      <li><span>Каталог</span></li>
-      <li><span>Карточка товара</span></li>
-      <li><span>Корзина</span></li>
-      <li><span>Акции</span></li>
-      <li><span>Акция</span></li>
-      <li><span>Отзывы</span></li>
-      <li><span>О нас</span></li>
-      <li><span>Материалы</span></li>
-      <li><span>Карточка материала</span></li>
-      <li><span>Производство</span></li>
-      <li><span>Портфолио</span></li>
-      <li><span>Карточка проекта</span></li>
-      <li><span>Калькулятор</span></li>
-      <li><span>Контакты</span></li>
-      <li><a href="Page404.html" target="_blank" rel="noopener">404</a></li>
-      <li><span>Благодарка</span></li>
-      <li><span>Попап звонка</span></li>
-    </ul>
+  <div class="layout">
+
+    <aside class="sidebar">
+      <img src="assets/footer/logo.svg" alt="Domarti" class="sidebar__logo">
+      <p class="sidebar__desc">Кухни и мебель под заказ — сайт производителя из Самары.</p>
+
+      <div class="sidebar__links">
+        <a class="sidebar__link" href="#" aria-label="Figma">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 24c2.208 0 4-1.792 4-4v-4H8c-2.208 0-4 1.792-4 4s1.792 4 4 4zM4 12c0-2.208 1.792-4 4-4h4v8H8c-2.208 0-4-1.792-4-4zM4 4c0-2.208 1.792-4 4-4h4v8H8C5.792 8 4 6.208 4 4zM12 0h4c2.208 0 4 1.792 4 4s-1.792 4-4 4h-4V0zM20 12c0 2.208-1.792 4-4 4s-4-1.792-4-4 1.792-4 4-4 4 1.792 4 4z"/></svg>
+        </a>
+        <a class="sidebar__link" href="#" aria-label="Live">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </a>
+        <a class="sidebar__link" href="#" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+      </div>
+
+      <div class="sidebar__photo">
+        <img src="assets/hero/hero.jpg" alt="">
+      </div>
+
+      <div class="sidebar__block">
+        <p class="sidebar__label">Что делаем</p>
+        <p class="sidebar__scope">Нейминг, логотип, дизайн, верстка HTML/CSS/JS</p>
+      </div>
+
+      <div class="sidebar__block">
+        <p class="sidebar__label">Роадмап</p>
+        <ul class="roadmap">
+          <li class="roadmap__item roadmap__item--done">
+            <span class="roadmap__name">Нейминг</span>
+            <span class="roadmap__status">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Завершён
+            </span>
+          </li>
+          <li class="roadmap__item roadmap__item--done">
+            <span class="roadmap__name">Логотип</span>
+            <span class="roadmap__status">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Завершён
+            </span>
+          </li>
+          <li class="roadmap__item">
+            <span class="roadmap__name">Дизайн</span>
+            <span class="roadmap__status">
+              75%
+              <span class="roadmap__bar"><span style="width:75%"></span></span>
+            </span>
+          </li>
+          <li class="roadmap__item">
+            <span class="roadmap__name">Верстка</span>
+            <span class="roadmap__status">
+              67%
+              <span class="roadmap__bar"><span style="width:67%"></span></span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <main>
+      <p class="pages__label">Страницы</p>
+      <ul class="pages__list">
+        <li><a href="home.html" target="_blank" rel="noopener">Главная</a></li>
+        <li><span>Каталог</span></li>
+        <li><span>Карточка товара</span></li>
+        <li><span>Корзина</span></li>
+        <li><span>Акции</span></li>
+        <li><span>Акция</span></li>
+        <li><span>Отзывы</span></li>
+        <li><span>О нас</span></li>
+        <li><span>Материалы</span></li>
+        <li><span>Карточка материала</span></li>
+        <li><span>Производство</span></li>
+        <li><span>Портфолио</span></li>
+        <li><span>Карточка проекта</span></li>
+        <li><span>Калькулятор</span></li>
+        <li><span>Контакты</span></li>
+        <li><a href="Page404.html" target="_blank" rel="noopener">404</a></li>
+        <li><span>Благодарка</span></li>
+        <li><span>Попап звонка</span></li>
+      </ul>
+    </main>
+
   </div>
 
 </body>
