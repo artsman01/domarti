@@ -105,14 +105,6 @@
       text-transform: uppercase;
     }
 
-    .sidebar__scope {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.88);
-      font-weight: 500;
-      font-size: 0.8125rem;
-      line-height: 1.25rem;
-    }
-
     .roadmap {
       margin: 0;
       padding: 0;
@@ -171,6 +163,22 @@
       height: 100%;
       border-radius: 2px;
       background: #be9460;
+    }
+
+    .scope {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .scope__item {
+      padding: 4px 10px;
+      border: 1px solid #343232;
+      border-radius: 100px;
+      color: rgba(255, 255, 255, 0.88);
+      font-weight: 500;
+      font-size: 0.8125rem;
+      line-height: 1.25rem;
     }
 
     /* Pages list */
@@ -253,7 +261,12 @@
 
       <div class="sidebar__block">
         <p class="sidebar__label">Что делаем</p>
-        <p class="sidebar__scope">Нейминг, логотип, дизайн, верстка HTML/CSS/JS</p>
+        <div class="scope">
+          <span class="scope__item">Нейминг</span>
+          <span class="scope__item">Логотип</span>
+          <span class="scope__item">Дизайн</span>
+          <span class="scope__item">Верстка HTML/CSS/JS</span>
+        </div>
       </div>
 
       <div class="sidebar__block">
