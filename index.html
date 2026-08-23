@@ -65,6 +65,7 @@
     }
 
     .sidebar__link {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -79,6 +80,65 @@
     .sidebar__link:hover {
       color: #be9460;
       border-color: #be9460;
+    }
+
+    .sidebar__link--disabled {
+      cursor: not-allowed;
+      color: rgba(255, 255, 255, 0.32);
+    }
+
+    .sidebar__link--disabled:hover {
+      color: rgba(255, 255, 255, 0.32);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .sidebar__link-lock {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 14px;
+      height: 14px;
+      background: #2a2828;
+      border: 1px solid #343232;
+      border-radius: 50%;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .sidebar__link-lock svg {
+      width: 8px;
+      height: 8px;
+    }
+
+    [data-tooltip] {
+      position: relative;
+    }
+
+    [data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      padding: 4px 8px;
+      background: #1f1e1e;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: 500;
+      font-size: 0.6875rem;
+      line-height: 1rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 4px);
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      z-index: 10;
+    }
+
+    [data-tooltip]:hover::after {
+      opacity: 1;
+      transform: translate(-50%, 0);
     }
 
     .sidebar__link svg {
@@ -226,6 +286,10 @@
       text-transform: uppercase;
     }
 
+    .pages__list + .pages__label {
+      margin-top: 24px;
+    }
+
     .pages__list {
       margin: 0;
       padding: 0;
@@ -266,12 +330,27 @@
     }
 
     .note {
-      margin-top: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 24px;
       padding: 12px 16px;
       background: #2a2828;
       border: 1px solid #343232;
+    }
+
+    .note__icon {
+      flex: 0 0 auto;
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
       color: rgba(255, 255, 255, 0.6);
-      font-weight: 400;
+    }
+
+    .note__text {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-weight: 600;
       font-size: 0.8125rem;
       line-height: 1.25rem;
     }
@@ -295,14 +374,20 @@
       <p class="sidebar__desc">Кухни и мебель под заказ — сайт производителя из Самары.</p>
 
       <div class="sidebar__links">
-        <a class="sidebar__link" href="#" aria-label="Figma">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 24c2.208 0 4-1.792 4-4v-4H8c-2.208 0-4 1.792-4 4s1.792 4 4 4zM4 12c0-2.208 1.792-4 4-4h4v8H8c-2.208 0-4-1.792-4-4zM4 4c0-2.208 1.792-4 4-4h4v8H8C5.792 8 4 6.208 4 4zM12 0h4c2.208 0 4 1.792 4 4s-1.792 4-4 4h-4V0zM20 12c0 2.208-1.792 4-4 4s-4-1.792-4-4 1.792-4 4-4 4 1.792 4 4z"/></svg>
-        </a>
-        <a class="sidebar__link" href="#" aria-label="Live">
+        <span class="sidebar__link sidebar__link--disabled" data-tooltip="Скоро" aria-label="Live" aria-disabled="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </span>
+        <a class="sidebar__link" href="#" data-tooltip="По запросу" aria-label="Figma">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 24c2.208 0 4-1.792 4-4v-4H8c-2.208 0-4 1.792-4 4s1.792 4 4 4zM4 12c0-2.208 1.792-4 4-4h4v8H8c-2.208 0-4-1.792-4-4zM4 4c0-2.208 1.792-4 4-4h4v8H8C5.792 8 4 6.208 4 4zM12 0h4c2.208 0 4 1.792 4 4s-1.792 4-4 4h-4V0zM20 12c0 2.208-1.792 4-4 4s-4-1.792-4-4 1.792-4 4-4 4 1.792 4 4z"/></svg>
+          <span class="sidebar__link-lock">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </span>
         </a>
-        <a class="sidebar__link" href="#" aria-label="GitHub">
+        <a class="sidebar__link" href="#" data-tooltip="По запросу" aria-label="GitHub">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          <span class="sidebar__link-lock">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </span>
         </a>
       </div>
 
@@ -382,7 +467,11 @@
         <li><span>Попап звонка</span></li>
       </ul>
 
-      <p class="note">Всплывающий каталог, дропдаун, гамбургер меню, календарь и т.д. доступны на главной странице при взаимодействии с нужным элементом.</p>
+      <p class="pages__label">Заметки</p>
+      <div class="note">
+        <svg class="note__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <p class="note__text">Всплывающий каталог, дропдаун, гамбургер меню, календарь и т.д. доступны на главной странице при взаимодействии с нужным элементом.</p>
+      </div>
     </main>
 
   </div>
