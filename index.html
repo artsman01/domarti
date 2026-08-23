@@ -39,11 +39,15 @@
       border-radius: 8px;
     }
 
+    .sidebar__logo-link {
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
     .sidebar__logo {
       display: block;
       height: 28px;
       width: auto;
-      margin-bottom: 16px;
     }
 
     .sidebar__desc {
@@ -270,7 +274,9 @@
   <div class="layout">
 
     <aside class="sidebar">
-      <img src="assets/footer/logo.svg" alt="Domarti" class="sidebar__logo">
+      <a href="index.html" class="sidebar__logo-link" aria-label="Обновить страницу">
+        <img src="assets/footer/logo.svg" alt="Domarti" class="sidebar__logo">
+      </a>
       <p class="sidebar__desc">Кухни и мебель под заказ — сайт производителя из Самары.</p>
 
       <div class="sidebar__links">
