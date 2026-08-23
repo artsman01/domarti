@@ -307,3 +307,30 @@
   height: 36px;
   padding: 0 16px;
 }
+
+// Contacts page: the card itself no longer carries the rounded/clipped
+// box (that radius moves onto the map alone), and the map/info stacking
+// order is flipped at both tablet and mobile relative to the homepage
+// section.
+.contact--page .contact__card {
+  border-radius: 0;
+}
+
+.contact--page .contact__map {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .contact--page .contact__info {
+    order: 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .contact--page .contact__info {
+    order: -1;
+    gap: 16px;
+    padding: 0 0 32px;
+  }
+}

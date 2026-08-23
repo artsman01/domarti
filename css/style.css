@@ -16921,6 +16921,27 @@ button {
   padding: 0 16px;
 }
 
+.contact--page .contact__card {
+  border-radius: 0;
+}
+
+.contact--page .contact__map {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .contact--page .contact__info {
+    order: 0;
+  }
+}
+@media (max-width: 767.98px) {
+  .contact--page .contact__info {
+    order: -1;
+    gap: 16px;
+    padding: 0 0 32px;
+  }
+}
 .visit-cta {
   position: relative;
 }
@@ -17467,6 +17488,11 @@ button {
 @media (min-width: 768px) {
   .typical-head--dark {
     min-height: 640px;
+  }
+}
+@media (max-width: 767.98px) {
+  .typical-head--dark {
+    height: 548px;
   }
 }
 .typical-head--dark {

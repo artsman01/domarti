@@ -13,12 +13,21 @@
   justify-content: center;
 }
 
-// Figma's own frame height for the dark (404) template on these tiers
-// — fixed, not viewport driven. The light template has no such photo
-// to fill and just sizes to its (shorter) content on every breakpoint.
+// Figma's own frame height for the dark template on these tiers —
+// fixed, not viewport driven. The light template has no such photo to
+// fill and just sizes to its (shorter) content on every breakpoint.
 @media (min-width: 768px) {
   .typical-head--dark {
     min-height: 640px;
+  }
+}
+
+// Mobile gets its own fixed frame height instead of min-height, same
+// reasoning — every page using the dark template (404, contacts, and
+// everything after) shares this exact figure.
+@media (max-width: 767.98px) {
+  .typical-head--dark {
+    height: 548px;
   }
 }
 
