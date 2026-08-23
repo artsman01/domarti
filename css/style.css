@@ -17461,12 +17461,16 @@ button {
 }
 
 @media (min-width: 768px) {
-  .typical-head {
+  .typical-head--dark {
     min-height: 640px;
   }
 }
 .typical-head--dark {
   background: var(--color-dark);
+}
+
+.typical-head--light {
+  background: var(--bs-body-bg);
 }
 
 .typical-head__media {
@@ -17493,6 +17497,8 @@ button {
   flex-direction: column;
   align-items: center;
   gap: 32px;
+  width: 100%;
+  min-width: 0;
   max-width: 1280px;
   margin: 0 auto;
   padding: 64px 16px;
@@ -17504,6 +17510,7 @@ button {
   align-items: center;
   gap: 16px;
   width: 100%;
+  min-width: 0;
   text-align: center;
 }
 
@@ -17514,7 +17521,6 @@ button {
 }
 
 .typical-head__breadcrumbs a {
-  color: #fff;
   font-weight: 500;
   font-size: 0.8125rem;
   line-height: 1.25rem;
@@ -17528,11 +17534,9 @@ button {
 .typical-head__breadcrumbs .icon {
   width: 16px;
   height: 16px;
-  color: rgba(255, 255, 255, 0.72);
 }
 
 .typical-head__breadcrumbs span {
-  color: rgba(255, 255, 255, 0.72);
   font-weight: 500;
   font-size: 0.8125rem;
   line-height: 1.25rem;
@@ -17541,7 +17545,6 @@ button {
 .typical-head__title {
   max-width: 948px;
   margin: 0;
-  color: #fff;
   font-weight: 700;
   font-size: 2.5rem;
   line-height: 3rem;
@@ -17550,10 +17553,31 @@ button {
 .typical-head__subtitle {
   max-width: 548px;
   margin: 0;
-  color: #fff;
   font-weight: 500;
   font-size: 0.9375rem;
   line-height: 1.375rem;
+}
+
+.typical-head--dark .typical-head__breadcrumbs a,
+.typical-head--dark .typical-head__title,
+.typical-head--dark .typical-head__subtitle {
+  color: #fff;
+}
+
+.typical-head--dark .typical-head__breadcrumbs .icon,
+.typical-head--dark .typical-head__breadcrumbs span {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.typical-head--light .typical-head__breadcrumbs a,
+.typical-head--light .typical-head__title {
+  color: var(--bs-body-color);
+}
+
+.typical-head--light .typical-head__breadcrumbs .icon,
+.typical-head--light .typical-head__breadcrumbs span,
+.typical-head--light .typical-head__subtitle {
+  color: var(--color-hint);
 }
 
 .typical-head__btn {
