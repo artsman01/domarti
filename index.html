@@ -227,12 +227,18 @@
       margin: 0;
       padding: 0;
       list-style: none;
+      border-top: 1px solid #343232;
+    }
+
+    .pages__list li {
+      border-bottom: 1px solid #343232;
     }
 
     .pages__list a,
     .pages__list span {
       display: block;
-      padding: 6px 0;
+      padding: 8px 12px;
+      margin: 0 -12px;
       font-weight: 500;
       font-size: 0.8125rem;
       line-height: 1.25rem;
@@ -240,12 +246,14 @@
 
     .pages__list a {
       color: #fff;
+      border-radius: 8px;
       text-decoration: none;
-      transition: color 0.15s ease;
+      transition: color 0.15s ease, background-color 0.15s ease;
     }
 
     .pages__list a:hover {
       color: #be9460;
+      background-color: #343232;
     }
 
     .pages__list span {
