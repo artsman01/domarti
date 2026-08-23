@@ -1,0 +1,115 @@
+// TypicalHeadSection: a shared page-header block for secondary pages
+// (breadcrumbs + H1 + subtitle + a single CTA). Figma ships two
+// templates — this is the "dark" one (full-bleed photo, dark overlay,
+// white text), used on the 404 page; a "light" template (plain
+// background, dark text) will extend this same block later. Both
+// desktop and tablet reuse the same 40/48 h1 scale — only mobile gets
+// its own smaller size, same convention as every other section title.
+
+.typical-head {
+  position: relative;
+}
+
+.typical-head--dark {
+  background: var(--color-dark);
+}
+
+.typical-head__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.typical-head__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.72;
+}
+
+.typical-head__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 16px;
+}
+
+.typical-head__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+.typical-head__breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.typical-head__breadcrumbs a {
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+  transition: opacity 0.15s ease;
+}
+
+.typical-head__breadcrumbs a:hover {
+  opacity: 0.72;
+}
+
+.typical-head__breadcrumbs .icon {
+  width: 16px;
+  height: 16px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.typical-head__breadcrumbs span {
+  color: rgba(255, 255, 255, 0.72);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
+
+.typical-head__title {
+  max-width: 948px;
+  margin: 0;
+  color: #fff;
+  font-weight: 700;
+  font-size: 2.5rem; // 40px
+  line-height: 3rem; // 48px
+}
+
+.typical-head__subtitle {
+  max-width: 548px;
+  margin: 0;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.375rem; // 22px
+}
+
+// Bootstrap's own .btn default padding (12px) is smaller than Figma's
+// 16px here — same fix every other CTA button on the site needs.
+.typical-head__btn {
+  padding: 0 16px;
+}
+
+@media (max-width: 575.98px) {
+  .typical-head__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+  }
+
+  .typical-head__subtitle {
+    font-size: 0.875rem; // 14px
+  }
+}
