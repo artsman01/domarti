@@ -27,8 +27,15 @@
       max-width: 480px;
     }
 
+    .page__logo {
+      display: block;
+      height: 32px;
+      width: auto;
+      margin-bottom: 16px;
+    }
+
     .page__eyebrow {
-      margin: 0 0 12px;
+      margin: 0 0 40px;
       color: #726e6e;
       font-weight: 600;
       font-size: 0.8125rem;
@@ -37,23 +44,15 @@
       text-transform: uppercase;
     }
 
-    .page__title {
-      margin: 0 0 40px;
-      color: #1f1e1e;
-      font-weight: 700;
-      font-size: 1.75rem;
-      line-height: 2.25rem;
-    }
-
     .page__list {
       margin: 0;
       padding: 0;
       list-style: none;
-      border-top: 1px solid #e0e0e0;
+      border-top: 1px solid #f0f0f0;
     }
 
     .page__list li {
-      border-bottom: 1px solid #e0e0e0;
+      border-bottom: 1px solid #f0f0f0;
     }
 
     .page__list a {
@@ -75,8 +74,8 @@
 <body>
 
   <div class="page">
-    <p class="page__eyebrow">Domarti</p>
-    <h1 class="page__title">Сверстанные страницы</h1>
+    <img src="assets/logo.svg" alt="Domarti" class="page__logo">
+    <p class="page__eyebrow">HTML/CSS/JS</p>
     <ul class="page__list">
       <li><a href="home.html">Главная</a></li>
       <li><a href="Page404.html">404</a></li>
