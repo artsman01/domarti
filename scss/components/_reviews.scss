@@ -481,3 +481,31 @@
   font-size: 0.8125rem; // 13px
   line-height: 1.25rem; // 20px
 }
+
+// Отзывы listing page: a plain wrapping grid of the same cards instead
+// of the homepage's Swiper carousel — no title/rating intro, no nav
+// arrows/dots/"see all" button, section sits on white instead of the
+// homepage's gray band. Cards keep their existing fixed responsive
+// widths (416px / 296px on mobile), so they naturally reflow to 3 per
+// row on desktop, fewer as the viewport narrows.
+.reviews--page {
+  background: var(--bs-body-bg);
+}
+
+.reviews--page .reviews__inner {
+  padding: 64px 16px 32px;
+}
+
+@media (max-width: 767.98px) {
+  .reviews--page .reviews__inner {
+    padding: 32px 16px 24px;
+  }
+}
+
+.reviews__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
