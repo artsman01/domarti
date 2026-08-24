@@ -16183,6 +16183,27 @@ button {
   width: 100%;
 }
 
+@media (max-width: 1326.98px) and (min-width: 895px) {
+  .reviews--page .reviews-card {
+    flex: 1 1 calc((100% - 32px) / 3);
+    width: auto;
+    min-width: 0;
+  }
+}
+@media (max-width: 894.98px) and (min-width: 655px) {
+  .reviews--page .reviews-card {
+    flex: 1 1 calc((100% - 16px) / 2);
+    width: auto;
+    min-width: 0;
+  }
+}
+@media (max-width: 654.98px) {
+  .reviews--page .reviews-card {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+  }
+}
 .seo-light {
   background: var(--bs-body-bg);
 }

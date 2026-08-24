@@ -485,9 +485,11 @@
 // Отзывы listing page: a plain wrapping grid of the same cards instead
 // of the homepage's Swiper carousel — no title/rating intro, no nav
 // arrows/dots/"see all" button, section sits on white instead of the
-// homepage's gray band. Cards keep their existing fixed responsive
-// widths (416px / 296px on mobile), so they naturally reflow to 3 per
-// row on desktop, fewer as the viewport narrows.
+// homepage's gray band. Above 1327px the cards' own fixed 416px width
+// already fits 3 across the 1280px container exactly, so no override
+// is needed there — below that, the card switches from a fixed width
+// to a flexible share of the row so 3-per-row keeps fitting down to
+// 895px, then 2-per-row down to 655px, then a single full-width card.
 .reviews--page {
   background: var(--bs-body-bg);
 }
@@ -508,4 +510,28 @@
   justify-content: center;
   gap: 16px;
   width: 100%;
+}
+
+@media (max-width: 1326.98px) and (min-width: 895px) {
+  .reviews--page .reviews-card {
+    flex: 1 1 calc((100% - 32px) / 3);
+    width: auto;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 894.98px) and (min-width: 655px) {
+  .reviews--page .reviews-card {
+    flex: 1 1 calc((100% - 16px) / 2);
+    width: auto;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 654.98px) {
+  .reviews--page .reviews-card {
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 0;
+  }
 }
