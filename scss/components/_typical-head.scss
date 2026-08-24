@@ -55,6 +55,19 @@
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
   user-select: none;
+  animation: typical-head-zoom 8s ease-out forwards;
+}
+
+// A slight, one-time Ken Burns-style zoom on entrance — scales up and
+// stops (forwards), it doesn't loop.
+@keyframes typical-head-zoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.06);
+  }
 }
 
 .typical-head__inner {

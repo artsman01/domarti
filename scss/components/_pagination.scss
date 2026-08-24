@@ -44,8 +44,23 @@ a.pagination__item:hover {
   color: var(--color-text-button);
 }
 
+// Same hover treatment as the gold buttons elsewhere (.btn.btn-primary),
+// not the plain gray hover every other pagination button gets.
+a.pagination__item.is-active:hover {
+  background: var(--color-brand-hover);
+}
+
 .pagination__item--ellipsis {
   cursor: default;
+}
+
+// Figma shows the prev arrow in its disabled state — we're always on
+// page 1 in this static build, so there's nowhere to go back to. Hint
+// gray, no hover, not part of tab order.
+.pagination__item--disabled {
+  color: var(--color-hint);
+  cursor: default;
+  pointer-events: none;
 }
 
 .pagination__item .icon {
