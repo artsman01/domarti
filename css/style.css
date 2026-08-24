@@ -16529,6 +16529,10 @@ button {
   background: var(--color-secondary-bg);
 }
 
+.stocks--page .stock-card:hover {
+  background: var(--color-dark-separator);
+}
+
 .faq {
   background: var(--bs-body-bg);
 }

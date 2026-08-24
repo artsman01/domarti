@@ -314,3 +314,10 @@
 .stocks--page .stock-card {
   background: var(--color-secondary-bg);
 }
+
+// Same specificity as the rule above (two classes each), so :hover
+// needs restating here to still win — otherwise source order alone
+// would let the plain gray background silently override it.
+.stocks--page .stock-card:hover {
+  background: var(--color-dark-separator);
+}
