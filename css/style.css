@@ -16494,6 +16494,41 @@ button {
   background: var(--color-dark-separator);
 }
 
+.stocks--page {
+  background: var(--bs-body-bg);
+}
+
+.stocks--page .stocks__inner {
+  padding: 64px 16px 32px;
+}
+
+@media (max-width: 767.98px) {
+  .stocks--page .stocks__inner {
+    padding: 32px 16px 24px;
+  }
+}
+.stocks--page .stock-card {
+  background: var(--color-secondary-bg);
+}
+
+.stocks--page .stock-card--dark {
+  background: var(--color-dark-separator);
+}
+
+.stocks--page .stock-card--dark .stock-card__title {
+  color: var(--color-text-button);
+}
+
+.stocks--page .stock-card--dark .stock-card__desc {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.stocks--page .stock-card--dark .stock-card__btn {
+  border-color: transparent;
+  background: var(--bs-primary);
+  color: var(--color-text-button);
+}
+
 .stock-card:hover .stock-card__title {
   color: var(--color-text-button);
 }
@@ -17632,4 +17667,98 @@ button {
   .typical-head__subtitle {
     font-size: 0.875rem;
   }
+}
+.pagination {
+  background: var(--bs-body-bg);
+}
+
+.pagination__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.pagination__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+a.pagination__item:hover {
+  background: var(--color-secondary-bg);
+}
+
+.pagination__item.is-active {
+  background: var(--bs-primary);
+  color: var(--color-text-button);
+}
+
+.pagination__item--ellipsis {
+  cursor: default;
+}
+
+.pagination__item .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.seo-simple {
+  background: var(--bs-body-bg);
+}
+
+.seo-simple__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+.seo-simple__title {
+  margin: 0;
+  color: var(--bs-primary);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 3rem;
+}
+
+.seo-simple__title span {
+  color: var(--bs-body-color);
+}
+
+@media (max-width: 575.98px) {
+  .seo-simple__title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+.seo-simple__text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.seo-simple__text p {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
 }

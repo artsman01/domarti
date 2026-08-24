@@ -275,6 +275,46 @@
   background: var(--color-dark-separator);
 }
 
+// Акции listing page: same section/cards, just recolored — no
+// title/subtitle intro, section sits on white instead of the
+// homepage's gray band, cards default to gray instead of white, and
+// one card per set stays permanently dark (not just on :hover).
+.stocks--page {
+  background: var(--bs-body-bg);
+}
+
+.stocks--page .stocks__inner {
+  padding: 64px 16px 32px;
+}
+
+@media (max-width: 767.98px) {
+  .stocks--page .stocks__inner {
+    padding: 32px 16px 24px;
+  }
+}
+
+.stocks--page .stock-card {
+  background: var(--color-secondary-bg);
+}
+
+.stocks--page .stock-card--dark {
+  background: var(--color-dark-separator);
+}
+
+.stocks--page .stock-card--dark .stock-card__title {
+  color: var(--color-text-button);
+}
+
+.stocks--page .stock-card--dark .stock-card__desc {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.stocks--page .stock-card--dark .stock-card__btn {
+  border-color: transparent;
+  background: var(--bs-primary);
+  color: var(--color-text-button);
+}
+
 .stock-card:hover .stock-card__title {
   color: var(--color-text-button);
 }

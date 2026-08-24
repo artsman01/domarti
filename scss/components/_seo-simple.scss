@@ -1,0 +1,51 @@
+// SeoSection ("Simple" template): the plainest of the three SEO
+// blocks — a full-width title above a plain multi-paragraph text
+// column, no photo, no card, no button. Used on secondary listing
+// pages (starting with Акции) instead of the homepage's .seo/
+// .seo-light templates.
+
+.seo-simple {
+  background: var(--bs-body-bg);
+}
+
+.seo-simple__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+.seo-simple__title {
+  margin: 0;
+  color: var(--bs-primary);
+  font-weight: 700;
+  font-size: 2.5rem; // 40px
+  line-height: 3rem; // 48px
+}
+
+.seo-simple__title span {
+  color: var(--bs-body-color);
+}
+
+@media (max-width: 575.98px) {
+  .seo-simple__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+  }
+}
+
+.seo-simple__text {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.seo-simple__text p {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 400;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.375rem; // 22px
+}

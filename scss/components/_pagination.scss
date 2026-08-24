@@ -1,0 +1,54 @@
+// PaginationSection: a row of circular 36px page buttons — active page
+// filled brand-gold, everything else plain white with a light-gray
+// hover, plus prev/next arrow buttons at each end. Same markup at
+// every breakpoint (7 buttons comfortably fit down to mobile widths).
+
+.pagination {
+  background: var(--bs-body-bg);
+}
+
+.pagination__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.pagination__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+a.pagination__item:hover {
+  background: var(--color-secondary-bg);
+}
+
+.pagination__item.is-active {
+  background: var(--bs-primary);
+  color: var(--color-text-button);
+}
+
+.pagination__item--ellipsis {
+  cursor: default;
+}
+
+.pagination__item .icon {
+  width: 16px;
+  height: 16px;
+}
