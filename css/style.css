@@ -17710,11 +17710,16 @@ a.pagination__item:hover {
 
 .seo-simple__inner {
   display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.seo-simple__content {
+  display: flex;
   flex-direction: column;
   gap: 32px;
+  width: 100%;
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 32px 16px;
 }
 
 .seo-simple__title {
