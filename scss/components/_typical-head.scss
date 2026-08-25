@@ -189,3 +189,17 @@
     font-size: 0.875rem; // 14px
   }
 }
+
+// Buttonless instances (Калькулятор) sit shorter than the usual
+// symmetric 64px light template — the desktop/tablet bottom shrinks to
+// 32px, mobile to 16px, so the section right below isn't pushed away
+// by empty space that used to hold the CTA.
+.typical-head--compact .typical-head__inner {
+  padding-bottom: 32px;
+}
+
+@media (max-width: 767.98px) {
+  .typical-head--compact .typical-head__inner {
+    padding-bottom: 16px;
+  }
+}

@@ -593,3 +593,13 @@
     flex-direction: column;
   }
 }
+
+// Калькулятор page: same section reused as-is, just on white instead
+// of the homepage's gray band, no title/subtitle intro, and no top
+// padding — the TypicalHead above it already provides its own bottom
+// breathing room (see .typical-head--compact), so stacking this
+// section's usual top padding on top would double it up.
+.calculator--page {
+  background: var(--bs-body-bg);
+  padding-top: 0;
+}

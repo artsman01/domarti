@@ -14281,6 +14281,11 @@ button {
     flex-direction: column;
   }
 }
+.calculator--page {
+  background: var(--bs-body-bg);
+  padding-top: 0;
+}
+
 .portfolio {
   background: var(--bs-body-bg);
 }
@@ -17703,6 +17708,15 @@ button {
   }
   .typical-head__subtitle {
     font-size: 0.875rem;
+  }
+}
+.typical-head--compact .typical-head__inner {
+  padding-bottom: 32px;
+}
+
+@media (max-width: 767.98px) {
+  .typical-head--compact .typical-head__inner {
+    padding-bottom: 16px;
   }
 }
 .pagination {

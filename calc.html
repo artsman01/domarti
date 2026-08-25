@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Акции | ДОМАРТИ</title>
-  <meta name="description" content="Актуальные предложения на кухни и мебель по индивидуальным размерам — выбирайте выгодные условия для своего проекта">
+  <title>Калькулятор стоимости кухни | ДОМАРТИ</title>
+  <meta name="description" content="Ответьте на несколько вопросов о планировке, размерах и наполнении — калькулятор рассчитает предварительную стоимость проекта">
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
           <span>Работаем с 2006 года</span>
         </div>
         <div class="header__top-links d-flex align-items-center gap-4 fw-medium">
-          <a href="#">Акции</a>
+          <a href="stocks.html">Акции</a>
           <a href="#">Кредит</a>
           <a href="#">Дизайнерам</a>
         </div>
@@ -134,169 +134,211 @@
     </div>
   </header>
 
-  <section class="typical-head typical-head--dark">
-    <div class="typical-head__media">
-      <img src="assets/typical-head/stocks-bg.jpg" alt="" loading="lazy">
-    </div>
+  <section class="typical-head typical-head--light typical-head--compact">
     <div class="typical-head__inner">
       <div class="typical-head__intro">
         <nav class="typical-head__breadcrumbs" aria-label="Хлебные крошки">
           <a href="home.html">Главная</a>
           <svg class="icon icon--16"><use href="assets/icons/sprite.svg#angle-right"></use></svg>
-          <span>Акции</span>
+          <span>Калькулятор</span>
         </nav>
-        <h1 class="typical-head__title">Акции</h1>
-        <p class="typical-head__subtitle">Актуальные предложения на кухни и мебель по индивидуальным размерам — выбирайте выгодные условия для своего проекта.</p>
+        <h1 class="typical-head__title">Рассчитайте стоимость вашей кухни</h1>
+        <p class="typical-head__subtitle">Ответьте на несколько вопросов о планировке, размерах и наполнении — калькулятор рассчитает предварительную стоимость проекта</p>
       </div>
     </div>
   </section>
 
-  <section class="stocks stocks--page">
-    <div class="stocks__inner">
-      <div class="stocks__content">
-        <div class="stocks__grid">
-          <article class="stock-card">
-            <a href="#" class="stock-card__media">
-              <img src="assets/stocks/stock1.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="#">Бесплатная разработка дизайн-проекта</a></h3>
-                <p class="stock-card__desc">Бесплатно разработаем дизайн-проект вашей кухни</p>
-              </div>
-              <a href="#" class="btn stock-card__btn">Узнать подробнее</a>
+  <section class="calculator calculator--page" id="calculator">
+    <div class="container calculator__inner">
+      <div class="calculator__card">
+        <div class="calculator__illustration">
+          <span class="calculator__dim calculator__dim--a">Сторона А</span>
+          <span class="calculator__dim calculator__dim--b">Сторона Б</span>
+          <div class="calculator__scheme-wrap">
+            <div class="calculator__scheme">
+              <img src="assets/calculator/angle.svg" alt="Схема кухни" class="calculator__scheme-img" data-calculator-scheme>
             </div>
-          </article>
+          </div>
+          <button type="button" class="calculator__reset" data-calculator-reset>
+            Сбросить калькулятор
+          </button>
+        </div>
 
-          <article class="stock-card">
-            <a href="#" class="stock-card__media">
-              <img src="assets/stocks/stock2.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="#">Скидка 3% для новоселов</a></h3>
-                <p class="stock-card__desc">Заказываете кухню в новую квартиру? Сделаем скидку 3%!</p>
-              </div>
-              <a href="#" class="btn stock-card__btn">Узнать подробнее</a>
-            </div>
-          </article>
+        <div class="calculator__panel">
+          <div class="calculator__scroll" data-calculator-scroll>
 
-          <article class="stock-card">
-            <a href="#" class="stock-card__media">
-              <img src="assets/stocks/stock3.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="#">Партнерская скидка на фурнитуру Boyard 10%</a></h3>
-                <p class="stock-card__desc">При выборе фурнитуры Boyard предоставляем на нее скидку 10%</p>
+            <div class="calculator__step">
+              <div class="calculator__step-head">
+                <span class="calculator__step-number">1</span>
+                <h3 class="calculator__step-title">Тип кухни</h3>
               </div>
-              <a href="#" class="btn stock-card__btn">Узнать подробнее</a>
+              <div class="calculator__tabs" role="tablist" data-calculator-group="type" data-select="single">
+                <button class="calculator__tab is-active" type="button" data-value="angle">Угловая</button>
+                <button class="calculator__tab" type="button" data-value="p-shaped">П-образная</button>
+                <button class="calculator__tab" type="button" data-value="straight">Прямая</button>
+                <button class="calculator__tab" type="button" data-value="island">С островом</button>
+                <button class="calculator__tab" type="button" data-value="parallel">Параллельная</button>
+              </div>
+              <label class="calculator__switch-row">
+                <span class="switch">
+                  <input type="checkbox" class="switch__input" data-calculator-bar>
+                  <span class="switch__track"><span class="switch__thumb"></span></span>
+                </span>
+                Добавить барную стойку
+              </label>
+              <p class="calculator__hint">Визуализация является ориентировочной, более точную визуализацию разработает наш дизайнер при разработке дизайн-проекта.</p>
             </div>
-          </article>
 
-          <article class="stock-card">
-            <a href="#" class="stock-card__media">
-              <img src="assets/stocks/stock4.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="#">Скидка 5% при оплате наличными</a></h3>
-                <p class="stock-card__desc">Оплата любым способом, выдаем все необходимые документы и чеки</p>
+            <div class="calculator__step">
+              <div class="calculator__step-head">
+                <span class="calculator__step-number">2</span>
+                <h3 class="calculator__step-title">Габариты кухни</h3>
               </div>
-              <a href="#" class="btn stock-card__btn">Узнать подробнее</a>
+              <div class="calculator__dims">
+                <label class="calculator__field">
+                  <span class="calculator__field-label">Длина, мм (Сторона А)</span>
+                  <span class="input-field">
+                    <input type="text" inputmode="numeric" placeholder="Длина, мм" value="3890">
+                  </span>
+                </label>
+                <label class="calculator__field">
+                  <span class="calculator__field-label">Ширина, мм (Сторона Б)</span>
+                  <span class="input-field">
+                    <input type="text" inputmode="numeric" placeholder="Ширина, мм">
+                  </span>
+                </label>
+              </div>
+              <p class="calculator__hint">Измерьте чистовые длину и ширину места, где планируется кухня.</p>
             </div>
-          </article>
 
-          <article class="stock-card">
-            <a href="#" class="stock-card__media">
-              <img src="assets/stocks/stock1.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="#">Бесплатная разработка дизайн-проекта</a></h3>
-                <p class="stock-card__desc">Бесплатно разработаем дизайн-проект вашей кухни</p>
+            <div class="calculator__step">
+              <div class="calculator__step-head">
+                <span class="calculator__step-number">3</span>
+                <h3 class="calculator__step-title">Материал корпуса кухни</h3>
               </div>
-              <a href="#" class="btn stock-card__btn">Узнать подробнее</a>
+              <div class="calculator__tabs" role="tablist" data-select="single">
+                <button class="calculator__tab is-active" type="button">ЛДСП</button>
+                <button class="calculator__tab" type="button">МДФ</button>
+              </div>
+              <p class="calculator__hint">ЛДСП — самый популярный материал для корпуса кухни. Цвет корпуса можно будет выбрать после общения с менеджером и при разработке дизайн-проекта.</p>
             </div>
-          </article>
 
-          <article class="stock-card">
-            <a href="#" class="stock-card__media">
-              <img src="assets/stocks/stock2.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="#">Скидка 3% для новоселов</a></h3>
-                <p class="stock-card__desc">Заказываете кухню в новую квартиру? Сделаем скидку 3%!</p>
+            <div class="calculator__step">
+              <div class="calculator__step-head">
+                <span class="calculator__step-number">4</span>
+                <h3 class="calculator__step-title">Материал фасадов</h3>
               </div>
-              <a href="#" class="btn stock-card__btn">Узнать подробнее</a>
+              <div class="calculator__tabs" role="tablist" data-select="single">
+                <button class="calculator__tab is-active" type="button">МДФ</button>
+                <button class="calculator__tab" type="button">Пластик</button>
+              </div>
+              <p class="calculator__hint">МДФ — самый популярный материал для фасадов кухни. Цвет фасадов можно будет выбрать после общения с менеджером и при разработке дизайн-проекта.</p>
             </div>
-          </article>
 
-          <article class="stock-card">
-            <a href="#" class="stock-card__media">
-              <img src="assets/stocks/stock3.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="#">Партнерская скидка на фурнитуру Boyard 10%</a></h3>
-                <p class="stock-card__desc">При выборе фурнитуры Boyard предоставляем на нее скидку 10%</p>
+            <div class="calculator__step">
+              <div class="calculator__step-head">
+                <span class="calculator__step-number">5</span>
+                <h3 class="calculator__step-title">Фурнитура кухни</h3>
               </div>
-              <a href="#" class="btn stock-card__btn">Узнать подробнее</a>
+              <div class="calculator__tabs" role="tablist" data-select="single">
+                <button class="calculator__tab is-active" type="button">Стандарт</button>
+                <button class="calculator__tab" type="button">Премиум</button>
+              </div>
+              <p class="calculator__hint">В стандартной комплектации мы используем доводчики и петли фирмы Boyard. В премиум комплектации используется фурнитура Blum.</p>
             </div>
-          </article>
 
-          <article class="stock-card">
-            <a href="#" class="stock-card__media">
-              <img src="assets/stocks/stock4.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="#">Скидка 5% при оплате наличными</a></h3>
-                <p class="stock-card__desc">Оплата любым способом, выдаем все необходимые документы и чеки</p>
+            <div class="calculator__step">
+              <div class="calculator__step-head">
+                <span class="calculator__step-number">6</span>
+                <h3 class="calculator__step-title">Материал столешницы</h3>
               </div>
-              <a href="#" class="btn stock-card__btn">Узнать подробнее</a>
+              <div class="calculator__tabs" role="tablist" data-select="single">
+                <button class="calculator__tab is-active" type="button">ДСП</button>
+                <button class="calculator__tab" type="button">Плита МДФ</button>
+                <button class="calculator__tab" type="button">Пластик</button>
+                <button class="calculator__tab" type="button">Кварцевый агломерат</button>
+              </div>
+              <p class="calculator__hint">ДСП — самый популярный материал для столешницы кухни. Цвет и текстуру столешницы можно будет выбрать после общения с менеджером и при разработке дизайн-проекта.</p>
             </div>
-          </article>
+
+            <div class="calculator__step">
+              <div class="calculator__step-head">
+                <span class="calculator__step-number">7</span>
+                <h3 class="calculator__step-title">Встроенная техника</h3>
+              </div>
+              <div class="calculator__tabs" role="tablist" data-select="multiple">
+                <button class="calculator__tab" type="button">СВЧ</button>
+                <button class="calculator__tab" type="button">Духовой шкаф</button>
+                <button class="calculator__tab" type="button">Варочная панель</button>
+                <button class="calculator__tab" type="button">Холодильник</button>
+                <button class="calculator__tab" type="button">Посудомоечная машина</button>
+                <button class="calculator__tab" type="button">Стиральная машина</button>
+                <button class="calculator__tab is-active" type="button" data-calculator-custom-toggle>Свой вариант</button>
+              </div>
+              <div class="calculator__custom" data-calculator-custom>
+                <span class="calculator__field-label">Свой вариант:</span>
+                <span class="input-field">
+                  <input type="text" placeholder="Укажите технику, для встраивания">
+                </span>
+              </div>
+              <p class="calculator__hint">Мы рассчитаем стоимость установки техники.</p>
+            </div>
+
+            <div class="calculator__step">
+              <div class="calculator__step-head">
+                <span class="calculator__step-number">8</span>
+                <h3 class="calculator__step-title">Дополнительные пожелания</h3>
+              </div>
+              <textarea class="calculator__textarea" placeholder="Укажите дополнительные пожелания"></textarea>
+              <p class="calculator__hint">Мы обязательно учтем при разработке дизайн-проекта.</p>
+            </div>
+
+          </div>
+
+          <div class="calculator__summary">
+            <div class="calculator__totals">
+              <div class="calculator__totals-row">
+                <span>Кухня</span>
+                <span>169 780 ₽</span>
+              </div>
+              <div class="calculator__totals-row">
+                <span>Доставка</span>
+                <span>2 780 ₽</span>
+              </div>
+              <div class="calculator__totals-row">
+                <span>Сборка (10% от стоимости кухни)</span>
+                <span>16 780 ₽</span>
+              </div>
+              <div class="calculator__totals-row calculator__totals-row--total">
+                <span>Итого</span>
+                <span>178 780 ₽</span>
+              </div>
+            </div>
+            <p class="calculator__disclaimer">
+              <svg class="icon"><use href="assets/icons/sprite.svg#info"></use></svg>
+              Стоимость является ориентировочной. Точную стоимость вашей кухни менеджер сможет рассчитать после замеров и разработки дизайн-проекта.
+            </p>
+            <div class="calculator__actions">
+              <button type="button" class="btn btn-stroke calculator__pdf">
+                <svg class="icon"><use href="assets/icons/sprite.svg#download"></use></svg>
+                Скачать PDF
+              </button>
+              <button type="button" class="btn btn-primary">Оставить заявку</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <nav class="pagination" aria-label="Пагинация">
-    <div class="pagination__list">
-      <span class="pagination__item pagination__item--disabled" aria-label="Предыдущая страница" aria-disabled="true">
-        <svg class="icon"><use href="assets/icons/sprite.svg#angle-left"></use></svg>
-      </span>
-      <a href="#" class="pagination__item is-active" aria-current="page">1</a>
-      <a href="#" class="pagination__item">2</a>
-      <a href="#" class="pagination__item">3</a>
-      <span class="pagination__item pagination__item--ellipsis">…</span>
-      <a href="#" class="pagination__item">6</a>
-      <a href="#" class="pagination__item" aria-label="Следующая страница">
-        <svg class="icon"><use href="assets/icons/sprite.svg#angle-right"></use></svg>
-      </a>
-    </div>
-  </nav>
-
-  <div class="section-spacer"></div>
-
   <section class="seo-simple">
     <div class="seo-simple__inner">
       <div class="seo-simple__content">
-        <h2 class="seo-simple__title">Выгодные предложения<span> на кухни и мебель на заказ</span></h2>
+        <h2 class="seo-simple__title">Калькулятор стоимости<span> кухни на заказ</span></h2>
         <div class="seo-simple__text">
-          <p>В разделе представлены актуальные акции и специальные предложения Domarti на изготовление кухонь и корпусной мебели по индивидуальным размерам. Здесь вы можете подобрать выгодные условия для реализации проекта, получить дополнительные опции или заказать мебель по специальной цене.</p>
-          <p>Мы создаём кухни, шкафы, гардеробные и другую мебель с учётом планировки помещения, выбранного стиля и вашего бюджета. Наши специалисты помогут продумать наполнение, подобрать материалы и фурнитуру, выполнить замер и подготовить индивидуальный дизайн-проект.</p>
-          <p>Следите за обновлениями раздела, чтобы не пропустить новые предложения. Условия, сроки действия и подробности каждой акции можно уточнить у специалистов Domarti.</p>
+          <p>Онлайн-калькулятор поможет предварительно рассчитать стоимость кухни по индивидуальным размерам. Укажите конфигурацию гарнитура, примерные размеры, желаемые материалы и другие параметры — вы получите ориентировочную цену будущего проекта.</p>
+          <p>Итоговая стоимость кухни зависит от её размеров и планировки, выбранных фасадов, столешницы, фурнитуры, внутреннего наполнения и встроенной техники. После расчёта специалист Domarti поможет уточнить детали, предложит подходящие решения и подготовит индивидуальный дизайн-проект.</p>
+          <p>Расчёт в калькуляторе носит предварительный характер. Точная стоимость определяется после консультации, замера помещения и согласования комплектации кухни.</p>
         </div>
       </div>
     </div>
