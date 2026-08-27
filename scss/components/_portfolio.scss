@@ -539,3 +539,53 @@
     right: 32px;
   }
 }
+
+// Наши работы listing page: same cards as the homepage's Swiper
+// carousel (background is already white by default, no override
+// needed there), just a plain wrapping grid instead — no title/intro,
+// no nav arrows/dots/"see all" button. Same breakpoint figures as
+// .reviews--page's grid since the card is the same 416px/296px fixed
+// width; flex-grow stays 0 so an incomplete last row doesn't stretch.
+.portfolio--page .portfolio__inner {
+  padding: 32px 16px;
+}
+
+@media (max-width: 767.98px) {
+  .portfolio--page .portfolio__inner {
+    padding: 24px 16px;
+  }
+}
+
+.portfolio__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1326.98px) and (min-width: 895px) {
+  .portfolio--page .portfolio-card {
+    flex: 0 1 calc((100% - 32px) / 3);
+    width: auto;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 894.98px) and (min-width: 655px) {
+  .portfolio--page .portfolio-card {
+    flex: 0 1 calc((100% - 16px) / 2);
+    width: auto;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 654.98px) {
+  .portfolio--page .portfolio-card {
+    flex: 0 1 100%;
+    width: 100%;
+    min-width: 0;
+  }
+}
