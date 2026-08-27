@@ -475,3 +475,142 @@
     margin-top: 8px;
   }
 }
+
+// Материалы и аксессуары listing page: same tabs + panel-switching
+// mechanism as the homepage section (same class names/data attributes,
+// same JS — see initMaterials, which no-ops its Swiper setup when it
+// finds no .materials-swiper in a panel), but a plain wrapping grid of
+// a simpler card instead of the slider's absolute-fill/hover-expand
+// one. Square photo on top, its white rounded body pulled up over the
+// bottom 16px of the image (the same overlap technique, just applied
+// to a static block instead of an absolutely-positioned one) — no
+// button, whole card is the link. Breakpoints are this page's own
+// (Figma only specced desktop): 4 per row down to 1200px, 3 to 900px,
+// 2 to 600px, 1 full-width below that.
+.materials--page {
+  background: var(--bs-body-bg);
+}
+
+.materials--page .materials__inner {
+  padding: 32px 16px;
+}
+
+.materials__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1280px) {
+  .material-tile {
+    flex: 0 0 auto;
+    width: 308px;
+  }
+}
+
+@media (max-width: 1279.98px) and (min-width: 900px) {
+  .material-tile {
+    flex: 1 1 calc((100% - 32px) / 3);
+    min-width: 0;
+  }
+}
+
+@media (max-width: 899.98px) and (min-width: 600px) {
+  .material-tile {
+    flex: 1 1 calc((100% - 16px) / 2);
+    min-width: 0;
+  }
+}
+
+@media (max-width: 599.98px) {
+  .material-tile {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+}
+
+.material-tile {
+  display: block;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+}
+
+.material-tile__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  margin-bottom: -16px;
+  overflow: hidden;
+}
+
+.material-tile__img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.material-tile:hover .material-tile__img img {
+  transform: scale(1.05);
+}
+
+.material-tile__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 24px;
+  border-radius: 16px 16px 0 0;
+  background: var(--bs-body-bg);
+}
+
+.material-tile__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.material-tile__title {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 1.125rem; // 18px
+  line-height: 1.5rem; // 24px
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.material-tile__count {
+  margin: 0;
+  color: var(--color-success);
+  font-weight: 600;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
+
+.material-tile__desc {
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

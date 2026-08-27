@@ -15366,6 +15366,130 @@ button {
     margin-top: 8px;
   }
 }
+.materials--page {
+  background: var(--bs-body-bg);
+}
+
+.materials--page .materials__inner {
+  padding: 32px 16px;
+}
+
+.materials__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1280px) {
+  .material-tile {
+    flex: 0 0 auto;
+    width: 308px;
+  }
+}
+@media (max-width: 1279.98px) and (min-width: 900px) {
+  .material-tile {
+    flex: 1 1 calc((100% - 32px) / 3);
+    min-width: 0;
+  }
+}
+@media (max-width: 899.98px) and (min-width: 600px) {
+  .material-tile {
+    flex: 1 1 calc((100% - 16px) / 2);
+    min-width: 0;
+  }
+}
+@media (max-width: 599.98px) {
+  .material-tile {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+}
+.material-tile {
+  display: block;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+}
+
+.material-tile__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1/1;
+  margin-bottom: -16px;
+  overflow: hidden;
+}
+
+.material-tile__img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.material-tile:hover .material-tile__img img {
+  transform: scale(1.05);
+}
+
+.material-tile__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 24px;
+  border-radius: 16px 16px 0 0;
+  background: var(--bs-body-bg);
+}
+
+.material-tile__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.material-tile__title {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.material-tile__count {
+  margin: 0;
+  color: var(--color-success);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+}
+
+.material-tile__desc {
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
 .steps {
   background: var(--bs-body-bg);
 }
