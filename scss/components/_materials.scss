@@ -479,14 +479,12 @@
 // Материалы и аксессуары listing page: same tabs + panel-switching
 // mechanism as the homepage section (same class names/data attributes,
 // same JS — see initMaterials, which no-ops its Swiper setup when it
-// finds no .materials-swiper in a panel), but a plain wrapping grid of
-// a simpler card instead of the slider's absolute-fill/hover-expand
-// one. Square photo on top, its white rounded body pulled up over the
-// bottom 16px of the image (the same overlap technique, just applied
-// to a static block instead of an absolutely-positioned one) — no
-// button, whole card is the link. Breakpoints are this page's own
-// (Figma only specced desktop): 4 per row down to 1200px, 3 to 900px,
-// 2 to 600px, 1 full-width below that.
+// finds no .materials-swiper in a panel), and the SAME absolute-fill
+// image + bottom-anchored white body as the homepage's .materials-card
+// (see below) — the body's height grows upward into the image on
+// hover to reveal the button, instead of the card growing taller.
+// Breakpoints are this page's own (Figma only specced desktop): 4 per
+// row down to 1200px, 3 to 900px, 2 to 600px, 1 full-width below that.
 .materials--page {
   background: var(--bs-body-bg);
 }
@@ -536,7 +534,9 @@
 }
 
 .material-tile {
+  position: relative;
   display: block;
+  aspect-ratio: 308 / 456;
   border: 1px solid var(--bs-border-color);
   border-radius: 12px;
   overflow: hidden;
@@ -545,11 +545,8 @@
 }
 
 .material-tile__img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  margin-bottom: -16px;
-  overflow: hidden;
+  position: absolute;
+  inset: 0;
 }
 
 .material-tile__img img {
@@ -569,11 +566,13 @@
 }
 
 .material-tile__body {
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 100%;
   padding: 24px;
   border-radius: 16px 16px 0 0;
   background: var(--bs-body-bg);
