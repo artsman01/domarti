@@ -512,9 +512,11 @@
   width: 100%;
 }
 
+// flex-grow:0 (not 1) — an incomplete last row must stay the same
+// card size as every other row, not stretch to fill the leftover space.
 @media (max-width: 1326.98px) and (min-width: 895px) {
   .reviews--page .reviews-card {
-    flex: 1 1 calc((100% - 32px) / 3);
+    flex: 0 1 calc((100% - 32px) / 3);
     width: auto;
     min-width: 0;
   }
@@ -522,7 +524,7 @@
 
 @media (max-width: 894.98px) and (min-width: 655px) {
   .reviews--page .reviews-card {
-    flex: 1 1 calc((100% - 16px) / 2);
+    flex: 0 1 calc((100% - 16px) / 2);
     width: auto;
     min-width: 0;
   }
@@ -530,7 +532,7 @@
 
 @media (max-width: 654.98px) {
   .reviews--page .reviews-card {
-    flex: 1 1 100%;
+    flex: 0 1 100%;
     width: 100%;
     min-width: 0;
   }

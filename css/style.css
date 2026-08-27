@@ -15391,19 +15391,19 @@ button {
 }
 @media (max-width: 1279.98px) and (min-width: 900px) {
   .material-tile {
-    flex: 1 1 calc((100% - 32px) / 3);
+    flex: 0 1 calc((100% - 32px) / 3);
     min-width: 0;
   }
 }
 @media (max-width: 899.98px) and (min-width: 600px) {
   .material-tile {
-    flex: 1 1 calc((100% - 16px) / 2);
+    flex: 0 1 calc((100% - 16px) / 2);
     min-width: 0;
   }
 }
 @media (max-width: 599.98px) {
   .material-tile {
-    flex: 1 1 100%;
+    flex: 0 1 100%;
     min-width: 0;
   }
 }
@@ -15449,6 +15449,7 @@ button {
   padding: 24px;
   border-radius: 16px 16px 0 0;
   background: var(--bs-body-bg);
+  transition: background-color 0.25s ease;
 }
 
 .material-tile__heading {
@@ -15468,6 +15469,7 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   width: 100%;
+  transition: color 0.25s ease;
 }
 
 .material-tile__count {
@@ -15488,6 +15490,19 @@ button {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  transition: color 0.25s ease;
+}
+
+.material-tile:hover .material-tile__body {
+  background: var(--color-dark-separator);
+}
+
+.material-tile:hover .material-tile__title {
+  color: var(--color-text-button);
+}
+
+.material-tile:hover .material-tile__desc {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .steps {
@@ -16314,21 +16329,21 @@ button {
 
 @media (max-width: 1326.98px) and (min-width: 895px) {
   .reviews--page .reviews-card {
-    flex: 1 1 calc((100% - 32px) / 3);
+    flex: 0 1 calc((100% - 32px) / 3);
     width: auto;
     min-width: 0;
   }
 }
 @media (max-width: 894.98px) and (min-width: 655px) {
   .reviews--page .reviews-card {
-    flex: 1 1 calc((100% - 16px) / 2);
+    flex: 0 1 calc((100% - 16px) / 2);
     width: auto;
     min-width: 0;
   }
 }
 @media (max-width: 654.98px) {
   .reviews--page .reviews-card {
-    flex: 1 1 100%;
+    flex: 0 1 100%;
     width: 100%;
     min-width: 0;
   }
