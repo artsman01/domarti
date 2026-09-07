@@ -235,4 +235,10 @@
 <symbol id="plus" viewBox="0 0 24 24">
 <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
+<symbol id="minus" viewBox="0 0 24 24">
+<path d="M5 12H19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="close" viewBox="0 0 24 24">
+<path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
 </svg>

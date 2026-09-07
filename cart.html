@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Контакты | ДОМАРТИ</title>
-  <meta name="description" content="Всё необходимое, чтобы связаться с нами или спланировать выезд замерщика">
+  <title>Корзина | ДОМАРТИ</title>
+  <meta name="description" content="Оформите заказ выбранных кухонь и мебели — заполните форму, и наш менеджер свяжется с вами для уточнения деталей">
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
           <span>Работаем с 2006 года</span>
         </div>
         <div class="header__top-links d-flex align-items-center gap-4 fw-medium">
-          <a href="#">Акции</a>
+          <a href="stocks.html">Акции</a>
           <a href="#">Кредит</a>
           <a href="#">Дизайнерам</a>
         </div>
@@ -47,9 +47,9 @@
             <svg class="icon"><use href="assets/icons/sprite.svg#call"></use></svg>
           </button>
           <button class="btn btn-primary rounded-pill" type="button">Бесплатный замер</button>
-          <a class="icon-btn icon-btn--cart d-flex align-items-center justify-content-center border-0" href="cart.html" aria-label="Корзина">
+          <button class="icon-btn icon-btn--cart has-items d-flex align-items-center justify-content-center border-0" type="button" aria-label="Корзина">
             <svg class="icon"><use href="assets/icons/sprite.svg#cart"></use></svg>
-          </a>
+          </button>
           <button class="icon-btn d-flex align-items-center justify-content-center border-0" type="button" aria-label="Поиск">
             <svg class="icon"><use href="assets/icons/sprite.svg#search"></use></svg>
           </button>
@@ -66,7 +66,7 @@
             <span class="menu-item__label">О компании</span>
             <svg class="icon icon--16"><use href="assets/icons/sprite.svg#angle-down"></use></svg>
           </a>
-          <a class="menu-item" href="#"><span class="menu-item__label">Контакты</span></a>
+          <a class="menu-item" href="contacts.html"><span class="menu-item__label">Контакты</span></a>
         </nav>
 
         <div class="header__contacts d-none d-lg-flex align-items-center justify-content-end gap-4 flex-grow-1 flex-shrink-0">
@@ -81,15 +81,15 @@
           </div>
           <div class="header__actions d-flex align-items-center gap-3">
             <button class="btn btn-primary rounded-pill" type="button">Бесплатный замер</button>
-            <a class="icon-btn icon-btn--cart d-flex align-items-center justify-content-center border-0" href="cart.html" aria-label="Корзина">
+            <button class="icon-btn icon-btn--cart has-items d-flex align-items-center justify-content-center border-0" type="button" aria-label="Корзина">
               <svg class="icon"><use href="assets/icons/sprite.svg#cart"></use></svg>
-            </a>
+            </button>
           </div>
         </div>
 
-        <a class="icon-btn icon-btn--cart icon-btn--cart-mobile d-flex d-sm-none align-items-center justify-content-center border-0 ms-auto" href="cart.html" aria-label="Корзина">
+        <button class="icon-btn icon-btn--cart icon-btn--cart-mobile has-items d-flex d-sm-none align-items-center justify-content-center border-0 ms-auto" type="button" aria-label="Корзина">
           <svg class="icon"><use href="assets/icons/sprite.svg#cart"></use></svg>
-        </a>
+        </button>
       </div>
     </div>
 
@@ -134,90 +134,82 @@
     </div>
   </header>
 
-  <section class="typical-head typical-head--dark">
-    <div class="typical-head__media">
-      <img src="assets/typical-head/contacts-bg.jpg" alt="" loading="lazy">
-    </div>
+  <section class="typical-head typical-head--light typical-head--compact typical-head--left">
     <div class="typical-head__inner">
       <div class="typical-head__intro">
         <nav class="typical-head__breadcrumbs" aria-label="Хлебные крошки">
           <a href="home.html">Главная</a>
           <svg class="icon icon--16"><use href="assets/icons/sprite.svg#angle-right"></use></svg>
-          <span>Контакты</span>
+          <span>Корзина</span>
         </nav>
-        <h1 class="typical-head__title">Контакты</h1>
-        <p class="typical-head__subtitle">Всё необходимое, чтобы связаться с нами или спланировать выезд замерщика</p>
+        <h1 class="typical-head__title">Корзина</h1>
       </div>
     </div>
   </section>
 
-  <div class="section-spacer"></div>
-
-  <section class="contact contact--page">
-    <div class="contact__inner">
-      <div class="contact__card">
-        <div class="contact__map">
-          <div class="contact__map-canvas" data-map-canvas data-lat="53.195873" data-lon="50.101785" data-zoom="15" role="img" aria-label="Карта"></div>
+  <section class="basket">
+    <div class="basket__table">
+      <div class="basket__row">
+        <div class="basket__photo">
+          <img src="assets/basket/item-1.jpg" alt="Прямая кухня" loading="lazy">
         </div>
-
-        <div class="contact__info">
-          <div class="contact__phone-block">
-            <p class="contact__label">Связаться с нами</p>
-            <div class="contact__phone-row">
-              <a href="tel:+79270112793" class="contact__phone">+7 (927) 011-27-93</a>
-              <div class="contact__messengers">
-                <a href="#" aria-label="WhatsApp"><img src="assets/steps/whatsapp.svg" alt=""></a>
-                <a href="#" aria-label="Max"><img src="assets/steps/max.svg" alt=""></a>
-                <a href="#" aria-label="Telegram"><img src="assets/steps/telegram.svg" alt=""></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="contact__field">
-            <p class="contact__field-label">Email:</p>
-            <a href="mailto:info@samara.kitchen" class="contact__field-value contact__email">info@samara.kitchen</a>
-          </div>
-
-          <div class="contact__field">
-            <p class="contact__field-label">Адрес:</p>
-            <p class="contact__field-value">г. Самара, ул. Партизанская, д. 88, оф. 1</p>
-          </div>
-
-          <div class="contact__field">
-            <p class="contact__field-label">Реквизиты:</p>
-            <div class="contact__requisites">
-              <span class="contact__field-value">ИП Домнина Татьяна Сергеевна</span>
-              <a href="#" class="contact__download">
-                <svg class="icon"><use href="assets/icons/sprite.svg#download"></use></svg>
-                Скачать
-              </a>
-            </div>
-          </div>
-
-          <button type="button" class="btn btn-primary contact__btn">Заказать звонок</button>
+        <div class="basket__info">
+          <p class="basket__title">Прямая кухня</p>
+          <p class="basket__desc">Краткое описание товара из каталога</p>
         </div>
+        <div class="basket__qty">
+          <button type="button" class="basket__qty-btn" aria-label="Уменьшить количество">
+            <svg class="icon"><use href="assets/icons/sprite.svg#minus"></use></svg>
+          </button>
+          <span class="basket__qty-value">1</span>
+          <button type="button" class="basket__qty-btn" aria-label="Увеличить количество">
+            <svg class="icon"><use href="assets/icons/sprite.svg#plus"></use></svg>
+          </button>
+        </div>
+        <p class="basket__price">от 256 000₽</p>
+        <button type="button" class="basket__remove" aria-label="Удалить из корзины">
+          <svg class="icon"><use href="assets/icons/sprite.svg#close"></use></svg>
+        </button>
+      </div>
+
+      <div class="basket__row">
+        <div class="basket__photo">
+          <img src="assets/basket/item-2.jpg" alt="Встроенный шкаф в спальню" loading="lazy">
+        </div>
+        <div class="basket__info">
+          <p class="basket__title">Встроенный шкаф в спальню</p>
+          <p class="basket__desc">Краткое описание товара из каталога</p>
+        </div>
+        <div class="basket__qty">
+          <button type="button" class="basket__qty-btn" aria-label="Уменьшить количество">
+            <svg class="icon"><use href="assets/icons/sprite.svg#minus"></use></svg>
+          </button>
+          <span class="basket__qty-value">1</span>
+          <button type="button" class="basket__qty-btn" aria-label="Увеличить количество">
+            <svg class="icon"><use href="assets/icons/sprite.svg#plus"></use></svg>
+          </button>
+        </div>
+        <p class="basket__price">от 256 000₽</p>
+        <button type="button" class="basket__remove" aria-label="Удалить из корзины">
+          <svg class="icon"><use href="assets/icons/sprite.svg#close"></use></svg>
+        </button>
+      </div>
+
+      <div class="basket__totals">
+        <p class="basket__totals-label">Итого:</p>
+        <p class="basket__totals-value">от 512 000₽</p>
       </div>
     </div>
   </section>
 
-  <div class="section-spacer"></div>
-
-  <section class="visit-cta">
-    <div class="visit-cta__media">
-      <img src="assets/side-cta/bg.jpg" alt="" loading="lazy">
-    </div>
-    <div class="visit-cta__inner">
-      <div class="visit-cta__intro">
-        <h2 class="visit-cta__title">Получить консультацию специалиста</h2>
-        <p class="visit-cta__subtitle">Оставьте контакты — мы ответим на ваши вопросы, поможем с выбором материалов и предложим решение под ваш бюджет</p>
+  <section class="order-cta">
+    <div class="order-cta__inner">
+      <div class="order-cta__intro">
+        <h2 class="order-cta__title">Оформление заказа</h2>
+        <p class="order-cta__subtitle">Заполните форму, и наш менеджер свяжется с Вами в ближайшее время для уточнения деталей заказа</p>
       </div>
 
-      <div class="visit-cta__card">
-        <div class="visit-cta__head">
-          <h3 class="visit-cta__card-title">Запишитесь на консультацию</h3>
-          <p class="visit-cta__card-subtitle">Оставьте свои контакты — наш специалист свяжется с вами и ответит на вопросы по вашему проекту</p>
-        </div>
-
+      <div class="order-cta__card">
         <form class="visit-cta__fields">
           <div class="input-field">
             <input type="text" placeholder="Ваше имя" aria-label="Ваше имя" required>
@@ -238,6 +230,8 @@
       </div>
     </div>
   </section>
+
+  <div class="section-spacer"></div>
 
   <footer class="footer">
     <div class="footer__top">
@@ -284,7 +278,7 @@
               <li><a href="materials.html">Материалы и аксессуары</a></li>
               <li><a href="calc.html">Калькулятор</a></li>
               <li><a href="projects.html">Наши работы</a></li>
-              <li><a href="#">Акции</a></li>
+              <li><a href="stocks.html">Акции</a></li>
               <li><a href="#">Кредит</a></li>
               <li><a href="#">Дизайнерам</a></li>
             </ul>
@@ -299,7 +293,7 @@
           <div class="footer-col__body">
             <ul class="footer-col__list">
               <li><a href="about.html">О нас</a></li>
-              <li><a href="#">Контакты</a></li>
+              <li><a href="contacts.html">Контакты</a></li>
             </ul>
           </div>
         </div>
@@ -344,7 +338,6 @@
     </div>
   </footer>
 
-  <script src="https://api-maps.yandex.ru/2.1/?apikey=5955fee5-8c5e-4516-9cd2-260bc8a9538f&lang=ru_RU"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="js/main.js"></script>
 </body>

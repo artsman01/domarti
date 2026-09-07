@@ -1,0 +1,75 @@
+// CTASection ("Basket" template, "Оформление заказа"): unlike .cta's
+// full-bleed photo card, this is a plain bordered box on a white
+// background — a centered title+subtitle above a form. The form row
+// and consent line reuse .visit-cta__fields/.btn.visit-cta__submit/
+// .visit-cta__consent* verbatim (those classes aren't scoped to
+// .visit-cta, so they work unmodified here too) rather than
+// duplicating that layout and its responsive breakpoints.
+
+.order-cta {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 32px 16px;
+  background: var(--bs-body-bg);
+}
+
+.order-cta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 1280px;
+  padding: 32px;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 12px;
+}
+
+@media (max-width: 575.98px) {
+  .order-cta__inner {
+    gap: 24px;
+    padding: 24px;
+  }
+}
+
+.order-cta__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: center;
+}
+
+.order-cta__title {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 2.5rem; // 40px
+  line-height: 3rem; // 48px
+}
+
+@media (max-width: 575.98px) {
+  .order-cta__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+  }
+}
+
+.order-cta__subtitle {
+  max-width: 548px;
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 500;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.375rem; // 22px
+}
+
+.order-cta__card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 1080px;
+}

@@ -127,3 +127,21 @@
   background: var(--color-secondary-bg);
   color: var(--bs-body-color);
 }
+
+// "Has items" state (Корзина page's header) — a small gold dot over
+// the icon's own top-right corner, needs the button positioned to
+// anchor it.
+.icon-btn--cart.has-items {
+  position: relative;
+}
+
+.icon-btn--cart.has-items::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50rem;
+  background: var(--bs-primary);
+}

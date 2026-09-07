@@ -203,3 +203,16 @@
     padding-bottom: 16px;
   }
 }
+
+// Left-aligned, no subtitle (Корзина): breadcrumbs sit directly above
+// the title instead of centered above it, and both hug the left edge
+// instead of the page center. Shares --light's white bg/dark text and
+// --compact's shorter bottom padding — add both alongside this one.
+.typical-head--left .typical-head__inner {
+  align-items: flex-start;
+}
+
+.typical-head--left .typical-head__intro {
+  align-items: flex-start;
+  text-align: left;
+}
