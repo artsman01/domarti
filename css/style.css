@@ -18012,6 +18012,10 @@ a.pagination__item.is-active:hover {
   background: var(--bs-body-bg);
 }
 
+.seo-simple--gray {
+  background: var(--color-secondary-bg);
+}
+
 .seo-simple__inner {
   display: flex;
   justify-content: center;
@@ -18410,4 +18414,239 @@ a.pagination__item.is-active:hover {
   gap: 24px;
   width: 100%;
   max-width: 1080px;
+}
+
+.product-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 64px 16px;
+  background: var(--color-dark);
+}
+
+@media (min-width: 768px) {
+  .product-head {
+    min-height: 640px;
+  }
+}
+@media (max-width: 767.98px) {
+  .product-head {
+    height: 548px;
+  }
+}
+.product-head__inner {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.product-head__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 640px;
+  padding: 32px;
+  border-radius: 12px;
+  background: var(--bs-body-bg);
+  text-align: center;
+}
+
+.product-head__breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.product-head__breadcrumbs a,
+.product-head__breadcrumbs span {
+  font-weight: 500;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+}
+
+.product-head__breadcrumbs a {
+  color: var(--bs-body-color);
+  transition: opacity 0.15s ease;
+}
+
+.product-head__breadcrumbs a:hover {
+  opacity: 0.72;
+}
+
+.product-head__breadcrumbs span {
+  color: var(--color-hint);
+}
+
+.product-head__breadcrumbs .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-hint);
+}
+
+.product-head__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.product-head__title {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 3rem;
+}
+
+.product-head__price {
+  margin: 0;
+  color: var(--bs-primary);
+  font-weight: 700;
+  font-size: 1.625rem;
+  line-height: 2rem;
+}
+
+.product-head__desc {
+  max-width: 548px;
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+}
+
+.product-head__actions {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.product-head__actions .btn {
+  flex: 1 1 0%;
+  min-width: 0;
+  height: 48px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+@media (max-width: 767.98px) {
+  .product-head__title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+@media (max-width: 575.98px) {
+  .product-head__card {
+    padding: 24px;
+  }
+  .product-head__actions {
+    flex-direction: column;
+  }
+}
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  padding: 32px 16px;
+  background: var(--bs-body-bg);
+}
+
+.gallery__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+.gallery__title {
+  max-width: 948px;
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 3rem;
+}
+
+.gallery__title span {
+  color: var(--bs-primary);
+}
+
+.gallery__subtitle {
+  max-width: 548px;
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+}
+
+.gallery__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.gallery__item {
+  position: relative;
+  flex: 1 0 calc((100% - 32px) / 3);
+  aspect-ratio: 416/312;
+  min-width: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.gallery__item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.gallery__item--more::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-dark);
+  opacity: 0.72;
+}
+
+.gallery__item--more .icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  color: #fff;
+}
+
+@media (max-width: 767.98px) {
+  .gallery__item {
+    flex: 1 0 calc((100% - 16px) / 2);
+  }
+}
+@media (max-width: 575.98px) {
+  .gallery__title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
 }

@@ -1,0 +1,108 @@
+// GallerySection: a title+subtitle above a fixed 3-across, 2-row photo
+// grid. One tile can carry a dark overlay + zoom icon (marks it as the
+// "see more photos" trigger) — a plain modifier class, not a separate
+// component, since every other tile is a plain photo.
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  padding: 32px 16px;
+  background: var(--bs-body-bg);
+}
+
+.gallery__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+.gallery__title {
+  max-width: 948px;
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 2.5rem; // 40px
+  line-height: 3rem; // 48px
+}
+
+.gallery__title span {
+  color: var(--bs-primary);
+}
+
+.gallery__subtitle {
+  max-width: 548px;
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 500;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.375rem; // 22px
+}
+
+.gallery__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.gallery__item {
+  position: relative;
+  flex: 1 0 calc((100% - 32px) / 3);
+  aspect-ratio: 416 / 312;
+  min-width: 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.gallery__item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+// The "see more" tile: dark overlay over the same photo, zoom icon
+// centered on top.
+.gallery__item--more::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-dark);
+  opacity: 0.72;
+}
+
+.gallery__item--more .icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  color: #fff;
+}
+
+// Stays 3-across through tablet (768px) — only true mobile (<768) drops
+// to 2 columns, and it never goes further to a single column.
+@media (max-width: 767.98px) {
+  .gallery__item {
+    flex: 1 0 calc((100% - 16px) / 2);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .gallery__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+  }
+}

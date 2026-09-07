@@ -8,6 +8,12 @@
   background: var(--bs-body-bg);
 }
 
+// Product page's instance sits on the page's own gray band instead of
+// white — same content/layout, just the section background swapped.
+.seo-simple--gray {
+  background: var(--color-secondary-bg);
+}
+
 .seo-simple__inner {
   display: flex;
   justify-content: center;

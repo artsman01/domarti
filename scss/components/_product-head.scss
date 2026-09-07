@@ -1,0 +1,145 @@
+// ProductHeadSection: like .typical-head--dark's full-bleed dark photo
+// (reuses .typical-head__media verbatim for that layer), but instead
+// of centered white text on the photo itself, the content sits in a
+// separate white card floating over the photo's right side.
+
+.product-head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 64px 16px;
+  background: var(--color-dark);
+}
+
+@media (min-width: 768px) {
+  .product-head {
+    min-height: 640px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .product-head {
+    height: 548px;
+  }
+}
+
+.product-head__inner {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.product-head__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 640px;
+  padding: 32px;
+  border-radius: 12px;
+  background: var(--bs-body-bg);
+  text-align: center;
+}
+
+.product-head__breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.product-head__breadcrumbs a,
+.product-head__breadcrumbs span {
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
+
+.product-head__breadcrumbs a {
+  color: var(--bs-body-color);
+  transition: opacity 0.15s ease;
+}
+
+.product-head__breadcrumbs a:hover {
+  opacity: 0.72;
+}
+
+.product-head__breadcrumbs span {
+  color: var(--color-hint);
+}
+
+.product-head__breadcrumbs .icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-hint);
+}
+
+.product-head__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.product-head__title {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 2.5rem; // 40px
+  line-height: 3rem; // 48px
+}
+
+.product-head__price {
+  margin: 0;
+  color: var(--bs-primary);
+  font-weight: 700;
+  font-size: 1.625rem; // 26px
+  line-height: 2rem; // 32px
+}
+
+.product-head__desc {
+  max-width: 548px;
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 400;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.375rem; // 22px
+}
+
+.product-head__actions {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.product-head__actions .btn {
+  flex: 1 1 0%;
+  min-width: 0;
+  height: 48px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+@media (max-width: 767.98px) {
+  .product-head__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+  }
+}
+
+@media (max-width: 575.98px) {
+  .product-head__card {
+    padding: 24px;
+  }
+
+  .product-head__actions {
+    flex-direction: column;
+  }
+}
