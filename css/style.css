@@ -18043,3 +18043,105 @@ a.pagination__item.is-active:hover {
   font-size: 0.9375rem;
   line-height: 1.375rem;
 }
+
+.chess {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 32px 16px;
+  background: var(--bs-body-bg);
+}
+
+.chess__inner {
+  display: flex;
+  align-items: center;
+  gap: 64px;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.chess--reverse .chess__inner {
+  flex-direction: row-reverse;
+}
+
+.chess__media {
+  flex: 1 0 0;
+  min-width: 0;
+  aspect-ratio: 64/48;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.chess__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.chess__content {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 0;
+}
+
+.chess__title {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 3rem;
+}
+
+.chess__title span {
+  color: var(--bs-primary);
+}
+
+.chess__text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.chess__text p {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+}
+
+.chess__quote {
+  margin: 0;
+  color: var(--bs-primary);
+  font-family: "Marck Script", cursive;
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 2rem;
+}
+
+@media (max-width: 991.98px) {
+  .chess__inner,
+  .chess--reverse .chess__inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+  .chess__media,
+  .chess__content {
+    flex: none;
+    width: 100%;
+  }
+}
+@media (max-width: 575.98px) {
+  .chess__title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
