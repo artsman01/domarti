@@ -1399,3 +1399,66 @@
   tapbar.querySelector(".tapbar__up").addEventListener("click", scrollToTop);
   document.body.appendChild(tapbar);
 })();
+
+(function () {
+  // "Заказать звонок" popup — opens off the header's "Бесплатный
+  // замер" buttons (data-call-popup-trigger, both the tablet-actions
+  // and desktop-actions instances on every page).
+  var triggers = document.querySelectorAll("[data-call-popup-trigger]");
+  if (!triggers.length) return;
+
+  var overlay = document.createElement("div");
+  overlay.className = "call-popup-overlay";
+  overlay.innerHTML =
+    '<div class="call-popup">' +
+    '<button type="button" class="call-popup__close" aria-label="Закрыть">' +
+    '<svg class="icon"><use href="assets/icons/sprite.svg#close"></use></svg>' +
+    "</button>" +
+    '<div class="call-popup__head">' +
+    '<h3 class="call-popup__title">Заказать звонок</h3>' +
+    '<p class="call-popup__subtitle">Заполните форму и мы свяжемся с Вами в ближайшее время</p>' +
+    "</div>" +
+    '<form class="call-popup__form">' +
+    '<div class="input-field">' +
+    '<input type="text" placeholder="Ваше имя" aria-label="Ваше имя" required>' +
+    '<svg class="icon"><use href="assets/icons/sprite.svg#user"></use></svg>' +
+    "</div>" +
+    '<div class="input-field">' +
+    '<input type="tel" placeholder="Ваш телефон" aria-label="Ваш телефон" required>' +
+    '<svg class="icon"><use href="assets/icons/sprite.svg#call"></use></svg>' +
+    "</div>" +
+    '<button type="submit" class="btn btn-primary call-popup__submit">Отправить заявку</button>' +
+    "</form>" +
+    '<label class="checkbox-field call-popup__consent">' +
+    '<input type="checkbox" class="checkbox-field__input" required>' +
+    '<span class="checkbox-field__box"><svg class="icon icon--16"><use href="assets/icons/sprite.svg#check"></use></svg></span>' +
+    '<span class="call-popup__consent-text">Я даю с<a href="#">огласие на обработку своих персональных данных</a> в соответствии с <a href="#">Политикой защиты и обработки персональных данных</a></span>' +
+    "</label>" +
+    "</div>";
+  document.body.appendChild(overlay);
+
+  function close() {
+    overlay.classList.remove("is-open");
+    document.body.style.overflow = "";
+    document.removeEventListener("keydown", onEscape);
+  }
+
+  function open() {
+    overlay.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onEscape);
+  }
+
+  function onEscape(e) {
+    if (e.key === "Escape") close();
+  }
+
+  overlay.addEventListener("click", function (e) {
+    if (e.target === overlay) close();
+  });
+  overlay.querySelector(".call-popup__close").addEventListener("click", close);
+
+  Array.prototype.forEach.call(triggers, function (trigger) {
+    trigger.addEventListener("click", open);
+  });
+})();
