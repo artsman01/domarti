@@ -35,3 +35,9 @@
     aspect-ratio: 16 / 9;
   }
 }
+
+@media (max-width: 575.98px) {
+  .project-banner {
+    padding: 16px;
+  }
+}

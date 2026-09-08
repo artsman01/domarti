@@ -16,10 +16,10 @@
 .gallery__intro {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   width: 100%;
-  text-align: center;
+  text-align: left;
 }
 
 .gallery__title {

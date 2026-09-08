@@ -72,6 +72,19 @@
   align-items: center;
 }
 
+// .btn.btn-primary/.btn.btn-stroke's own 2-class specificity would
+// otherwise win over a plain 1-class padding override regardless of
+// source order — matched here so both buttons get 16px side padding
+// and a properly (flex-)centered label, same fix as
+// .catalog-main__actions/.stock-head__content/.content-block.
+.about-project__actions .btn.btn-primary,
+.about-project__actions .btn.btn-stroke {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+}
+
 .about-project__quote {
   display: flex;
   flex-direction: column;
@@ -105,9 +118,36 @@
 }
 
 @media (max-width: 575.98px) {
+  .about-project {
+    padding: 16px;
+  }
+
+  .about-project__inner {
+    gap: 24px;
+  }
+
   .about-project__title {
     font-size: 1.5rem; // 24px
     line-height: 2rem; // 32px
+  }
+
+  .about-project__row {
+    // Truncating to one line loses content on mobile — let long
+    // labels/values wrap to a second line instead.
+    align-items: flex-start;
+  }
+
+  .about-project__label,
+  .about-project__value {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  .about-project__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
   }
 
   .about-project__quote {

@@ -18644,10 +18644,10 @@ a.pagination__item.is-active:hover {
 .gallery__intro {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   width: 100%;
-  text-align: center;
+  text-align: left;
 }
 
 .gallery__title {
@@ -19108,6 +19108,11 @@ a.pagination__item.is-active:hover {
     aspect-ratio: 16/9;
   }
 }
+@media (max-width: 575.98px) {
+  .project-banner {
+    padding: 16px;
+  }
+}
 .about-project {
   display: flex;
   justify-content: center;
@@ -19178,6 +19183,14 @@ a.pagination__item.is-active:hover {
   align-items: center;
 }
 
+.about-project__actions .btn.btn-primary,
+.about-project__actions .btn.btn-stroke {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+}
+
 .about-project__quote {
   display: flex;
   flex-direction: column;
@@ -19207,9 +19220,29 @@ a.pagination__item.is-active:hover {
   }
 }
 @media (max-width: 575.98px) {
+  .about-project {
+    padding: 16px;
+  }
+  .about-project__inner {
+    gap: 24px;
+  }
   .about-project__title {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+  .about-project__row {
+    align-items: flex-start;
+  }
+  .about-project__label,
+  .about-project__value {
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+  }
+  .about-project__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
   }
   .about-project__quote {
     padding: 24px;
