@@ -18647,6 +18647,7 @@ a.pagination__item.is-active:hover {
   align-items: flex-start;
   gap: 16px;
   width: 100%;
+  max-width: 1280px;
   text-align: left;
 }
 
@@ -19307,6 +19308,9 @@ a.pagination__item.is-active:hover {
 }
 
 @media (max-width: 575.98px) {
+  .review-project {
+    padding: 16px;
+  }
   .review-project__title {
     font-size: 1.5rem;
     line-height: 2rem;
