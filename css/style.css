@@ -18183,9 +18183,15 @@ a.pagination__item.is-active:hover {
   }
 }
 @media (max-width: 575.98px) {
+  .chess {
+    padding: 16px;
+  }
   .chess__title {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+  .chess__content {
+    gap: 16px;
   }
 }
 .basket {
