@@ -1086,3 +1086,114 @@
 
   document.querySelectorAll(".input-field--select").forEach(initDateSelect);
 })();
+
+(function () {
+  // Header's "Каталог" dropdown — desktop only (≥992px, matching the
+  // trigger's own d-lg-inline-flex visibility). Built once and shared
+  // across every page's identical header; the panel is fixed right
+  // under it, positioned once on open (the header is itself
+  // position:sticky top:0, so its own bottom edge never moves once
+  // scrolled — no need to recompute on scroll, only on resize).
+  var DESKTOP_QUERY = "(min-width: 992px)";
+
+  var trigger = document.querySelector("[data-catalog-menu-trigger]");
+  if (!trigger) return;
+
+  var header = document.querySelector(".header");
+  var panel = null;
+
+  function build() {
+    var el = document.createElement("div");
+    el.className = "menu-catalog";
+    el.innerHTML =
+      '<div class="menu-catalog__inner">' +
+      '<div class="menu-catalog__groups">' +
+      '<div class="menu-catalog__group">' +
+      '<p class="menu-catalog__group-title">Кухни под заказ</p>' +
+      '<div class="menu-catalog__cols">' +
+      '<div class="menu-catalog__col">' +
+      '<a href="catalog.html">П-образные</a>' +
+      '<a href="catalog.html">Прямые</a>' +
+      '<a href="catalog.html">Паралельные</a>' +
+      '<a href="catalog.html">С островом</a>' +
+      '<a href="catalog.html">С барной стойкой</a>' +
+      "</div>" +
+      '<div class="menu-catalog__col">' +
+      '<a href="catalog.html">Современные</a>' +
+      '<a href="catalog.html">Модерн</a>' +
+      '<a href="catalog.html">Классические</a>' +
+      '<a href="catalog.html">Лофт</a>' +
+      "</div>" +
+      "</div>" +
+      "</div>" +
+      '<div class="menu-catalog__group">' +
+      '<p class="menu-catalog__group-title">Мебель для хранения</p>' +
+      '<div class="menu-catalog__cols">' +
+      '<div class="menu-catalog__col">' +
+      '<a href="catalog.html">Распашной шкаф</a>' +
+      '<a href="catalog.html">Шкаф-купе</a>' +
+      '<a href="catalog.html">Угловой шкаф</a>' +
+      '<a href="catalog.html">Книжный шкаф</a>' +
+      '<a href="catalog.html">Детский шкаф</a>' +
+      "</div>" +
+      '<div class="menu-catalog__col">' +
+      '<a href="catalog.html">Стеллаж</a>' +
+      '<a href="catalog.html">Тумба для ТВ</a>' +
+      '<a href="catalog.html">Гардеробная система</a>' +
+      '<a href="catalog.html">Прихожая</a>' +
+      '<a href="catalog.html">Комод</a>' +
+      '<a href="catalog.html">Тумба</a>' +
+      "</div>" +
+      "</div>" +
+      "</div>" +
+      "</div>" +
+      '<a href="catalog.html" class="menu-catalog__all">Смотреть весь каталог</a>' +
+      "</div>";
+    document.body.appendChild(el);
+    return el;
+  }
+
+  function position() {
+    panel.style.top = header.getBoundingClientRect().bottom + "px";
+  }
+
+  function open() {
+    if (!panel) panel = build();
+    position();
+    panel.classList.add("is-open");
+    document.addEventListener("click", onOutsideClick);
+    document.addEventListener("keydown", onEscape);
+  }
+
+  function close() {
+    if (!panel) return;
+    panel.classList.remove("is-open");
+    document.removeEventListener("click", onOutsideClick);
+    document.removeEventListener("keydown", onEscape);
+  }
+
+  function isOpen() {
+    return !!panel && panel.classList.contains("is-open");
+  }
+
+  function onOutsideClick(e) {
+    if (isOpen() && !panel.contains(e.target) && !trigger.contains(e.target)) close();
+  }
+
+  function onEscape(e) {
+    if (e.key === "Escape") close();
+  }
+
+  trigger.addEventListener("click", function (e) {
+    if (!window.matchMedia(DESKTOP_QUERY).matches) return;
+    e.preventDefault();
+    e.stopPropagation();
+    if (isOpen()) close();
+    else open();
+  });
+
+  window.addEventListener("resize", function () {
+    if (!window.matchMedia(DESKTOP_QUERY).matches) close();
+    else if (isOpen()) position();
+  });
+})();
