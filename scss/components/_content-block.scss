@@ -168,6 +168,14 @@
     padding: 16px;
   }
 
+  // Same tie-break as everywhere else in this file: this mobile
+  // shorthand padding sits after --top-only's padding-bottom:0 in the
+  // file, so at ≤575.98px it was winning the tie back and reintroducing
+  // the bottom padding — redeclared here, later again, to keep it 0.
+  .content-block--top-only {
+    padding-bottom: 0;
+  }
+
   .content-block__inner {
     gap: 24px;
   }

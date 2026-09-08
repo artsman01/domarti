@@ -567,15 +567,14 @@
     var prevBtn = section.querySelector(".material-slider__nav--prev");
     var nextBtn = section.querySelector(".material-slider__nav--next");
 
-    // No loop: with only 3 real slides and slidesPerView:3 at desktop,
-    // there's nothing to loop into — Swiper just disables it outright
-    // and (since it thinks nothing needs to move) the nav/drag stops
-    // working entirely. Plain bounded sliding works at every tier and
-    // still lets mobile/tablet (where fewer than 3 fit) navigate.
+    // Same options as initMaterials' .materials-swiper (home.html) —
+    // loop needs at least slidesPerView*2 real slides to work, which is
+    // why the page carries 6 photos for a desktop slidesPerView of 3.
     new Swiper(swiperEl, {
       slidesPerView: "auto",
       spaceBetween: 16,
       speed: 450,
+      loop: true,
       wrapperClass: "material-slider__track",
       slideClass: "material-slider__slide",
       navigation: {

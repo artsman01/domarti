@@ -8,7 +8,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 32px 16px;
+  padding: 16px;
   background: var(--bs-body-bg);
 }
 
@@ -71,11 +71,14 @@
 }
 
 // Light darkening + the same white zoom icon as .gallery__item, both
-// hidden until hover.
+// hidden until hover. ::after paints after every real child by default
+// (icon included), which was muddying the white icon through the dark
+// overlay — z-index pulls the icon back on top (same fix as .gallery__item).
 .material-slider__slide::after {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
   background: var(--color-dark);
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -89,6 +92,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  z-index: 1;
   transform: translate(-50%, -50%);
   width: 48px;
   height: 48px;
@@ -102,12 +106,16 @@
   opacity: 1;
 }
 
+// Nav arrows: same floating-outside-the-1280px-container positioning
+// formula, colors and hidden-below-992px behavior as .materials-nav
+// (home.html) — copied verbatim rather than reinvented, since every
+// slider on the site is meant to share this one nav implementation.
 .material-slider__nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 2;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 48px;
@@ -125,12 +133,13 @@
 
 .material-slider__nav--prev {
   left: max(-64px, 16px - max(0px, (100vw - 1280px) / 2));
-  background: var(--color-tertiary-bg);
+  background: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
   color: var(--bs-body-color);
 }
 
 .material-slider__nav--prev:hover {
-  background: var(--bs-border-color);
+  background: var(--color-secondary-bg);
 }
 
 .material-slider__nav--next {
@@ -143,9 +152,9 @@
   background: var(--color-brand-hover);
 }
 
-@media (max-width: 991.98px) {
+@media (min-width: 992px) {
   .material-slider__nav {
-    display: none;
+    display: flex;
   }
 }
 

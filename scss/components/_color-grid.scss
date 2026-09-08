@@ -101,6 +101,10 @@
 }
 
 @media (max-width: 575.98px) {
+  .color-grid {
+    padding: 16px;
+  }
+
   .color-grid__item {
     flex-basis: calc((100% - 16px) / 2);
   }
