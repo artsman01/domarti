@@ -19753,6 +19753,10 @@ a.pagination__item.is-active:hover {
     font-size: 1.5rem;
     line-height: 2rem;
   }
+  .catalog-main__col-title {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+  }
   .catalog-main__actions {
     flex-direction: column;
   }
