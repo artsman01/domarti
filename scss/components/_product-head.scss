@@ -1,7 +1,10 @@
 // ProductHeadSection: like .typical-head--dark's full-bleed dark photo
 // (reuses .typical-head__media verbatim for that layer), but instead
 // of centered white text on the photo itself, the content sits in a
-// separate white card floating over the photo's right side.
+// separate white card floating over the photo's right side. Below
+// 768px Figma drops the overlap entirely: a plain photo strip on top,
+// then the (now edge-to-edge, square-cornered) card in normal flow
+// underneath — see the ≤767.98 block.
 
 .product-head {
   position: relative;
@@ -19,9 +22,40 @@
   }
 }
 
+// Below 768px the section stops being a fixed-height overlap photo:
+// height goes to auto (the fixed 548px + overflow:hidden combo was
+// clipping the card whenever its stacked content ran taller than
+// that, which is what made the two buttons read as different/cut-off
+// heights) and .typical-head__media becomes a plain static photo
+// strip instead of a full-bleed absolutely-positioned background.
 @media (max-width: 767.98px) {
   .product-head {
-    height: 548px;
+    display: block;
+    height: auto;
+    padding: 0;
+    background: var(--bs-body-bg);
+  }
+
+  .product-head .typical-head__media {
+    position: static;
+    height: 221px;
+  }
+
+  .product-head .typical-head__media img {
+    opacity: 1;
+  }
+
+  .product-head__inner {
+    display: block;
+    width: 100%;
+  }
+
+  .product-head__card {
+    gap: 16px;
+    width: 100%;
+    max-width: none;
+    padding: 16px;
+    border-radius: 0;
   }
 }
 
@@ -135,12 +169,8 @@
 }
 
 @media (max-width: 575.98px) {
-  .product-head__card {
-    gap: 16px;
-    padding: 24px;
-  }
-
   .product-head__actions {
     flex-direction: column;
+    gap: 8px;
   }
 }
