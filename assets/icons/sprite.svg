@@ -242,10 +242,13 @@
 <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
 <symbol id="plus-small" viewBox="0 0 24 24">
-<path d="M12 8V16M8 12H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 8V16M8 12H16" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
 <symbol id="minus-small" viewBox="0 0 24 24">
-<path d="M8 12H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+<path d="M8 12H16" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+</symbol>
+<symbol id="close-small" viewBox="0 0 24 24">
+<path d="M21 3L3 21M3 3L21 21" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
 <symbol id="zoom" viewBox="0 0 48 48">
 <path d="M42 42L33.028 33.012M21 14V21M21 21V28M21 21H28M21 21H14M38 21C38 25.5087 36.2089 29.8327 33.0208 33.0208C29.8327 36.2089 25.5087 38 21 38C16.4913 38 12.1673 36.2089 8.97919 33.0208C5.79107 29.8327 4 25.5087 4 21C4 16.4913 5.79107 12.1673 8.97919 8.97919C12.1673 5.79107 16.4913 4 21 4C25.5087 4 29.8327 5.79107 33.0208 8.97919C36.2089 12.1673 38 16.4913 38 21Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
