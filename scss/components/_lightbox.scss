@@ -1,0 +1,141 @@
+// Simple fullscreen photo lightbox — shared by every .gallery__grid on
+// the site. Built once in JS and appended to <body> on first open;
+// see the lightbox IIFE in main.js.
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-overlay.is-open {
+  display: flex;
+}
+
+.lightbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.lightbox__image {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 12px;
+  object-fit: contain;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 888px;
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  transition: background-color 0.15s ease;
+}
+
+.lightbox__close:hover {
+  background: var(--color-secondary-bg);
+}
+
+.lightbox__close .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 888px;
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  transform: translateY(-50%);
+  transition: background-color 0.15s ease;
+}
+
+.lightbox__nav:hover {
+  background: var(--color-secondary-bg);
+}
+
+.lightbox__nav .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.lightbox__prev {
+  left: 0;
+}
+
+.lightbox__next {
+  right: 0;
+}
+
+.lightbox__counter {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  padding: 4px 12px;
+  border-radius: 888px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+  transform: translateX(-50%);
+}
+
+@media (max-width: 575.98px) {
+  .lightbox {
+    width: calc(100% - 16px);
+    height: auto;
+  }
+
+  .lightbox__close {
+    top: -52px;
+    right: 0;
+  }
+
+  .lightbox__nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .lightbox__prev {
+    left: -8px;
+  }
+
+  .lightbox__next {
+    right: -8px;
+  }
+
+  .lightbox__counter {
+    bottom: 8px;
+  }
+}
