@@ -15,6 +15,14 @@
   background: var(--bs-body-bg);
 }
 
+// A standalone heading right before another section (no bottom
+// padding of its own) — the two sit flush, same as everywhere else on
+// a "Карточка материала"-style page that strings sections together
+// with no spacer between them.
+.content-block--top-only {
+  padding-bottom: 0;
+}
+
 .content-block h2 {
   margin: 0;
   color: var(--bs-body-color);

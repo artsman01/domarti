@@ -557,6 +557,41 @@
 })();
 
 (function () {
+  // SliderSection (Карточка материала): same "auto" width / numeric
+  // slidesPerView split as .portfolio-swiper, just a plain photo slide
+  // instead of a whole card.
+  function initMaterialSlider(section) {
+    var swiperEl = section.querySelector(".material-slider__viewport");
+    if (!swiperEl) return;
+
+    var prevBtn = section.querySelector(".material-slider__nav--prev");
+    var nextBtn = section.querySelector(".material-slider__nav--next");
+
+    new Swiper(swiperEl, {
+      slidesPerView: "auto",
+      spaceBetween: 16,
+      speed: 450,
+      loop: true,
+      wrapperClass: "material-slider__track",
+      slideClass: "material-slider__slide",
+      navigation: {
+        nextEl: nextBtn,
+        prevEl: prevBtn,
+      },
+      pagination: {
+        el: section.querySelector(".material-slider__dots"),
+        clickable: true,
+      },
+      breakpoints: {
+        992: { slidesPerView: 3, spaceBetween: 16 },
+      },
+    });
+  }
+
+  document.querySelectorAll(".material-slider").forEach(initMaterialSlider);
+})();
+
+(function () {
   // Same markup for every breakpoint — a real Swiper instance only
   // exists below 768px; at 768px+ it's destroyed entirely and plain CSS
   // grid (see .features__grid's own breakpoints in _features.scss) owns

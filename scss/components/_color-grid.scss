@@ -1,0 +1,92 @@
+// GridColorSection: a wrapping grid of flat color swatches with a
+// name label below each — simpler than .gallery__item (no photo, just
+// a solid-fill square).
+
+.color-grid {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 32px 16px;
+  background: var(--bs-body-bg);
+}
+
+.color-grid__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.color-grid__item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  flex: 0 1 calc((100% - 5 * 16px) / 6);
+  min-width: 120px;
+}
+
+.color-grid__swatch {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 12px;
+}
+
+// One-off material colors (Фасады AGT), named for the decor they
+// stand in for rather than a reusable design token.
+.color-grid__swatch--forest {
+  background: #455c56;
+}
+
+.color-grid__swatch--white {
+  background: #fdfef9;
+}
+
+.color-grid__swatch--bianco {
+  background: #e7e2c5;
+}
+
+.color-grid__swatch--storm {
+  background: #62635e;
+}
+
+.color-grid__swatch--gray {
+  background: #a59c8a;
+}
+
+.color-grid__swatch--cream {
+  background: #efe6d5;
+}
+
+.color-grid__name {
+  width: 100%;
+  margin: 0;
+  color: var(--bs-body-color);
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 991.98px) {
+  .color-grid__item {
+    flex-basis: calc((100% - 3 * 16px) / 4);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .color-grid__item {
+    flex-basis: calc((100% - 2 * 16px) / 3);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .color-grid__item {
+    flex-basis: calc((100% - 16px) / 2);
+  }
+}

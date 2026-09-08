@@ -1,0 +1,135 @@
+// SliderSection: a real Swiper carousel (unlike .gallery's static
+// grid) — floating round nav buttons outside the 1280px container
+// (same clamp technique as .portfolio-nav, hidden below 992px) and
+// dot pagination (same colors as .portfolio-dots).
+
+.material-slider {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 32px 16px;
+  background: var(--bs-body-bg);
+}
+
+.material-slider__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.material-slider__viewport {
+  width: 100%;
+  overflow: hidden;
+}
+
+// Swiper's own bundled CSS only targets the default `.swiper-wrapper`
+// class — since this uses a custom wrapperClass, the flex layout has
+// to be declared here instead (same reasoning as .portfolio-cards).
+.material-slider__track {
+  display: flex;
+  transition-property: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+.material-slider__slide {
+  flex-shrink: 0;
+  width: 416px;
+  aspect-ratio: 416 / 312;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.material-slider__slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.material-slider__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  transition: background-color 0.15s ease;
+}
+
+.material-slider__nav.swiper-button-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.material-slider__nav--prev {
+  left: max(-64px, 16px - max(0px, (100vw - 1280px) / 2));
+  background: var(--color-tertiary-bg);
+  color: var(--bs-body-color);
+}
+
+.material-slider__nav--prev:hover {
+  background: var(--bs-border-color);
+}
+
+.material-slider__nav--next {
+  right: max(-64px, 16px - max(0px, (100vw - 1280px) / 2));
+  background: var(--bs-primary);
+  color: var(--color-text-button);
+}
+
+.material-slider__nav--next:hover {
+  background: var(--color-brand-hover);
+}
+
+@media (max-width: 991.98px) {
+  .material-slider__nav {
+    display: none;
+  }
+}
+
+.material-slider__dots {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.material-slider__dots .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  margin: 0 !important;
+  border-radius: 50rem;
+  background: var(--color-tertiary-bg);
+  opacity: 1;
+}
+
+.material-slider__dots .swiper-pagination-bullet-active {
+  background: var(--color-success);
+}
+
+@media (max-width: 991.98px) and (min-width: 768px) {
+  .material-slider__slide {
+    width: 360px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .material-slider__slide {
+    width: 296px;
+  }
+}
