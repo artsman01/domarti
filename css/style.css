@@ -18227,6 +18227,7 @@ a.pagination__item.is-active:hover {
 }
 
 .basket__photo {
+  display: block;
   flex-shrink: 0;
   width: 128px;
   height: 96px;
@@ -18239,10 +18240,15 @@ a.pagination__item.is-active:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.35s ease;
   pointer-events: none;
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
   user-select: none;
+}
+
+.basket__photo:hover img {
+  transform: scale(1.05);
 }
 
 .basket__info {
@@ -18255,10 +18261,18 @@ a.pagination__item.is-active:hover {
 
 .basket__title {
   margin: 0;
-  color: var(--bs-body-color);
   font-weight: 600;
   font-size: 0.8125rem;
   line-height: 1.25rem;
+}
+
+.basket__title a {
+  color: var(--bs-body-color);
+  transition: opacity 0.15s ease;
+}
+
+.basket__title a:hover {
+  opacity: 0.72;
 }
 
 .basket__desc {
@@ -18309,6 +18323,7 @@ a.pagination__item.is-active:hover {
 
 .basket__price {
   flex-shrink: 0;
+  margin: 0;
   color: var(--bs-body-color);
   font-weight: 600;
   font-size: 0.8125rem;
@@ -18357,7 +18372,7 @@ a.pagination__item.is-active:hover {
   line-height: 1.25rem;
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 767.98px) {
   .basket__row {
     flex-wrap: wrap;
     gap: 16px;
@@ -18375,6 +18390,11 @@ a.pagination__item.is-active:hover {
   }
   .basket__price {
     margin-left: auto;
+  }
+}
+@media (max-width: 575.98px) {
+  .basket {
+    padding: 16px;
   }
 }
 .order-cta {
@@ -18398,9 +18418,12 @@ a.pagination__item.is-active:hover {
 }
 
 @media (max-width: 575.98px) {
+  .order-cta {
+    padding: 16px;
+  }
   .order-cta__inner {
     gap: 24px;
-    padding: 24px;
+    padding: 16px;
   }
 }
 .order-cta__intro {

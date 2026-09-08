@@ -27,9 +27,13 @@
 }
 
 @media (max-width: 575.98px) {
+  .order-cta {
+    padding: 16px;
+  }
+
   .order-cta__inner {
     gap: 24px;
-    padding: 24px;
+    padding: 16px;
   }
 }
 
