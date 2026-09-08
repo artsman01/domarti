@@ -391,6 +391,13 @@
   text-align: center;
 }
 
+// Room for the fixed .tapbar so it doesn't sit over this text.
+@media (max-width: 575.98px) {
+  .footer__disclaimer {
+    padding-bottom: 68px;
+  }
+}
+
 // .footer's own 64px gap (desktop only) applies uniformly between all
 // three top-level sections — canceled here so .footer__meta-wrap sits
 // flush against this strip, while .footer__top keeps its 64px above it.

@@ -1198,6 +1198,46 @@
   });
 })();
 
+// Shared by both the desktop/tablet search panel and the mobile
+// hamburger menu's own inline search — same result list either way.
+var SEARCH_INDEX = [
+  { title: "П-образная кухня", href: "catalog.html", img: "assets/catalog-page/room-kitchen.jpg" },
+  { title: "Прямая кухня", href: "catalog.html", img: "assets/catalog-page/room-kitchen.jpg" },
+  { title: "Угловая кухня", href: "catalog.html", img: "assets/catalog-page/room-kitchen.jpg" },
+  { title: "Кухня с островом", href: "catalog.html", img: "assets/catalog-page/room-kitchen.jpg" },
+  { title: "Параллельная кухня", href: "catalog.html", img: "assets/catalog-page/room-kitchen.jpg" },
+  { title: "Кухня с барной стойкой", href: "catalog.html", img: "assets/catalog-page/room-kitchen.jpg" },
+  { title: "Каталог", href: "catalog.html" },
+  { title: "Наши работы", href: "projects.html" },
+  { title: "О компании", href: "about.html" },
+  { title: "Контакты", href: "contacts.html" },
+  { title: "Акции", href: "stocks.html" },
+  { title: "Отзывы", href: "reviews.html" },
+  { title: "Материалы и аксессуары", href: "materials.html" },
+  { title: "Калькулятор", href: "calc.html" },
+];
+
+function renderSearchResults(container, query) {
+  var q = query.trim().toLowerCase();
+  var matches = SEARCH_INDEX.filter(function (item) {
+    return !q || item.title.toLowerCase().indexOf(q) !== -1;
+  });
+
+  if (!matches.length) {
+    container.innerHTML = '<p class="search-empty">Ничего не найдено</p>';
+    return;
+  }
+
+  container.innerHTML = matches
+    .map(function (item) {
+      var img = item.img
+        ? '<span class="search-item__img"><img src="' + item.img + '" alt="" loading="lazy"></span>'
+        : "";
+      return '<a href="' + item.href + '" class="search-item">' + img + '<span class="search-item__title">' + item.title + "</span></a>";
+    })
+    .join("");
+}
+
 (function () {
   // Hamburger menu (tablet/mobile, <1200px — the trigger is
   // .icon-btn--menu, d-flex d-xl-none). Built once and shared across
@@ -1264,6 +1304,7 @@
       '<input type="text" placeholder="Начните поиск">' +
       '<svg class="icon"><use href="assets/icons/sprite.svg#search"></use></svg>' +
       "</div>" +
+      '<div class="mobile-menu__search-results search-results"></div>' +
       '<div class="mobile-menu__body">' +
       col("Кухни", [
         ["П-образные", "#"], ["Прямые", "#"], ["Угловые", "#"],
@@ -1291,6 +1332,14 @@
       "</div>";
 
     document.body.appendChild(el);
+
+    var searchInput = el.querySelector(".mobile-menu__search input");
+    var searchResults = el.querySelector(".mobile-menu__search-results");
+    searchInput.addEventListener("input", function () {
+      var hasQuery = searchInput.value.trim().length > 0;
+      searchResults.classList.toggle("is-open", hasQuery);
+      if (hasQuery) renderSearchResults(searchResults, searchInput.value);
+    });
 
     el.querySelector(".mobile-menu__close").addEventListener("click", close);
 
@@ -1460,5 +1509,89 @@
 
   Array.prototype.forEach.call(triggers, function (trigger) {
     trigger.addEventListener("click", open);
+  });
+})();
+
+(function () {
+  // Header search — desktop/tablet only (≥576px, [data-search-trigger]
+  // covers both the tablet-actions icon button and the bottom-line's
+  // text+icon link; real mobile uses .mobile-menu__search's own inline
+  // input instead, wired up above). Fixed right under the header, same
+  // positioning technique as .menu-catalog.
+  var triggers = document.querySelectorAll("[data-search-trigger]");
+  if (!triggers.length) return;
+
+  var header = document.querySelector(".header");
+  var panel = null;
+
+  function build() {
+    var el = document.createElement("div");
+    el.className = "search-panel";
+    el.innerHTML =
+      '<div class="search-panel__head"><div class="search-panel__head-inner">' +
+      '<input type="text" class="search-panel__input" placeholder="Начните поиск">' +
+      '<button type="button" class="search-panel__close">' +
+      "<span>Закрыть</span>" +
+      '<svg class="icon"><use href="assets/icons/sprite.svg#close"></use></svg>' +
+      "</button>" +
+      "</div></div>" +
+      '<div class="search-panel__body"><div class="search-results"></div></div>';
+    document.body.appendChild(el);
+
+    var input = el.querySelector(".search-panel__input");
+    var results = el.querySelector(".search-results");
+    input.addEventListener("input", function () {
+      renderSearchResults(results, input.value);
+    });
+
+    el.querySelector(".search-panel__close").addEventListener("click", close);
+
+    return el;
+  }
+
+  function position() {
+    panel.style.top = header.getBoundingClientRect().bottom + "px";
+  }
+
+  function open() {
+    if (!panel) panel = build();
+    position();
+    renderSearchResults(panel.querySelector(".search-results"), "");
+    panel.classList.add("is-open");
+    panel.querySelector(".search-panel__input").focus();
+    document.addEventListener("keydown", onEscape);
+    document.addEventListener("click", onOutsideClick);
+  }
+
+  function close() {
+    if (!panel) return;
+    panel.classList.remove("is-open");
+    document.removeEventListener("keydown", onEscape);
+    document.removeEventListener("click", onOutsideClick);
+  }
+
+  function onEscape(e) {
+    if (e.key === "Escape") close();
+  }
+
+  function onOutsideClick(e) {
+    var isTrigger = Array.prototype.some.call(triggers, function (t) {
+      return t.contains(e.target);
+    });
+    if (!isTrigger && !panel.contains(e.target)) close();
+  }
+
+  Array.prototype.forEach.call(triggers, function (trigger) {
+    trigger.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (panel && panel.classList.contains("is-open")) close();
+      else open();
+    });
+  });
+
+  window.addEventListener("resize", function () {
+    if (window.matchMedia("(max-width: 575.98px)").matches) close();
+    else if (panel && panel.classList.contains("is-open")) position();
   });
 })();
