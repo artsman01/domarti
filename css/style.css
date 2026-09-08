@@ -18567,6 +18567,7 @@ a.pagination__item.is-active:hover {
 }
 @media (max-width: 575.98px) {
   .product-head__card {
+    gap: 16px;
     padding: 24px;
   }
   .product-head__actions {
@@ -18629,6 +18630,7 @@ a.pagination__item.is-active:hover {
   min-width: 0;
   border-radius: 12px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .gallery__item img {
@@ -18642,15 +18644,20 @@ a.pagination__item.is-active:hover {
   user-select: none;
 }
 
-.gallery__item--more::after {
+.gallery__item::after {
   content: "";
   position: absolute;
   inset: 0;
   background: var(--color-dark);
-  opacity: 0.72;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
-.gallery__item--more .icon {
+.gallery__item:hover::after {
+  opacity: 0.24;
+}
+
+.gallery__item .icon {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -18658,6 +18665,13 @@ a.pagination__item.is-active:hover {
   width: 48px;
   height: 48px;
   color: #fff;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.gallery__item:hover .icon {
+  opacity: 1;
 }
 
 @media (max-width: 767.98px) {
@@ -18666,6 +18680,10 @@ a.pagination__item.is-active:hover {
   }
 }
 @media (max-width: 575.98px) {
+  .gallery {
+    gap: 24px;
+    padding: 16px;
+  }
   .gallery__title {
     font-size: 1.5rem;
     line-height: 2rem;

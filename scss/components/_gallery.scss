@@ -1,7 +1,7 @@
 // GallerySection: a title+subtitle above a fixed 3-across, 2-row photo
-// grid. One tile can carry a dark overlay + zoom icon (marks it as the
-// "see more photos" trigger) — a plain modifier class, not a separate
-// component, since every other tile is a plain photo.
+// grid. Every tile is clickable — hover shows a light dark overlay +
+// centered zoom icon, click opens the shared fullscreen lightbox (see
+// _lightbox.scss / the lightbox IIFE in main.js).
 
 .gallery {
   display: flex;
@@ -59,6 +59,7 @@
   min-width: 0;
   border-radius: 12px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .gallery__item img {
@@ -72,17 +73,21 @@
   user-select: none;
 }
 
-// The "see more" tile: dark overlay over the same photo, zoom icon
-// centered on top.
-.gallery__item--more::after {
+// Light darkening + zoom icon, both hidden until hover.
+.gallery__item::after {
   content: "";
   position: absolute;
   inset: 0;
   background: var(--color-dark);
-  opacity: 0.72;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
-.gallery__item--more .icon {
+.gallery__item:hover::after {
+  opacity: 0.24;
+}
+
+.gallery__item .icon {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -90,6 +95,13 @@
   width: 48px;
   height: 48px;
   color: #fff;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.gallery__item:hover .icon {
+  opacity: 1;
 }
 
 // Stays 3-across through tablet (768px) — only true mobile (<768) drops
@@ -101,6 +113,11 @@
 }
 
 @media (max-width: 575.98px) {
+  .gallery {
+    gap: 24px;
+    padding: 16px;
+  }
+
   .gallery__title {
     font-size: 1.5rem; // 24px
     line-height: 2rem; // 32px
