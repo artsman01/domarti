@@ -28,6 +28,10 @@
 // that, which is what made the two buttons read as different/cut-off
 // heights) and .typical-head__media becomes a plain static photo
 // strip instead of a full-bleed absolutely-positioned background.
+// NB: the .product-head__card/__inner part of this override has to
+// live AFTER their own base rules further down this file — same
+// specificity (one class each), so whichever comes later in the
+// compiled CSS wins the tie regardless of the media query nesting.
 @media (max-width: 767.98px) {
   .product-head {
     display: block;
@@ -43,19 +47,6 @@
 
   .product-head .typical-head__media img {
     opacity: 1;
-  }
-
-  .product-head__inner {
-    display: block;
-    width: 100%;
-  }
-
-  .product-head__card {
-    gap: 16px;
-    width: 100%;
-    max-width: none;
-    padding: 16px;
-    border-radius: 0;
   }
 }
 
@@ -161,10 +152,27 @@
   white-space: nowrap;
 }
 
+// Placed after every .product-head__card/__inner/__actions base rule
+// above (same 1-2 class specificity as those, so needs to come later
+// in the file to actually win the tie at this width) — see the note
+// on the ≤767.98 .product-head block near the top of this file.
 @media (max-width: 767.98px) {
   .product-head__title {
     font-size: 1.5rem; // 24px
     line-height: 2rem; // 32px
+  }
+
+  .product-head__inner {
+    display: block;
+    width: 100%;
+  }
+
+  .product-head__card {
+    gap: 16px;
+    width: 100%;
+    max-width: none;
+    padding: 16px;
+    border-radius: 0;
   }
 }
 
@@ -172,5 +180,14 @@
   .product-head__actions {
     flex-direction: column;
     gap: 8px;
+  }
+
+  // flex:1 1 0% (meant for the row layout's width split) reinterprets
+  // as a height split once the row turns into a column — pin the
+  // width explicitly instead of relying on cross-axis stretch, which
+  // was losing to the buttons' own nowrap text and overflowing.
+  .product-head__actions .btn {
+    flex: none;
+    width: 100%;
   }
 }

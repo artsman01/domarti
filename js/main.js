@@ -1615,9 +1615,11 @@ function renderSearchResults(container, query) {
       '<img class="lightbox__image" src="" alt="">' +
       '<button type="button" class="lightbox__nav lightbox__prev" aria-label="Предыдущее фото"><svg class="icon"><use href="assets/icons/sprite.svg#angle-left"></use></svg></button>' +
       '<button type="button" class="lightbox__nav lightbox__next" aria-label="Следующее фото"><svg class="icon"><use href="assets/icons/sprite.svg#angle-right"></use></svg></button>' +
-      '<button type="button" class="lightbox__close" aria-label="Закрыть"><svg class="icon"><use href="assets/icons/sprite.svg#close"></use></svg></button>' +
       '<span class="lightbox__counter"></span>' +
-      "</div>";
+      "</div>" +
+      // Sibling of .lightbox, not a child — pins to the screen's own
+      // corner (16px top/right) regardless of the image's rendered size.
+      '<button type="button" class="lightbox__close" aria-label="Закрыть"><svg class="icon"><use href="assets/icons/sprite.svg#close"></use></svg></button>';
     document.body.appendChild(el);
 
     el.querySelector(".lightbox__close").addEventListener("click", close);
