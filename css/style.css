@@ -18199,6 +18199,10 @@ a.pagination__item.is-active:hover {
   .chess__content {
     gap: 16px;
   }
+  .chess__quote {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+  }
 }
 .basket {
   display: flex;
