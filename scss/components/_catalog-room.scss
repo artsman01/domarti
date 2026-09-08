@@ -48,10 +48,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.35s ease;
   pointer-events: none;
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
   user-select: none;
+}
+
+.catalog-room__photo:hover img {
+  transform: scale(1.05);
 }
 
 .catalog-room__info {
@@ -64,10 +69,18 @@
 
 .catalog-room__title {
   margin: 0;
-  color: var(--bs-body-color);
   font-weight: 700;
   font-size: 1.125rem; // 18px
   line-height: 1.5rem; // 24px
+}
+
+.catalog-room__title a {
+  color: var(--bs-body-color);
+  transition: opacity 0.15s ease;
+}
+
+.catalog-room__title a:hover {
+  opacity: 0.72;
 }
 
 .catalog-room__desc {

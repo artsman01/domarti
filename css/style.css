@@ -12575,6 +12575,13 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+@font-face {
+  font-family: "Gogol";
+  src: url("../assets/fonts/gogol-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 :root {
   --color-hint: #726e6e;
   --color-brand-hover: #caa77d;
@@ -18153,7 +18160,7 @@ a.pagination__item.is-active:hover {
 .chess__quote {
   margin: 0;
   color: var(--bs-primary);
-  font-family: "Marck Script", cursive;
+  font-family: "Gogol", cursive;
   font-weight: 400;
   font-size: 2rem;
   line-height: 2rem;
@@ -19483,10 +19490,15 @@ a.pagination__item.is-active:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.35s ease;
   pointer-events: none;
   -webkit-user-drag: none;
   -webkit-touch-callout: none;
   user-select: none;
+}
+
+.catalog-room__photo:hover img {
+  transform: scale(1.05);
 }
 
 .catalog-room__info {
@@ -19499,10 +19511,18 @@ a.pagination__item.is-active:hover {
 
 .catalog-room__title {
   margin: 0;
-  color: var(--bs-body-color);
   font-weight: 700;
   font-size: 1.125rem;
   line-height: 1.5rem;
+}
+
+.catalog-room__title a {
+  color: var(--bs-body-color);
+  transition: opacity 0.15s ease;
+}
+
+.catalog-room__title a:hover {
+  opacity: 0.72;
 }
 
 .catalog-room__desc {
@@ -19673,7 +19693,7 @@ a.pagination__item.is-active:hover {
 .catalog-main__col-title {
   margin: 0;
   color: var(--bs-primary);
-  font-family: "Marck Script", cursive;
+  font-family: "Gogol", cursive;
   font-weight: 400;
   font-size: 2rem;
   line-height: 2rem;
@@ -19702,6 +19722,14 @@ a.pagination__item.is-active:hover {
   gap: 12px;
 }
 
+.catalog-main__actions .btn.btn-primary,
+.catalog-main__actions .btn.btn-stroke {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+}
+
 @media (max-width: 991.98px) {
   .catalog-main__card,
   .catalog-main__card--reverse {
@@ -19719,6 +19747,10 @@ a.pagination__item.is-active:hover {
 @media (max-width: 575.98px) {
   .catalog-main__body {
     padding: 24px;
+  }
+  .catalog-main__title {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
   .catalog-main__actions {
     flex-direction: column;

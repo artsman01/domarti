@@ -1,8 +1,8 @@
 // MainCatalogSection ("по типу мебели"): alternating photo + bordered
 // card rows (image left/card right, then reversed) — same
 // image-then-card alternation as .chess, just with a card instead of
-// plain text. Column sub-headings reuse the same script-font
-// substitution as .chess__quote (Gogol → Marck Script).
+// plain text. Column sub-headings use the same Gogol script face as
+// .chess__quote.
 
 .catalog-main {
   display: flex;
@@ -108,7 +108,7 @@
 .catalog-main__col-title {
   margin: 0;
   color: var(--bs-primary);
-  font-family: "Marck Script", cursive;
+  font-family: "Gogol", cursive;
   font-weight: 400;
   font-size: 2rem; // 32px
   line-height: 2rem; // 32px
@@ -137,6 +137,18 @@
   gap: 12px;
 }
 
+// .btn.btn-primary/.btn.btn-stroke's own 2-class specificity would
+// otherwise win over a plain 1-class padding override regardless of
+// source order — matched here so both buttons get Figma's 16px side
+// padding and a properly (flex-)centered label.
+.catalog-main__actions .btn.btn-primary,
+.catalog-main__actions .btn.btn-stroke {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+}
+
 @media (max-width: 991.98px) {
   .catalog-main__card,
   .catalog-main__card--reverse {
@@ -159,6 +171,13 @@
 @media (max-width: 575.98px) {
   .catalog-main__body {
     padding: 24px;
+  }
+
+  // Same mobile step-down as every other h2 on the site (e.g.
+  // .seo-simple__title, .gallery__title): 32/40 → 24/32.
+  .catalog-main__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
   }
 
   .catalog-main__actions {
