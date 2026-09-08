@@ -17866,12 +17866,16 @@ button {
   display: flex;
   align-items: center;
   gap: 8px;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .typical-head__breadcrumbs a {
+  flex-shrink: 0;
   font-weight: 500;
   font-size: 0.8125rem;
   line-height: 1.25rem;
+  white-space: nowrap;
   transition: opacity 0.15s ease;
 }
 
@@ -17880,11 +17884,14 @@ button {
 }
 
 .typical-head__breadcrumbs .icon {
+  flex-shrink: 0;
   width: 16px;
   height: 16px;
 }
 
 .typical-head__breadcrumbs span {
+  flex-shrink: 0;
+  white-space: nowrap;
   font-weight: 500;
   font-size: 0.8125rem;
   line-height: 1.25rem;
