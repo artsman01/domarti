@@ -1197,3 +1197,129 @@
     else if (isOpen()) position();
   });
 })();
+
+(function () {
+  // Hamburger menu (tablet/mobile, <1200px — the trigger is
+  // .icon-btn--menu, d-flex d-xl-none). Built once and shared across
+  // every page's identical header. Same content as the footer's own
+  // Кухни/Шкафы/Разделы/Компания columns, just restyled light — see
+  // .mobile-menu__col below for the accordion mechanics (same
+  // grid-template-rows technique as .footer-col, new class names since
+  // the color scheme is the opposite of the footer's dark one).
+  var trigger = document.querySelector(".icon-btn--menu");
+  if (!trigger) return;
+
+  var panel = null;
+
+  function col(title, items) {
+    var body = items
+      .map(function (item) {
+        return '<a href="' + item[1] + '" class="mobile-menu__col-item">' + item[0] + "</a>";
+      })
+      .join("");
+    return (
+      '<div class="mobile-menu__col" data-mobile-menu-col>' +
+      '<button type="button" class="mobile-menu__col-head" aria-expanded="false">' +
+      "<span>" + title + "</span>" +
+      '<svg class="icon mobile-menu__col-chevron"><use href="assets/icons/sprite.svg#angle-down"></use></svg>' +
+      "</button>" +
+      '<div class="mobile-menu__col-body"><div>' + body + "</div></div>" +
+      "</div>"
+    );
+  }
+
+  function build() {
+    var el = document.createElement("div");
+    el.className = "mobile-menu";
+    el.innerHTML =
+      '<div class="header__top-line d-none d-md-block py-2 px-3">' +
+      '<div class="container d-flex align-items-center justify-content-between text-small">' +
+      '<div class="d-flex align-items-center gap-3 fw-normal">' +
+      "<span>Кухни и мебель под заказ в Самаре</span><span>•</span><span>Работаем с 2006 года</span>" +
+      "</div>" +
+      '<div class="header__top-links d-flex align-items-center gap-4 fw-medium">' +
+      '<a href="stocks.html">Акции</a><a href="#">Кредит</a><a href="#">Дизайнерам</a>' +
+      "</div></div></div>" +
+      '<div class="header__middle-line d-flex align-items-center px-3">' +
+      '<div class="header__brand d-flex align-items-center">' +
+      '<button type="button" class="icon-btn mobile-menu__close d-flex align-items-center justify-content-center border-0" aria-label="Закрыть меню">' +
+      '<svg class="icon"><use href="assets/icons/sprite.svg#close"></use></svg>' +
+      "</button>" +
+      '<a href="home.html" class="header__logo d-flex align-items-center">' +
+      '<img src="assets/logo.svg" alt="Domarti"></a>' +
+      "</div>" +
+      '<div class="header__tablet-actions d-none d-sm-flex d-lg-none align-items-center justify-content-end flex-grow-1">' +
+      '<button type="button" class="icon-btn d-flex align-items-center justify-content-center border-0" aria-label="Позвонить">' +
+      '<svg class="icon"><use href="assets/icons/sprite.svg#call"></use></svg></button>' +
+      '<button type="button" class="btn btn-primary rounded-pill">Бесплатный замер</button>' +
+      '<a href="cart.html" class="icon-btn icon-btn--cart d-flex align-items-center justify-content-center border-0" aria-label="Корзина">' +
+      '<svg class="icon"><use href="assets/icons/sprite.svg#cart"></use></svg></a>' +
+      '<button type="button" class="icon-btn d-flex align-items-center justify-content-center border-0" aria-label="Поиск">' +
+      '<svg class="icon"><use href="assets/icons/sprite.svg#search"></use></svg></button>' +
+      "</div>" +
+      '<a href="cart.html" class="icon-btn icon-btn--cart d-flex d-sm-none align-items-center justify-content-center border-0 ms-auto" aria-label="Корзина">' +
+      '<svg class="icon"><use href="assets/icons/sprite.svg#cart"></use></svg></a>' +
+      "</div>" +
+      '<div class="mobile-menu__search">' +
+      '<input type="text" placeholder="Начните поиск">' +
+      '<svg class="icon"><use href="assets/icons/sprite.svg#search"></use></svg>' +
+      "</div>" +
+      '<div class="mobile-menu__body">' +
+      col("Кухни", [
+        ["П-образные", "#"], ["Прямые", "#"], ["Угловые", "#"],
+        ["С островом", "#"], ["Паралельные", "#"], ["С барной стойкой", "#"],
+      ]) +
+      col("Шкафы", [
+        ["В гостинную", "#"], ["В спальню", "#"], ["В прихожую", "#"], ["В санузел", "#"],
+      ]) +
+      col("Разделы", [
+        ["Материалы и аксессуары", "materials.html"], ["Калькулятор", "calc.html"],
+        ["Наши работы", "projects.html"], ["Акции", "stocks.html"],
+        ["Кредит", "#"], ["Дизайнерам", "#"],
+      ]) +
+      col("Компания", [["О нас", "about.html"], ["Контакты", "contacts.html"]]) +
+      "</div>" +
+      '<div class="mobile-menu__contact">' +
+      '<p class="mobile-menu__phone">+7 (927) 011-27-93</p>' +
+      '<p class="mobile-menu__email">info@samara.kitchen</p>' +
+      '<div class="mobile-menu__messengers">' +
+      '<a href="#" aria-label="WhatsApp"><img src="assets/icons/whatsapp.svg" width="24" height="24" alt=""></a>' +
+      '<a href="#" aria-label="MAX"><img src="assets/icons/max.svg" width="24" height="24" alt=""></a>' +
+      '<a href="#" aria-label="Telegram"><img src="assets/icons/telegram.svg" width="24" height="24" alt=""></a>' +
+      "</div>" +
+      '<button type="button" class="btn btn-primary rounded-pill">Бесплатный замер</button>' +
+      "</div>";
+
+    document.body.appendChild(el);
+
+    el.querySelector(".mobile-menu__close").addEventListener("click", close);
+
+    Array.prototype.forEach.call(el.querySelectorAll("[data-mobile-menu-col]"), function (colEl) {
+      var head = colEl.querySelector(".mobile-menu__col-head");
+      head.addEventListener("click", function () {
+        var isOpenCol = colEl.classList.toggle("is-open");
+        head.setAttribute("aria-expanded", isOpenCol ? "true" : "false");
+      });
+    });
+
+    return el;
+  }
+
+  function open() {
+    if (!panel) panel = build();
+    panel.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function close() {
+    if (!panel) return;
+    panel.classList.remove("is-open");
+    document.body.style.overflow = "";
+  }
+
+  trigger.addEventListener("click", open);
+
+  window.addEventListener("resize", function () {
+    if (window.matchMedia("(min-width: 1200px)").matches) close();
+  });
+})();
