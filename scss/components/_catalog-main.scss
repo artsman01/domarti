@@ -1,0 +1,171 @@
+// MainCatalogSection ("по типу мебели"): alternating photo + bordered
+// card rows (image left/card right, then reversed) — same
+// image-then-card alternation as .chess, just with a card instead of
+// plain text. Column sub-headings reuse the same script-font
+// substitution as .chess__quote (Gogol → Marck Script).
+
+.catalog-main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 32px 16px;
+  background: var(--bs-body-bg);
+}
+
+.catalog-main__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.catalog-main__card {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+  width: 100%;
+}
+
+.catalog-main__card--reverse {
+  flex-direction: row-reverse;
+}
+
+.catalog-main__media {
+  flex: 1 0 0;
+  min-width: 0;
+  aspect-ratio: 632 / 482;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.catalog-main__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.catalog-main__body {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+  min-width: 0;
+  min-height: 482px;
+  padding: 48px;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 12px;
+  background: var(--bs-body-bg);
+}
+
+.catalog-main__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.catalog-main__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.catalog-main__title {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 2rem; // 32px
+  line-height: 2.5rem; // 40px
+}
+
+.catalog-main__desc {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 400;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
+
+.catalog-main__cols {
+  display: flex;
+  gap: 32px;
+}
+
+.catalog-main__col {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.catalog-main__col-title {
+  margin: 0;
+  color: var(--bs-primary);
+  font-family: "Marck Script", cursive;
+  font-weight: 400;
+  font-size: 2rem; // 32px
+  line-height: 2rem; // 32px
+}
+
+.catalog-main__col-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.catalog-main__col-list a {
+  color: var(--bs-body-color);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+  transition: color 0.15s ease;
+}
+
+.catalog-main__col-list a:hover {
+  color: var(--bs-primary);
+}
+
+.catalog-main__actions {
+  display: flex;
+  gap: 12px;
+}
+
+@media (max-width: 991.98px) {
+  .catalog-main__card,
+  .catalog-main__card--reverse {
+    flex-direction: column;
+  }
+
+  // Same fix as .chess/.about-project/.catalog-room: flex:1 0 0's
+  // basis:0 reads as height once the row turns into a column.
+  .catalog-main__media,
+  .catalog-main__body {
+    flex: none;
+    width: 100%;
+  }
+
+  .catalog-main__body {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .catalog-main__body {
+    padding: 24px;
+  }
+
+  .catalog-main__actions {
+    flex-direction: column;
+  }
+
+  .catalog-main__actions .btn {
+    width: 100%;
+  }
+}

@@ -592,6 +592,36 @@
 })();
 
 (function () {
+  // Каталог page: one tab bar (reusing .materials__tabs/.materials__tab's
+  // pill styling) toggles between the "по комнате" and "по мебели"
+  // panels — plain hidden-attribute show/hide, no Swiper involved, so
+  // it's simpler than initMaterials/initCatalog and doesn't share their
+  // section scoping.
+  function initCatalogSwitch(section) {
+    var tabs = Array.prototype.slice.call(section.querySelectorAll("[data-catalog-switch-tab]"));
+    var panels = Array.prototype.slice.call(section.querySelectorAll("[data-catalog-switch-panel]"));
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        if (tab.classList.contains("is-active")) return;
+
+        tabs.forEach(function (t) {
+          t.classList.toggle("is-active", t === tab);
+          t.setAttribute("aria-selected", t === tab ? "true" : "false");
+        });
+
+        var target = tab.dataset.catalogSwitchTab;
+        panels.forEach(function (panel) {
+          panel.hidden = panel.dataset.catalogSwitchPanel !== target;
+        });
+      });
+    });
+  }
+
+  document.querySelectorAll(".catalog-switch").forEach(initCatalogSwitch);
+})();
+
+(function () {
   // Same markup for every breakpoint — a real Swiper instance only
   // exists below 768px; at 768px+ it's destroyed entirely and plain CSS
   // grid (see .features__grid's own breakpoints in _features.scss) owns

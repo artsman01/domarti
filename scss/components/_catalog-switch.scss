@@ -1,0 +1,13 @@
+// Каталог page's room/furniture toggle: just the tab row (styled via
+// the existing .materials__tabs/.materials__tab pill classes — no new
+// CSS needed for it) wrapping the two panels it shows/hides. Panels
+// keep their own top/bottom padding; this wrapper adds none of its
+// own around the tab row, matching Figma's zero-gap TabsSection.
+
+.catalog-switch__tabs {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0 16px;
+  background: var(--bs-body-bg);
+}

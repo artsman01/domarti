@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Акции | ДОМАРТИ</title>
-  <meta name="description" content="Актуальные предложения на кухни и мебель по индивидуальным размерам — выбирайте выгодные условия для своего проекта">
+  <title>Каталог мебели под заказ | ДОМАРТИ</title>
+  <meta name="description" content="Каталог мебели на заказ в Самаре: кухни, шкафы, гардеробные и мебель для любых комнат. Выберите категорию по типу комнаты или по типу мебели">
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Marck+Script&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/vendor/swiper/swiper-bundle.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -23,7 +23,7 @@
           <span>Работаем с 2006 года</span>
         </div>
         <div class="header__top-links d-flex align-items-center gap-4 fw-medium">
-          <a href="#">Акции</a>
+          <a href="stocks.html">Акции</a>
           <a href="#">Кредит</a>
           <a href="#">Дизайнерам</a>
         </div>
@@ -133,170 +133,275 @@
       </div>
     </div>
   </header>
-
-  <section class="typical-head typical-head--dark">
-    <div class="typical-head__media">
-      <img src="assets/typical-head/stocks-bg.jpg" alt="" loading="lazy">
-    </div>
+  <section class="typical-head typical-head--light typical-head--compact">
     <div class="typical-head__inner">
       <div class="typical-head__intro">
         <nav class="typical-head__breadcrumbs" aria-label="Хлебные крошки">
           <a href="home.html">Главная</a>
           <svg class="icon icon--16"><use href="assets/icons/sprite.svg#angle-right"></use></svg>
-          <span>Акции</span>
+          <span>Каталог</span>
         </nav>
-        <h1 class="typical-head__title">Акции</h1>
-        <p class="typical-head__subtitle">Актуальные предложения на кухни и мебель по индивидуальным размерам — выбирайте выгодные условия для своего проекта.</p>
+        <h1 class="typical-head__title">Каталог мебели под заказ</h1>
+        <p class="typical-head__subtitle">Выберите подходящую категорию, чтобы быстро найти решение для своего интерьера</p>
       </div>
     </div>
   </section>
 
-  <section class="stocks stocks--page">
-    <div class="stocks__inner">
-      <div class="stocks__content">
-        <div class="stocks__grid">
-          <article class="stock-card">
-            <a href="stock.html" class="stock-card__media">
-              <img src="assets/stocks/stock1.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="stock.html">Бесплатная разработка дизайн-проекта</a></h3>
-                <p class="stock-card__desc">Бесплатно разработаем дизайн-проект вашей кухни</p>
-              </div>
-              <a href="stock.html" class="btn stock-card__btn">Узнать подробнее</a>
-            </div>
-          </article>
+  <div class="catalog-switch">
+    <div class="catalog-switch__tabs">
+      <div class="materials__tabs" role="tablist">
+        <button class="materials__tab is-active" type="button" role="tab" aria-selected="true" data-catalog-switch-tab="room">По типу комнаты</button>
+        <button class="materials__tab" type="button" role="tab" aria-selected="false" data-catalog-switch-tab="furniture">По типу мебели</button>
+      </div>
+    </div>
 
-          <article class="stock-card">
-            <a href="#" class="stock-card__media">
-              <img src="assets/stocks/stock2.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="#">Скидка 3% для новоселов</a></h3>
-                <p class="stock-card__desc">Заказываете кухню в новую квартиру? Сделаем скидку 3%!</p>
-              </div>
-              <a href="#" class="btn stock-card__btn">Узнать подробнее</a>
+    <section class="catalog-room" data-catalog-switch-panel="room">
+      <div class="catalog-room__grid">
+        <div class="catalog-room__card">
+          <div class="catalog-room__head">
+            <div class="catalog-room__photo">
+              <img src="assets/catalog-page/room-kitchen.jpg" alt="" loading="lazy">
             </div>
-          </article>
+            <div class="catalog-room__info">
+              <h3 class="catalog-room__title">Кухня</h3>
+              <p class="catalog-room__desc">Визуализация является ориентировочной, более точную визуализацию разработает наш дизайнер при разработке дизайн-проекта</p>
+            </div>
+          </div>
+          <div class="catalog-room__links">
+            <div class="catalog-room__col">
+              <a href="#">П-образная кухня</a>
+              <a href="#">Прямая кухня</a>
+              <a href="#">Паралельная кухня</a>
+              <a href="#">Кухня с островом</a>
+              <a href="#">Кухня с барной стойкой</a>
+            </div>
+            <div class="catalog-room__col">
+              <a href="#">Современная кухня</a>
+              <a href="#">Кухня модерн</a>
+              <a href="#">Классическая кухня</a>
+              <a href="#">Кухня лофт</a>
+            </div>
+          </div>
+        </div>
 
-          <article class="stock-card">
-            <a href="#" class="stock-card__media">
-              <img src="assets/stocks/stock3.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="#">Партнерская скидка на фурнитуру Boyard 10%</a></h3>
-                <p class="stock-card__desc">При выборе фурнитуры Boyard предоставляем на нее скидку 10%</p>
-              </div>
-              <a href="#" class="btn stock-card__btn">Узнать подробнее</a>
+        <div class="catalog-room__card">
+          <div class="catalog-room__head">
+            <div class="catalog-room__photo">
+              <img src="assets/catalog-page/room-closet.jpg" alt="" loading="lazy">
             </div>
-          </article>
+            <div class="catalog-room__info">
+              <h3 class="catalog-room__title">Гардеробная</h3>
+              <p class="catalog-room__desc">Визуализация является ориентировочной, более точную визуализацию разработает наш дизайнер при разработке дизайн-проекта</p>
+            </div>
+          </div>
+          <div class="catalog-room__links">
+            <div class="catalog-room__col">
+              <a href="#">Линейная гардеробная</a>
+              <a href="#">Угловая гардеробная</a>
+              <a href="#">П-образная гардеробная</a>
+              <a href="#">Открытая гардеробная</a>
+              <a href="#">Закрытая гардеробная</a>
+              <a href="#">Стеллажная система</a>
+            </div>
+            <div class="catalog-room__col">
+              <a href="#">Обувница в гардеробную</a>
+              <a href="#">Комод в гардеробную</a>
+              <a href="#">Гардеробный остров</a>
+              <a href="#">Антресоль в гардеробную</a>
+              <a href="#">Система хранения в гардеробную</a>
+            </div>
+          </div>
+        </div>
 
-          <article class="stock-card">
-            <a href="#" class="stock-card__media">
-              <img src="assets/stocks/stock4.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="#">Скидка 5% при оплате наличными</a></h3>
-                <p class="stock-card__desc">Оплата любым способом, выдаем все необходимые документы и чеки</p>
-              </div>
-              <a href="#" class="btn stock-card__btn">Узнать подробнее</a>
+        <div class="catalog-room__card">
+          <div class="catalog-room__head">
+            <div class="catalog-room__photo">
+              <img src="assets/catalog-page/room-living.jpg" alt="" loading="lazy">
             </div>
-          </article>
+            <div class="catalog-room__info">
+              <h3 class="catalog-room__title">Гостиная</h3>
+              <p class="catalog-room__desc">Визуализация является ориентировочной, более точную визуализацию разработает наш дизайнер при разработке дизайн-проекта</p>
+            </div>
+          </div>
+          <div class="catalog-room__links">
+            <div class="catalog-room__col">
+              <a href="#">ТВ-зона в гостиную</a>
+              <a href="#">Шкаф-купе в гостиную</a>
+              <a href="#">Распашной шкаф в гостиную</a>
+              <a href="#">Комод в гостиную</a>
+              <a href="#">Книжный шкаф в гостиную</a>
+            </div>
+            <div class="catalog-room__col">
+              <a href="#">Встроенный шкаф в гостиную</a>
+              <a href="#">Навесные шкафы в гостиную</a>
+              <a href="#">Стеллаж в гостиную</a>
+            </div>
+          </div>
+        </div>
 
-          <article class="stock-card">
-            <a href="stock.html" class="stock-card__media">
-              <img src="assets/stocks/stock1.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="stock.html">Бесплатная разработка дизайн-проекта</a></h3>
-                <p class="stock-card__desc">Бесплатно разработаем дизайн-проект вашей кухни</p>
-              </div>
-              <a href="stock.html" class="btn stock-card__btn">Узнать подробнее</a>
+        <div class="catalog-room__card">
+          <div class="catalog-room__head">
+            <div class="catalog-room__photo">
+              <img src="assets/catalog-page/room-kids.jpg" alt="" loading="lazy">
             </div>
-          </article>
+            <div class="catalog-room__info">
+              <h3 class="catalog-room__title">Детская</h3>
+              <p class="catalog-room__desc">Визуализация является ориентировочной, более точную визуализацию разработает наш дизайнер при разработке дизайн-проекта</p>
+            </div>
+          </div>
+          <div class="catalog-room__links">
+            <div class="catalog-room__col">
+              <a href="#">Шкаф в детскую</a>
+              <a href="#">Стеллаж для игрушек</a>
+              <a href="#">Комод в детскую</a>
+            </div>
+            <div class="catalog-room__col">
+              <a href="#">Письменный стол в детскую</a>
+              <a href="#">Мебель для учебной зоны</a>
+            </div>
+          </div>
+        </div>
 
-          <article class="stock-card">
-            <a href="#" class="stock-card__media">
-              <img src="assets/stocks/stock2.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="#">Скидка 3% для новоселов</a></h3>
-                <p class="stock-card__desc">Заказываете кухню в новую квартиру? Сделаем скидку 3%!</p>
-              </div>
-              <a href="#" class="btn stock-card__btn">Узнать подробнее</a>
+        <div class="catalog-room__card">
+          <div class="catalog-room__head">
+            <div class="catalog-room__photo">
+              <img src="assets/catalog-page/room-bath.jpg" alt="" loading="lazy">
             </div>
-          </article>
+            <div class="catalog-room__info">
+              <h3 class="catalog-room__title">Ванная комната</h3>
+              <p class="catalog-room__desc">Визуализация является ориентировочной, более точную визуализацию разработает наш дизайнер при разработке дизайн-проекта</p>
+            </div>
+          </div>
+          <div class="catalog-room__links">
+            <div class="catalog-room__col">
+              <a href="#">Шкаф-пенал в ванную</a>
+              <a href="#">Навесной шкаф в ванную</a>
+              <a href="#">Шкаф над инсталляцией</a>
+              <a href="#">Шкаф для стиральной машины</a>
+              <a href="#">Хозяйственный шкаф</a>
+            </div>
+            <div class="catalog-room__col">
+              <a href="#">Столешница для ванной</a>
+              <a href="#">Тумба под раковину</a>
+            </div>
+          </div>
+        </div>
 
-          <article class="stock-card">
-            <a href="#" class="stock-card__media">
-              <img src="assets/stocks/stock3.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="#">Партнерская скидка на фурнитуру Boyard 10%</a></h3>
-                <p class="stock-card__desc">При выборе фурнитуры Boyard предоставляем на нее скидку 10%</p>
-              </div>
-              <a href="#" class="btn stock-card__btn">Узнать подробнее</a>
+        <div class="catalog-room__card">
+          <div class="catalog-room__head">
+            <div class="catalog-room__photo">
+              <img src="assets/catalog-page/room-office.jpg" alt="" loading="lazy">
             </div>
-          </article>
-
-          <article class="stock-card">
-            <a href="#" class="stock-card__media">
-              <img src="assets/stocks/stock4.jpg" alt="" loading="lazy">
-              <span class="stock-card__badge">Акция</span>
-            </a>
-            <div class="stock-card__body">
-              <div class="stock-card__text">
-                <h3 class="stock-card__title"><a href="#">Скидка 5% при оплате наличными</a></h3>
-                <p class="stock-card__desc">Оплата любым способом, выдаем все необходимые документы и чеки</p>
-              </div>
-              <a href="#" class="btn stock-card__btn">Узнать подробнее</a>
+            <div class="catalog-room__info">
+              <h3 class="catalog-room__title">Кабинет</h3>
+              <p class="catalog-room__desc">Визуализация является ориентировочной, более точную визуализацию разработает наш дизайнер при разработке дизайн-проекта</p>
             </div>
-          </article>
+          </div>
+          <div class="catalog-room__links">
+            <div class="catalog-room__col">
+              <a href="#">Письменный стол в кабинет</a>
+              <a href="#">Компьютерный стол в кабинет</a>
+              <a href="#">Рабочий стол в кабинет</a>
+              <a href="#">Книжный шкаф в кабинет</a>
+              <a href="#">Шкаф для документов</a>
+            </div>
+            <div class="catalog-room__col">
+              <a href="#">Библиотека в кабинет</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <nav class="pagination" aria-label="Пагинация">
-    <div class="pagination__list">
-      <span class="pagination__item pagination__item--disabled" aria-label="Предыдущая страница" aria-disabled="true">
-        <svg class="icon"><use href="assets/icons/sprite.svg#angle-left"></use></svg>
-      </span>
-      <a href="#" class="pagination__item is-active" aria-current="page">1</a>
-      <a href="#" class="pagination__item">2</a>
-      <a href="#" class="pagination__item">3</a>
-      <span class="pagination__item pagination__item--ellipsis">…</span>
-      <a href="#" class="pagination__item">6</a>
-      <a href="#" class="pagination__item" aria-label="Следующая страница">
-        <svg class="icon"><use href="assets/icons/sprite.svg#angle-right"></use></svg>
-      </a>
-    </div>
-  </nav>
+    <section class="catalog-main" data-catalog-switch-panel="furniture" hidden>
+      <div class="catalog-main__list">
+        <div class="catalog-main__card">
+          <div class="catalog-main__media">
+            <img src="assets/catalog-page/main-kitchens.jpg" alt="" loading="lazy">
+          </div>
+          <div class="catalog-main__body">
+            <div class="catalog-main__intro">
+              <div class="catalog-main__heading">
+                <h2 class="catalog-main__title">Кухни под заказ</h2>
+                <p class="catalog-main__desc">Визуализация является ориентировочной, более точную визуализацию разработает наш дизайнер при разработке дизайн-проекта</p>
+              </div>
+              <div class="catalog-main__cols">
+                <div class="catalog-main__col">
+                  <p class="catalog-main__col-title">По типу</p>
+                  <div class="catalog-main__col-list">
+                    <a href="#">П-образные</a>
+                    <a href="#">Прямые</a>
+                    <a href="#">Паралельные</a>
+                    <a href="#">С островом</a>
+                    <a href="#">С барной стойкой</a>
+                  </div>
+                </div>
+                <div class="catalog-main__col">
+                  <p class="catalog-main__col-title">По стилю</p>
+                  <div class="catalog-main__col-list">
+                    <a href="#">Современные</a>
+                    <a href="#">Модерн</a>
+                    <a href="#">Классические</a>
+                    <a href="#">Лофт</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="catalog-main__actions">
+              <a href="cart.html" class="btn btn-primary rounded-pill">Получить консультацию</a>
+              <a href="calc.html" class="btn btn-stroke rounded-pill">Калькулятор кухни</a>
+            </div>
+          </div>
+        </div>
 
-  <div class="section-spacer"></div>
+        <div class="catalog-main__card catalog-main__card--reverse">
+          <div class="catalog-main__media">
+            <img src="assets/catalog-page/main-storage.jpg" alt="" loading="lazy">
+          </div>
+          <div class="catalog-main__body">
+            <div class="catalog-main__intro">
+              <div class="catalog-main__heading">
+                <h2 class="catalog-main__title">Мебель для хранения</h2>
+                <p class="catalog-main__desc">Визуализация является ориентировочной, более точную визуализацию разработает наш дизайнер при разработке дизайн-проекта</p>
+              </div>
+              <div class="catalog-main__cols">
+                <div class="catalog-main__col">
+                  <p class="catalog-main__col-title">Шкафы</p>
+                  <div class="catalog-main__col-list">
+                    <a href="#">Распашной шкаф</a>
+                    <a href="#">Шкаф-купе</a>
+                    <a href="#">Угловой шкаф</a>
+                    <a href="#">Книжный шкаф</a>
+                    <a href="#">Детский шкаф</a>
+                  </div>
+                </div>
+                <div class="catalog-main__col">
+                  <p class="catalog-main__col-title">Прочее</p>
+                  <div class="catalog-main__col-list">
+                    <a href="#">Стеллаж</a>
+                    <a href="#">Тумба для ТВ</a>
+                    <a href="#">Гардеробная система</a>
+                    <a href="#">Прихожая</a>
+                    <a href="#">Комод</a>
+                    <a href="#">Тумба</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <section class="seo-simple">
     <div class="seo-simple__inner">
       <div class="seo-simple__content">
-        <h2 class="seo-simple__title">Выгодные предложения<span> на кухни и мебель на заказ</span></h2>
+        <h2 class="seo-simple__title">Мебель на заказ<span> в Самаре</span></h2>
         <div class="seo-simple__text">
-          <p>В разделе представлены актуальные акции и специальные предложения Domarti на изготовление кухонь и корпусной мебели по индивидуальным размерам. Здесь вы можете подобрать выгодные условия для реализации проекта, получить дополнительные опции или заказать мебель по специальной цене.</p>
-          <p>Мы создаём кухни, шкафы, гардеробные и другую мебель с учётом планировки помещения, выбранного стиля и вашего бюджета. Наши специалисты помогут продумать наполнение, подобрать материалы и фурнитуру, выполнить замер и подготовить индивидуальный дизайн-проект.</p>
-          <p>Следите за обновлениями раздела, чтобы не пропустить новые предложения. Условия, сроки действия и подробности каждой акции можно уточнить у специалистов Domarti.</p>
+          <p>В каталоге Домарти представлена мебель, которую мы изготавливаем по индивидуальным проектам: кухни, шкафы, гардеробные, прихожие, мебель для гостиных, спален, детских, ванных комнат и других помещений. С помощью фильтров можно подобрать решения по назначению, стилю, цвету и другим параметрам.</p>
+          <p>Каждое изделие адаптируется под размеры и особенности конкретного пространства. Мы учитываем планировку помещения, расположение коммуникаций, требования к хранению и пожелания заказчика. Материалы, фасады, столешницы, фурнитура и внутреннее наполнение подбираются индивидуально.</p>
+          <p>Используйте представленные модели как основу для будущего проекта или источник идей. Дизайнеры Домарти помогут доработать выбранное решение, подобрать комплектацию и рассчитать стоимость изготовления мебели на заказ в Самаре.</p>
         </div>
       </div>
     </div>
@@ -445,7 +550,6 @@
       <p>Данный сайт носит информационный характер и ни при каких условиях не явлется публичной офертой, которая определяется положением статьи 437 (2) Гражданского кодекса РФ.</p>
     </div>
   </footer>
-
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="js/main.js"></script>
 </body>
