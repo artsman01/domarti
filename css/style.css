@@ -19478,6 +19478,7 @@ a.pagination__item.is-active:hover {
 }
 
 .catalog-room__photo {
+  display: block;
   flex-shrink: 0;
   width: 172px;
   height: 128px;
