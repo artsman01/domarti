@@ -20151,3 +20151,124 @@ a.pagination__item.is-active:hover {
   align-items: center;
   gap: 8px;
 }
+
+.menu-item--dropdown[data-about-dropdown-trigger] {
+  position: relative;
+}
+
+.about-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 30;
+  display: none;
+  flex-direction: column;
+  width: 128px;
+  margin-top: 8px;
+  border: 1px solid var(--color-tertiary-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bs-body-bg);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.16);
+}
+
+.about-dropdown.is-open {
+  display: flex;
+}
+
+.about-dropdown a {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--color-tertiary-bg);
+  color: var(--bs-body-color);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  transition: background-color 0.15s ease;
+}
+
+.about-dropdown a:last-child {
+  border-bottom: 0;
+}
+
+.about-dropdown a:hover {
+  background: var(--color-secondary-bg);
+}
+
+.back-to-top {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-tertiary-bg);
+  color: var(--bs-body-color);
+  transition: background-color 0.15s ease;
+}
+
+.back-to-top:hover {
+  background: var(--bs-border-color);
+}
+
+@media (max-width: 575.98px) {
+  .back-to-top {
+    display: none;
+  }
+}
+.tapbar {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+}
+
+@media (max-width: 575.98px) {
+  .tapbar {
+    display: flex;
+  }
+}
+.tapbar__up {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-secondary-bg);
+  color: var(--bs-body-color);
+}
+
+.tapbar__call {
+  display: flex;
+  flex: 1 0 0;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  border: 0;
+  border-radius: 888px;
+  background: var(--bs-primary);
+  color: var(--color-text-button);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.tapbar__call:hover {
+  background: var(--color-brand-hover);
+}

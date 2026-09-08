@@ -1,0 +1,31 @@
+// Solo "scroll to top" button — desktop and tablet only, ≥576px (the
+// .tapbar below covers the same job on real mobile). Always visible,
+// pinned to the bottom-right corner.
+
+.back-to-top {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-tertiary-bg);
+  color: var(--bs-body-color);
+  transition: background-color 0.15s ease;
+}
+
+.back-to-top:hover {
+  background: var(--bs-border-color);
+}
+
+@media (max-width: 575.98px) {
+  .back-to-top {
+    display: none;
+  }
+}

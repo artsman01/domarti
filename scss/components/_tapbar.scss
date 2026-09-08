@@ -1,0 +1,55 @@
+// Fixed bottom tapbar — real mobile only (≤575.98px, where
+// .back-to-top hides). Floats over the page with no background of its
+// own (matches Figma — the bar itself is transparent, just the two
+// buttons). Always visible, not scroll-triggered.
+
+.tapbar {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+}
+
+@media (max-width: 575.98px) {
+  .tapbar {
+    display: flex;
+  }
+}
+
+.tapbar__up {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-secondary-bg);
+  color: var(--bs-body-color);
+}
+
+.tapbar__call {
+  display: flex;
+  flex: 1 0 0;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  border: 0;
+  border-radius: 888px;
+  background: var(--bs-primary);
+  color: var(--color-text-button);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  white-space: nowrap;
+}
+
+.tapbar__call:hover {
+  background: var(--color-brand-hover);
+}

@@ -1323,3 +1323,79 @@
     if (window.matchMedia("(min-width: 1200px)").matches) close();
   });
 })();
+
+(function () {
+  // Header's "О компании" dropdown — the nav item itself is already
+  // d-none d-xl-flex, so no breakpoint guard is needed here.
+  var trigger = document.querySelector("[data-about-dropdown-trigger]");
+  if (!trigger) return;
+
+  var LINKS = [
+    ["О нас", "about.html"],
+    ["Отзывы", "reviews.html"],
+    ["Акции", "stocks.html"],
+    ["Кредит", "#"],
+    ["Дизайнерам", "#"],
+  ];
+
+  var panel = document.createElement("div");
+  panel.className = "about-dropdown";
+  panel.innerHTML = LINKS.map(function (item) {
+    return '<a href="' + item[1] + '">' + item[0] + "</a>";
+  }).join("");
+  trigger.appendChild(panel);
+
+  function close() {
+    panel.classList.remove("is-open");
+    document.removeEventListener("click", onOutsideClick);
+    document.removeEventListener("keydown", onEscape);
+  }
+
+  function onOutsideClick(e) {
+    if (!trigger.contains(e.target)) close();
+  }
+
+  function onEscape(e) {
+    if (e.key === "Escape") close();
+  }
+
+  trigger.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (panel.classList.contains("is-open")) {
+      close();
+      return;
+    }
+    panel.classList.add("is-open");
+    document.addEventListener("click", onOutsideClick);
+    document.addEventListener("keydown", onEscape);
+  });
+})();
+
+(function () {
+  // Back-to-top button (desktop/tablet) + the mobile tapbar's own up
+  // button share this same smooth-scroll behavior.
+  function scrollToTop(e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  var top = document.createElement("button");
+  top.type = "button";
+  top.className = "back-to-top";
+  top.setAttribute("aria-label", "Наверх");
+  top.innerHTML = '<svg class="icon"><use href="assets/icons/sprite.svg#angle-down"></use></svg>';
+  top.querySelector(".icon").style.transform = "rotate(180deg)";
+  top.addEventListener("click", scrollToTop);
+  document.body.appendChild(top);
+
+  var tapbar = document.createElement("div");
+  tapbar.className = "tapbar";
+  tapbar.innerHTML =
+    '<button type="button" class="tapbar__up" aria-label="Наверх">' +
+    '<svg class="icon"><use href="assets/icons/sprite.svg#angle-down"></use></svg>' +
+    "</button>" +
+    '<a href="tel:+79270112793" class="tapbar__call">+7 (927) 011-27-93</a>';
+  tapbar.querySelector(".icon").style.transform = "rotate(180deg)";
+  tapbar.querySelector(".tapbar__up").addEventListener("click", scrollToTop);
+  document.body.appendChild(tapbar);
+})();

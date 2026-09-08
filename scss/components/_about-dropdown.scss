@@ -1,0 +1,49 @@
+// Header's "О компании" dropdown (desktop only — the nav item itself
+// is already d-none d-xl-flex, so no extra breakpoint guard is
+// needed). A small bordered list built once in JS and appended
+// straight into the trigger, which is given position:relative here so
+// it can anchor without any wrapper markup on every page's header.
+
+.menu-item--dropdown[data-about-dropdown-trigger] {
+  position: relative;
+}
+
+.about-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 30;
+  display: none;
+  flex-direction: column;
+  width: 128px;
+  margin-top: 8px;
+  border: 1px solid var(--color-tertiary-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bs-body-bg);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.16);
+}
+
+.about-dropdown.is-open {
+  display: flex;
+}
+
+.about-dropdown a {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--color-tertiary-bg);
+  color: var(--bs-body-color);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  transition: background-color 0.15s ease;
+}
+
+.about-dropdown a:last-child {
+  border-bottom: 0;
+}
+
+.about-dropdown a:hover {
+  background: var(--color-secondary-bg);
+}
