@@ -1,0 +1,18 @@
+// Fullscreen YouTube video lightbox — opened from .image-video--video's
+// play button. Reuses .lightbox-overlay/.lightbox__close verbatim (see
+// _lightbox.scss) for the backdrop/close button, just a 16:9 iframe
+// box instead of a photo.
+
+.video-lightbox {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+}
+
+.video-lightbox iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 12px;
+}

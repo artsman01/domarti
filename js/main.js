@@ -1697,3 +1697,54 @@ function renderSearchResults(container, query) {
     bindGroup(slider, ".material-slider__slide");
   });
 })();
+
+// Video lightbox — .image-video--video's photo+play button opens a
+// fullscreen YouTube embed. Reuses .lightbox-overlay/.lightbox__close
+// verbatim (see the photo lightbox above) so it looks/behaves the
+// same, just with an iframe instead of an <img>.
+(function () {
+  var triggers = document.querySelectorAll(".image-video--video .image-video__media");
+  if (!triggers.length) return;
+
+  var VIDEO_ID = "dQw4w9WgXcQ";
+  var overlay = null;
+
+  function build() {
+    var el = document.createElement("div");
+    el.className = "lightbox-overlay";
+    el.innerHTML =
+      '<div class="video-lightbox"><iframe src="" title="Видео" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>' +
+      '<button type="button" class="lightbox__close" aria-label="Закрыть"><svg class="icon"><use href="assets/icons/sprite.svg#close"></use></svg></button>';
+    document.body.appendChild(el);
+
+    el.querySelector(".lightbox__close").addEventListener("click", close);
+    el.querySelector(".video-lightbox").addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+    el.addEventListener("click", close);
+
+    return el;
+  }
+
+  function open() {
+    if (!overlay) overlay = build();
+    overlay.querySelector("iframe").src = "https://www.youtube.com/embed/" + VIDEO_ID + "?autoplay=1";
+    overlay.classList.add("is-open");
+    document.addEventListener("keydown", onKeydown);
+  }
+
+  function close() {
+    if (!overlay) return;
+    overlay.classList.remove("is-open");
+    overlay.querySelector("iframe").src = "";
+    document.removeEventListener("keydown", onKeydown);
+  }
+
+  function onKeydown(e) {
+    if (e.key === "Escape") close();
+  }
+
+  Array.prototype.forEach.call(triggers, function (trigger) {
+    trigger.addEventListener("click", open);
+  });
+})();

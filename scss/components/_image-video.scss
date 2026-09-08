@@ -49,6 +49,21 @@
   opacity: 0.72;
 }
 
+// Only the video variant is clickable (opens the video lightbox) —
+// light zoom on the poster photo and the play circle both growing
+// slightly on hover.
+.image-video--video .image-video__media {
+  cursor: pointer;
+}
+
+.image-video--video .image-video__media img {
+  transition: transform 0.35s ease;
+}
+
+.image-video--video .image-video__media:hover img {
+  transform: scale(1.05);
+}
+
 .image-video__play {
   position: absolute;
   top: 50%;
@@ -62,6 +77,11 @@
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.16);
   color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.image-video--video .image-video__media:hover .image-video__play {
+  transform: translate(-50%, -50%) scale(1.1);
 }
 
 .image-video__play .icon {
