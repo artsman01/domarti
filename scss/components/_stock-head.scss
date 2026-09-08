@@ -131,15 +131,24 @@
   line-height: 1.375rem; // 22px
 }
 
-// Below the container's own 1280px width, the card can no longer fit
-// photo+panel side by side — stacks photo-on-top instead.
-@media (max-width: 1279.98px) {
+// Same tie-break as .catalog-main__actions .btn: matched to
+// .btn.btn-primary's own 2-class specificity so it wins regardless of
+// import order.
+.stock-head__content .btn.btn-primary {
+  padding: 0 16px;
+}
+
+// Below 960px the card can no longer fit photo+panel side by side —
+// stacks photo-on-top instead, with a fixed (not aspect-ratio-driven)
+// media height per Figma's tablet frame.
+@media (max-width: 959.98px) {
   .stock-head__card {
     flex-direction: column;
   }
 
   .stock-head__media {
-    aspect-ratio: 16 / 9;
+    flex: none;
+    height: 276px;
   }
 }
 
@@ -150,6 +159,6 @@
   }
 
   .stock-head__body {
-    padding: 24px;
+    padding: 16px;
   }
 }
