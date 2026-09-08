@@ -567,11 +567,15 @@
     var prevBtn = section.querySelector(".material-slider__nav--prev");
     var nextBtn = section.querySelector(".material-slider__nav--next");
 
+    // No loop: with only 3 real slides and slidesPerView:3 at desktop,
+    // there's nothing to loop into — Swiper just disables it outright
+    // and (since it thinks nothing needs to move) the nav/drag stops
+    // working entirely. Plain bounded sliding works at every tier and
+    // still lets mobile/tablet (where fewer than 3 fit) navigate.
     new Swiper(swiperEl, {
       slidesPerView: "auto",
       spaceBetween: 16,
       speed: 450,
-      loop: true,
       wrapperClass: "material-slider__track",
       slideClass: "material-slider__slide",
       navigation: {
@@ -1596,12 +1600,14 @@ function renderSearchResults(container, query) {
   });
 })();
 
-// Fullscreen photo lightbox — every .gallery__grid on the page (used by
-// product.html/material.html/project.html) opens the same shared
-// overlay, built once and lazily appended to <body> on first click.
+// Fullscreen photo lightbox — every .gallery__grid (product.html/
+// material.html/project.html) and .material-slider__track (material.html's
+// own slider) opens the same shared overlay, built once and lazily
+// appended to <body> on first click.
 (function () {
   var grids = document.querySelectorAll(".gallery__grid");
-  if (!grids.length) return;
+  var sliders = document.querySelectorAll(".material-slider__track");
+  if (!grids.length && !sliders.length) return;
 
   var overlay = null;
   var images = [];
@@ -1670,8 +1676,8 @@ function renderSearchResults(container, query) {
     else if (e.key === "ArrowRight") show(index + 1);
   }
 
-  Array.prototype.forEach.call(grids, function (grid) {
-    var items = grid.querySelectorAll(".gallery__item");
+  function bindGroup(container, itemSelector) {
+    var items = container.querySelectorAll(itemSelector);
     var srcs = Array.prototype.map.call(items, function (item) {
       return item.querySelector("img").src;
     });
@@ -1681,5 +1687,13 @@ function renderSearchResults(container, query) {
         open(srcs, i);
       });
     });
+  }
+
+  Array.prototype.forEach.call(grids, function (grid) {
+    bindGroup(grid, ".gallery__item");
+  });
+
+  Array.prototype.forEach.call(sliders, function (slider) {
+    bindGroup(slider, ".material-slider__slide");
   });
 })();

@@ -4,15 +4,25 @@
 // .content-block instead of styling bare tags globally, so it only
 // applies where this section is actually used.
 
+// Same two-layer shape as every other section on the site (.gallery/
+// .gallery__grid, .color-grid/.color-grid__list, ...): the outer
+// section carries the full-width padding, the inner is the plain
+// max-width:1280px content box with no padding of its own — otherwise
+// its content sits 16px further in than every sibling section's.
 .content-block {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 32px 16px;
+  background: var(--bs-body-bg);
+}
+
+.content-block__inner {
   display: flex;
   flex-direction: column;
   gap: 32px;
   width: 100%;
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 32px 16px;
-  background: var(--bs-body-bg);
 }
 
 // A standalone heading right before another section (no bottom
@@ -155,8 +165,11 @@
 
 @media (max-width: 575.98px) {
   .content-block {
-    gap: 24px;
     padding: 16px;
+  }
+
+  .content-block__inner {
+    gap: 24px;
   }
 
   // Same mobile step-down as every other heading scale on the site —
