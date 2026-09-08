@@ -236,6 +236,9 @@
 }
 
 .reviews__more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 36px;
   padding: 0 16px;
   border-radius: 50rem;
