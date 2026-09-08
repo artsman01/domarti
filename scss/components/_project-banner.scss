@@ -1,0 +1,37 @@
+// ProjectBannerSection: a single full-width rounded photo. Figma's
+// own pixel heights per breakpoint don't reduce to one clean ratio, so
+// this uses a wide aspect-ratio at desktop/tablet and a slightly
+// taller one below — same technique as .stock-head__media.
+
+.project-banner {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 32px 16px;
+  background: var(--bs-body-bg);
+}
+
+.project-banner__media {
+  width: 100%;
+  max-width: 1280px;
+  aspect-ratio: 20 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.project-banner__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+@media (max-width: 767.98px) {
+  .project-banner__media {
+    aspect-ratio: 16 / 9;
+  }
+}

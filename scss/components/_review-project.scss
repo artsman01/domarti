@@ -1,0 +1,72 @@
+// ReviewProjectSection: a title above a single pale-gold review card
+// (name + role + quote) — a simpler, single-review cousin of
+// .reviews-card.
+
+.review-project {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 32px 16px;
+  background: var(--bs-body-bg);
+}
+
+.review-project__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.review-project__title {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 2.5rem; // 40px
+  line-height: 3rem; // 48px
+}
+
+.review-project__card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 32px;
+  border-radius: 12px;
+  background: var(--color-brand-pale);
+}
+
+.review-project__name {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 700;
+  font-size: 1.125rem; // 18px
+  line-height: 1.5rem; // 24px
+}
+
+.review-project__role {
+  margin: 0;
+  color: var(--color-hint);
+  font-weight: 400;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
+
+.review-project__text {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 400;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.375rem; // 22px
+}
+
+@media (max-width: 575.98px) {
+  .review-project__title {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+  }
+
+  .review-project__card {
+    padding: 24px;
+  }
+}
