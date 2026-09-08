@@ -926,3 +926,163 @@
 
   document.querySelectorAll("[data-map-canvas]").forEach(initContactMap);
 })();
+
+(function () {
+  // "Желаемые дата и время" (.input-field--select, hero-cta's form and
+  // the product page's final CTA): a real month calendar opens above
+  // the trigger on click. No weekday header row — matches Figma, which
+  // starts the grid straight at day 1, so the leading empty cells are
+  // the only thing establishing which weekday column it falls in.
+  var MONTHS_GENITIVE = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+  var MONTHS_NOMINATIVE = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+
+  function initDateSelect(trigger) {
+    var span = trigger.querySelector("span");
+    var viewDate = new Date();
+    viewDate.setDate(1);
+    var selected = null;
+    var timeValue = "";
+    var popup = null;
+
+    function daysInMonth(y, m) {
+      return new Date(y, m + 1, 0).getDate();
+    }
+
+    // Monday=0 ... Sunday=6, so a Ru calendar's leading gap is just this.
+    function mondayIndex(date) {
+      return (date.getDay() + 6) % 7;
+    }
+
+    function isSameDay(a, b) {
+      return !!a && !!b && a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+    }
+
+    function outsideClick(e) {
+      if (popup && !trigger.contains(e.target)) closePopup();
+    }
+
+    function onEscape(e) {
+      if (e.key === "Escape") closePopup();
+    }
+
+    function closePopup() {
+      if (!popup) return;
+      popup.remove();
+      popup = null;
+      document.removeEventListener("click", outsideClick);
+      document.removeEventListener("keydown", onEscape);
+    }
+
+    function render() {
+      var y = viewDate.getFullYear();
+      var m = viewDate.getMonth();
+      var total = daysInMonth(y, m);
+      var startOffset = mondayIndex(new Date(y, m, 1));
+      var today = new Date();
+
+      var html = "";
+      html += '<div class="date-picker__head">';
+      html += '<p class="date-picker__month">' + MONTHS_NOMINATIVE[m] + "</p>";
+      html += '<div class="date-picker__nav">';
+      html += '<button type="button" class="date-picker__nav-btn date-picker__nav-btn--prev" aria-label="Предыдущий месяц"><svg class="icon"><use href="assets/icons/sprite.svg#angle-down"></use></svg></button>';
+      html += '<button type="button" class="date-picker__nav-btn date-picker__nav-btn--next" aria-label="Следующий месяц"><svg class="icon"><use href="assets/icons/sprite.svg#angle-down"></use></svg></button>';
+      html += "</div></div>";
+
+      html += '<div class="date-picker__grid"><div class="date-picker__row">';
+      var cellsInRow = 0;
+      for (var i = 0; i < startOffset; i++) {
+        html += '<div class="date-picker__cell"></div>';
+        cellsInRow++;
+      }
+      for (var day = 1; day <= total; day++) {
+        if (cellsInRow === 7) {
+          html += '</div><div class="date-picker__row">';
+          cellsInRow = 0;
+        }
+        var cellDate = new Date(y, m, day);
+        var isWeekend = mondayIndex(cellDate) >= 5;
+        var isToday = isSameDay(cellDate, today);
+        var isSelected = isSameDay(cellDate, selected);
+        var cls = "date-picker__day";
+        if (isSelected) cls += " is-selected";
+        else if (isToday) cls += " date-picker__day--today";
+        else if (isWeekend) cls += " date-picker__day--weekend";
+        else cls += " date-picker__day--muted";
+        html += '<div class="date-picker__cell"><button type="button" class="' + cls + '" data-day="' + day + '">' + day + "</button></div>";
+        cellsInRow++;
+      }
+      html += "</div></div>";
+
+      html += '<div class="date-picker__label-row"><p class="date-picker__label">Укажите желаемое время</p></div>';
+      html += '<div class="date-picker__form">';
+      html += '<input type="text" class="date-picker__time" placeholder="ЧЧ:ММ" inputmode="numeric" maxlength="5" value="' + timeValue + '">';
+      html += '<button type="button" class="btn btn-stroke rounded-pill date-picker__confirm"' + (selected ? "" : " disabled") + ">Подтвердить</button>";
+      html += "</div>";
+
+      popup.innerHTML = html;
+      wireEvents();
+    }
+
+    function wireEvents() {
+      popup.querySelector(".date-picker__nav-btn--prev").addEventListener("click", function (e) {
+        e.stopPropagation();
+        viewDate.setMonth(viewDate.getMonth() - 1);
+        render();
+      });
+      popup.querySelector(".date-picker__nav-btn--next").addEventListener("click", function (e) {
+        e.stopPropagation();
+        viewDate.setMonth(viewDate.getMonth() + 1);
+        render();
+      });
+
+      Array.prototype.forEach.call(popup.querySelectorAll(".date-picker__day"), function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          selected = new Date(viewDate.getFullYear(), viewDate.getMonth(), parseInt(btn.dataset.day, 10));
+          render();
+        });
+      });
+
+      var timeInput = popup.querySelector(".date-picker__time");
+      timeInput.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+      timeInput.addEventListener("input", function () {
+        var digits = timeInput.value.replace(/\D/g, "").slice(0, 4);
+        timeValue = digits.length > 2 ? digits.slice(0, 2) + ":" + digits.slice(2) : digits;
+        timeInput.value = timeValue;
+      });
+
+      popup.querySelector(".date-picker__confirm").addEventListener("click", function (e) {
+        e.stopPropagation();
+        if (!selected) return;
+        var label = selected.getDate() + " " + MONTHS_GENITIVE[selected.getMonth()];
+        if (timeValue.length === 5) label += ", " + timeValue;
+        span.textContent = label;
+        trigger.classList.add("is-filled");
+        closePopup();
+      });
+    }
+
+    function openPopup() {
+      if (popup) return;
+      popup = document.createElement("div");
+      popup.className = "date-picker";
+      popup.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
+      trigger.appendChild(popup);
+      render();
+      document.addEventListener("click", outsideClick);
+      document.addEventListener("keydown", onEscape);
+    }
+
+    trigger.addEventListener("click", function (e) {
+      e.stopPropagation();
+      if (popup) closePopup();
+      else openPopup();
+    });
+  }
+
+  document.querySelectorAll(".input-field--select").forEach(initDateSelect);
+})();

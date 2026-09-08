@@ -1,0 +1,200 @@
+// Calendar dropdown for the "Желаемые дата и время" field (hero-cta's
+// form and the product page's final CTA — the only two spots using
+// .input-field--select). Opens upward, right-aligned to the trigger,
+// matching the Figma popup exactly — the trigger itself is given
+// position:relative here so the popup can anchor to it directly
+// without any wrapper markup.
+
+.input-field--select {
+  position: relative;
+}
+
+// Once a date (and optionally time) has been confirmed, the label
+// reads like real filled content instead of a placeholder.
+.input-field--select.is-filled span {
+  color: var(--bs-body-color);
+}
+
+.date-picker {
+  position: absolute;
+  z-index: 20;
+  right: 0;
+  bottom: calc(100% + 8px);
+  display: flex;
+  flex-direction: column;
+  width: 256px;
+  border-radius: 8px;
+  background: var(--bs-body-bg);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.16);
+  cursor: default;
+}
+
+.date-picker__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 8px;
+  border-bottom: 1px solid var(--bs-border-color);
+}
+
+.date-picker__month {
+  flex: 1 0 0;
+  min-width: 0;
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 600;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
+
+.date-picker__nav {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.date-picker__nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 12px;
+  border: 0;
+  background: transparent;
+  color: var(--color-hint);
+  transition: color 0.15s ease;
+}
+
+.date-picker__nav-btn:hover {
+  color: var(--bs-body-color);
+}
+
+.date-picker__nav-btn .icon {
+  width: 12px;
+  height: 12px;
+}
+
+.date-picker__nav-btn--prev .icon {
+  transform: rotate(90deg);
+}
+
+.date-picker__nav-btn--next .icon {
+  transform: rotate(-90deg);
+}
+
+.date-picker__grid {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.date-picker__row {
+  display: flex;
+  align-items: center;
+}
+
+.date-picker__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.date-picker__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--bs-body-color);
+  font-family: "Geologica", sans-serif;
+  font-weight: 300;
+  font-size: 0.875rem; // 14px
+  line-height: 1.5rem; // 24px
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.date-picker__day:hover:not(.is-selected) {
+  background: var(--color-secondary-bg);
+}
+
+.date-picker__day--muted {
+  color: var(--color-hint);
+}
+
+.date-picker__day--weekend {
+  color: rgba(193, 92, 72, 0.64);
+}
+
+.date-picker__day--today {
+  background: var(--color-secondary-bg);
+}
+
+.date-picker__day.is-selected {
+  background: var(--bs-primary);
+  color: var(--color-text-button);
+}
+
+.date-picker__label-row {
+  padding: 0 8px 16px;
+  border-bottom: 1px solid var(--bs-border-color);
+}
+
+.date-picker__label {
+  margin: 0;
+  color: var(--bs-body-color);
+  font-weight: 600;
+  font-size: 0.8125rem; // 13px
+  line-height: 1.25rem; // 20px
+}
+
+.date-picker__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 8px;
+}
+
+.date-picker__time {
+  width: 100%;
+  height: 48px;
+  padding: 0 12px 0 16px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--color-secondary-bg);
+  color: var(--bs-body-color);
+  font-weight: 500;
+  font-size: 0.8125rem; // 13px
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.date-picker__time::placeholder {
+  color: var(--color-hint);
+}
+
+.date-picker__time:focus {
+  outline: none;
+  background: var(--bs-body-bg);
+  border-color: var(--bs-primary);
+}
+
+.date-picker__confirm {
+  width: 100%;
+}
+
+.date-picker__confirm:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+@media (max-width: 575.98px) {
+  .date-picker {
+    right: auto;
+    left: 0;
+  }
+}
