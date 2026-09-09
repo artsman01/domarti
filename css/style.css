@@ -20503,7 +20503,17 @@ a.pagination__item.is-active:hover {
   border-radius: 50%;
   background: var(--color-tertiary-bg);
   color: var(--bs-body-color);
-  transition: background-color 0.15s ease;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s, background-color 0.15s ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.25s ease, background-color 0.15s ease;
 }
 
 .back-to-top:hover {

@@ -1440,6 +1440,26 @@ function renderSearchResults(container, query) {
   top.addEventListener("click", scrollToTop);
   document.body.appendChild(top);
 
+  // Fades in once scrolled past whatever the page's first section is
+  // (the element right after the header) and back out above it —
+  // desktop/tablet only, .tapbar's own up-button covers mobile.
+  var header = document.querySelector(".header");
+  var firstSection = header && header.nextElementSibling;
+  var threshold = 0;
+
+  function computeThreshold() {
+    threshold = firstSection ? firstSection.offsetTop + firstSection.offsetHeight : 0;
+  }
+
+  function onScroll() {
+    top.classList.toggle("is-visible", window.scrollY > threshold);
+  }
+
+  computeThreshold();
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", computeThreshold);
+
   var tapbar = document.createElement("div");
   tapbar.className = "tapbar";
   tapbar.innerHTML =
