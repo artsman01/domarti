@@ -1490,7 +1490,7 @@ function renderSearchResults(container, query) {
   overlay.innerHTML =
     '<div class="call-popup">' +
     '<button type="button" class="call-popup__close" aria-label="Закрыть">' +
-    '<svg class="icon"><use href="assets/icons/sprite.svg#close"></use></svg>' +
+    '<svg class="icon"><use href="assets/icons/sprite.svg#close-thin"></use></svg>' +
     "</button>" +
     '<div class="call-popup__head">' +
     '<h3 class="call-popup__title">Заказать звонок</h3>' +
