@@ -20210,14 +20210,23 @@ a.pagination__item.is-active:hover {
   left: 0;
   right: 0;
   z-index: 45;
-  display: none;
+  display: flex;
   background: var(--bs-body-bg);
   border-bottom: 1px solid var(--bs-border-color);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
 }
 
 .menu-catalog.is-open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .menu-catalog__inner {
