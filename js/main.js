@@ -1243,15 +1243,22 @@ function renderSearchResults(container, query) {
 
 (function () {
   // Hamburger menu (tablet/mobile, <1200px — the trigger is
-  // .icon-btn--menu, d-flex d-xl-none). Built once and shared across
-  // every page's identical header. Same content as the footer's own
-  // Кухни/Шкафы/Разделы/Компания columns, just restyled light — see
-  // .mobile-menu__col below for the accordion mechanics (same
-  // grid-template-rows technique as .footer-col, new class names since
-  // the color scheme is the opposite of the footer's dark one).
+  // .icon-btn--menu, d-flex d-xl-none). The real header stays exactly
+  // as-is (sticky, on top, fully interactive) when this opens — no
+  // duplicate header markup here anymore, just the trigger's own icon
+  // swapping to a close cross. The panel itself is fixed right under
+  // the header, same "measure header.getBoundingClientRect().bottom"
+  // technique as .menu-catalog/.search-panel. Same content as the
+  // footer's own Кухни/Шкафы/Разделы/Компания columns, just restyled
+  // light — see .mobile-menu__col below for the accordion mechanics
+  // (same grid-template-rows technique as .footer-col, new class
+  // names since the color scheme is the opposite of the footer's
+  // dark one).
   var trigger = document.querySelector(".icon-btn--menu");
   if (!trigger) return;
 
+  var triggerIcon = trigger.querySelector("use");
+  var header = document.querySelector(".header");
   var panel = null;
 
   function col(title, items) {
@@ -1275,34 +1282,6 @@ function renderSearchResults(container, query) {
     var el = document.createElement("div");
     el.className = "mobile-menu";
     el.innerHTML =
-      '<div class="header__top-line d-none d-md-block py-2 px-3">' +
-      '<div class="container d-flex align-items-center justify-content-between text-small">' +
-      '<div class="d-flex align-items-center gap-3 fw-normal">' +
-      "<span>Кухни и мебель под заказ в Самаре</span><span>•</span><span>Работаем с 2006 года</span>" +
-      "</div>" +
-      '<div class="header__top-links d-flex align-items-center gap-4 fw-medium">' +
-      '<a href="stocks.html">Акции</a><a href="#">Кредит</a><a href="#">Дизайнерам</a>' +
-      "</div></div></div>" +
-      '<div class="header__middle-line d-flex align-items-center px-3">' +
-      '<div class="header__brand d-flex align-items-center">' +
-      '<button type="button" class="icon-btn mobile-menu__close d-flex align-items-center justify-content-center border-0" aria-label="Закрыть меню">' +
-      '<svg class="icon"><use href="assets/icons/sprite.svg#close"></use></svg>' +
-      "</button>" +
-      '<a href="home.html" class="header__logo d-flex align-items-center">' +
-      '<img src="assets/logo.svg" alt="Domarti"></a>' +
-      "</div>" +
-      '<div class="header__tablet-actions d-none d-sm-flex d-lg-none align-items-center justify-content-end flex-grow-1">' +
-      '<button type="button" class="icon-btn d-flex align-items-center justify-content-center border-0" aria-label="Позвонить">' +
-      '<svg class="icon"><use href="assets/icons/sprite.svg#call"></use></svg></button>' +
-      '<button type="button" class="btn btn-primary rounded-pill" data-call-popup-trigger>Бесплатный замер</button>' +
-      '<a href="cart.html" class="icon-btn icon-btn--cart d-flex align-items-center justify-content-center border-0" aria-label="Корзина">' +
-      '<svg class="icon"><use href="assets/icons/sprite.svg#cart"></use></svg></a>' +
-      '<button type="button" class="icon-btn d-flex align-items-center justify-content-center border-0" aria-label="Поиск">' +
-      '<svg class="icon"><use href="assets/icons/sprite.svg#search"></use></svg></button>' +
-      "</div>" +
-      '<a href="cart.html" class="icon-btn icon-btn--cart d-flex d-sm-none align-items-center justify-content-center border-0 ms-auto" aria-label="Корзина">' +
-      '<svg class="icon"><use href="assets/icons/sprite.svg#cart"></use></svg></a>' +
-      "</div>" +
       '<div class="mobile-menu__search">' +
       '<input type="text" placeholder="Начните поиск">' +
       '<svg class="icon"><use href="assets/icons/sprite.svg#search"></use></svg>' +
@@ -1344,8 +1323,6 @@ function renderSearchResults(container, query) {
       if (hasQuery) renderSearchResults(searchResults, searchInput.value);
     });
 
-    el.querySelector(".mobile-menu__close").addEventListener("click", close);
-
     Array.prototype.forEach.call(el.querySelectorAll("[data-mobile-menu-col]"), function (colEl) {
       var head = colEl.querySelector(".mobile-menu__col-head");
       head.addEventListener("click", function () {
@@ -1357,22 +1334,33 @@ function renderSearchResults(container, query) {
     return el;
   }
 
+  function position() {
+    if (panel) panel.style.top = header.getBoundingClientRect().bottom + "px";
+  }
+
   function open() {
     if (!panel) panel = build();
+    position();
     panel.classList.add("is-open");
     document.body.style.overflow = "hidden";
+    triggerIcon.setAttribute("href", "assets/icons/sprite.svg#close-thin");
   }
 
   function close() {
     if (!panel) return;
     panel.classList.remove("is-open");
     document.body.style.overflow = "";
+    triggerIcon.setAttribute("href", "assets/icons/sprite.svg#hamburger");
   }
 
-  trigger.addEventListener("click", open);
+  trigger.addEventListener("click", function () {
+    if (panel && panel.classList.contains("is-open")) close();
+    else open();
+  });
 
   window.addEventListener("resize", function () {
     if (window.matchMedia("(min-width: 1200px)").matches) close();
+    else position();
   });
 })();
 

@@ -1,14 +1,15 @@
 // Hamburger menu (tablet/mobile, <1200px — the trigger itself is
-// .icon-btn--menu, d-flex d-xl-none): a full-screen overlay built once
-// in JS. The top bar and action-icon row reuse the header's own
-// .header__top-line/.header__middle-line/.header__brand/
-// .header__tablet-actions/.icon-btn--cart-mobile classes verbatim
-// (none of them are scoped to a .header ancestor) — only the
-// accordion and the bottom contact block are new.
+// .icon-btn--menu, d-flex d-xl-none): built once in JS, fixed right
+// under the header (top set from header.getBoundingClientRect().bottom,
+// same technique as .menu-catalog/.search-panel) instead of covering
+// the whole viewport — the real header stays visible/unchanged above
+// it, only its hamburger icon swaps to a close cross while open.
 
 .mobile-menu {
   position: fixed;
-  inset: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 55;
   display: flex;
   flex-direction: column;
