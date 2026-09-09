@@ -10,14 +10,21 @@
   position: fixed;
   inset: 0;
   z-index: 55;
-  display: none;
+  display: flex;
   flex-direction: column;
   background: var(--bs-body-bg);
   overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
 }
 
 .mobile-menu.is-open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 0.25s ease;
 }
 
 .mobile-menu__search {
