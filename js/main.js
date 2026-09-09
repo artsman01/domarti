@@ -987,11 +987,10 @@
       var todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
       html += '<div class="date-picker__head">';
-      html += '<p class="date-picker__month">' + MONTHS_NOMINATIVE[m] + "</p>";
-      html += '<div class="date-picker__nav">';
       html += '<button type="button" class="date-picker__nav-btn date-picker__nav-btn--prev" aria-label="Предыдущий месяц"><svg class="icon"><use href="assets/icons/sprite.svg#angle-down"></use></svg></button>';
+      html += '<p class="date-picker__month">' + MONTHS_NOMINATIVE[m] + "</p>";
       html += '<button type="button" class="date-picker__nav-btn date-picker__nav-btn--next" aria-label="Следующий месяц"><svg class="icon"><use href="assets/icons/sprite.svg#angle-down"></use></svg></button>';
-      html += "</div></div>";
+      html += "</div>";
 
       html += '<div class="date-picker__grid"><div class="date-picker__row">';
       var cellsInRow = 0;
