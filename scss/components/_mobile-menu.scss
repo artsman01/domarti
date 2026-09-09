@@ -32,7 +32,7 @@
   display: none;
   align-items: center;
   gap: 8px;
-  padding: 0 16px 16px;
+  padding: 16px;
 }
 
 @media (max-width: 575.98px) {
@@ -62,6 +62,31 @@
 .mobile-menu__search .icon {
   flex-shrink: 0;
   color: var(--color-hint);
+}
+
+// While typing, the loupe swaps for a close button — same idea as
+// .search-panel__close on desktop, right down to the gold hover.
+.mobile-menu__search-clear {
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: none;
+  color: var(--color-hint);
+  transition: color 0.15s ease;
+}
+
+.mobile-menu__search-clear:hover {
+  color: var(--bs-primary);
+}
+
+.mobile-menu__search.has-query .mobile-menu__search-icon {
+  display: none;
+}
+
+.mobile-menu__search.has-query .mobile-menu__search-clear {
+  display: flex;
 }
 
 .mobile-menu__col {

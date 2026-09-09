@@ -1261,15 +1261,15 @@ function renderSearchResults(container, query) {
   var header = document.querySelector(".header");
   var panel = null;
 
-  function col(title, items) {
+  function col(title, items, defaultOpen) {
     var body = items
       .map(function (item) {
         return '<a href="' + item[1] + '" class="mobile-menu__col-item">' + item[0] + "</a>";
       })
       .join("");
     return (
-      '<div class="mobile-menu__col" data-mobile-menu-col>' +
-      '<button type="button" class="mobile-menu__col-head" aria-expanded="false">' +
+      '<div class="mobile-menu__col' + (defaultOpen ? " is-open" : "") + '" data-mobile-menu-col>' +
+      '<button type="button" class="mobile-menu__col-head" aria-expanded="' + (defaultOpen ? "true" : "false") + '">' +
       "<span>" + title + "</span>" +
       '<svg class="icon mobile-menu__col-chevron"><use href="assets/icons/sprite.svg#angle-down"></use></svg>' +
       "</button>" +
@@ -1284,14 +1284,17 @@ function renderSearchResults(container, query) {
     el.innerHTML =
       '<div class="mobile-menu__search">' +
       '<input type="text" placeholder="Начните поиск">' +
-      '<svg class="icon"><use href="assets/icons/sprite.svg#search"></use></svg>' +
+      '<svg class="icon mobile-menu__search-icon"><use href="assets/icons/sprite.svg#search"></use></svg>' +
+      '<button type="button" class="mobile-menu__search-clear" aria-label="Очистить поиск">' +
+      '<svg class="icon"><use href="assets/icons/sprite.svg#close-thin"></use></svg>' +
+      "</button>" +
       "</div>" +
       '<div class="mobile-menu__search-results search-results"></div>' +
       '<div class="mobile-menu__body">' +
       col("Кухни", [
         ["П-образные", "#"], ["Прямые", "#"], ["Угловые", "#"],
         ["С островом", "#"], ["Паралельные", "#"], ["С барной стойкой", "#"],
-      ]) +
+      ], true) +
       col("Шкафы", [
         ["В гостинную", "#"], ["В спальню", "#"], ["В прихожую", "#"], ["В санузел", "#"],
       ]) +
@@ -1315,12 +1318,21 @@ function renderSearchResults(container, query) {
 
     document.body.appendChild(el);
 
-    var searchInput = el.querySelector(".mobile-menu__search input");
+    var searchWrap = el.querySelector(".mobile-menu__search");
+    var searchInput = searchWrap.querySelector("input");
     var searchResults = el.querySelector(".mobile-menu__search-results");
     searchInput.addEventListener("input", function () {
       var hasQuery = searchInput.value.trim().length > 0;
+      searchWrap.classList.toggle("has-query", hasQuery);
       searchResults.classList.toggle("is-open", hasQuery);
       if (hasQuery) renderSearchResults(searchResults, searchInput.value);
+    });
+
+    searchWrap.querySelector(".mobile-menu__search-clear").addEventListener("click", function () {
+      searchInput.value = "";
+      searchWrap.classList.remove("has-query");
+      searchResults.classList.remove("is-open");
+      searchInput.focus();
     });
 
     Array.prototype.forEach.call(el.querySelectorAll("[data-mobile-menu-col]"), function (colEl) {
