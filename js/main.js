@@ -1454,19 +1454,22 @@ function renderSearchResults(container, query) {
   // Both fade in (the tapbar also slides up) once scrolled past
   // whatever the page's first section is (the element right after the
   // header) and back out above it — .back-to-top on desktop/tablet,
-  // .tapbar on real mobile.
+  // .tapbar on real mobile. The tapbar gets a slightly earlier
+  // threshold (80% of the way through that section) so it shows up a
+  // beat sooner than .back-to-top would.
   var header = document.querySelector(".header");
   var firstSection = header && header.nextElementSibling;
   var threshold = 0;
+  var tapbarThreshold = 0;
 
   function computeThreshold() {
     threshold = firstSection ? firstSection.offsetTop + firstSection.offsetHeight : 0;
+    tapbarThreshold = firstSection ? firstSection.offsetTop + firstSection.offsetHeight * 0.8 : 0;
   }
 
   function onScroll() {
-    var visible = window.scrollY > threshold;
-    top.classList.toggle("is-visible", visible);
-    tapbar.classList.toggle("is-visible", visible);
+    top.classList.toggle("is-visible", window.scrollY > threshold);
+    tapbar.classList.toggle("is-visible", window.scrollY > tapbarThreshold);
   }
 
   computeThreshold();

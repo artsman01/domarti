@@ -50,12 +50,14 @@
 }
 
 .tapbar__call {
+  position: relative;
   display: flex;
   flex: 1 0 0;
   min-width: 0;
   align-items: center;
   justify-content: center;
   height: 36px;
+  overflow: hidden;
   border: 0;
   border-radius: 888px;
   background: var(--bs-primary);
@@ -67,4 +69,24 @@
 
 .tapbar__call:hover {
   background: var(--color-brand-hover);
+}
+
+// Same periodic shine sweep as .btn.btn-primary (see _buttons.scss'
+// btn-shine keyframes) — reused verbatim rather than a second copy.
+.tapbar__call::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  animation: btn-shine 5s ease-in-out infinite;
 }
