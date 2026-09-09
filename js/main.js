@@ -1027,7 +1027,9 @@
 
       html += '<div class="date-picker__label-row"><p class="date-picker__label">Укажите желаемое время</p></div>';
       html += '<div class="date-picker__form">';
-      html += '<input type="text" class="date-picker__time" placeholder="__ : __" inputmode="numeric" maxlength="5" value="' + timeValue + '">';
+      html += '<div class="input-field date-picker__time">';
+      html += '<input type="text" placeholder="__ : __" aria-label="Желаемое время" inputmode="numeric" maxlength="5" value="' + timeValue + '">';
+      html += "</div>";
       html += '<button type="button" class="btn btn-stroke rounded-pill date-picker__confirm"' + (selected ? "" : " disabled") + ">Подтвердить</button>";
       html += "</div>";
 
@@ -1055,7 +1057,7 @@
         });
       });
 
-      var timeInput = popup.querySelector(".date-picker__time");
+      var timeInput = popup.querySelector(".date-picker__time input");
       timeInput.addEventListener("click", function (e) {
         e.stopPropagation();
       });
