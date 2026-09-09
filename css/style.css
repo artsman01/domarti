@@ -20535,6 +20535,11 @@ a.pagination__item.is-active:hover {
   align-items: center;
   gap: 8px;
   padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(100%);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
 }
 
 @media (max-width: 575.98px) {
@@ -20542,6 +20547,14 @@ a.pagination__item.is-active:hover {
     display: flex;
   }
 }
+.tapbar.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
 .tapbar__up {
   display: flex;
   align-items: center;

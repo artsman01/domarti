@@ -1,7 +1,9 @@
 // Fixed bottom tapbar — real mobile only (≤575.98px, where
 // .back-to-top hides). Floats over the page with no background of its
 // own (matches Figma — the bar itself is transparent, just the two
-// buttons). Always visible, not scroll-triggered.
+// buttons). Same scroll threshold as .back-to-top (see the shared
+// IIFE in main.js): hidden until scrolled past the page's first
+// section, then slides up + fades in, and reverses on the way back.
 
 .tapbar {
   display: none;
@@ -13,12 +15,25 @@
   align-items: center;
   gap: 8px;
   padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(100%);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
 }
 
 @media (max-width: 575.98px) {
   .tapbar {
     display: flex;
   }
+}
+
+.tapbar.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .tapbar__up {
