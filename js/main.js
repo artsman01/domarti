@@ -984,6 +984,8 @@
       var today = new Date();
 
       var html = "";
+      var todayStart = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
       html += '<div class="date-picker__head">';
       html += '<p class="date-picker__month">' + MONTHS_NOMINATIVE[m] + "</p>";
       html += '<div class="date-picker__nav">';
@@ -1006,19 +1008,27 @@
         var isWeekend = mondayIndex(cellDate) >= 5;
         var isToday = isSameDay(cellDate, today);
         var isSelected = isSameDay(cellDate, selected);
+        var isPast = cellDate < todayStart;
         var cls = "date-picker__day";
+        // Past dates read as unavailable (can't schedule a visit
+        // behind you) — muted for weekdays, the same dimmer weekend
+        // red at 0.64 opacity. Upcoming dates are full-contrast:
+        // regular text for weekdays, solid --color-critical for
+        // weekends (a stronger warning since those are actually
+        // bookable), per Figma.
         if (isSelected) cls += " is-selected";
         else if (isToday) cls += " date-picker__day--today";
+        else if (isPast && isWeekend) cls += " date-picker__day--weekend-past";
+        else if (isPast) cls += " date-picker__day--muted";
         else if (isWeekend) cls += " date-picker__day--weekend";
-        else cls += " date-picker__day--muted";
-        html += '<div class="date-picker__cell"><button type="button" class="' + cls + '" data-day="' + day + '">' + day + "</button></div>";
+        html += '<div class="date-picker__cell"><button type="button" class="' + cls + '" data-day="' + day + '"' + (isPast ? " disabled" : "") + ">" + day + "</button></div>";
         cellsInRow++;
       }
       html += "</div></div>";
 
       html += '<div class="date-picker__label-row"><p class="date-picker__label">Укажите желаемое время</p></div>';
       html += '<div class="date-picker__form">';
-      html += '<input type="text" class="date-picker__time" placeholder="ЧЧ:ММ" inputmode="numeric" maxlength="5" value="' + timeValue + '">';
+      html += '<input type="text" class="date-picker__time" placeholder="__ : __" inputmode="numeric" maxlength="5" value="' + timeValue + '">';
       html += '<button type="button" class="btn btn-stroke rounded-pill date-picker__confirm"' + (selected ? "" : " disabled") + ">Подтвердить</button>";
       html += "</div>";
 
