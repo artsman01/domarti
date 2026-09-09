@@ -20729,15 +20729,24 @@ a.pagination__item.is-active:hover {
   left: 0;
   right: 0;
   z-index: 45;
-  display: none;
+  display: flex;
   flex-direction: column;
   background: var(--bs-body-bg);
   border-bottom: 1px solid var(--bs-border-color);
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
 }
 
 .search-panel.is-open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .search-panel__head {
@@ -20786,6 +20795,11 @@ a.pagination__item.is-active:hover {
   font-weight: 500;
   font-size: 0.8125rem;
   white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.search-panel__close:hover {
+  color: var(--bs-primary);
 }
 
 .search-panel__close .icon {

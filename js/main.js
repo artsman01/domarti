@@ -1575,7 +1575,7 @@ function renderSearchResults(container, query) {
       '<input type="text" class="search-panel__input" placeholder="Начните поиск">' +
       '<button type="button" class="search-panel__close">' +
       "<span>Закрыть</span>" +
-      '<svg class="icon"><use href="assets/icons/sprite.svg#close"></use></svg>' +
+      '<svg class="icon"><use href="assets/icons/sprite.svg#close-thin"></use></svg>' +
       "</button>" +
       "</div></div>" +
       '<div class="search-panel__body"><div class="search-results"></div></div>';
