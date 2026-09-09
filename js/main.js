@@ -1294,7 +1294,7 @@ function renderSearchResults(container, query) {
       '<div class="header__tablet-actions d-none d-sm-flex d-lg-none align-items-center justify-content-end flex-grow-1">' +
       '<button type="button" class="icon-btn d-flex align-items-center justify-content-center border-0" aria-label="Позвонить">' +
       '<svg class="icon"><use href="assets/icons/sprite.svg#call"></use></svg></button>' +
-      '<button type="button" class="btn btn-primary rounded-pill">Бесплатный замер</button>' +
+      '<button type="button" class="btn btn-primary rounded-pill" data-call-popup-trigger>Бесплатный замер</button>' +
       '<a href="cart.html" class="icon-btn icon-btn--cart d-flex align-items-center justify-content-center border-0" aria-label="Корзина">' +
       '<svg class="icon"><use href="assets/icons/sprite.svg#cart"></use></svg></a>' +
       '<button type="button" class="icon-btn d-flex align-items-center justify-content-center border-0" aria-label="Поиск">' +
@@ -1331,7 +1331,7 @@ function renderSearchResults(container, query) {
       '<a href="#" aria-label="MAX"><img src="assets/icons/max.svg" width="24" height="24" alt=""></a>' +
       '<a href="#" aria-label="Telegram"><img src="assets/icons/telegram.svg" width="24" height="24" alt=""></a>' +
       "</div>" +
-      '<button type="button" class="btn btn-primary rounded-pill">Бесплатный замер</button>' +
+      '<button type="button" class="btn btn-primary rounded-pill" data-call-popup-trigger>Бесплатный замер</button>' +
       "</div>";
 
     document.body.appendChild(el);
@@ -1518,12 +1518,18 @@ function renderSearchResults(container, query) {
   function close() {
     overlay.classList.remove("is-open");
     document.body.style.overflow = "";
+    document.body.style.paddingRight = "";
     document.removeEventListener("keydown", onEscape);
   }
 
   function open() {
     overlay.classList.add("is-open");
+    // Locking scroll removes the (desktop) scrollbar, which shrinks the
+    // viewport and shifts the whole page right — pad body by exactly
+    // that width so nothing jumps.
+    var scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) document.body.style.paddingRight = scrollbarWidth + "px";
     document.addEventListener("keydown", onEscape);
   }
 
@@ -1536,8 +1542,16 @@ function renderSearchResults(container, query) {
   });
   overlay.querySelector(".call-popup__close").addEventListener("click", close);
 
-  Array.prototype.forEach.call(triggers, function (trigger) {
-    trigger.addEventListener("click", open);
+  // Delegated rather than bound directly to `triggers`: the mobile
+  // menu's own two "Бесплатный замер" buttons carry this same
+  // attribute but don't exist yet at this point (built lazily on the
+  // hamburger's first open), so a one-time querySelectorAll would
+  // miss them.
+  document.addEventListener("click", function (e) {
+    var trigger = e.target.closest("[data-call-popup-trigger]");
+    if (!trigger) return;
+    e.preventDefault();
+    open();
   });
 })();
 
